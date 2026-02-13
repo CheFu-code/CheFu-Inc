@@ -1,105 +1,170 @@
-import React from 'react';
-import { Mail, Phone, MapPin, Twitter, Linkedin, Instagram, Github } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ArrowRight, Github, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function Footer() {
-  return (
-    <footer className="bg-slate-950 border-t border-slate-900 pt-20 pb-10">
-      <div className="container mx-auto px-6">
-        
-        {/* CTA Section */}
-        <div className="bg-gradient-to-r from-violet-900/50 to-cyan-900/50 rounded-3xl p-10 md:p-16 text-center mb-20 border border-slate-800 relative overflow-hidden">
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Ready to Innovate?</h2>
-            <p className="text-slate-300 text-lg max-w-2xl mx-auto mb-10">
-              Whether you need a custom software solution, an AI integration, or professional audio production, we're here to help you build the future.
-            </p>
-            <Link to="/contact" className="px-8 py-4 bg-white text-slate-950 font-bold rounded-full hover:bg-cyan-50 transition-colors shadow-lg shadow-cyan-900/20 inline-block">
-              Get in Touch
-            </Link>
-          </div>
-          {/* Decorative blur */}
-          <div className="absolute top-0 left-0 w-full h-full bg-slate-950/20 z-0" />
-        </div>
+    const companyLinks = [
+        { label: "About", to: "/about" },
+        { label: "Careers", to: "/careers" },
+        { label: "Insights", to: "/blog" },
+        { label: "FAQ", to: "/faq" },
+    ];
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 border-b border-slate-900 pb-12">
-          {/* Brand Info */}
-          <div>
-            <Link to="/" className="text-2xl font-bold tracking-tighter text-white flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 bg-gradient-to-tr from-cyan-500 to-violet-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-mono text-lg">C</span>
-              </div>
-              CheFu <span className="text-cyan-400">Inc.</span>
-            </Link>
-            <p className="text-slate-400 leading-relaxed mb-6">
-              Blending creativity and advanced technology to build innovative digital solutions and high-quality audio experiences.
-            </p>
-            <div className="flex gap-4">
-              <a href="#" className="p-2 rounded-full bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="p-2 rounded-full bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="#" className="p-2 rounded-full bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                <Github className="w-5 h-5" />
-              </a>
-               <a href="#" className="p-2 rounded-full bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                <Instagram className="w-5 h-5" />
-              </a>
+    const serviceLinks = [
+        { label: "Software Development", to: "/services/software" },
+        { label: "AI Solutions", to: "/services/ai" },
+        { label: "Music Production", to: "/services/music" },
+        { label: "All Services", to: "/services" },
+    ];
+
+    const socialLinks = [
+        { label: "Twitter", href: "https://x.com", icon: Twitter },
+        { label: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
+        { label: "GitHub", href: "https://github.com", icon: Github },
+        { label: "Instagram", href: "https://instagram.com", icon: Instagram },
+    ];
+
+    return (
+        <footer className="bg-slate-950 border-t border-slate-800/70 pt-16 pb-8">
+            <div className="container mx-auto px-6">
+                <div className="mb-14 rounded-3xl border border-slate-700/70 bg-gradient-to-r from-slate-900 via-slate-900 to-cyan-950/40 px-8 py-10 md:px-12 md:py-14">
+                    <div className="mx-auto max-w-3xl text-center">
+                        <p className="mb-3 text-sm font-semibold tracking-wide text-cyan-300 uppercase">
+                            Let&apos;s build something meaningful
+                        </p>
+                        <h2 className="mb-5 text-3xl font-bold text-white md:text-5xl">
+                            Ready to launch your next digital project?
+                        </h2>
+                        <p className="mx-auto mb-8 max-w-2xl text-slate-300 md:text-lg">
+                            From software platforms to AI integrations and media production,
+                            we deliver practical, high-quality work with clear communication.
+                        </p>
+                        <Link
+                            to="/contact"
+                            className="inline-flex items-center gap-2 rounded-full bg-cyan-400 px-7 py-3 text-sm font-bold text-slate-950 transition-colors hover:bg-cyan-300"
+                        >
+                            Start a Project
+                            <ArrowRight className="h-4 w-4" />
+                        </Link>
+                    </div>
+                </div>
+
+                <div className="mb-12 grid grid-cols-1 gap-10 border-b border-slate-800 pb-12 md:grid-cols-2 lg:grid-cols-4">
+                    <div>
+                        <Link
+                            to="/"
+                            className="mb-5 inline-flex items-center gap-2 text-2xl font-bold tracking-tighter text-white"
+                        >
+                            <div className="w-8 h-8 bg-linear-to-tr from-cyan-500 to-violet-600 rounded-lg flex items-center justify-center">
+                                <span className="text-white font-mono text-lg">C</span>
+                            </div>
+                            CheFu <span className="text-cyan-400">Inc.</span>
+                        </Link>
+                        <p className="mb-6 leading-relaxed text-slate-400">
+                            CheFu Inc. builds modern digital products and creative technology
+                            experiences for ambitious teams.
+                        </p>
+                        <div className="flex gap-3">
+                            {socialLinks.map((item) => {
+                                const Icon = item.icon;
+                                return (
+                                    <a
+                                        key={item.label}
+                                        href={item.href}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        aria-label={item.label}
+                                        className="rounded-full border border-slate-700 bg-slate-900 p-2 text-slate-400 transition-colors hover:border-cyan-500/60 hover:text-cyan-300"
+                                    >
+                                        <Icon className="h-4 w-4" />
+                                    </a>
+                                );
+                            })}
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 className="mb-4 text-sm font-semibold tracking-wide text-slate-200 uppercase">
+                            Company
+                        </h4>
+                        <ul className="space-y-4">
+                            {companyLinks.map((item) => (
+                                <li key={item.to}>
+                                    <Link
+                                        to={item.to}
+                                        className="text-slate-400 transition-colors hover:text-cyan-300"
+                                    >
+                                        {item.label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 className="mb-4 text-sm font-semibold tracking-wide text-slate-200 uppercase">
+                            Services
+                        </h4>
+                        <ul className="space-y-4">
+                            {serviceLinks.map((item) => (
+                                <li key={item.to}>
+                                    <Link
+                                        to={item.to}
+                                        className="text-slate-400 transition-colors hover:text-cyan-300"
+                                    >
+                                        {item.label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 className="mb-4 text-sm font-semibold tracking-wide text-slate-200 uppercase">
+                            Contact
+                        </h4>
+                        <ul className="space-y-4">
+                            <li className="flex items-start gap-3 text-slate-400">
+                                <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-cyan-400" />
+                                <span>
+                                    Johannesburg, South Africa
+                                    <br />
+                                    Remote-first collaboration
+                                </span>
+                            </li>
+                            <li className="flex items-center gap-3 text-slate-400">
+                                <Mail className="h-5 w-5 shrink-0 text-cyan-400" />
+                                <a
+                                    href="mailto:hello@chefuinc.com"
+                                    className="transition-colors hover:text-cyan-300"
+                                >
+                                    hello@chefuinc.com
+                                </a>
+                            </li>
+                            <li className="flex items-center gap-3 text-slate-400">
+                                <Phone className="h-5 w-5 shrink-0 text-cyan-400" />
+                                <a
+                                    href="tel:+27606031205"
+                                    className="transition-colors hover:text-cyan-300"
+                                >
+                                    +27 60 603 1205
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div className="flex flex-col items-center justify-between gap-4 text-sm text-slate-500 md:flex-row">
+                    <p>&copy; {new Date().getFullYear()} CheFu Inc. All rights reserved.</p>
+                    <div className="flex gap-6 mt-4 md:mt-0">
+                        <Link to="/privacy" className="transition-colors hover:text-slate-200">
+                            Privacy Policy
+                        </Link>
+                        <Link to="/terms" className="transition-colors hover:text-slate-200">
+                            Terms of Service
+                        </Link>
+                    </div>
+                </div>
             </div>
-          </div>
-
-          {/* Links */}
-          <div>
-            <h4 className="text-white font-bold mb-6">Company</h4>
-            <ul className="space-y-4">
-              <li><Link to="/about" className="text-slate-400 hover:text-cyan-400 transition-colors">About Us</Link></li>
-              <li><Link to="/careers" className="text-slate-400 hover:text-cyan-400 transition-colors">Careers / Jobs</Link></li>
-              <li><Link to="/blog" className="text-slate-400 hover:text-cyan-400 transition-colors">Insights / Blog</Link></li>
-              <li><Link to="/faq" className="text-slate-400 hover:text-cyan-400 transition-colors">FAQ</Link></li>
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h4 className="text-white font-bold mb-6">Services</h4>
-             <ul className="space-y-4">
-              <li><Link to="/services" className="text-slate-400 hover:text-cyan-400 transition-colors">Music Production</Link></li>
-              <li><Link to="/services" className="text-slate-400 hover:text-cyan-400 transition-colors">AI Solutions</Link></li>
-              <li><Link to="/services" className="text-slate-400 hover:text-cyan-400 transition-colors">Web Development</Link></li>
-              <li><Link to="/services" className="text-slate-400 hover:text-cyan-400 transition-colors">Mobile Apps</Link></li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="text-white font-bold mb-6">Contact</h4>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3 text-slate-400">
-                <MapPin className="w-5 h-5 text-cyan-500 flex-shrink-0" />
-                <span>123 Innovation Blvd,<br />Tech City, TC 90210</span>
-              </li>
-              <li className="flex items-center gap-3 text-slate-400">
-                <Mail className="w-5 h-5 text-cyan-500 flex-shrink-0" />
-                <span>hello@chefuinc.com</span>
-              </li>
-              <li className="flex items-center gap-3 text-slate-400">
-                <Phone className="w-5 h-5 text-cyan-500 flex-shrink-0" />
-                <span>+1 (555) 123-4567</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
-          <p>&copy; {new Date().getFullYear()} CheFu Inc. All rights reserved.</p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
+        </footer>
+    );
 }
