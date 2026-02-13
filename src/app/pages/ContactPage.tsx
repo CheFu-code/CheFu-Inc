@@ -4,7 +4,8 @@ import { useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
 import type { FormData } from "../../types";
 import { ContactPageUI } from "../components/ContactPageUI";
-import { auth } from "../../config/firebaseConfig";
+import { auth, db } from "../../config/firebaseConfig";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 export function ContactPage() {
     const {
@@ -53,8 +54,22 @@ export function ContactPage() {
             });
             return;
         }
-        toast.success("Message sent! We'll be in touch shortly.");
-        reset();
+        try {
+            await addDoc(collection(db, "contactRequests"), {
+                ...data,
+                userId: user.uid,
+                userEmail: user.email,
+                createdAt: serverTimestamp(),
+            });
+
+            toast.success("Message sent!", {
+                description: "We'll be in touch shortly.",
+            });
+            reset();
+        } catch (error) {
+            console.error("Error adding document: ", error);
+            toast.error("Failed to send message. Please try again later.");
+        }
     };
 
     return (

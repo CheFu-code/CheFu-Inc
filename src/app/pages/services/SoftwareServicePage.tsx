@@ -1,6 +1,5 @@
-import React from 'react';
+import { ArrowRight, Code, Database, GitBranch, Layout, Server, Smartphone } from 'lucide-react';
 import { motion } from 'motion/react';
-import { Code, Smartphone, Layout, Server, Database, GitBranch, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const processSteps = [
@@ -59,7 +58,7 @@ export function SoftwareServicePage() {
                   {[
                      { icon: Layout, text: "Frontend: React, Next.js, Tailwind CSS" },
                      { icon: Server, text: "Backend: Node.js, Python, Go" },
-                     { icon: Database, text: "Database: PostgreSQL, MongoDB, Redis" },
+                     { icon: Database, text: "Database: PostgreSQL, MongoDB, Firestore" },
                      { icon: Smartphone, text: "Mobile: React Native, iOS, Android" },
                      { icon: GitBranch, text: "DevOps: Docker, Kubernetes, AWS" },
                   ].map((item, i) => (

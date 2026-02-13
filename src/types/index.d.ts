@@ -6,3 +6,10 @@ export type FormData = {
   budget: string;
   message: string;
 };
+
+
+export type LocationState = {
+    from?: {
+        pathname?: string;
+    };
+};
