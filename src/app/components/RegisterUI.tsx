@@ -1,6 +1,5 @@
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
-import { Toaster } from "./ui/sonner";
 import { Button } from "./ui/button";
 import { Loader2, Lock, Mail } from "lucide-react";
 import {
@@ -29,7 +28,6 @@ const RegisterUI = ({
 }) => {
     return (
         <section className="pt-32 pb-20 bg-slate-950 min-h-screen">
-            <Toaster richColors theme="dark" position="top-right" />
             <div className="container mx-auto px-6">
                 <div className="mx-auto max-w-md">
                     <Card className="border-slate-800 bg-slate-900/90 text-slate-100 shadow-xl">

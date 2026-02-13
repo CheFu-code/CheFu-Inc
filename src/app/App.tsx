@@ -52,10 +52,11 @@ export default function App() {
                 });
             }
 
-            return () => {
-                unsubscribe();
-            };
+
         });
+        return () => {
+            unsubscribe();
+        };
     }, []);
 
     return (

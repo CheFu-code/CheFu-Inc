@@ -1,6 +1,5 @@
 import { Loader2, Mail, MapPin, Phone, Send } from "lucide-react";
 import { motion } from "motion/react";
-import { Toaster } from "sonner";
 import type { FormData } from "../../types";
 import type {
     FieldErrors,
@@ -23,7 +22,6 @@ export const ContactPageUI = ({
 }) => {
     return (
         <div className="pt-32 pb-20 bg-slate-950 min-h-screen">
-            <Toaster position="top-right" theme="dark" />
             <div className="container mx-auto px-6">
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
@@ -74,7 +72,7 @@ export const ContactPageUI = ({
                                     </div>
                                     <div>
                                         <h3 className="font-semibold text-white">Call Us</h3>
-                                        <p className="text-slate-400">+1 (555) 123-4567</p>
+                                        <p className="text-slate-400">+27 60 603 1205</p>
                                         <p className="text-slate-500 text-sm">
                                             Mon-Fri, 9am - 6pm PST
                                         </p>
@@ -107,11 +105,12 @@ export const ContactPageUI = ({
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-slate-300">
+                                <label htmlFor="name" className="text-sm font-medium text-slate-300">
                                         Name
                                     </label>
                                     <input
                                         {...register("name", { required: "Name is required" })}
+                                        id="name"
                                         className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors"
                                         placeholder="Your name"
                                         type="text"

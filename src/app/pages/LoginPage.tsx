@@ -43,10 +43,9 @@ export function LoginPage() {
                         message = "This account has been disabled. Contact support.";
                         break;
                     case "auth/user-not-found":
-                        message = "No account found with this email.";
-                        break;
                     case "auth/wrong-password":
-                        message = "Incorrect password. Please try again.";
+                    case "auth/invalid-credential":
+                        message = "Invalid email or password.";
                         break;
                     case "auth/too-many-requests":
                         message =
@@ -81,7 +80,7 @@ export function LoginPage() {
                             "This credential is already associated with another account.";
                         break;
                     default:
-                        message = `Login failed: ${error.message}`;
+                        message = "Login failed. Please try again.";
                 }
             }
 

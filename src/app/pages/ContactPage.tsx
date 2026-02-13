@@ -58,7 +58,7 @@ export function ContactPage() {
             await addDoc(collection(db, "contactRequests"), {
                 ...data,
                 userId: user.uid,
-                userEmail: user.email,
+                userEmail: user.email ?? data.email,
                 createdAt: serverTimestamp(),
             });
 

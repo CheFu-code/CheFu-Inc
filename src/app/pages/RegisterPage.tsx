@@ -62,7 +62,7 @@ export function RegisterPage() {
                         message = "Invalid argument provided. Please try again.";
                         break;
                     default:
-                        message = `Registration failed: ${error.message}`;
+                        message = "Registration failed. Please try again.";
                 }
             }
 

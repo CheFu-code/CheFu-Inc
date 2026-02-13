@@ -1,18 +1,29 @@
 import { clsx } from "clsx";
+import { signOut } from "firebase/auth";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 import { twMerge } from "tailwind-merge";
 import { auth } from "../../config/firebaseConfig";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export function Navbar() {
-    const user = auth.currentUser;
+    const [user, setUser] = useState(auth.currentUser);
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+    const userMenuRef = useRef<HTMLDivElement>(null);
     const location = useLocation();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((nextUser) => {
+            setUser(nextUser);
+        });
+        return () => unsubscribe();
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -26,6 +37,48 @@ export function Navbar() {
         const timeout = setTimeout(() => setIsMobileMenuOpen(false), 0);
         return () => clearTimeout(timeout);
     }, [location.pathname]);
+
+    useEffect(() => {
+        setIsUserMenuOpen(false);
+    }, [location.pathname]);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                userMenuRef.current &&
+                !userMenuRef.current.contains(event.target as Node)
+            ) {
+                setIsUserMenuOpen(false);
+            }
+        };
+
+        const handleEscape = (event: KeyboardEvent) => {
+            if (event.key === "Escape") {
+                setIsUserMenuOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("keydown", handleEscape);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("keydown", handleEscape);
+        };
+    }, []);
+
+    const handleSignOut = async () => {
+        try {
+            await signOut(auth);
+            setIsUserMenuOpen(false);
+            toast.success("Logged out.");
+            navigate("/");
+        } catch (error) {
+            toast.error("Failed to log out.", {
+                description:
+                    error instanceof Error ? error.message : "Unknown error occurred.",
+            });
+        }
+    };
 
     const navLinks = [
         { name: "Home", href: "/" },
@@ -74,12 +127,67 @@ export function Navbar() {
 
                     {/* Avatar */}
                     {user && (
-                        <Avatar>
-                            <AvatarImage src={user.photoURL ?? undefined} />
-                            <AvatarFallback className="text-black font-semibold">
-                                {user.displayName ? user.displayName[0].toUpperCase() : "C"}
-                            </AvatarFallback>
-                        </Avatar>
+                        <div className="relative" ref={userMenuRef}>
+                            <button
+                                type="button"
+                                className="rounded-full ring-2 ring-transparent hover:ring-cyan-400/60 focus-visible:outline-none focus-visible:ring-cyan-400/80 transition cursor-pointer"
+                                onClick={() => setIsUserMenuOpen((prev) => !prev)}
+                                aria-haspopup="menu"
+                                aria-expanded={isUserMenuOpen}
+                                aria-label="Open user menu"
+                            >
+                                <Avatar>
+                                    <AvatarImage src={user.photoURL ?? undefined} />
+                                    <AvatarFallback className="text-black font-semibold">
+                                        {user.displayName
+                                            ? user.displayName[0].toUpperCase()
+                                            : "C"}
+                                    </AvatarFallback>
+                                </Avatar>
+                            </button>
+
+                            <AnimatePresence>
+                                {isUserMenuOpen && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -6, scale: 0.98 }}
+                                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                                        exit={{ opacity: 0, y: -6, scale: 0.98 }}
+                                        transition={{ duration: 0.15, ease: "easeOut" }}
+                                        className="absolute right-0 top-12 w-56 rounded-xl border border-slate-700 bg-slate-900/95 backdrop-blur-md shadow-xl overflow-hidden"
+                                        role="menu"
+                                    >
+                                        <div className="px-4 py-3 border-b border-slate-700">
+                                            <p className="text-sm font-semibold text-white truncate">
+                                                {user.displayName || "User"}
+                                            </p>
+                                            <p className="text-xs text-slate-400 truncate">
+                                                {user.email}
+                                            </p>
+                                        </div>
+
+                                        <button
+                                            type="button"
+                                            className="w-full text-left px-4 py-2.5 text-sm text-slate-200 hover:bg-slate-800 transition cursor-pointer"
+                                            onClick={() => {
+                                                setIsUserMenuOpen(false);
+                                                navigate("/contact");
+                                            }}
+                                            role="menuitem"
+                                        >
+                                            Contact us
+                                        </button>
+                                        <button
+                                            type="button"
+                                            className="w-full text-left px-4 py-2.5 text-sm text-red-300 hover:bg-slate-800 transition cursor-pointer"
+                                            onClick={handleSignOut}
+                                            role="menuitem"
+                                        >
+                                            Log out
+                                        </button>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
                     )}
                     <button
                         onClick={() => navigate("/contact")}
