@@ -1,5 +1,4 @@
-import React from 'react';
-import { Mail, Phone, MapPin, Twitter, Linkedin, Instagram, Github } from 'lucide-react';
+import { Github, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export function Footer() {
@@ -8,7 +7,7 @@ export function Footer() {
       <div className="container mx-auto px-6">
         
         {/* CTA Section */}
-        <div className="bg-gradient-to-r from-violet-900/50 to-cyan-900/50 rounded-3xl p-10 md:p-16 text-center mb-20 border border-slate-800 relative overflow-hidden">
+        <div className="bg-linear-to-r from-violet-900/50 to-cyan-900/50 rounded-3xl p-10 md:p-16 text-center mb-20 border border-slate-800 relative overflow-hidden">
           <div className="relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Ready to Innovate?</h2>
             <p className="text-slate-300 text-lg max-w-2xl mx-auto mb-10">
@@ -26,7 +25,7 @@ export function Footer() {
           {/* Brand Info */}
           <div>
             <Link to="/" className="text-2xl font-bold tracking-tighter text-white flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 bg-gradient-to-tr from-cyan-500 to-violet-600 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-linear-to-tr from-cyan-500 to-violet-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-mono text-lg">C</span>
               </div>
               CheFu <span className="text-cyan-400">Inc.</span>
@@ -77,15 +76,15 @@ export function Footer() {
             <h4 className="text-white font-bold mb-6">Contact</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-slate-400">
-                <MapPin className="w-5 h-5 text-cyan-500 flex-shrink-0" />
+                <MapPin className="w-5 h-5 text-cyan-500 shrink-0" />
                 <span>123 Innovation Blvd,<br />Tech City, TC 90210</span>
               </li>
               <li className="flex items-center gap-3 text-slate-400">
-                <Mail className="w-5 h-5 text-cyan-500 flex-shrink-0" />
+                <Mail className="w-5 h-5 text-cyan-500 shrink-0" />
                 <span>hello@chefuinc.com</span>
               </li>
               <li className="flex items-center gap-3 text-slate-400">
-                <Phone className="w-5 h-5 text-cyan-500 flex-shrink-0" />
+                <Phone className="w-5 h-5 text-cyan-500 shrink-0" />
                 <span>+1 (555) 123-4567</span>
               </li>
             </ul>
