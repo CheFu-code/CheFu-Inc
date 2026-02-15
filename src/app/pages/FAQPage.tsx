@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/Accordion'; // We will create this or use simple state
 import { Plus, Minus } from 'lucide-react';
 
 // Custom Accordion since we don't have the shadcn one installed fully with utils

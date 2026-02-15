@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'motion/react';
-import { Brain, Sparkles, Bot, MessageSquare, LineChart, FileCode2 } from 'lucide-react';
+import { Brain, Sparkles, Bot, LineChart, FileCode2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export function AIServicePage() {

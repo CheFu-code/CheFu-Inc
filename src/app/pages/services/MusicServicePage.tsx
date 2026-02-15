@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'motion/react';
 import { Mic2, Headphones, Layers, Volume2, Calendar, Radio } from 'lucide-react';
 import { Link } from 'react-router-dom';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, PlayCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
