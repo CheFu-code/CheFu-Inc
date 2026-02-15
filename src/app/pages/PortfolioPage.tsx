@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'motion/react';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 const projects = [
   {

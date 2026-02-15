@@ -1,6 +1,6 @@
-import React from 'react';
+import type { SVGProps } from 'react';
 import { motion } from 'motion/react';
-import { Database, Cloud, Cpu, Globe, Smartphone, Lock } from 'lucide-react';
+import { Database, Cloud, Globe, Smartphone, Lock } from 'lucide-react';
 
 const techs = [
   { name: 'React & Next.js', icon: Globe },
@@ -11,7 +11,7 @@ const techs = [
   { name: 'Cybersecurity', icon: Lock },
 ];
 
-function BrainIcon(props: React.SVGProps<SVGSVGElement>) {
+function BrainIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}

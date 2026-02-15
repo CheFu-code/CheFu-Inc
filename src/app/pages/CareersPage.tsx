@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Briefcase, Coffee, Zap, Heart, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
