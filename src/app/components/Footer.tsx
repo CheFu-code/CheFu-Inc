@@ -19,7 +19,7 @@ export function Footer() {
     const socialLinks = [
         { label: "Twitter", href: "https://x.com", icon: Twitter },
         { label: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
-        { label: "GitHub", href: "https://github.com", icon: Github },
+        { label: "GitHub", href: "https://github.com/CheFu-Inc", icon: Github },
         { label: "Instagram", href: "https://instagram.com", icon: Instagram },
     ];
 
@@ -54,9 +54,9 @@ export function Footer() {
                             to="/"
                             className="mb-5 inline-flex items-center gap-2 text-2xl font-bold tracking-tighter text-white"
                         >
-                            <div className="w-8 h-8 bg-linear-to-tr from-cyan-500 to-violet-600 rounded-lg flex items-center justify-center">
+                            {/* <div className="w-8 h-8 bg-linear-to-tr from-cyan-500 to-violet-600 rounded-lg flex items-center justify-center">
                                 <span className="text-white font-mono text-lg">C</span>
-                            </div>
+                            </div> */}
                             CheFu <span className="text-cyan-400">Inc.</span>
                         </Link>
                         <p className="mb-6 leading-relaxed text-slate-400">

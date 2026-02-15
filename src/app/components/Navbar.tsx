@@ -102,9 +102,9 @@ export function Navbar() {
                     to="/"
                     className="text-2xl font-bold tracking-tighter text-white flex items-center gap-2"
                 >
-                    <div className="w-8 h-8 bg-linear-to-tr from-cyan-500 to-violet-600 rounded-lg flex items-center justify-center">
+                    {/* <div className="w-8 h-8 bg-linear-to-tr from-cyan-500 to-violet-600 rounded-lg flex items-center justify-center">
                         <span className="text-white font-mono text-lg">C</span>
-                    </div>
+                    </div> */}
                     CheFu <span className="text-cyan-400">Inc.</span>
                 </Link>
 
