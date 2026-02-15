@@ -1,19 +1,39 @@
 {
-    "name": "",
-    "short_name": "",
+    "id": "/",
+    "name": "CheFu Inc",
+    "short_name": "CheFu",
+    "description": "CheFu Inc builds innovative technology solutions, software products, and scalable digital platforms.",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "display_override": [
+        "window-controls-overlay",
+        "standalone",
+        "minimal-ui",
+        "browser"
+    ],
+    "orientation": "portrait-primary",
+    "background_color": "#ffffff",
+    "theme_color": "#111827",
+    "lang": "en-US",
+    "dir": "ltr",
+    "categories": [
+        "business",
+        "productivity",
+        "technology"
+    ],
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
         },
         {
             "src": "/android-chrome-512x512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
         }
-    ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
-    "display": "standalone"
+    ]
 }
