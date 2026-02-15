@@ -1,16 +1,62 @@
 <!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CheFu Inc.</title>
-</head>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
-<body>
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary SEO -->
+    <title>CheFu Inc | Official Website</title>
+    <meta
+      name="description"
+      content="CheFu Inc is an innovative technology company building modern digital solutions, software products, and scalable platforms."
+    />
+    <meta
+      name="keywords"
+      content="CheFu Inc, CheFu, technology company, software development, digital solutions"
+    />
+    <meta name="author" content="CheFu Inc" />
+    <link rel="canonical" href="https://chefuinc.com/" />
+
+    <!-- Open Graph (Social Sharing) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="CheFu Inc | Official Website" />
+    <meta
+      property="og:description"
+      content="CheFu Inc builds innovative technology solutions and scalable digital products."
+    />
+    <meta property="og:url" content="https://chefuinc.com/" />
+    <meta property="og:image" content="https://chefuinc.com/og-image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="CheFu Inc | Official Website" />
+    <meta name="twitter:description" content="Official website of CheFu Inc." />
+    <meta name="twitter:image" content="https://chefuinc.com/og-image.png" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Structured Data (Organization Schema) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "CheFu Inc",
+        "url": "https://chefuinc.com",
+        "logo": "https://chefuinc.com/logo.jpeg"
+      }
+    </script>
+  </head>
+
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-</body>
-
+  </body>
 </html>
