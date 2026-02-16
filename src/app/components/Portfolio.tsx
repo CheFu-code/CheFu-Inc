@@ -28,7 +28,7 @@ const projects = [
     id: 4,
     title: 'Echo Chambers',
     category: 'Music Production',
-    image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&q=80&w=1080', // Music Studio
+    image:'/poweroflove.jpg',
     description: 'Award-winning sound design and mixing for the immersive VR game "Echoes".',
   },
 ];

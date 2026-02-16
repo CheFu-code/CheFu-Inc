@@ -90,7 +90,7 @@ const LoginUI = ({
                                 <Button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="w-full bg-linear-to-r from-cyan-500 to-violet-600 text-white hover:opacity-90"
+                                    className="w-full cursor-pointer bg-linear-to-r from-cyan-500 to-violet-600 text-white hover:opacity-90"
                                 >
                                     {isSubmitting ? (
                                         <>

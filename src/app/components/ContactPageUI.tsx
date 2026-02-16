@@ -1,11 +1,11 @@
-import { Loader2, Mail, MapPin, Phone, Send } from "lucide-react";
+import { Loader2, Mail, Phone, Send } from "lucide-react";
 import { motion } from "motion/react";
-import type { FormData } from "../../types";
 import type {
     FieldErrors,
     UseFormHandleSubmit,
     UseFormRegister,
 } from "react-hook-form";
+import type { FormData } from "../../types";
 
 export const ContactPageUI = ({
     handleSubmit,
@@ -20,6 +20,10 @@ export const ContactPageUI = ({
     isSubmitting: boolean;
     errors: FieldErrors<FormData>;
 }) => {
+    const consultationUrl =
+        import.meta.env.VITE_CONSULTATION_URL ||
+        "mailto:hello@chefuinc.com?subject=Consultation%20Request";
+
     return (
         <div className="pt-32 pb-20 bg-slate-950 min-h-screen">
             <div className="container mx-auto px-6">
@@ -41,20 +45,6 @@ export const ContactPageUI = ({
                                 Contact Information
                             </h2>
                             <div className="space-y-6">
-                                <div className="flex items-start gap-4">
-                                    <div className="p-3 bg-slate-900 rounded-lg border border-slate-800 text-cyan-400">
-                                        <MapPin className="w-6 h-6" />
-                                    </div>
-                                    <div>
-                                        <h3 className="font-semibold text-white">Visit Us</h3>
-                                        <p className="text-slate-400">
-                                            123 Innovation Blvd, Suite 400
-                                            <br />
-                                            Tech City, TC 90210
-                                        </p>
-                                    </div>
-                                </div>
-
                                 <div className="flex items-start gap-4">
                                     <div className="p-3 bg-slate-900 rounded-lg border border-slate-800 text-cyan-400">
                                         <Mail className="w-6 h-6" />
@@ -86,12 +76,17 @@ export const ContactPageUI = ({
                                 Not sure what you need?
                             </h3>
                             <p className="text-slate-400 mb-4">
-                                Schedule a free 15-minute consultation call with one of our
+                                Schedule a free 30-minute consultation call with one of our
                                 specialists.
                             </p>
-                            <button className="text-cyan-400 font-semibold hover:text-white transition-colors">
+                            <a
+                                href={consultationUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-cyan-400 font-semibold hover:text-white transition-colors"
+                            >
                                 Book a consultation &rarr;
-                            </button>
+                            </a>
                         </div>
                     </div>
 
@@ -105,7 +100,7 @@ export const ContactPageUI = ({
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                <label htmlFor="name" className="text-sm font-medium text-slate-300">
+                                    <label htmlFor="name" className="text-sm font-medium text-slate-300">
                                         Name
                                     </label>
                                     <input
@@ -221,7 +216,7 @@ export const ContactPageUI = ({
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full py-4 bg-linear-to-r from-cyan-500 to-violet-600 text-white font-bold rounded-lg hover:shadow-lg hover:shadow-cyan-500/20 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                className="w-full cursor-pointer py-4 bg-linear-to-r from-cyan-500 to-violet-600 text-white font-bold rounded-lg hover:shadow-lg hover:shadow-cyan-500/20 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                             >
                                 {isSubmitting ? (
                                     <>
