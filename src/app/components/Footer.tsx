@@ -17,16 +17,16 @@ export function Footer() {
     ];
 
     const socialLinks = [
-        { label: "Twitter", href: "https://x.com", icon: Twitter },
-        { label: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
+        { label: "Twitter", href: "https://x.com/CheFu_Inc", icon: Twitter },
+        { label: "LinkedIn", href: "https://www.linkedin.com/in/chefu-inc-90b1663b1", icon: Linkedin },
         { label: "GitHub", href: "https://github.com/CheFu-Inc", icon: Github },
-        { label: "Instagram", href: "https://instagram.com", icon: Instagram },
+        { label: "Instagram", href: "https://www.instagram.com/chefu_inc", icon: Instagram },
     ];
 
     return (
         <footer className="bg-slate-950 border-t border-slate-800/70 pt-16 pb-8">
             <div className="container mx-auto px-6">
-                <div className="mb-14 rounded-3xl border border-slate-700/70 bg-gradient-to-r from-slate-900 via-slate-900 to-cyan-950/40 px-8 py-10 md:px-12 md:py-14">
+                <div className="mb-14 rounded-3xl border border-slate-700/70 bg-linear-to-r from-slate-900 via-slate-900 to-cyan-950/40 px-8 py-10 md:px-12 md:py-14">
                     <div className="mx-auto max-w-3xl text-center">
                         <p className="mb-3 text-sm font-semibold tracking-wide text-cyan-300 uppercase">
                             Let&apos;s build something meaningful
