@@ -1,6 +1,5 @@
 import { Loader2, Mail, Phone, Send } from "lucide-react";
 import { motion } from "motion/react";
-import { Link } from "react-router-dom";
 import type {
     FieldErrors,
     UseFormHandleSubmit,
@@ -21,6 +20,10 @@ export const ContactPageUI = ({
     isSubmitting: boolean;
     errors: FieldErrors<FormData>;
 }) => {
+    const consultationUrl =
+        import.meta.env.VITE_CONSULTATION_URL ||
+        "mailto:hello@chefuinc.com?subject=Consultation%20Request";
+
     return (
         <div className="pt-32 pb-20 bg-slate-950 min-h-screen">
             <div className="container mx-auto px-6">
@@ -73,15 +76,17 @@ export const ContactPageUI = ({
                                 Not sure what you need?
                             </h3>
                             <p className="text-slate-400 mb-4">
-                                Schedule a free 15-minute consultation call with one of our
+                                Schedule a free 30-minute consultation call with one of our
                                 specialists.
                             </p>
-                            <Link
-                                to="/login"
+                            <a
+                                href={consultationUrl}
+                                target="_blank"
+                                rel="noreferrer"
                                 className="text-cyan-400 font-semibold hover:text-white transition-colors"
                             >
                                 Book a consultation &rarr;
-                            </Link>
+                            </a>
                         </div>
                     </div>
 
