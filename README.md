@@ -107,3 +107,47 @@ Global style entry is `src/styles/index.css`, which imports:
 
 - This project currently has no test script configured in `package.json`.
 - The `dist/` folder contains build output.
+
+## Careers Confirmation Emails (Resend + Firebase Functions)
+
+When a new document is added to `membershipApplications`, a Cloud Function sends a confirmation email to the applicant using Resend.
+
+### Files Added
+
+- `firebase.json`
+- `functions/package.json`
+- `functions/tsconfig.json`
+- `functions/src/index.ts`
+
+### Setup
+
+1. Install Firebase Functions dependencies:
+
+```bash
+npm --prefix functions install
+```
+
+2. Set required secrets (server-side, not frontend `.env`):
+
+```bash
+firebase functions:secrets:set RESEND_API_KEY
+firebase functions:secrets:set RESEND_FROM_EMAIL
+```
+
+Use a verified Resend sender for `RESEND_FROM_EMAIL` (for example: `careers@yourdomain.com`).
+
+3. Deploy functions:
+
+```bash
+firebase deploy --only functions
+```
+
+### Behavior
+
+- Trigger: Firestore `onDocumentCreated` for `membershipApplications/{applicationId}`
+- Sends: "We received your CheFu Inc application" to the applicant email
+- Updates document fields:
+  - `confirmationEmailStatus`: `sent` or `failed`
+  - `confirmationEmailId`
+  - `confirmationEmailError`
+  - `confirmationEmailUpdatedAt`

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BackToTopButton } from "./components/BackToTopButton";
 import { Footer } from "./components/Footer";
 import { Navbar } from "./components/Navbar";
 import { AboutPage } from "./pages/AboutPage";
@@ -66,6 +67,7 @@ export default function App() {
                 <ScrollToTop />
                 <div className="bg-slate-950 min-h-screen text-slate-200 font-sans selection:bg-cyan-500/30 selection:text-cyan-100 flex flex-col">
                     <Navbar />
+                    <BackToTopButton />
                     <main className="grow">
                         <Routes>
                             <Route path="/" element={<Home />} />
