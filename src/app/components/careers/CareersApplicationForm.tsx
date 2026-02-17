@@ -47,6 +47,9 @@ export function CareersApplicationForm({
                                 className={fieldClassName}
                                 placeholder="Enter your full name"
                             />
+                            {errors.fullName && (
+                                <p className="text-sm text-red-400">{errors.fullName.message}</p>
+                            )}
                         </FieldLabel>
                         <FieldLabel label="Email">
                             <input
@@ -55,6 +58,9 @@ export function CareersApplicationForm({
                                 className={fieldClassName}
                                 placeholder="you@example.com"
                             />
+                            {errors.email && (
+                                <p className="text-sm text-red-400">{errors.email.message}</p>
+                            )}
                         </FieldLabel>
                         <FieldLabel label="Phone (optional)">
                             <input
@@ -80,6 +86,9 @@ export function CareersApplicationForm({
                                     </option>
                                 ))}
                             </select>
+                            {errors.country && (
+                                <p className="text-sm text-red-400">{errors.country.message}</p>
+                            )}
                         </FieldLabel>
                         <FieldLabel label="Province / State">
                             <select
@@ -101,6 +110,9 @@ export function CareersApplicationForm({
                                     </option>
                                 ))}
                             </select>
+                            {errors.province && (
+                                <p className="text-sm text-red-400">{errors.province.message}</p>
+                            )}
                         </FieldLabel>
                         <FieldLabel label="City">
                             <input
@@ -110,6 +122,9 @@ export function CareersApplicationForm({
                                 className={fieldClassName}
                                 placeholder="Enter your city"
                             />
+                            {errors.city && (
+                                <p className="text-sm text-red-400">{errors.city.message}</p>
+                            )}
                         </FieldLabel>
                     </div>
                 </div>
@@ -134,6 +149,9 @@ export function CareersApplicationForm({
                                     </option>
                                 ))}
                             </select>
+                            {errors.department && (
+                                <p className="text-sm text-red-400">{errors.department.message}</p>
+                            )}
                         </FieldLabel>
                         <FieldLabel label="Role Applying For">
                             <select
@@ -152,6 +170,11 @@ export function CareersApplicationForm({
                                     </option>
                                 ))}
                             </select>
+                            {errors.roleApplyingFor && (
+                                <p className="text-sm text-red-400">
+                                    {errors.roleApplyingFor.message}
+                                </p>
+                            )}
                         </FieldLabel>
                         <FieldLabel label="Experience Level">
                             <select
@@ -168,6 +191,11 @@ export function CareersApplicationForm({
                                 <option value="Intermediate">Intermediate</option>
                                 <option value="Advanced">Advanced</option>
                             </select>
+                            {errors.experienceLevel && (
+                                <p className="text-sm text-red-400">
+                                    {errors.experienceLevel.message}
+                                </p>
+                            )}
                         </FieldLabel>
                         <FieldLabel label="Years of Experience">
                             <input
@@ -177,6 +205,11 @@ export function CareersApplicationForm({
                                 className={fieldClassName}
                                 placeholder="e.g. 3"
                             />
+                            {errors.yearsOfExperience && (
+                                <p className="text-sm text-red-400">
+                                    {errors.yearsOfExperience.message}
+                                </p>
+                            )}
                         </FieldLabel>
                         <FieldLabel label="Preferred Work Mode">
                             <select
@@ -196,6 +229,11 @@ export function CareersApplicationForm({
                                 {isSouthAfrica && <option value="Hybrid">Hybrid</option>}
                                 {isSouthAfrica && <option value="On-site">On-site</option>}
                             </select>
+                            {errors.preferredWorkMode && (
+                                <p className="text-sm text-red-400">
+                                    {errors.preferredWorkMode.message}
+                                </p>
+                            )}
                             {!isSouthAfrica && (
                                 <p className="text-xs text-amber-300">
                                     Work mode is locked to Remote when country is not South
@@ -211,6 +249,11 @@ export function CareersApplicationForm({
                                 })}
                                 className={fieldClassName}
                             />
+                            {errors.earliestStartDate && (
+                                <p className="text-sm text-red-400">
+                                    {errors.earliestStartDate.message}
+                                </p>
+                            )}
                         </FieldLabel>
                         <FieldLabel label="Highest Education">
                             <select
@@ -232,6 +275,11 @@ export function CareersApplicationForm({
                                 <option value="PhD">PhD</option>
                                 <option value="Self-Taught">Self-Taught</option>
                             </select>
+                            {errors.highestEducation && (
+                                <p className="text-sm text-red-400">
+                                    {errors.highestEducation.message}
+                                </p>
+                            )}
                         </FieldLabel>
                         <FieldLabel label="Work Authorization">
                             <select
@@ -250,6 +298,11 @@ export function CareersApplicationForm({
                                     Need Sponsorship
                                 </option>
                             </select>
+                            {errors.workAuthorization && (
+                                <p className="text-sm text-red-400">
+                                    {errors.workAuthorization.message}
+                                </p>
+                            )}
                         </FieldLabel>
                     </div>
                     <div className="grid gap-4 mt-4">
@@ -261,6 +314,9 @@ export function CareersApplicationForm({
                                 className={`${fieldClassName} min-h-24`}
                                 placeholder="Engineering, production, writing, marketing, or creative skills"
                             />
+                            {errors.skills && (
+                                <p className="text-sm text-red-400">{errors.skills.message}</p>
+                            )}
                         </FieldLabel>
                         <FieldLabel label="Portfolio / GitHub link (optional)">
                             <input
@@ -308,6 +364,9 @@ export function CareersApplicationForm({
                                 })}
                                 className={`${fieldClassName} min-h-24`}
                             />
+                            {errors.whyJoin && (
+                                <p className="text-sm text-red-400">{errors.whyJoin.message}</p>
+                            )}
                         </FieldLabel>
                         <FieldLabel label="What makes you different?">
                             <textarea
@@ -316,6 +375,11 @@ export function CareersApplicationForm({
                                 })}
                                 className={`${fieldClassName} min-h-24`}
                             />
+                            {errors.whatMakesYouDifferent && (
+                                <p className="text-sm text-red-400">
+                                    {errors.whatMakesYouDifferent.message}
+                                </p>
+                            )}
                         </FieldLabel>
                         <FieldLabel label="How many hours per week can you commit?">
                             <input
@@ -325,6 +389,9 @@ export function CareersApplicationForm({
                                 className={fieldClassName}
                                 placeholder="e.g. 10-15 hours"
                             />
+                            {errors.hoursPerWeek && (
+                                <p className="text-sm text-red-400">{errors.hoursPerWeek.message}</p>
+                            )}
                         </FieldLabel>
                     </div>
                 </div>
@@ -366,27 +433,20 @@ export function CareersApplicationForm({
                     {isSubmitting ? "Submitting..." : "Submit Application"}
                 </button>
 
-                {(errors.fullName ||
-                    errors.email ||
-                    errors.country ||
-                    errors.province ||
-                    errors.city ||
-                    errors.department ||
-                    errors.roleApplyingFor ||
-                    errors.skills ||
-                    errors.experienceLevel ||
-                    errors.yearsOfExperience ||
-                    errors.preferredWorkMode ||
-                    errors.earliestStartDate ||
-                    errors.highestEducation ||
-                    errors.workAuthorization ||
-                    errors.whyJoin ||
-                    errors.whatMakesYouDifferent ||
-                    errors.hoursPerWeek) && (
+                {Object.keys(errors).length > 0 && (
                     <p className="text-sm text-red-400">
                         Please complete all required fields before submitting.
                     </p>
                 )}
+
+                <input
+                    type="text"
+                    autoComplete="off"
+                    tabIndex={-1}
+                    aria-hidden="true"
+                    {...register("website")}
+                    className="hidden"
+                />
             </form>
         </section>
     );

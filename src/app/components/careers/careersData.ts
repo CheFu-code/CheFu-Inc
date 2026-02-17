@@ -109,7 +109,7 @@ export const provinceOptionsByCountry: Record<string, readonly string[]> = {
         "Northern Ireland",
         "Other / Not Listed",
     ],
-    Canada: [
+    "Canada": [
         "Ontario",
         "Quebec",
         "British Columbia",
@@ -117,7 +117,7 @@ export const provinceOptionsByCountry: Record<string, readonly string[]> = {
         "Manitoba",
         "Other / Not Listed",
     ],
-    Australia: [
+    "Australia": [
         "New South Wales",
         "Victoria",
         "Queensland",
@@ -125,7 +125,7 @@ export const provinceOptionsByCountry: Record<string, readonly string[]> = {
         "South Australia",
         "Other / Not Listed",
     ],
-    India: [
+    "India": [
         "Maharashtra",
         "Delhi",
         "Karnataka",
@@ -134,7 +134,7 @@ export const provinceOptionsByCountry: Record<string, readonly string[]> = {
         "Gujarat",
         "Other / Not Listed",
     ],
-    Nigeria: [
+    "Nigeria": [
         "Lagos",
         "Abuja (FCT)",
         "Rivers",
@@ -142,16 +142,16 @@ export const provinceOptionsByCountry: Record<string, readonly string[]> = {
         "Oyo",
         "Other / Not Listed",
     ],
-    Kenya: ["Nairobi", "Mombasa", "Kiambu", "Nakuru", "Other / Not Listed"],
-    Germany: ["Bavaria", "Berlin", "Hesse", "Hamburg", "Other / Not Listed"],
-    France: [
+    "Kenya": ["Nairobi", "Mombasa", "Kiambu", "Nakuru", "Other / Not Listed"],
+    "Germany": ["Bavaria", "Berlin", "Hesse", "Hamburg", "Other / Not Listed"],
+    "France": [
         "Ile-de-France",
         "Provence-Alpes-Cote d'Azur",
         "Occitanie",
         "Nouvelle-Aquitaine",
         "Other / Not Listed",
     ],
-    Brazil: [
+    "Brazil": [
         "Sao Paulo",
         "Rio de Janeiro",
         "Minas Gerais",
@@ -167,7 +167,7 @@ export type JoinUsFormData = {
     email: string;
     phone?: string;
     country: string;
-    province?: string;
+    province: string;
     city: string;
     department: (typeof departments)[number];
     roleApplyingFor: (typeof roles)[number];
@@ -192,6 +192,7 @@ export type JoinUsFormData = {
     whatMakesYouDifferent: string;
     hoursPerWeek: string;
     acceptTerms: boolean;
+    website?: string;
 };
 
 export const benefits = [

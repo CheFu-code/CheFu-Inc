@@ -1,8 +1,15 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+    Timestamp,
+    addDoc,
+    collection,
+    serverTimestamp,
+    updateDoc,
+} from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { toast } from "sonner";
-import { db } from "../../config/firebaseConfig";
+import { db, storage } from "../../config/firebaseConfig";
 import { CareersApplicationForm } from "../components/careers/CareersApplicationForm";
 import { CareersApplicationSuccess } from "../components/careers/CareersApplicationSuccess";
 import { CareersBenefitsSection } from "../components/careers/CareersBenefitsSection";
@@ -22,11 +29,17 @@ export function CareersPage() {
         watch,
         setValue,
         formState: { errors, isSubmitting },
-    } = useForm<JoinUsFormData>();
+    } = useForm<JoinUsFormData>({
+        defaultValues: {
+            country: "",
+            province: "",
+        },
+    });
 
     const [applicationId, setApplicationId] = useState<string | null>(null);
     const [submittedEmail, setSubmittedEmail] = useState<string>("");
-    const selectedCountry = watch("country");
+    const [lastSubmissionAt, setLastSubmissionAt] = useState<number>(0);
+    const selectedCountry = watch("country") ?? "";
     const isSouthAfrica = selectedCountry === "South Africa";
     const provinceOptions = selectedCountry
         ? provinceOptionsByCountry[selectedCountry] ?? fallbackProvinceOptions
@@ -37,20 +50,40 @@ export function CareersPage() {
             if (!isSouthAfrica) {
                 setValue("preferredWorkMode", "Remote", { shouldValidate: true });
             }
-            setValue("province", "");
+            setValue("province", "", { shouldValidate: true });
         }
     }, [selectedCountry, isSouthAfrica, setValue]);
 
     const onSubmit = async (data: JoinUsFormData) => {
+        if (data.website?.trim()) {
+            toast.error("Submission blocked", {
+                description: "Bot check failed. Please refresh and try again.",
+            });
+            return;
+        }
+
+        const now = Date.now();
+        if (now - lastSubmissionAt < 15_000) {
+            toast.error("Please wait", {
+                description: "You can submit another application in a few seconds.",
+            });
+            return;
+        }
+
         try {
             const cvFile = data.cvFile?.[0];
-            const preferredWorkMode = data.country === "South Africa" ? data.preferredWorkMode : "Remote";
+            const preferredWorkMode =
+                data.country === "South Africa" ? data.preferredWorkMode : "Remote";
+            const retentionExpiresAt = Timestamp.fromDate(
+                new Date(Date.now() + 180 * 24 * 60 * 60 * 1000),
+            );
+
             const docRef = await addDoc(collection(db, "membershipApplications"), {
                 fullName: data.fullName,
                 email: data.email,
                 phone: data.phone ?? "",
                 country: data.country,
-                province: data.province ?? "",
+                province: data.province,
                 city: data.city,
                 department: data.department,
                 roleApplyingFor: data.roleApplyingFor,
@@ -66,16 +99,32 @@ export function CareersPage() {
                 musicPortfolioLink: data.musicPortfolioLink ?? "",
                 cvFileName: cvFile?.name ?? "",
                 cvFileSize: cvFile?.size ?? null,
+                cvFileUrl: "",
                 whyJoin: data.whyJoin,
                 whatMakesYouDifferent: data.whatMakesYouDifferent,
                 hoursPerWeek: data.hoursPerWeek,
                 status: "submitted",
                 confirmationEmailStatus: "pending",
+                consentGiven: data.acceptTerms,
+                consentCapturedAt: serverTimestamp(),
+                retentionExpiresAt,
                 createdAt: serverTimestamp(),
             });
 
+            if (cvFile) {
+                const safeFileName = cvFile.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+                const cvStorageRef = ref(
+                    storage,
+                    `membershipApplications/${docRef.id}/cv/${Date.now()}_${safeFileName}`,
+                );
+                await uploadBytes(cvStorageRef, cvFile, { contentType: cvFile.type });
+                const cvFileUrl = await getDownloadURL(cvStorageRef);
+                await updateDoc(docRef, { cvFileUrl });
+            }
+
             setApplicationId(docRef.id);
             setSubmittedEmail(data.email);
+            setLastSubmissionAt(now);
             toast.success("Application submitted", {
                 description: "Our team will review your profile and reach out by email.",
             });

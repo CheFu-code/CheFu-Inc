@@ -1,8 +1,11 @@
 import { initializeApp } from "firebase-admin/app";
 import { FieldValue, getFirestore } from "firebase-admin/firestore";
+import { getStorage } from "firebase-admin/storage";
 import { defineSecret } from "firebase-functions/params";
 import { logger } from "firebase-functions/v2";
 import { onDocumentCreated } from "firebase-functions/v2/firestore";
+import { onSchedule } from "firebase-functions/v2/scheduler";
+import { encode } from "he";
 import { Resend } from "resend";
 
 initializeApp();
@@ -26,6 +29,7 @@ export const sendMembershipApplicationConfirmation = onDocumentCreated(
         }
 
         const email = typeof payload.email === "string" ? payload.email.trim() : "";
+        const maskedEmail = maskEmail(email);
         const fullName =
             typeof payload.fullName === "string" && payload.fullName.trim()
                 ? payload.fullName.trim()
@@ -59,14 +63,27 @@ export const sendMembershipApplicationConfirmation = onDocumentCreated(
             return;
         }
 
+        if (!isValidEmail(email)) {
+            await docRef.update({
+                confirmationEmailStatus: "failed",
+                confirmationEmailError: "Invalid email format",
+                confirmationEmailUpdatedAt: FieldValue.serverTimestamp(),
+            });
+            logger.warn("Cannot send confirmation email. Invalid applicant email format.", {
+                applicationId,
+                maskedEmail,
+            });
+            return;
+        }
+
         const resend = new Resend(RESEND_API_KEY.value());
 
         try {
-            const safeName = escapeHtml(fullName);
-            const safeRole = escapeHtml(roleApplyingFor || "Not specified");
-            const safeDepartment = escapeHtml(department || "Not specified");
-            const safeCountry = escapeHtml(country || "Not specified");
-            const safeReference = escapeHtml(applicationId);
+            const safeName = encode(fullName);
+            const safeRole = encode(roleApplyingFor || "Not specified");
+            const safeDepartment = encode(department || "Not specified");
+            const safeCountry = encode(country || "Not specified");
+            const safeReference = encode(applicationId);
             const preheader =
                 "Your CheFu Inc application was received. Our team will review it and reply soon.";
 
@@ -178,33 +195,92 @@ CheFu Inc Team`,
 
             logger.info("Confirmation email sent.", {
                 applicationId,
-                to: email,
+                maskedEmail,
                 resendEmailId: emailResult.data?.id ?? null,
             });
         } catch (error) {
             const errorMessage =
                 error instanceof Error ? error.message : "Unknown email send failure";
 
-            await docRef.update({
-                confirmationEmailStatus: "failed",
-                confirmationEmailError: errorMessage.slice(0, 500),
-                confirmationEmailUpdatedAt: FieldValue.serverTimestamp(),
-            });
-
             logger.error("Failed to send confirmation email.", {
                 applicationId,
-                to: email,
-                error: errorMessage,
+                maskedEmail,
+                sendError: errorMessage,
+            });
+
+            try {
+                await docRef.update({
+                    confirmationEmailStatus: "failed",
+                    confirmationEmailError: errorMessage.slice(0, 500),
+                    confirmationEmailUpdatedAt: FieldValue.serverTimestamp(),
+                });
+            } catch (updateError) {
+                logger.error("Failed to persist confirmation email failure state.", {
+                    applicationId,
+                    maskedEmail,
+                    sendError: errorMessage,
+                    updateError:
+                        updateError instanceof Error
+                            ? updateError.message
+                            : "Unknown update failure",
+                });
+            }
+        }
+    },
+);
+
+export const purgeExpiredMembershipApplications = onSchedule(
+    {
+        schedule: "every day 03:00",
+        region: "us-central1",
+    },
+    async () => {
+        const db = getFirestore();
+        const expiredSnapshot = await db
+            .collection("membershipApplications")
+            .where("retentionExpiresAt", "<=", new Date())
+            .limit(250)
+            .get();
+
+        if (expiredSnapshot.empty) {
+            logger.info("No expired membership applications found.");
+            return;
+        }
+
+        for (const doc of expiredSnapshot.docs) {
+            const applicationId = doc.id;
+            try {
+                await getStorage().bucket().deleteFiles({
+                    prefix: `membershipApplications/${applicationId}/cv/`,
+                    force: true,
+                });
+            } catch (storageError) {
+                logger.warn("Failed deleting CV files during retention purge.", {
+                    applicationId,
+                    storageError:
+                        storageError instanceof Error
+                            ? storageError.message
+                            : "Unknown storage deletion failure",
+                });
+            }
+
+            await doc.ref.delete();
+            logger.info("Purged expired membership application.", {
+                applicationId,
+                purgedAt: new Date().toISOString(),
             });
         }
     },
 );
 
-function escapeHtml(value: string) {
-    return value
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#39;");
+function isValidEmail(value: string) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function maskEmail(value: string) {
+    const [localPart, domain] = value.split("@");
+    if (!localPart || !domain) {
+        return "***";
+    }
+    return `${localPart[0]}***@${domain}`;
 }
