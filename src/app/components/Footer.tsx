@@ -1,7 +1,24 @@
-import { ArrowRight, Github, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
+import { ArrowRight, ArrowUp, Github, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export function Footer() {
+    const [showBackToTop, setShowBackToTop] = useState(false);
+
+    useEffect(() => {
+        const onScroll = () => {
+            setShowBackToTop(window.scrollY > 280);
+        };
+
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
+
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
     const companyLinks = [
         { label: "About", to: "/about" },
         { label: "Careers", to: "/careers" },
@@ -25,6 +42,18 @@ export function Footer() {
 
     return (
         <footer className="bg-slate-950 border-t border-slate-800/70 pt-16 pb-8">
+            <button
+                type="button"
+                onClick={scrollToTop}
+                aria-label="Back to top"
+                className={`fixed right-5 bottom-6 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full border border-cyan-300/40 bg-cyan-400 text-slate-950 shadow-lg shadow-cyan-500/30 transition-all duration-300 hover:scale-105 hover:bg-cyan-300 ${
+                    showBackToTop
+                        ? "translate-y-0 opacity-100 pointer-events-auto"
+                        : "translate-y-3 opacity-0 pointer-events-none"
+                }`}
+            >
+                <ArrowUp className="h-5 w-5" />
+            </button>
             <div className="container mx-auto px-6">
                 <div className="mb-14 rounded-3xl border border-slate-700/70 bg-linear-to-r from-slate-900 via-slate-900 to-cyan-950/40 px-8 py-10 md:px-12 md:py-14">
                     <div className="mx-auto max-w-3xl text-center">
