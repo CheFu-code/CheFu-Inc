@@ -1,5 +1,7 @@
+'use client';
+
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import {
     Timestamp,
     addDoc,
@@ -25,8 +27,8 @@ export function CareersPage() {
     const {
         register,
         handleSubmit,
+        control,
         reset,
-        watch,
         setValue,
         formState: { errors, isSubmitting },
     } = useForm<JoinUsFormData>({
@@ -39,7 +41,7 @@ export function CareersPage() {
     const [applicationId, setApplicationId] = useState<string | null>(null);
     const [submittedEmail, setSubmittedEmail] = useState<string>("");
     const [lastSubmissionAt, setLastSubmissionAt] = useState<number>(0);
-    const selectedCountry = watch("country") ?? "";
+    const selectedCountry = useWatch({ control, name: "country" }) ?? "";
     const isSouthAfrica = selectedCountry === "South Africa";
     const provinceOptions = selectedCountry
         ? provinceOptionsByCountry[selectedCountry] ?? fallbackProvinceOptions

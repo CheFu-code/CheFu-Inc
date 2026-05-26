@@ -1,6 +1,9 @@
+'use client';
+
 import { motion } from 'motion/react';
 import { Brain, Sparkles, Bot, LineChart, FileCode2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export function AIServicePage() {
   return (
@@ -9,10 +12,13 @@ export function AIServicePage() {
       <div className="relative min-h-[70vh] flex flex-col justify-center px-6">
          <div className="absolute inset-0 z-0">
              <div className="absolute inset-0 bg-slate-950/80 z-10" />
-             <img 
+             <Image
                 src="https://images.unsplash.com/photo-1761740533449-b8d4385e60b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuZXVyYWwlMjBuZXR3b3JrJTIwdmlzdWFsaXphdGlvbiUyMDNkJTIwYWJzdHJhY3R8ZW58MXx8fHwxNzcwOTg4MTk4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                 alt="Neural Network"
-                className="w-full h-full object-cover"
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover"
              />
          </div>
 
@@ -33,13 +39,13 @@ export function AIServicePage() {
                </p>
                <div className="flex flex-wrap gap-4">
                   <Link 
-                     to="/contact?service=AI%20Solution"
+                     href="/contact?service=AI%20Solution"
                      className="px-8 py-4 bg-gradient-to-r from-violet-600 to-cyan-600 text-white font-bold rounded-lg hover:shadow-lg hover:shadow-violet-900/20 transition-all"
                   >
                      Consult with an Expert
                   </Link>
                   <Link 
-                     to="/portfolio"
+                     href="/portfolio"
                      className="px-8 py-4 bg-slate-900 text-white border border-slate-700 font-medium rounded-lg hover:bg-slate-800 transition-colors"
                   >
                      View Case Studies

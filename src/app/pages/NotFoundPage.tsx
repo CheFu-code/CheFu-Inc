@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Home } from 'lucide-react';
 
 export function NotFoundPage() {
@@ -10,7 +10,7 @@ export function NotFoundPage() {
         The signal you are looking for has been lost in the noise. It seems this page does not exist or has been moved.
       </p>
       <Link 
-        to="/" 
+        href="/" 
         className="px-8 py-4 bg-white text-slate-950 font-bold rounded-full hover:bg-cyan-50 transition-colors flex items-center gap-2"
       >
         <Home className="w-4 h-4" /> Return Home

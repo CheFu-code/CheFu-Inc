@@ -1,9 +1,12 @@
+"use client";
+
 import { clsx } from "clsx";
 import { signOut } from "firebase/auth";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { twMerge } from "tailwind-merge";
 import { auth } from "../../config/firebaseConfig";
@@ -15,8 +18,8 @@ export function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const userMenuRef = useRef<HTMLDivElement>(null);
-    const location = useLocation();
-    const navigate = useNavigate();
+    const pathname = usePathname();
+    const router = useRouter();
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((nextUser) => {
@@ -36,11 +39,12 @@ export function Navbar() {
     useEffect(() => {
         const timeout = setTimeout(() => setIsMobileMenuOpen(false), 0);
         return () => clearTimeout(timeout);
-    }, [location.pathname]);
+    }, [pathname]);
 
     useEffect(() => {
-        setIsUserMenuOpen(false);
-    }, [location.pathname]);
+        const timeout = setTimeout(() => setIsUserMenuOpen(false), 0);
+        return () => clearTimeout(timeout);
+    }, [pathname]);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -71,7 +75,7 @@ export function Navbar() {
             await signOut(auth);
             setIsUserMenuOpen(false);
             toast.success("Logged out.");
-            navigate("/");
+            router.push("/");
         } catch (error) {
             toast.error("Failed to log out.", {
                 description:
@@ -99,7 +103,7 @@ export function Navbar() {
         >
             <div className="container mx-auto px-6 flex items-center justify-between">
                 <Link
-                    to="/"
+                    href="/"
                     className="text-2xl font-bold tracking-tighter text-white flex items-center gap-2"
                 >
                     {/* <div className="w-8 h-8 bg-linear-to-tr from-cyan-500 to-violet-600 rounded-lg flex items-center justify-center">
@@ -113,10 +117,10 @@ export function Navbar() {
                     {navLinks.map((link) => (
                         <Link
                             key={link.name}
-                            to={link.href}
+                            href={link.href}
                             className={clsx(
                                 "text-sm font-medium transition-colors hover:text-cyan-400",
-                                location.pathname === link.href
+                                pathname === link.href
                                     ? "text-cyan-400"
                                     : "text-slate-300",
                             )}
@@ -169,8 +173,8 @@ export function Navbar() {
                                             type="button"
                                             className="w-full text-left px-4 py-2.5 text-sm text-slate-200 hover:bg-slate-800 transition cursor-pointer"
                                             onClick={() => {
-                                                setIsUserMenuOpen(false);
-                                                navigate("/contact");
+                                setIsUserMenuOpen(false);
+                                                router.push("/contact");
                                             }}
                                             role="menuitem"
                                         >
@@ -190,7 +194,7 @@ export function Navbar() {
                         </div>
                     )}
                     <button
-                        onClick={() => navigate("/contact")}
+                        onClick={() => router.push("/contact")}
                         className="px-5 py-2 rounded-full bg-white text-slate-950 font-semibold hover:bg-cyan-400 transition-colors text-sm cursor-pointer"
                     >
                         Start a Project
@@ -219,10 +223,10 @@ export function Navbar() {
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.name}
-                                    to={link.href}
+                                    href={link.href}
                                     className={clsx(
                                         "text-lg font-medium hover:text-cyan-400",
-                                        location.pathname === link.href
+                                        pathname === link.href
                                             ? "text-cyan-400"
                                             : "text-slate-300",
                                     )}
@@ -232,16 +236,16 @@ export function Navbar() {
                             ))}
                             <div className="h-px bg-slate-800 my-2" />
                             <Link
-                                to="/careers"
+                                href="/careers"
                                 className="text-slate-400 hover:text-cyan-400"
                             >
                                 Careers
                             </Link>
-                            <Link to="/faq" className="text-slate-400 hover:text-cyan-400">
+                            <Link href="/faq" className="text-slate-400 hover:text-cyan-400">
                                 FAQ
                             </Link>
                             <Link
-                                to="/contact"
+                                href="/contact"
                                 className="mt-4 w-full py-3 rounded-lg bg-linear-to-r from-cyan-500 to-violet-600 text-white font-bold text-center"
                             >
                                 Start a Project

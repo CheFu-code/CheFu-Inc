@@ -1,5 +1,5 @@
 import { ArrowRight, Github, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from 'next/link';
 
 export function Footer() {
     const companyLinks = [
@@ -39,7 +39,7 @@ export function Footer() {
                             we deliver practical, high-quality work with clear communication.
                         </p>
                         <Link
-                            to="/contact"
+                            href="/contact"
                             className="inline-flex items-center gap-2 rounded-full bg-cyan-400 px-7 py-3 text-sm font-bold text-slate-950 transition-colors hover:bg-cyan-300"
                         >
                             Start a Project
@@ -51,7 +51,7 @@ export function Footer() {
                 <div className="mb-12 grid grid-cols-1 gap-10 border-b border-slate-800 pb-12 md:grid-cols-2 lg:grid-cols-4">
                     <div>
                         <Link
-                            to="/"
+                            href="/"
                             className="mb-5 inline-flex items-center gap-2 text-2xl font-bold tracking-tighter text-white"
                         >
                             {/* <div className="w-8 h-8 bg-linear-to-tr from-cyan-500 to-violet-600 rounded-lg flex items-center justify-center">
@@ -90,7 +90,7 @@ export function Footer() {
                             {companyLinks.map((item) => (
                                 <li key={item.to}>
                                     <Link
-                                        to={item.to}
+                                        href={item.to}
                                         className="text-slate-400 transition-colors hover:text-cyan-300"
                                     >
                                         {item.label}
@@ -108,7 +108,7 @@ export function Footer() {
                             {serviceLinks.map((item) => (
                                 <li key={item.to}>
                                     <Link
-                                        to={item.to}
+                                        href={item.to}
                                         className="text-slate-400 transition-colors hover:text-cyan-300"
                                     >
                                         {item.label}
@@ -156,10 +156,10 @@ export function Footer() {
                 <div className="flex flex-col items-center justify-between gap-4 text-sm text-slate-500 md:flex-row">
                     <p>&copy; {new Date().getFullYear()} CheFu Inc. Owned and operated by CheFu Technologies (Pty) Ltd.</p>
                     <div className="flex gap-6 mt-4 md:mt-0">
-                        <Link to="/privacy" className="transition-colors hover:text-slate-200">
+                        <Link href="/privacy" className="transition-colors hover:text-slate-200">
                             Privacy Policy
                         </Link>
-                        <Link to="/terms" className="transition-colors hover:text-slate-200">
+                        <Link href="/terms" className="transition-colors hover:text-slate-200">
                             Terms of Service
                         </Link>
                     </div>

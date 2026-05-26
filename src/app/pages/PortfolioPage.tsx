@@ -1,5 +1,8 @@
+'use client';
+
 import { ExternalLink } from "lucide-react";
 import { motion } from "motion/react";
+import Image from "next/image";
 
 const projects = [
     {
@@ -91,10 +94,12 @@ export function PortfolioPage() {
                             className="group bg-slate-900 rounded-xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col h-full"
                         >
                             <div className="relative aspect-video overflow-hidden">
-                                <img
+                                <Image
                                     src={project.image}
                                     alt={project.title}
-                                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                                    fill
+                                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                                    className="object-contain group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors" />
                             </div>

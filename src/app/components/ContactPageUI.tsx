@@ -1,3 +1,5 @@
+'use client';
+
 import { Loader2, Mail, Phone, Send } from "lucide-react";
 import { motion } from "motion/react";
 import type {
@@ -21,7 +23,7 @@ export const ContactPageUI = ({
     errors: FieldErrors<FormData>;
 }) => {
     const consultationUrl =
-        import.meta.env.VITE_CONSULTATION_URL ||
+        process.env.NEXT_PUBLIC_CONSULTATION_URL ||
         "mailto:hello@chefuinc.com?subject=Consultation%20Request";
 
     return (

@@ -9,6 +9,9 @@ lerna-debug.log*
 
 node_modules
 dist
+.next
+out
+.vercel
 functions/lib
 dist-ssr
 *.local
@@ -25,3 +28,4 @@ dist-ssr
 *.sw?
 
 .env*
+!.env.example

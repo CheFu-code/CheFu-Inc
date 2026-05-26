@@ -1,3 +1,5 @@
+'use client';
+
 import type { SVGProps } from 'react';
 import { motion } from 'motion/react';
 import { Database, Cloud, Globe, Smartphone, Lock } from 'lucide-react';

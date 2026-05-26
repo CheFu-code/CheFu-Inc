@@ -1,6 +1,9 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
+import Image from 'next/image';
+import Link from 'next/link';
 import { Music, Brain, Code, ArrowRight, Mic2, Layers, Smartphone, Server, Radio, ArrowUpRight } from 'lucide-react';
 
 const serviceDetails = [
@@ -113,7 +116,7 @@ export function ServicesPage() {
                 
                 <div className="mt-10 flex flex-wrap gap-4">
                    <Link 
-                      to={service.link}
+                      href={service.link}
                       className="inline-flex items-center px-6 py-3 rounded-lg bg-white text-slate-950 font-bold hover:bg-cyan-50 transition-colors"
                    >
                       Explore {service.title} <ArrowRight className="w-4 h-4 ml-2" />
@@ -123,20 +126,22 @@ export function ServicesPage() {
 
               {/* Visual Side (Abstract/Decorative) */}
               <div className="flex-1 w-full">
-                <Link to={service.link} className="block relative aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 group cursor-pointer">
+                <Link href={service.link} className="block relative aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 group cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 opacity-50" />
                    <div className="absolute inset-0 flex items-center justify-center opacity-20 group-hover:opacity-10 transition-opacity">
                       <service.icon className="w-64 h-64 text-white" />
                    </div>
                    {/* Add a generic tech image overlay */}
-                   <img 
+                   <Image
                       src={
                         index === 0 ? "https://images.unsplash.com/photo-1745848413113-4f39bdad5769?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtdXNpYyUyMHN0dWRpbyUyMHJlY29yZGluZyUyMGVxdWlwbWVudCUyMGRhcmt8ZW58MXx8fHwxNzcwOTg3MDkzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" :
                         index === 1 ? "https://images.unsplash.com/photo-1761123044903-1671e0edc3f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMGNvZGUlMjBkaWdpdGFsJTIwc2NyZWVuJTIwdGVjaG5vbG9neXxlbnwxfHx8fDE3NzA5ODcwOTN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" :
                         "https://images.unsplash.com/photo-1608306448197-e83633f1261c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMGRldmVsb3BlciUyMGNvZGluZyUyMGNvZGUlMjBzY3JlZW58ZW58MXx8fHwxNzcwOTg1NjI0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                       }
                       alt={service.title}
-                      className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60 group-hover:scale-105 transition-transform duration-700"
+                      fill
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                      className="object-cover mix-blend-overlay opacity-60 group-hover:scale-105 transition-transform duration-700"
                    />
                    <div className="absolute top-4 right-4 bg-slate-950/80 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-white border border-slate-700 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
                       View Details <ArrowUpRight className="w-3 h-3" />

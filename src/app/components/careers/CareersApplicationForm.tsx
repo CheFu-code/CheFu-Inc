@@ -1,9 +1,11 @@
+'use client';
+
 import type {
     FieldErrors,
     UseFormHandleSubmit,
     UseFormRegister,
 } from "react-hook-form";
-import { Link } from "react-router-dom";
+import Link from 'next/link';
 import {
     countries,
     departments,
@@ -407,12 +409,12 @@ export function CareersApplicationForm({
                         />
                         <span>
                             I agree to the{" "}
-                            <Link to="/terms" className="text-cyan-300 hover:text-cyan-200">
+                            <Link href="/terms" className="text-cyan-300 hover:text-cyan-200">
                                 Terms
                             </Link>{" "}
                             and{" "}
                             <Link
-                                to="/privacy"
+                                href="/privacy"
                                 className="text-cyan-300 hover:text-cyan-200"
                             >
                                 Privacy Policy

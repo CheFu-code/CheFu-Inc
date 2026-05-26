@@ -1,16 +1,22 @@
+'use client';
+
 import { motion } from 'motion/react';
 import { ArrowRight, PlayCircle } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950 pt-20">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1765408217331-6d73ee0fc260?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGF1ZGlvJTIwd2F2ZSUyMHRlY2hub2xvZ3klMjBkYXJrJTIwYmFja2dyb3VuZHxlbnwxfHx8fDE3NzA5ODU2MjR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
           alt="Abstract Sound Wave"
-          className="w-full h-full object-cover opacity-30"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-30"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/50 to-slate-950" />
       </div>
@@ -41,14 +47,14 @@ export function Hero() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              to="/contact"
+              href="/contact"
               className="px-8 py-4 rounded-full bg-white text-slate-950 font-bold hover:bg-cyan-50 transition-colors flex items-center gap-2 group"
             >
               Start Your Journey
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
-              to="/portfolio"
+              href="/portfolio"
               className="px-8 py-4 rounded-full border border-slate-700 text-white font-medium hover:bg-slate-800 transition-colors flex items-center gap-2"
             >
               <PlayCircle className="w-4 h-4 text-cyan-400" />

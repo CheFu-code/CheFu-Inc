@@ -1,6 +1,9 @@
+'use client';
+
 import { motion } from 'motion/react';
 import { Mic2, Headphones, Layers, Volume2, Calendar, Radio } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const pricing = [
   {
@@ -29,10 +32,13 @@ export function MusicServicePage() {
       {/* Hero */}
       <div className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
+          <Image
             src="https://images.unsplash.com/photo-1675292310383-0f4ef53fa3ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZWNvcmRpbmclMjBzdHVkaW8lMjBtaXhpbmclMjBjb25zb2xlJTIwbmVvbiUyMGxpZ2h0c3xlbnwxfHx8fDE3NzA5ODgxOTh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" 
             alt="Studio Mixing Console" 
-            className="w-full h-full object-cover opacity-60"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-60"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" />
         </div>
@@ -59,7 +65,7 @@ export function MusicServicePage() {
             transition={{ delay: 0.2 }}
           >
             <Link 
-              to="/contact?service=Audio%20Production" 
+              href="/contact?service=Audio%20Production" 
               className="px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-full transition-colors inline-flex items-center gap-2"
             >
               <Calendar className="w-5 h-5" /> Book a Session
@@ -118,7 +124,7 @@ export function MusicServicePage() {
                   ))}
                 </ul>
                 <Link 
-                  to={`/contact?service=Audio%20Production&package=${plan.title}`}
+                  href={`/contact?service=Audio%20Production&package=${plan.title}`}
                   className={`w-full py-3 rounded-lg font-bold text-center transition-colors ${plan.recommended ? 'bg-cyan-500 text-slate-950 hover:bg-cyan-400' : 'bg-slate-800 text-white hover:bg-slate-700 border border-slate-700'}`}
                 >
                   Choose {plan.title}

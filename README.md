@@ -1,15 +1,14 @@
 # CheFu Inc. Website
 
-CheFu Inc. is a modern marketing website built with React, TypeScript, Vite, and Tailwind CSS v4.  
+CheFu Inc. is a modern marketing website built with Next.js App Router, React, TypeScript, and Tailwind CSS v4.
 It showcases company services across software development, AI solutions, and music production.
 
 ## Tech Stack
 
 - React 19
+- Next.js 15 App Router
 - TypeScript 5
-- Vite 7
-- React Router 7
-- Tailwind CSS 4 (`@tailwindcss/vite`)
+- Tailwind CSS 4 (`@tailwindcss/postcss`)
 - Radix UI primitives + custom UI components
 - MUI and Emotion (available in dependencies)
 
@@ -20,20 +19,21 @@ It showcases company services across software development, AI solutions, and mus
 |- public/
 |- src/
 |  |- app/
+|  |  |- about/page.tsx
 |  |  |- components/
-|  |  |- pages/
-|  |  \- App.tsx
-|  |- styles/
-|  \- main.tsx
-|- index.html
-|- vite.config.ts
+|  |  |- services/
+|  |  |- layout.tsx
+|  |  \- page.tsx
+|  \- styles/
+|- next.config.ts
+|- postcss.config.mjs
 |- tailwind.config.js
 \- package.json
 ```
 
 ## Routing
 
-Routes are defined in `src/app/App.tsx`.
+Routes are defined with the Next.js App Router under `src/app`.
 
 - `/` - Home
 - `/about` - About
@@ -55,7 +55,7 @@ Routes are defined in `src/app/App.tsx`.
 ### Prerequisites
 
 - Node.js 18+ (recommended: latest LTS)
-- npm (or Bun, since `bun.lock` is present)
+- npm
 
 ### Install Dependencies
 
@@ -63,12 +63,6 @@ Using npm:
 
 ```bash
 npm install
-```
-
-Using Bun:
-
-```bash
-bun install
 ```
 
 ### Run Development Server
@@ -83,10 +77,10 @@ npm run dev
 npm run build
 ```
 
-### Preview Production Build
+### Start Production Server
 
 ```bash
-npm run preview
+npm run start
 ```
 
 ### Lint
@@ -106,7 +100,7 @@ Global style entry is `src/styles/index.css`, which imports:
 ## Notes
 
 - This project currently has no test script configured in `package.json`.
-- The `dist/` folder contains build output.
+- Next.js writes production build artifacts to `.next/`.
 
 ## Careers Confirmation Emails (Resend + Firebase Functions)
 

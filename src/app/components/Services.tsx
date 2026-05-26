@@ -1,6 +1,9 @@
+'use client';
+
 import { motion } from 'motion/react';
 import { Music, Brain, Code, ArrowUpRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const services = [
   {
@@ -58,10 +61,12 @@ export function Services() {
               {/* Image Header */}
               <div className="h-48 overflow-hidden relative">
                 <div className="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/20 transition-all z-10" />
-                <img
+                <Image
                   src={service.image}
                   alt={service.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  fill
+                  sizes="(min-width: 1024px) 33vw, 100vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4 z-20 w-10 h-10 rounded-lg bg-slate-950/80 backdrop-blur flex items-center justify-center border border-slate-700">
                   <service.icon className="w-5 h-5 text-cyan-400" />
@@ -87,7 +92,7 @@ export function Services() {
                 </ul>
 
                 <Link
-                  to={service.link}
+                  href={service.link}
                   className="inline-flex items-center text-sm font-semibold text-white hover:text-cyan-400 transition-colors mt-auto"
                 >
                   Learn more <ArrowUpRight className="w-4 h-4 ml-1" />

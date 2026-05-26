@@ -1,5 +1,8 @@
+'use client';
+
 import { motion } from 'motion/react';
 import { Calendar, User, ArrowRight, Tag } from 'lucide-react';
+import Image from 'next/image';
 
 const posts = [
   {
@@ -59,10 +62,13 @@ export function BlogPage() {
              animate={{ opacity: 1, y: 0 }}
              className="relative rounded-3xl overflow-hidden aspect-[21/9] group cursor-pointer"
            >
-              <img 
+              <Image
                 src={posts[0].image} 
                 alt={posts[0].title} 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
               <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full md:w-2/3">
@@ -95,11 +101,13 @@ export function BlogPage() {
               viewport={{ once: true }}
               className="bg-slate-900 rounded-xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all group cursor-pointer flex flex-col h-full"
             >
-              <div className="aspect-video overflow-hidden">
-                <img 
+              <div className="relative aspect-video overflow-hidden">
+                <Image
                   src={post.image} 
                   alt={post.title} 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <div className="p-6 flex flex-col flex-grow">

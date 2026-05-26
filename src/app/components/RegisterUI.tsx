@@ -9,7 +9,7 @@ import {
     CardHeader,
     CardTitle,
 } from "./ui/card";
-import { Link } from "react-router";
+import Link from 'next/link';
 
 const RegisterUI = ({
     onSubmit,
@@ -79,7 +79,7 @@ const RegisterUI = ({
                                 </div>
                                 <div className="items-center justify-end flex gap-2 text-sm">
                                     <span>Already have an account?</span>
-                                    <Link to={'/login'}>
+                                    <Link href={'/login'}>
                                         <span className="text-cyan-400 hover:text-cyan-300">
                                             Sign in
                                         </span>
@@ -106,7 +106,7 @@ const RegisterUI = ({
                             <p className="mt-6 text-center text-sm text-slate-400">
                                 Need help?{" "}
                                 <Link
-                                    to="/contact"
+                                    href="/contact"
                                     className="text-cyan-400 hover:text-cyan-300"
                                 >
                                     Contact support

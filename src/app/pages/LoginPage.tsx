@@ -1,21 +1,21 @@
+'use client';
+
 import { FirebaseError } from "firebase/app";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState, type FormEvent } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { auth } from "../../config/firebaseConfig";
-import type { LocationState } from "../../types";
 import LoginUI from "../components/LoginUI";
 
 export function LoginPage() {
-    const navigate = useNavigate();
-    const location = useLocation();
+    const router = useRouter();
+    const searchParams = useSearchParams();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const fromPath =
-        (location.state as LocationState | null)?.from?.pathname || "/contact";
+    const fromPath = searchParams.get("next") || "/contact";
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -30,7 +30,7 @@ export function LoginPage() {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             toast.success("Logged in successfully.");
-            navigate(fromPath, { replace: true });
+            router.replace(fromPath);
         } catch (error) {
             let message = "Unable to login. Please try again.";
 

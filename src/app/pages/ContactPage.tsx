@@ -1,6 +1,8 @@
+'use client';
+
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useSearchParams } from "react-router-dom";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import type { FormData } from "../../types";
 import { ContactPageUI } from "../components/ContactPageUI";
@@ -8,6 +10,7 @@ import { auth, db } from "../../config/firebaseConfig";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 export function ContactPage() {
+    const router = useRouter();
     const {
         register,
         handleSubmit,
@@ -15,7 +18,7 @@ export function ContactPage() {
         setValue,
         formState: { errors, isSubmitting },
     } = useForm<FormData>();
-    const [searchParams] = useSearchParams();
+    const searchParams = useSearchParams();
 
     useEffect(() => {
         const service = searchParams.get("service");
@@ -49,7 +52,7 @@ export function ContactPage() {
             toast.error("Please login to send a message", {
                 action: {
                     label: "Login",
-                    onClick: () => (window.location.href = "/login"),
+                    onClick: () => router.push("/login?next=/contact"),
                 },
             });
             return;

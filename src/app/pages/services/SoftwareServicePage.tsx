@@ -1,6 +1,9 @@
+'use client';
+
 import { ArrowRight, Code, Database, GitBranch, Layout, Server, Smartphone } from 'lucide-react';
 import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const processSteps = [
   { step: "01", title: "Discovery", desc: "We sit down to understand your business goals, target audience, and technical requirements." },
@@ -17,10 +20,13 @@ export function SoftwareServicePage() {
       <div className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-slate-900">
          <div className="absolute inset-0 opacity-20">
             {/* Abstract grid pattern or code image */}
-            <img 
+            <Image
                src="https://images.unsplash.com/photo-1767449441925-737379bc2c4d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBkZXZlbG9wbWVudCUyMHVpJTIwZGVzaWduJTIwc2NyZWVufGVufDF8fHx8MTc3MDk4ODE5OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                alt="Code Background"
-               className="w-full h-full object-cover"
+               fill
+               priority
+               sizes="100vw"
+               className="object-cover"
             />
          </div>
          <div className="relative z-10 container mx-auto px-6 flex flex-col items-center text-center">
@@ -38,7 +44,7 @@ export function SoftwareServicePage() {
                From MVP to Enterprise. We engineer robust web and mobile applications that drive business growth.
             </p>
             <Link 
-               to="/contact?service=Software%20Development"
+               href="/contact?service=Software%20Development"
                className="px-8 py-4 bg-white text-slate-950 font-bold rounded-lg hover:bg-cyan-50 transition-colors flex items-center gap-2"
             >
                Start Your Project <ArrowRight className="w-4 h-4" />
@@ -70,10 +76,13 @@ export function SoftwareServicePage() {
                </ul>
             </div>
             <div className="relative rounded-2xl overflow-hidden border border-slate-800 shadow-2xl">
-               <img 
+               <Image
                   src="https://images.unsplash.com/photo-1765438869297-6fa4b627906a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZ2lsZSUyMHNvZnR3YXJlJTIwZGV2ZWxvcG1lbnQlMjB3aGl0ZWJvYXJkJTIwbWVldGluZ3xlbnwxfHx8fDE3NzA5ODgxOTl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" 
                   alt="Team Whiteboarding" 
-                  className="w-full h-auto"
+                  width={1080}
+                  height={720}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="h-auto w-full"
                />
             </div>
          </div>

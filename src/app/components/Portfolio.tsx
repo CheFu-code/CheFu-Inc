@@ -1,6 +1,9 @@
+'use client';
+
 import { motion } from 'motion/react';
 import { ExternalLink } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const projects = [
   {
@@ -47,7 +50,7 @@ export function Portfolio() {
             </p>
           </div>
           <Link
-            to="/portfolio"
+            href="/portfolio"
             className="hidden md:inline-flex items-center text-cyan-400 font-semibold hover:text-cyan-300 transition-colors mt-4 md:mt-0"
           >
             View all projects <ExternalLink className="w-4 h-4 ml-2" />
@@ -64,10 +67,12 @@ export function Portfolio() {
               viewport={{ once: true }}
               className="group relative rounded-xl overflow-hidden aspect-video bg-slate-800"
             >
-              <img
+              <Image
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                fill
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-90" />
               
@@ -84,7 +89,7 @@ export function Portfolio() {
         
         <div className="mt-12 text-center md:hidden">
             <Link
-            to="/portfolio"
+            href="/portfolio"
             className="inline-flex items-center text-cyan-400 font-semibold hover:text-cyan-300 transition-colors"
           >
             View all projects <ExternalLink className="w-4 h-4 ml-2" />
