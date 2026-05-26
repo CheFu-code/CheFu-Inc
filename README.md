@@ -102,9 +102,9 @@ Global style entry is `src/styles/index.css`, which imports:
 - This project currently has no test script configured in `package.json`.
 - Next.js writes production build artifacts to `.next/`.
 
-## Careers Confirmation Emails (Resend + Firebase Functions)
+## Careers Confirmation Emails (Resend HTTP API + Firebase Functions)
 
-When a new document is added to `membershipApplications`, a Cloud Function sends a confirmation email to the applicant using Resend.
+When a new document is added to `membershipApplications`, a Cloud Function sends a confirmation email to the applicant using the Resend HTTP API. This matches the email strategy used in CheFu Academy Web instead of relying on the Resend SDK package.
 
 ### Files Added
 
@@ -112,6 +112,8 @@ When a new document is added to `membershipApplications`, a Cloud Function sends
 - `functions/package.json`
 - `functions/tsconfig.json`
 - `functions/src/index.ts`
+- `functions/src/emailUtils.ts`
+- `functions/src/resendEmail.ts`
 
 ### Setup
 
@@ -128,9 +130,21 @@ firebase functions:secrets:set RESEND_API_KEY
 firebase functions:secrets:set RESEND_FROM_EMAIL
 ```
 
-Use a verified Resend sender for `RESEND_FROM_EMAIL` (for example: `careers@yourdomain.com`).
+Use a verified Resend sender for `RESEND_FROM_EMAIL` (for example: `Careers careers@yourdomain.com` or `Careers <careers@yourdomain.com>`).
 
-3. Deploy functions:
+3. Optional: configure a Resend template ID in `functions/.env` to send through Resend templates:
+
+```bash
+MEMBERSHIP_APPLICATION_TEMPLATE_ID=re_...
+MEMBERSHIP_APPLICATION_FROM=Careers <careers@yourdomain.com>
+MEMBERSHIP_APPLICATION_APP_NAME=CheFu Inc
+MEMBERSHIP_APPLICATION_APP_URL=https://chefuinc.com
+MEMBERSHIP_APPLICATION_SUPPORT_EMAIL=hello@chefuinc.com
+```
+
+If no `MEMBERSHIP_APPLICATION_TEMPLATE_ID` is configured, the function still sends the existing inline HTML/text confirmation through Resend's HTTP API.
+
+4. Deploy functions:
 
 ```bash
 firebase deploy --only functions
