@@ -50,6 +50,7 @@ export const routes = [
     "/services/ai",
     "/portfolio",
     "/contact",
+    "/docs/api",
     "/login",
     "/register",
     "/careers",
