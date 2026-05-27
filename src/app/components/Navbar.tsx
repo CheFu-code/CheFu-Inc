@@ -1,5 +1,6 @@
 "use client";
 
+import { CheFuUserDropdown } from "@chefu/ui";
 import { clsx } from "clsx";
 import { signOut, type User } from "firebase/auth";
 import { Menu, X } from "lucide-react";
@@ -11,9 +12,9 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { twMerge } from "tailwind-merge";
 import { auth } from "../../config/firebaseConfig";
+import { accountAppUrl } from "../../lib/account-app";
 import { clearChefuAccountSession } from "../../lib/chefu-account";
 import { getChefuAccountSession, type ChefuSessionUser } from "../../lib/chefu-session";
-import { UserDropdown } from "./UserDropdown";
 
 export function Navbar() {
     const [user, setUser] = useState(auth.currentUser);
@@ -124,7 +125,12 @@ export function Navbar() {
 
                     {/* Avatar */}
                     {accountUser ? (
-                        <UserDropdown user={accountUser} onSignOut={handleSignOut} />
+                        <CheFuUserDropdown
+                            accountHref={accountAppUrl("/account", { app: "academy" })}
+                            onSignOut={handleSignOut}
+                            user={accountUser}
+                            variant="cyan"
+                        />
                     ) : null}
                     <button
                         onClick={() => router.push("/contact")}
@@ -184,16 +190,15 @@ export function Navbar() {
                                 Start a Project
                             </Link>
 
-                            {accountUser && (
-                                <div className="flex items-center gap-3 mb-4">
-                                    <div className="flex size-10 items-center justify-center rounded-full bg-cyan-300 font-semibold text-slate-950">
-                                        {(accountUser.displayName || accountUser.email || "C").slice(0, 1).toUpperCase()}
-                                    </div>
-                                    <span className="text-white font-medium">
-                                        {accountUser.displayName || accountUser.email}
-                                    </span>
-                                </div>
-                            )}
+                            {accountUser ? (
+                                <CheFuUserDropdown
+                                    accountHref={accountAppUrl("/account", { app: "academy" })}
+                                    onSignOut={handleSignOut}
+                                    triggerClassName="w-full justify-between"
+                                    user={accountUser}
+                                    variant="cyan"
+                                />
+                            ) : null}
                         </div>
                     </motion.div>
                 )}

@@ -1,39 +1,53 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="chefu-title chefu-desc">
   <title id="chefu-title">CheFu Inc logo</title>
-  <desc id="chefu-desc">A polished CheFu Inc mark with an orbital C, connected nodes, and a digital signal.</desc>
+  <desc id="chefu-desc">A refined CheFu Inc monogram with a luminous C, connected intelligence nodes, and a confident dark foundation.</desc>
   <defs>
-    <linearGradient id="chefu-bg" x1="88" y1="64" x2="424" y2="448" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#06B6D4"/>
-      <stop offset="0.52" stop-color="#10B981"/>
-      <stop offset="1" stop-color="#8B5CF6"/>
+    <linearGradient id="bg" x1="90" y1="72" x2="422" y2="440" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071827"/>
+      <stop offset="0.54" stop-color="#08111F"/>
+      <stop offset="1" stop-color="#140F24"/>
     </linearGradient>
-    <linearGradient id="chefu-line" x1="126" y1="126" x2="390" y2="386" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E0F2FE"/>
-      <stop offset="0.5" stop-color="#D1FAE5"/>
-      <stop offset="1" stop-color="#EDE9FE"/>
+    <linearGradient id="rim" x1="100" y1="80" x2="412" y2="432" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#67E8F9"/>
+      <stop offset="0.5" stop-color="#34D399"/>
+      <stop offset="1" stop-color="#A78BFA"/>
     </linearGradient>
-    <filter id="chefu-shadow" x="38" y="42" width="436" height="436" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+    <linearGradient id="mark" x1="135" y1="134" x2="374" y2="374" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="0.45" stop-color="#BFFAF1"/>
+      <stop offset="1" stop-color="#DDD6FE"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(180 150) rotate(51.3402) scale(274.642)">
+      <stop stop-color="#22D3EE" stop-opacity="0.5"/>
+      <stop offset="0.55" stop-color="#10B981" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#111827" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="38" y="40" width="436" height="436" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
       <feFlood flood-opacity="0" result="BackgroundImageFix"/>
       <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
       <feOffset dy="18"/>
-      <feGaussianBlur stdDeviation="25"/>
-      <feColorMatrix type="matrix" values="0 0 0 0 0.01 0 0 0 0 0.06 0 0 0 0 0.12 0 0 0 0.38 0"/>
+      <feGaussianBlur stdDeviation="26"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.015 0 0 0 0 0.02 0 0 0 0 0.05 0 0 0 0.46 0"/>
       <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
       <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
     </filter>
   </defs>
-  <g filter="url(#chefu-shadow)">
-    <rect x="72" y="66" width="368" height="368" rx="104" fill="#06111F"/>
-    <rect x="72" y="66" width="368" height="368" rx="104" fill="url(#chefu-bg)" fill-opacity="0.2"/>
-    <rect x="91" y="85" width="330" height="330" rx="86" stroke="white" stroke-opacity="0.16" stroke-width="2"/>
+  <g filter="url(#shadow)">
+    <rect x="74" y="68" width="364" height="364" rx="112" fill="url(#bg)"/>
+    <rect x="74" y="68" width="364" height="364" rx="112" fill="url(#glow)"/>
+    <rect x="90" y="84" width="332" height="332" rx="96" stroke="url(#rim)" stroke-opacity="0.64" stroke-width="3"/>
+    <rect x="106" y="100" width="300" height="300" rx="82" stroke="white" stroke-opacity="0.08" stroke-width="1.5"/>
   </g>
-  <path d="M354 166C329 139 294 123 256 123C183 123 124 182 124 255C124 328 183 387 256 387C295 387 330 370 354 343" stroke="url(#chefu-line)" stroke-width="34" stroke-linecap="round"/>
-  <path d="M248 187H332C343 187 352 196 352 207V226H257C244 226 233 237 233 250C233 263 244 274 257 274H331C342 274 351 283 351 294C351 305 342 314 331 314H229" stroke="white" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M169 164C196 143 224 132 254 132C292 132 325 146 352 173" stroke="#67E8F9" stroke-opacity="0.55" stroke-width="8" stroke-linecap="round" stroke-dasharray="2 24"/>
-  <path d="M157 347C184 369 217 382 256 382C293 382 325 369 351 345" stroke="#A7F3D0" stroke-opacity="0.55" stroke-width="8" stroke-linecap="round" stroke-dasharray="2 24"/>
-  <circle cx="145" cy="180" r="17" fill="#ECFEFF"/>
-  <circle cx="370" cy="165" r="17" fill="#D1FAE5"/>
-  <circle cx="370" cy="346" r="17" fill="#EDE9FE"/>
-  <circle cx="145" cy="333" r="17" fill="#FFFFFF"/>
-  <path d="M137 180H97M386 165H415M386 346H415M137 333H97" stroke="white" stroke-opacity="0.45" stroke-width="10" stroke-linecap="round"/>
+  <path d="M346 156C323 136 292 124 256 124C183 124 124 183 124 256C124 329 183 388 256 388C293 388 326 373 350 349" stroke="url(#mark)" stroke-width="38" stroke-linecap="round"/>
+  <path d="M205 221C218 198 240 184 266 184H335" stroke="#F8FAFC" stroke-width="28" stroke-linecap="round"/>
+  <path d="M200 292C214 315 238 329 266 329H335" stroke="#F8FAFC" stroke-width="28" stroke-linecap="round"/>
+  <path d="M264 184V329" stroke="#F8FAFC" stroke-width="28" stroke-linecap="round"/>
+  <path d="M266 257H330" stroke="#7DD3FC" stroke-width="22" stroke-linecap="round"/>
+  <path d="M348 187L386 167M348 257H402M348 326L386 347" stroke="#67E8F9" stroke-opacity="0.68" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="392" cy="164" r="18" fill="#ECFEFF"/>
+  <circle cx="407" cy="257" r="18" fill="#A7F3D0"/>
+  <circle cx="392" cy="350" r="18" fill="#DDD6FE"/>
+  <circle cx="392" cy="164" r="7" fill="#0891B2"/>
+  <circle cx="407" cy="257" r="7" fill="#047857"/>
+  <circle cx="392" cy="350" r="7" fill="#7C3AED"/>
 </svg>
