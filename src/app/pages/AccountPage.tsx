@@ -3,22 +3,31 @@
 import {
     ArrowRight,
     BellRing,
+    BookOpenCheck,
+    Camera,
     CheckCircle2,
+    CircleHelp,
     Code2,
     ExternalLink,
+    Grid3X3,
+    Home,
+    IdCard,
     KeyRound,
     Loader2,
+    LockKeyhole,
     LogOut,
+    Mail,
     MonitorSmartphone,
     Save,
+    Search,
     ShieldCheck,
     Sparkles,
-    UserRound,
+    type LucideIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { sendPasswordResetEmail, signOut, updateProfile } from "firebase/auth";
-import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
 import { toast } from "sonner";
 import { auth } from "../../config/firebaseConfig";
 import { apiUrl, clearChefuAccountSession } from "../../lib/chefu-account";
@@ -30,6 +39,23 @@ type AccountUser = {
     email: string;
     roles?: string[];
     displayName?: string | null;
+};
+
+type EmailPreferences = {
+    activity: boolean;
+    general: boolean;
+    marketing: boolean;
+    security: boolean;
+    courseReminders: boolean;
+    aiCourseCompletion: boolean;
+    weeklyProgressSummary: boolean;
+};
+
+type PrivacyPreferences = {
+    publicProfile: boolean;
+    showCompletedCourses: boolean;
+    showCountry: boolean;
+    personalizedAiRecommendations: boolean;
 };
 
 type AccountProfile = {
@@ -67,23 +93,6 @@ type AccountProfile = {
     >;
 };
 
-type EmailPreferences = {
-    activity: boolean;
-    general: boolean;
-    marketing: boolean;
-    security: boolean;
-    courseReminders: boolean;
-    aiCourseCompletion: boolean;
-    weeklyProgressSummary: boolean;
-};
-
-type PrivacyPreferences = {
-    publicProfile: boolean;
-    showCompletedCourses: boolean;
-    showCountry: boolean;
-    personalizedAiRecommendations: boolean;
-};
-
 type AccountResponse = {
     user: AccountUser;
     profile: AccountProfile;
@@ -119,7 +128,7 @@ const connectedApps: Array<{
     {
         id: "academy",
         name: "CheFu Academy",
-        description: "Learning, courses, videos, and developer SDK access.",
+        description: "Courses, videos, SDK keys, and guided learning.",
         href: "https://academy.chefuinc.com",
     },
     {
@@ -137,8 +146,73 @@ const connectedApps: Array<{
     {
         id: "quantum",
         name: "Quantum",
-        description: "AI chat with saved conversations for signed-in users.",
+        description: "AI assistant with saved conversations.",
         href: "https://quantum.chefuinc.com",
+    },
+];
+
+const navItems: Array<{
+    id: string;
+    label: string;
+    description: string;
+    icon: LucideIcon;
+    color: string;
+}> = [
+    {
+        id: "home",
+        label: "Home",
+        description: "Overview and quick actions",
+        icon: Home,
+        color: "bg-sky-300 text-sky-950",
+    },
+    {
+        id: "personal-info",
+        label: "Personal info",
+        description: "Name, bio, country, and language",
+        icon: IdCard,
+        color: "bg-emerald-300 text-emerald-950",
+    },
+    {
+        id: "security",
+        label: "Security & sign-in",
+        description: "Password reset and security alerts",
+        icon: LockKeyhole,
+        color: "bg-cyan-300 text-cyan-950",
+    },
+    {
+        id: "linked-apps",
+        label: "Linked apps",
+        description: "CheFu products connected to this account",
+        icon: MonitorSmartphone,
+        color: "bg-blue-300 text-blue-950",
+    },
+    {
+        id: "privacy",
+        label: "Data & privacy",
+        description: "Public profile and personalization controls",
+        icon: ShieldCheck,
+        color: "bg-violet-300 text-violet-950",
+    },
+    {
+        id: "academy",
+        label: "Academy learning",
+        description: "Learning goals and recommendation settings",
+        icon: BookOpenCheck,
+        color: "bg-amber-300 text-amber-950",
+    },
+    {
+        id: "notifications",
+        label: "Notifications",
+        description: "Course and product email settings",
+        icon: BellRing,
+        color: "bg-pink-300 text-pink-950",
+    },
+    {
+        id: "developer",
+        label: "Developer access",
+        description: "SDK and API key access",
+        icon: Code2,
+        color: "bg-orange-300 text-orange-950",
     },
 ];
 
@@ -169,6 +243,7 @@ export function AccountPage() {
     );
     const [learningInterestsInput, setLearningInterestsInput] = useState("");
     const [securityEmailsEnabled, setSecurityEmailsEnabled] = useState(true);
+    const [accountSearch, setAccountSearch] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
     const [isSendingReset, setIsSendingReset] = useState(false);
@@ -264,6 +339,22 @@ export function AccountPage() {
             .map((part) => part[0]?.toUpperCase())
             .join("");
     }, [account?.user.email, name]);
+
+    const connectedAppCount = useMemo(
+        () =>
+            connectedApps.filter((app) => account?.profile.apps?.[app.id]?.enabled)
+                .length,
+        [account?.profile.apps],
+    );
+
+    const filteredSections = useMemo(() => {
+        const query = accountSearch.trim().toLowerCase();
+        if (!query) return [];
+
+        return navItems.filter((item) =>
+            `${item.label} ${item.description}`.toLowerCase().includes(query),
+        );
+    }, [accountSearch]);
 
     async function saveProfile(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -418,11 +509,19 @@ export function AccountPage() {
         }
     }
 
+    function goToSection(id: string) {
+        document.getElementById(id)?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        });
+        setAccountSearch("");
+    }
+
     if (isLoading) {
         return (
-            <section className="flex min-h-dvh items-center justify-center bg-[#f7f8fb] px-5 text-slate-950">
-                <div className="flex items-center gap-3 rounded-lg border border-slate-200 bg-white px-5 py-4 text-sm font-semibold shadow-sm">
-                    <Loader2 className="size-4 animate-spin text-emerald-700" aria-hidden="true" />
+            <section className="flex min-h-dvh items-center justify-center bg-[#202124] px-5 text-white">
+                <div className="flex items-center gap-3 rounded-lg border border-white/10 bg-[#2b2c2f] px-5 py-4 text-sm font-semibold shadow-sm">
+                    <Loader2 className="size-4 animate-spin text-emerald-300" aria-hidden="true" />
                     Loading your CheFu Account
                 </div>
             </section>
@@ -431,15 +530,15 @@ export function AccountPage() {
 
     if (!account) {
         return (
-            <section className="flex min-h-dvh items-center justify-center bg-[#f7f8fb] px-5 text-slate-950">
-                <div className="max-w-md rounded-lg border border-slate-200 bg-white p-6 text-center shadow-sm">
+            <section className="flex min-h-dvh items-center justify-center bg-[#202124] px-5 text-white">
+                <div className="max-w-md rounded-lg border border-white/10 bg-[#2b2c2f] p-6 text-center shadow-sm">
                     <h1 className="text-2xl font-semibold">Account unavailable</h1>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                    <p className="mt-2 text-sm leading-6 text-slate-300">
                         We could not load your CheFu Account session.
                     </p>
                     <Link
                         href="/login?returnTo=/account"
-                        className="mt-5 inline-flex items-center gap-2 rounded-md bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800"
+                        className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-slate-200"
                     >
                         Sign in
                         <ArrowRight className="size-4" aria-hidden="true" />
@@ -450,24 +549,32 @@ export function AccountPage() {
     }
 
     return (
-        <section className="min-h-dvh bg-[#f7f8fb] text-slate-950">
-            <header className="border-b border-slate-200 bg-white/90 backdrop-blur">
-                <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
-                    <Link href="/" className="text-lg font-semibold tracking-normal">
-                        CheFu <span className="text-emerald-700">Account</span>
+        <section className="min-h-dvh bg-[#202124] text-white">
+            <header className="sticky top-0 z-30 border-b border-white/8 bg-[#2b2c2f]/95 backdrop-blur">
+                <div className="flex h-16 items-center justify-between gap-4 px-5 lg:px-9">
+                    <Link href="/" className="text-2xl font-medium tracking-normal text-white">
+                        CheFu <span className="text-emerald-300">Account</span>
                     </Link>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-3">
                         <Link
                             href="/contact"
-                            className="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:text-slate-950"
+                            className="hidden size-10 items-center justify-center rounded-full text-slate-200 transition hover:bg-white/10 sm:flex"
+                            aria-label="Help"
                         >
-                            Help
+                            <CircleHelp className="size-5" aria-hidden="true" />
                         </Link>
+                        <button
+                            type="button"
+                            className="hidden size-10 items-center justify-center rounded-full text-slate-200 transition hover:bg-white/10 sm:flex"
+                            aria-label="CheFu apps"
+                        >
+                            <Grid3X3 className="size-5" aria-hidden="true" />
+                        </button>
                         <button
                             type="button"
                             onClick={handleSignOut}
                             disabled={isSigningOut}
-                            className="inline-flex items-center gap-2 rounded-md bg-slate-950 px-3 py-2 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:opacity-60"
+                            className="inline-flex items-center gap-2 rounded-full border border-white/12 px-3 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/10 disabled:opacity-60"
                         >
                             {isSigningOut ? (
                                 <Loader2 className="size-4 animate-spin" aria-hidden="true" />
@@ -480,319 +587,257 @@ export function AccountPage() {
                 </div>
             </header>
 
-            <main className="mx-auto grid w-full max-w-6xl gap-6 px-5 py-6 sm:px-8 lg:grid-cols-[0.78fr_1.22fr]">
-                <aside className="space-y-4">
-                    <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-                        <div className="flex items-start gap-4">
-                            <div className="flex size-16 shrink-0 items-center justify-center rounded-lg bg-slate-950 text-xl font-semibold text-white">
-                                {initials || "C"}
-                            </div>
-                            <div className="min-w-0">
-                                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">
-                                    Signed in
-                                </p>
-                                <h1 className="mt-2 truncate text-2xl font-semibold tracking-normal">
-                                    {name || "CheFu Account"}
-                                </h1>
-                                <p className="mt-1 truncate text-sm text-slate-600">
-                                    {account.user.email}
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="mt-6 grid grid-cols-2 gap-3">
-                            <AccountStat label="Role" value={roleLabel} />
-                            <AccountStat
-                                label="Plan"
-                                value={toTitle(account.profile.subscriptionStatus)}
-                            />
-                            <AccountStat
-                                label="Apps"
-                                value={String(
-                                    connectedApps.filter(
-                                        (app) => account.profile.apps?.[app.id]?.enabled,
-                                    ).length,
-                                )}
-                            />
-                            <AccountStat
-                                label="Academy"
-                                value={
-                                    account.profile.onboardingComplete
-                                        ? "Set up"
-                                        : "Needs setup"
-                                }
-                            />
-                        </div>
-                    </div>
-
-                    <div className="rounded-lg border border-slate-200 bg-slate-950 p-6 text-white shadow-sm">
-                        <div className="flex items-center gap-3">
-                            <div className="flex size-10 items-center justify-center rounded-md bg-white/10">
-                                <Code2 className="size-5 text-emerald-300" aria-hidden="true" />
-                            </div>
-                            <div>
-                                <h2 className="font-semibold">Developer access</h2>
-                                <p className="text-sm text-slate-300">
-                                    {account.profile.roles.includes("developer")
-                                        ? "API keys and SDK tools are enabled."
-                                        : "Create an SDK account to unlock API keys."}
-                                </p>
-                            </div>
-                        </div>
-                        <Link
-                            href="https://academy.chefuinc.com/docs"
-                            className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-emerald-300 transition hover:text-emerald-200"
-                        >
-                            View SDK docs
-                            <ExternalLink className="size-4" aria-hidden="true" />
-                        </Link>
-                    </div>
+            <div className="mx-auto grid w-full max-w-[1480px] gap-6 px-4 py-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:px-8">
+                <aside className="hidden lg:block">
+                    <nav className="sticky top-24 space-y-3" aria-label="Account sections">
+                        {navItems.map((item, index) => (
+                            <button
+                                key={item.id}
+                                type="button"
+                                onClick={() => goToSection(item.id)}
+                                className={`flex w-full items-center gap-3 rounded-full px-3 py-3 text-left transition hover:bg-white/10 ${
+                                    index === 0 ? "bg-white/10" : ""
+                                }`}
+                            >
+                                <span
+                                    className={`flex size-12 shrink-0 items-center justify-center rounded-full ${item.color}`}
+                                >
+                                    <item.icon className="size-6" aria-hidden="true" />
+                                </span>
+                                <span className="text-base font-semibold text-white">
+                                    {item.label}
+                                </span>
+                            </button>
+                        ))}
+                    </nav>
                 </aside>
 
-                <div className="space-y-6">
-                    <form
-                        id="account-profile-form"
-                        onSubmit={saveProfile}
-                        className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm"
-                    >
-                        <div className="flex items-start gap-3">
-                            <div className="flex size-10 items-center justify-center rounded-md bg-emerald-50 text-emerald-700">
-                                <UserRound className="size-5" aria-hidden="true" />
-                            </div>
-                            <div>
-                                <h2 className="text-xl font-semibold tracking-normal">
-                                    Profile
-                                </h2>
-                                <p className="mt-1 text-sm leading-6 text-slate-600">
-                                    This name appears across CheFu apps that use your account.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="mt-5 grid gap-4 sm:grid-cols-[1fr_auto] sm:items-end">
-                            <label className="block">
-                                <span className="text-sm font-semibold text-slate-800">
-                                    Display name
-                                </span>
-                                <input
-                                    value={name}
-                                    onChange={(event) => setName(event.target.value)}
-                                    className="mt-2 h-12 w-full rounded-md border border-slate-300 bg-white px-3 text-sm text-slate-950 shadow-sm outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100"
-                                    placeholder="Your name"
-                                />
-                            </label>
+                <div className="min-w-0">
+                    <div className="mb-5 flex gap-3 overflow-x-auto pb-2 lg:hidden">
+                        {navItems.map((item) => (
                             <button
-                                type="submit"
-                                disabled={isSaving}
-                                className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-slate-950 px-5 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:opacity-60"
+                                key={item.id}
+                                type="button"
+                                onClick={() => goToSection(item.id)}
+                                className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/12 px-3 py-2 text-sm font-semibold text-slate-100"
                             >
-                                {isSaving ? (
-                                    <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-                                ) : (
-                                    <Save className="size-4" aria-hidden="true" />
-                                )}
-                                Save
+                                <span
+                                    className={`flex size-7 items-center justify-center rounded-full ${item.color}`}
+                                >
+                                    <item.icon className="size-4" aria-hidden="true" />
+                                </span>
+                                {item.label}
                             </button>
-                        </div>
+                        ))}
+                    </div>
 
-                        <div className="mt-5 grid gap-4 sm:grid-cols-2">
-                            <label className="block sm:col-span-2">
-                                <span className="text-sm font-semibold text-slate-800">
-                                    Bio
+                    <section id="home" className="scroll-mt-24 text-center">
+                        <div className="mx-auto flex size-32 items-center justify-center rounded-full bg-[#111213] shadow-[0_18px_64px_rgba(0,0,0,0.45)]">
+                            <div
+                                className="relative flex size-32 items-center justify-center rounded-full bg-cover bg-center text-4xl font-semibold text-white"
+                                style={
+                                    account.profile.profilePicture
+                                        ? {
+                                              backgroundImage: `url(${account.profile.profilePicture})`,
+                                          }
+                                        : undefined
+                                }
+                            >
+                                {!account.profile.profilePicture ? initials || "C" : null}
+                                <span className="absolute bottom-1 right-2 flex size-9 items-center justify-center rounded-full border border-[#202124] bg-[#3c4043] text-white">
+                                    <Camera className="size-5" aria-hidden="true" />
                                 </span>
-                                <textarea
-                                    value={bio}
-                                    onChange={(event) => setBio(event.target.value)}
-                                    className="mt-2 min-h-24 w-full resize-none rounded-md border border-slate-300 bg-white px-3 py-3 text-sm text-slate-950 shadow-sm outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100"
-                                    maxLength={280}
-                                    placeholder="A short intro for learning and public profile experiences"
-                                />
-                            </label>
-
-                            <label className="block">
-                                <span className="text-sm font-semibold text-slate-800">
-                                    Country
-                                </span>
-                                <input
-                                    value={country}
-                                    onChange={(event) => setCountry(event.target.value)}
-                                    className="mt-2 h-12 w-full rounded-md border border-slate-300 bg-white px-3 text-sm text-slate-950 shadow-sm outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100"
-                                    placeholder="South Africa"
-                                />
-                            </label>
-
-                            <label className="block">
-                                <span className="text-sm font-semibold text-slate-800">
-                                    Country code
-                                </span>
-                                <input
-                                    value={countryCode}
-                                    onChange={(event) => setCountryCode(event.target.value)}
-                                    className="mt-2 h-12 w-full rounded-md border border-slate-300 bg-white px-3 text-sm uppercase text-slate-950 shadow-sm outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100"
-                                    placeholder="ZA"
-                                />
-                            </label>
-                        </div>
-
-                        <div className="mt-6 rounded-lg border border-slate-200 bg-slate-50 p-4">
-                            <div>
-                                <h3 className="font-semibold">CheFu Academy learning profile</h3>
-                                <p className="mt-1 text-sm leading-6 text-slate-600">
-                                    These fields sync with the Academy onboarding and settings screen.
-                                </p>
                             </div>
+                        </div>
 
-                            <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                                <label className="block sm:col-span-2">
-                                    <span className="text-sm font-semibold text-slate-800">
-                                        Learning goal
-                                    </span>
-                                    <input
-                                        value={learningGoal}
-                                        onChange={(event) => setLearningGoal(event.target.value)}
-                                        className="mt-2 h-12 w-full rounded-md border border-slate-300 bg-white px-3 text-sm text-slate-950 shadow-sm outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100"
-                                        placeholder="What do you want to learn next?"
-                                    />
-                                </label>
+                        <h1 className="mt-8 text-4xl font-normal leading-tight tracking-normal text-white sm:text-5xl">
+                            {name || "CheFu Account"}
+                        </h1>
+                        <p className="mt-3 text-lg text-slate-300">{account.user.email}</p>
 
-                                <label className="block">
-                                    <span className="text-sm font-semibold text-slate-800">
-                                        Skill level
-                                    </span>
-                                    <select
-                                        value={skillLevel || "beginner"}
-                                        onChange={(event) =>
-                                            setSkillLevel(
-                                                event.target.value as AccountProfile["skillLevel"],
-                                            )
-                                        }
-                                        className="mt-2 h-12 w-full rounded-md border border-slate-300 bg-white px-3 text-sm text-slate-950 shadow-sm outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100"
-                                    >
-                                        {skillLevels.map((level) => (
-                                            <option key={level} value={level}>
-                                                {toTitle(level)}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </label>
+                        <div className="relative mx-auto mt-12 max-w-3xl">
+                            <Search
+                                className="pointer-events-none absolute left-6 top-1/2 size-6 -translate-y-1/2 text-slate-300"
+                                aria-hidden="true"
+                            />
+                            <input
+                                type="search"
+                                value={accountSearch}
+                                onChange={(event) => setAccountSearch(event.target.value)}
+                                placeholder="Search CheFu Account"
+                                className="h-16 w-full rounded-full border border-white/10 bg-[#3c4043] pl-16 pr-6 text-lg text-white outline-none transition placeholder:text-slate-300 focus:border-sky-300"
+                                aria-label="Search CheFu Account sections"
+                            />
+                            {filteredSections.length > 0 ? (
+                                <div className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-20 overflow-hidden rounded-lg border border-white/10 bg-[#2b2c2f] text-left shadow-2xl">
+                                    {filteredSections.map((item) => (
+                                        <button
+                                            key={item.id}
+                                            type="button"
+                                            onClick={() => goToSection(item.id)}
+                                            className="flex w-full items-center gap-3 px-4 py-3 text-left transition hover:bg-white/10"
+                                        >
+                                            <span
+                                                className={`flex size-9 shrink-0 items-center justify-center rounded-full ${item.color}`}
+                                            >
+                                                <item.icon className="size-5" aria-hidden="true" />
+                                            </span>
+                                            <span>
+                                                <span className="block text-sm font-semibold text-white">
+                                                    {item.label}
+                                                </span>
+                                                <span className="block text-xs text-slate-400">
+                                                    {item.description}
+                                                </span>
+                                            </span>
+                                        </button>
+                                    ))}
+                                </div>
+                            ) : null}
+                        </div>
 
-                                <label className="block">
-                                    <span className="text-sm font-semibold text-slate-800">
-                                        Weekly lessons
-                                    </span>
-                                    <input
-                                        type="number"
-                                        min={1}
-                                        max={21}
-                                        value={weeklyLearningGoal}
-                                        onChange={(event) =>
-                                            setWeeklyLearningGoal(event.target.value)
-                                        }
-                                        className="mt-2 h-12 w-full rounded-md border border-slate-300 bg-white px-3 text-sm text-slate-950 shadow-sm outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100"
-                                    />
-                                </label>
+                        <div className="mx-auto mt-7 flex max-w-3xl flex-wrap justify-center gap-3">
+                            <QuickLink icon={KeyRound} label="Password" onClick={() => goToSection("security")} />
+                            <QuickLink icon={MonitorSmartphone} label="Apps" onClick={() => goToSection("linked-apps")} />
+                            <QuickLink icon={ShieldCheck} label="Privacy" onClick={() => goToSection("privacy")} />
+                            <QuickLink icon={BookOpenCheck} label="Academy" onClick={() => goToSection("academy")} />
+                            <QuickLink icon={BellRing} label="Email" onClick={() => goToSection("notifications")} />
+                        </div>
 
-                                <label className="block">
-                                    <span className="text-sm font-semibold text-slate-800">
-                                        Language
-                                    </span>
-                                    <input
-                                        value={language}
-                                        onChange={(event) => setLanguage(event.target.value)}
-                                        className="mt-2 h-12 w-full rounded-md border border-slate-300 bg-white px-3 text-sm text-slate-950 shadow-sm outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100"
-                                        placeholder="en"
-                                    />
-                                </label>
+                        <div className="mx-auto mt-20 flex max-w-4xl items-center justify-between gap-6 text-left">
+                            <p className="max-w-3xl text-lg leading-8 text-slate-200">
+                                Only you can see your settings. Review your personal info,
+                                security, privacy, connected apps, and Academy preferences
+                                from one CheFu Account.
+                            </p>
+                            <ShieldCheck className="hidden size-10 shrink-0 text-sky-300 sm:block" aria-hidden="true" />
+                        </div>
+                    </section>
 
-                                <label className="block">
-                                    <span className="text-sm font-semibold text-slate-800">
-                                        Lesson style
-                                    </span>
-                                    <select
-                                        value={lessonStyle || "example-heavy"}
-                                        onChange={(event) =>
-                                            setLessonStyle(
-                                                event.target.value as AccountProfile["lessonStyle"],
-                                            )
-                                        }
-                                        className="mt-2 h-12 w-full rounded-md border border-slate-300 bg-white px-3 text-sm text-slate-950 shadow-sm outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100"
-                                    >
-                                        {lessonStyles.map((style) => (
-                                            <option key={style} value={style}>
-                                                {toTitle(style)}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </label>
-
-                                <label className="block">
-                                    <span className="text-sm font-semibold text-slate-800">
-                                        Course difficulty
-                                    </span>
-                                    <select
-                                        value={defaultCourseDifficulty || "beginner"}
-                                        onChange={(event) =>
-                                            setDefaultCourseDifficulty(
-                                                event.target
-                                                    .value as AccountProfile["defaultCourseDifficulty"],
-                                            )
-                                        }
-                                        className="mt-2 h-12 w-full rounded-md border border-slate-300 bg-white px-3 text-sm text-slate-950 shadow-sm outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100"
-                                    >
-                                        {skillLevels.map((level) => (
-                                            <option key={level} value={level}>
-                                                {toTitle(level)}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </label>
-
-                                <label className="block">
-                                    <span className="text-sm font-semibold text-slate-800">
-                                        Preferred format
-                                    </span>
-                                    <select
-                                        value={preferredContentFormat || "examples"}
-                                        onChange={(event) =>
-                                            setPreferredContentFormat(
-                                                event.target
-                                                    .value as AccountProfile["preferredContentFormat"],
-                                            )
-                                        }
-                                        className="mt-2 h-12 w-full rounded-md border border-slate-300 bg-white px-3 text-sm text-slate-950 shadow-sm outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100"
-                                    >
-                                        {contentFormats.map((format) => (
-                                            <option key={format} value={format}>
-                                                {toTitle(format)}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </label>
-
-                                <label className="block sm:col-span-2">
-                                    <span className="text-sm font-semibold text-slate-800">
-                                        Learning interests
-                                    </span>
-                                    <input
-                                        value={learningInterestsInput}
-                                        onChange={(event) =>
-                                            setLearningInterestsInput(event.target.value)
-                                        }
-                                        className="mt-2 h-12 w-full rounded-md border border-slate-300 bg-white px-3 text-sm text-slate-950 shadow-sm outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100"
-                                        placeholder="AI, Web development, Data analysis"
+                    <form id="account-settings-form" onSubmit={saveProfile} className="mt-10 space-y-5">
+                        <SectionCard
+                            id="personal-info"
+                            icon={IdCard}
+                            title="Personal info"
+                            description="Control the profile details that CheFu apps use."
+                            action={
+                                <SaveButton isSaving={isSaving} label="Save profile" />
+                            }
+                        >
+                            <div className="grid gap-4 md:grid-cols-2">
+                                <TextField label="Display name" value={name} onChange={setName} />
+                                <TextField label="Email" value={account.user.email} readOnly />
+                                <TextField label="Country" value={country} onChange={setCountry} placeholder="South Africa" />
+                                <TextField label="Country code" value={countryCode} onChange={setCountryCode} placeholder="ZA" />
+                                <TextField label="Language" value={language} onChange={setLanguage} placeholder="en" />
+                                <TextField label="Role" value={roleLabel} readOnly />
+                                <label className="block md:col-span-2">
+                                    <span className="text-sm font-semibold text-slate-200">Bio</span>
+                                    <textarea
+                                        value={bio}
+                                        onChange={(event) => setBio(event.target.value)}
+                                        className="mt-2 min-h-24 w-full resize-none rounded-lg border border-white/10 bg-[#202124] px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-emerald-300"
+                                        maxLength={280}
+                                        placeholder="A short intro for learning and public profile experiences"
                                     />
                                 </label>
                             </div>
+                        </SectionCard>
 
-                            <div className="mt-5 divide-y divide-slate-200 rounded-md border border-slate-200 bg-white">
-                                <ToggleRow
-                                    checked={aiTutorSuggestions}
-                                    title="AI tutor suggestions"
-                                    description="Use your learning profile to personalize course and tutor suggestions."
-                                    onToggle={() =>
-                                        setAiTutorSuggestions((enabled) => !enabled)
+                        <SectionCard
+                            id="security"
+                            icon={LockKeyhole}
+                            title="Security & sign-in"
+                            description="Protect your account and control sign-in alerts."
+                        >
+                            <div className="divide-y divide-white/10">
+                                <ActionRow
+                                    icon={KeyRound}
+                                    title="Password reset"
+                                    description={`Send a secure reset link to ${account.user.email}.`}
+                                    action={
+                                        <button
+                                            type="button"
+                                            onClick={sendResetEmail}
+                                            disabled={isSendingReset}
+                                            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/14 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/10 disabled:opacity-60"
+                                        >
+                                            {isSendingReset ? (
+                                                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+                                            ) : (
+                                                <Mail className="size-4" aria-hidden="true" />
+                                            )}
+                                            Send reset
+                                        </button>
                                     }
                                 />
+                                <ToggleRow
+                                    checked={securityEmailsEnabled}
+                                    title="Security email alerts"
+                                    description="Receive an email when your account starts a new session."
+                                    onToggle={() => {
+                                        setSecurityEmailsEnabled((enabled) => !enabled);
+                                        setEmailPreferences((current) => ({
+                                            ...current,
+                                            security: !current.security,
+                                        }));
+                                    }}
+                                />
+                            </div>
+                        </SectionCard>
+
+                        <SectionCard
+                            id="linked-apps"
+                            icon={MonitorSmartphone}
+                            title="Linked apps"
+                            description="CheFu products that can use your account session."
+                            aside={`${connectedAppCount} connected`}
+                        >
+                            <div className="divide-y divide-white/10">
+                                {connectedApps.map((app) => {
+                                    const appProfile = account.profile.apps?.[app.id];
+                                    const isConnected = appProfile?.enabled;
+
+                                    return (
+                                        <Link
+                                            key={app.id}
+                                            href={app.href}
+                                            className="group flex flex-col gap-3 py-4 transition hover:bg-white/[0.03] sm:flex-row sm:items-center sm:justify-between"
+                                        >
+                                            <div>
+                                                <div className="flex items-center gap-2">
+                                                    <h3 className="font-semibold text-white">{app.name}</h3>
+                                                    <span className="inline-flex items-center gap-1 rounded-full bg-white/8 px-2 py-1 text-xs font-semibold text-slate-300">
+                                                        {isConnected ? (
+                                                            <CheckCircle2 className="size-3.5 text-emerald-300" aria-hidden="true" />
+                                                        ) : (
+                                                            <Sparkles className="size-3.5 text-slate-400" aria-hidden="true" />
+                                                        )}
+                                                        {isConnected ? "Connected" : "Ready"}
+                                                    </span>
+                                                </div>
+                                                <p className="mt-1 text-sm leading-6 text-slate-400">
+                                                    {app.description}
+                                                </p>
+                                            </div>
+                                            <ExternalLink
+                                                className="size-4 shrink-0 text-slate-500 transition group-hover:text-white"
+                                                aria-hidden="true"
+                                            />
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        </SectionCard>
+
+                        <SectionCard
+                            id="privacy"
+                            icon={ShieldCheck}
+                            title="Data & privacy"
+                            description="Choose what appears publicly and how personalization works."
+                            action={<SaveButton isSaving={isSaving} label="Save privacy" />}
+                        >
+                            <div className="divide-y divide-white/10">
                                 <ToggleRow
                                     checked={privacy.publicProfile}
                                     title="Public profile"
@@ -811,8 +856,7 @@ export function AccountPage() {
                                     onToggle={() =>
                                         setPrivacy((current) => ({
                                             ...current,
-                                            showCompletedCourses:
-                                                !current.showCompletedCourses,
+                                            showCompletedCourses: !current.showCompletedCourses,
                                         }))
                                     }
                                 />
@@ -840,221 +884,269 @@ export function AccountPage() {
                                     }
                                 />
                             </div>
+                        </SectionCard>
 
-                            <div className="mt-5">
-                                <h4 className="text-sm font-semibold text-slate-800">
-                                    Academy notifications
-                                </h4>
-                                <div className="mt-3 divide-y divide-slate-200 rounded-md border border-slate-200 bg-white">
-                                    <ToggleRow
-                                        checked={emailPreferences.courseReminders}
-                                        title="Course reminders"
-                                        description="Receive nudges for active lessons and study goals."
-                                        onToggle={() =>
-                                            setEmailPreferences((current) => ({
-                                                ...current,
-                                                courseReminders:
-                                                    !current.courseReminders,
-                                            }))
-                                        }
-                                    />
-                                    <ToggleRow
-                                        checked={emailPreferences.aiCourseCompletion}
-                                        title="AI course completion"
-                                        description="Receive updates when AI-generated course work finishes."
-                                        onToggle={() =>
-                                            setEmailPreferences((current) => ({
-                                                ...current,
-                                                aiCourseCompletion:
-                                                    !current.aiCourseCompletion,
-                                            }))
-                                        }
-                                    />
-                                    <ToggleRow
-                                        checked={emailPreferences.weeklyProgressSummary}
-                                        title="Weekly progress summary"
-                                        description="Get a weekly digest of learning progress and suggested next steps."
-                                        onToggle={() =>
-                                            setEmailPreferences((current) => ({
-                                                ...current,
-                                                weeklyProgressSummary:
-                                                    !current.weeklyProgressSummary,
-                                            }))
-                                        }
-                                    />
-                                    <ToggleRow
-                                        checked={emailPreferences.marketing}
-                                        title="Product updates"
-                                        description="Receive occasional announcements about new CheFu products and releases."
-                                        onToggle={() =>
-                                            setEmailPreferences((current) => ({
-                                                ...current,
-                                                marketing: !current.marketing,
-                                            }))
-                                        }
-                                    />
-                                </div>
+                        <SectionCard
+                            id="academy"
+                            icon={BookOpenCheck}
+                            title="Academy learning"
+                            description="Tune the learning experience CheFu Academy uses for recommendations."
+                            action={<SaveButton isSaving={isSaving} label="Save learning" />}
+                        >
+                            <div className="grid gap-4 md:grid-cols-2">
+                                <TextField
+                                    label="Learning goal"
+                                    value={learningGoal}
+                                    onChange={setLearningGoal}
+                                    placeholder="What do you want to learn next?"
+                                    wide
+                                />
+                                <SelectField
+                                    label="Skill level"
+                                    value={skillLevel || "beginner"}
+                                    onChange={(value) =>
+                                        setSkillLevel(value as AccountProfile["skillLevel"])
+                                    }
+                                    options={skillLevels}
+                                />
+                                <TextField
+                                    label="Weekly lessons"
+                                    type="number"
+                                    value={weeklyLearningGoal}
+                                    onChange={setWeeklyLearningGoal}
+                                    min={1}
+                                    max={21}
+                                />
+                                <SelectField
+                                    label="Lesson style"
+                                    value={lessonStyle || "example-heavy"}
+                                    onChange={(value) =>
+                                        setLessonStyle(value as AccountProfile["lessonStyle"])
+                                    }
+                                    options={lessonStyles}
+                                />
+                                <SelectField
+                                    label="Course difficulty"
+                                    value={defaultCourseDifficulty || "beginner"}
+                                    onChange={(value) =>
+                                        setDefaultCourseDifficulty(
+                                            value as AccountProfile["defaultCourseDifficulty"],
+                                        )
+                                    }
+                                    options={skillLevels}
+                                />
+                                <SelectField
+                                    label="Preferred format"
+                                    value={preferredContentFormat || "examples"}
+                                    onChange={(value) =>
+                                        setPreferredContentFormat(
+                                            value as AccountProfile["preferredContentFormat"],
+                                        )
+                                    }
+                                    options={contentFormats}
+                                />
+                                <TextField
+                                    label="Learning interests"
+                                    value={learningInterestsInput}
+                                    onChange={setLearningInterestsInput}
+                                    placeholder="AI, Web development, Data analysis"
+                                    wide
+                                />
                             </div>
-                        </div>
-                    </form>
+                            <div className="mt-4 divide-y divide-white/10 border-t border-white/10">
+                                <ToggleRow
+                                    checked={aiTutorSuggestions}
+                                    title="AI tutor suggestions"
+                                    description="Use your learning profile to personalize course and tutor suggestions."
+                                    onToggle={() =>
+                                        setAiTutorSuggestions((enabled) => !enabled)
+                                    }
+                                />
+                            </div>
+                        </SectionCard>
 
-                    <section className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-                        <div className="flex items-start gap-3">
-                            <div className="flex size-10 items-center justify-center rounded-md bg-emerald-50 text-emerald-700">
-                                <ShieldCheck className="size-5" aria-hidden="true" />
-                            </div>
-                            <div>
-                                <h2 className="text-xl font-semibold tracking-normal">
-                                    Security
-                                </h2>
-                                <p className="mt-1 text-sm leading-6 text-slate-600">
-                                    Keep your account protected across every CheFu app.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="mt-5 divide-y divide-slate-200 rounded-md border border-slate-200">
-                            <div className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:justify-between">
-                                <div className="flex items-start gap-3">
-                                    <KeyRound className="mt-0.5 size-5 text-slate-500" aria-hidden="true" />
-                                    <div>
-                                        <p className="font-semibold">Password reset</p>
-                                        <p className="mt-1 text-sm text-slate-600">
-                                            Send a secure reset link to {account.user.email}.
-                                        </p>
-                                    </div>
-                                </div>
-                                <button
-                                    type="button"
-                                    onClick={sendResetEmail}
-                                    disabled={isSendingReset}
-                                    className="inline-flex items-center justify-center gap-2 rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 transition hover:border-slate-400 hover:bg-slate-50 disabled:opacity-60"
-                                >
-                                    {isSendingReset && (
-                                        <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-                                    )}
-                                    Send reset
-                                </button>
-                            </div>
-
-                            <div className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:justify-between">
-                                <div className="flex items-start gap-3">
-                                    <BellRing className="mt-0.5 size-5 text-slate-500" aria-hidden="true" />
-                                    <div>
-                                        <p className="font-semibold">Security email alerts</p>
-                                        <p className="mt-1 text-sm text-slate-600">
-                                            Receive an email when your account starts a new session.
-                                        </p>
-                                    </div>
-                                </div>
-                                <button
-                                    type="button"
-                                    onClick={() => {
-                                        setSecurityEmailsEnabled((enabled) => !enabled);
+                        <SectionCard
+                            id="notifications"
+                            icon={BellRing}
+                            title="Notifications"
+                            description="Choose which Academy and product emails you receive."
+                            action={<SaveButton isSaving={isSaving} label="Save notifications" />}
+                        >
+                            <div className="divide-y divide-white/10">
+                                <ToggleRow
+                                    checked={emailPreferences.courseReminders}
+                                    title="Course reminders"
+                                    description="Receive nudges for active lessons and study goals."
+                                    onToggle={() =>
                                         setEmailPreferences((current) => ({
                                             ...current,
-                                            security: !current.security,
-                                        }));
-                                    }}
-                                    className={`relative h-7 w-12 rounded-full transition ${
-                                        securityEmailsEnabled ? "bg-emerald-600" : "bg-slate-300"
-                                    }`}
-                                    aria-pressed={securityEmailsEnabled}
+                                            courseReminders: !current.courseReminders,
+                                        }))
+                                    }
+                                />
+                                <ToggleRow
+                                    checked={emailPreferences.aiCourseCompletion}
+                                    title="AI course completion"
+                                    description="Receive updates when AI-generated course work finishes."
+                                    onToggle={() =>
+                                        setEmailPreferences((current) => ({
+                                            ...current,
+                                            aiCourseCompletion: !current.aiCourseCompletion,
+                                        }))
+                                    }
+                                />
+                                <ToggleRow
+                                    checked={emailPreferences.weeklyProgressSummary}
+                                    title="Weekly progress summary"
+                                    description="Get a weekly digest of learning progress and suggested next steps."
+                                    onToggle={() =>
+                                        setEmailPreferences((current) => ({
+                                            ...current,
+                                            weeklyProgressSummary:
+                                                !current.weeklyProgressSummary,
+                                        }))
+                                    }
+                                />
+                                <ToggleRow
+                                    checked={emailPreferences.marketing}
+                                    title="Product updates"
+                                    description="Receive occasional announcements about new CheFu products and releases."
+                                    onToggle={() =>
+                                        setEmailPreferences((current) => ({
+                                            ...current,
+                                            marketing: !current.marketing,
+                                        }))
+                                    }
+                                />
+                            </div>
+                        </SectionCard>
+
+                        <SectionCard
+                            id="developer"
+                            icon={Code2}
+                            title="Developer access"
+                            description="SDK and API key access for CheFu integrations."
+                            aside={account.profile.roles.includes("developer") ? "Enabled" : "Not enabled"}
+                        >
+                            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                                <div>
+                                    <p className="text-base font-semibold text-white">
+                                        {account.profile.roles.includes("developer")
+                                            ? "API keys and SDK tools are enabled."
+                                            : "Create an SDK account to unlock API keys."}
+                                    </p>
+                                    <p className="mt-1 text-sm leading-6 text-slate-400">
+                                        Developer keys are managed from the Academy SDK and CheFu Inc API.
+                                    </p>
+                                </div>
+                                <Link
+                                    href="https://academy.chefuinc.com/docs"
+                                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/14 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/10"
                                 >
-                                    <span
-                                        className={`absolute top-1 size-5 rounded-full bg-white shadow transition ${
-                                            securityEmailsEnabled ? "left-6" : "left-1"
-                                        }`}
-                                    />
-                                </button>
+                                    View SDK docs
+                                    <ExternalLink className="size-4" aria-hidden="true" />
+                                </Link>
                             </div>
-                        </div>
-                        <div className="mt-4 flex justify-end">
-                            <button
-                                type="submit"
-                                form="account-profile-form"
-                                disabled={isSaving}
-                                className="inline-flex items-center justify-center gap-2 rounded-md bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:opacity-60"
-                            >
-                                {isSaving ? (
-                                    <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-                                ) : (
-                                    <Save className="size-4" aria-hidden="true" />
-                                )}
-                                Save security preference
-                            </button>
-                        </div>
-                    </section>
-
-                    <section className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-                        <div className="flex items-start gap-3">
-                            <div className="flex size-10 items-center justify-center rounded-md bg-emerald-50 text-emerald-700">
-                                <MonitorSmartphone className="size-5" aria-hidden="true" />
-                            </div>
-                            <div>
-                                <h2 className="text-xl font-semibold tracking-normal">
-                                    Connected apps
-                                </h2>
-                                <p className="mt-1 text-sm leading-6 text-slate-600">
-                                    Apps that can use your CheFu Account session.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                            {connectedApps.map((app) => {
-                                const appProfile = account.profile.apps?.[app.id];
-                                const isConnected = appProfile?.enabled;
-
-                                return (
-                                    <Link
-                                        key={app.id}
-                                        href={app.href}
-                                        className="group rounded-lg border border-slate-200 bg-white p-4 transition hover:border-emerald-200 hover:bg-emerald-50/40"
-                                    >
-                                        <div className="flex items-start justify-between gap-3">
-                                            <div>
-                                                <h3 className="font-semibold">{app.name}</h3>
-                                                <p className="mt-1 text-sm leading-6 text-slate-600">
-                                                    {app.description}
-                                                </p>
-                                            </div>
-                                            <ExternalLink
-                                                className="size-4 shrink-0 text-slate-400 transition group-hover:text-emerald-700"
-                                                aria-hidden="true"
-                                            />
-                                        </div>
-                                        <div className="mt-4 inline-flex items-center gap-2 rounded-md bg-slate-100 px-2.5 py-1.5 text-xs font-semibold text-slate-700">
-                                            {isConnected ? (
-                                                <>
-                                                    <CheckCircle2 className="size-3.5 text-emerald-700" aria-hidden="true" />
-                                                    Connected
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <Sparkles className="size-3.5 text-slate-500" aria-hidden="true" />
-                                                    Ready to use
-                                                </>
-                                            )}
-                                        </div>
-                                    </Link>
-                                );
-                            })}
-                        </div>
-                    </section>
+                        </SectionCard>
+                    </form>
                 </div>
-            </main>
+            </div>
         </section>
     );
 }
 
-function AccountStat({ label, value }: { label: string; value: string }) {
+function SectionCard({
+    action,
+    aside,
+    children,
+    description,
+    icon: Icon,
+    id,
+    title,
+}: {
+    action?: ReactNode;
+    aside?: string;
+    children: ReactNode;
+    description: string;
+    icon: LucideIcon;
+    id: string;
+    title: string;
+}) {
     return (
-        <div className="rounded-md border border-slate-200 bg-slate-50 p-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                {label}
-            </p>
-            <p className="mt-1 text-sm font-semibold text-slate-950">{value}</p>
+        <section
+            id={id}
+            className="scroll-mt-24 rounded-lg border border-white/10 bg-[#2b2c2f] p-5 shadow-[0_14px_44px_rgba(0,0,0,0.22)] sm:p-6"
+        >
+            <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div className="flex items-start gap-4">
+                    <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white/8 text-emerald-300">
+                        <Icon className="size-5" aria-hidden="true" />
+                    </span>
+                    <div>
+                        <h2 className="text-xl font-semibold tracking-normal text-white">
+                            {title}
+                        </h2>
+                        <p className="mt-1 text-sm leading-6 text-slate-400">
+                            {description}
+                        </p>
+                    </div>
+                </div>
+                <div className="flex items-center gap-3">
+                    {aside ? (
+                        <span className="rounded-full bg-white/8 px-3 py-1.5 text-xs font-semibold text-slate-200">
+                            {aside}
+                        </span>
+                    ) : null}
+                    {action}
+                </div>
+            </div>
+            {children}
+        </section>
+    );
+}
+
+function QuickLink({
+    icon: Icon,
+    label,
+    onClick,
+}: {
+    icon: LucideIcon;
+    label: string;
+    onClick: () => void;
+}) {
+    return (
+        <button
+            type="button"
+            onClick={onClick}
+            className="inline-flex items-center gap-2 rounded-lg border border-white/18 px-5 py-3 text-base font-semibold text-white transition hover:bg-white/10"
+        >
+            <Icon className="size-5" aria-hidden="true" />
+            {label}
+        </button>
+    );
+}
+
+function ActionRow({
+    action,
+    description,
+    icon: Icon,
+    title,
+}: {
+    action: ReactNode;
+    description: string;
+    icon: LucideIcon;
+    title: string;
+}) {
+    return (
+        <div className="flex flex-col gap-4 py-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-start gap-3">
+                <Icon className="mt-0.5 size-5 text-slate-400" aria-hidden="true" />
+                <div>
+                    <p className="font-semibold text-white">{title}</p>
+                    <p className="mt-1 text-sm leading-6 text-slate-400">{description}</p>
+                </div>
+            </div>
+            {action}
         </div>
     );
 }
@@ -1071,16 +1163,16 @@ function ToggleRow({
     title: string;
 }) {
     return (
-        <div className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 py-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-                <p className="font-semibold text-slate-900">{title}</p>
-                <p className="mt-1 text-sm leading-6 text-slate-600">{description}</p>
+                <p className="font-semibold text-white">{title}</p>
+                <p className="mt-1 text-sm leading-6 text-slate-400">{description}</p>
             </div>
             <button
                 type="button"
                 onClick={onToggle}
                 className={`relative h-7 w-12 shrink-0 rounded-full transition ${
-                    checked ? "bg-emerald-600" : "bg-slate-300"
+                    checked ? "bg-emerald-400" : "bg-slate-600"
                 }`}
                 aria-pressed={checked}
             >
@@ -1091,6 +1183,92 @@ function ToggleRow({
                 />
             </button>
         </div>
+    );
+}
+
+function TextField({
+    label,
+    max,
+    min,
+    onChange,
+    placeholder,
+    readOnly,
+    type = "text",
+    value,
+    wide,
+}: {
+    label: string;
+    max?: number;
+    min?: number;
+    onChange?: (value: string) => void;
+    placeholder?: string;
+    readOnly?: boolean;
+    type?: string;
+    value: string;
+    wide?: boolean;
+}) {
+    return (
+        <label className={`block ${wide ? "md:col-span-2" : ""}`}>
+            <span className="text-sm font-semibold text-slate-200">{label}</span>
+            <input
+                type={type}
+                min={min}
+                max={max}
+                value={value}
+                readOnly={readOnly}
+                onChange={(event) => onChange?.(event.target.value)}
+                className={`mt-2 h-12 w-full rounded-lg border border-white/10 bg-[#202124] px-4 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-emerald-300 ${
+                    readOnly ? "cursor-not-allowed text-slate-400" : ""
+                }`}
+                placeholder={placeholder}
+            />
+        </label>
+    );
+}
+
+function SelectField({
+    label,
+    onChange,
+    options,
+    value,
+}: {
+    label: string;
+    onChange: (value: string) => void;
+    options: readonly string[];
+    value: string;
+}) {
+    return (
+        <label className="block">
+            <span className="text-sm font-semibold text-slate-200">{label}</span>
+            <select
+                value={value}
+                onChange={(event) => onChange(event.target.value)}
+                className="mt-2 h-12 w-full rounded-lg border border-white/10 bg-[#202124] px-4 text-sm text-white outline-none transition focus:border-emerald-300"
+            >
+                {options.map((option) => (
+                    <option key={option} value={option}>
+                        {toTitle(option)}
+                    </option>
+                ))}
+            </select>
+        </label>
+    );
+}
+
+function SaveButton({ isSaving, label }: { isSaving: boolean; label: string }) {
+    return (
+        <button
+            type="submit"
+            disabled={isSaving}
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-slate-200 disabled:opacity-60"
+        >
+            {isSaving ? (
+                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+            ) : (
+                <Save className="size-4" aria-hidden="true" />
+            )}
+            {label}
+        </button>
     );
 }
 
