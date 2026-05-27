@@ -1,17 +1,10 @@
-import { Suspense } from "react";
-import { LoginPage } from "../pages/LoginPage";
-import { pageMetadata } from "../site-metadata";
+import { redirect } from "next/navigation";
+import { accountAppUrl } from "../../lib/account-app";
 
-export const metadata = pageMetadata({
-    title: "Sign in | CheFu Account",
-    description: "Sign in with your CheFu Account to continue to CheFu apps and services.",
-    path: "/login",
-});
-
-export default function Page() {
-    return (
-        <Suspense>
-            <LoginPage />
-        </Suspense>
-    );
+export default async function Page({
+    searchParams,
+}: {
+    searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+    redirect(accountAppUrl("/login", await searchParams));
 }

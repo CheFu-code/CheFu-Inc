@@ -1,17 +1,10 @@
-import { Suspense } from "react";
-import { RegisterPage } from "../pages/RegisterPage";
-import { pageMetadata } from "../site-metadata";
+import { redirect } from "next/navigation";
+import { accountAppUrl } from "../../lib/account-app";
 
-export const metadata = pageMetadata({
-    title: "Create account | CheFu Account",
-    description: "Create one CheFu Account for CheFu Academy, Muzalo, Flow, and future CheFu apps.",
-    path: "/register",
-});
-
-export default function Page() {
-    return (
-        <Suspense>
-            <RegisterPage />
-        </Suspense>
-    );
+export default async function Page({
+    searchParams,
+}: {
+    searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+    redirect(accountAppUrl("/register", await searchParams));
 }

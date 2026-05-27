@@ -1,17 +1,10 @@
-import { Suspense } from "react";
-import { LogoutPage } from "../pages/LogoutPage";
-import { pageMetadata } from "../site-metadata";
+import { redirect } from "next/navigation";
+import { accountAppUrl } from "../../lib/account-app";
 
-export const metadata = pageMetadata({
-    title: "Logout | CheFu Inc.",
-    description: "Sign out of your CheFu Account.",
-    path: "/logout",
-});
-
-export default function Page() {
-    return (
-        <Suspense>
-            <LogoutPage />
-        </Suspense>
-    );
+export default async function Page({
+    searchParams,
+}: {
+    searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+    redirect(accountAppUrl("/logout", await searchParams));
 }

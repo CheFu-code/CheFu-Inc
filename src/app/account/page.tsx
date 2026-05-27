@@ -1,18 +1,10 @@
-import { Suspense } from "react";
-import { AccountPage } from "../pages/AccountPage";
-import { pageMetadata } from "../site-metadata";
+import { redirect } from "next/navigation";
+import { accountAppUrl } from "../../lib/account-app";
 
-export const metadata = pageMetadata({
-    title: "Manage account | CheFu Account",
-    description:
-        "Manage your CheFu Account profile, security preferences, connected apps, and session.",
-    path: "/account",
-});
-
-export default function Page() {
-    return (
-        <Suspense>
-            <AccountPage />
-        </Suspense>
-    );
+export default async function Page({
+    searchParams,
+}: {
+    searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+    redirect(accountAppUrl("/account", await searchParams));
 }
