@@ -3,10 +3,17 @@
 import { FirebaseError } from "firebase/app";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, type FormEvent } from "react";
+import { useMemo, useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { auth } from "../../config/firebaseConfig";
 import RegisterUI from "../components/RegisterUI";
+import {
+    chefuAppLabel,
+    preserveAuthParams,
+    resolveChefuApp,
+    safeReturnTo,
+    syncChefuAccountSession,
+} from "../../lib/chefu-account";
 
 export function RegisterPage() {
     const router = useRouter();
@@ -15,7 +22,16 @@ export function RegisterPage() {
     const [password, setPassword] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const fromPath = searchParams.get("next") || "/contact";
+    const appId = resolveChefuApp(searchParams.get("app"));
+    const appName = chefuAppLabel(appId);
+    const fromPath = safeReturnTo(
+        searchParams.get("returnTo") || searchParams.get("next"),
+        "/contact",
+    );
+    const loginHref = useMemo(
+        () => preserveAuthParams("/login", new URLSearchParams(searchParams.toString())),
+        [searchParams],
+    );
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -28,9 +44,11 @@ export function RegisterPage() {
         setIsSubmitting(true);
 
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
-            toast.success("Account created successfully!");
-            router.replace(fromPath);
+            const credential = await createUserWithEmailAndPassword(auth, email, password);
+            const idToken = await credential.user.getIdToken(true);
+            await syncChefuAccountSession(idToken, appId);
+            toast.success(`CheFu account created for ${appName}.`);
+            completeAuthRedirect(fromPath, router.replace);
         } catch (error) {
             let message = "Unable to register. Please try again.";
 
@@ -80,6 +98,20 @@ export function RegisterPage() {
             password={password}
             setPassword={setPassword}
             isSubmitting={isSubmitting}
+            appName={appName}
+            loginHref={loginHref}
         />
     );
+}
+
+function completeAuthRedirect(
+    target: string,
+    replace: (href: string) => void,
+) {
+    if (target.startsWith("/")) {
+        replace(target);
+        return;
+    }
+
+    window.location.assign(target);
 }

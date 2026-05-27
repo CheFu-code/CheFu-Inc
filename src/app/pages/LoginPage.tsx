@@ -1,12 +1,19 @@
 'use client';
 
 import { FirebaseError } from "firebase/app";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, type FormEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { auth } from "../../config/firebaseConfig";
 import LoginUI from "../components/LoginUI";
+import {
+    chefuAppLabel,
+    preserveAuthParams,
+    resolveChefuApp,
+    safeReturnTo,
+    syncChefuAccountSession,
+} from "../../lib/chefu-account";
 
 export function LoginPage() {
     const router = useRouter();
@@ -14,8 +21,41 @@ export function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const attemptedExistingSession = useRef(false);
 
-    const fromPath = searchParams.get("next") || "/contact";
+    const appId = resolveChefuApp(searchParams.get("app"));
+    const appName = chefuAppLabel(appId);
+    const fromPath = safeReturnTo(
+        searchParams.get("returnTo") || searchParams.get("next"),
+        "/contact",
+    );
+    const registerHref = useMemo(
+        () => preserveAuthParams("/register", new URLSearchParams(searchParams.toString())),
+        [searchParams],
+    );
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (!user || isSubmitting || attemptedExistingSession.current) return;
+
+            attemptedExistingSession.current = true;
+            setIsSubmitting(true);
+            user.getIdToken(true)
+                .then((idToken) => syncChefuAccountSession(idToken, appId))
+                .then(() => {
+                    completeAuthRedirect(fromPath, router.replace);
+                })
+                .catch((error) => {
+                    toast.error("Unable to continue your CheFu account session.", {
+                        description:
+                            error instanceof Error ? error.message : "Please sign in again.",
+                    });
+                    setIsSubmitting(false);
+                });
+        });
+
+        return () => unsubscribe();
+    }, [appId, fromPath, isSubmitting, router]);
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -28,9 +68,11 @@ export function LoginPage() {
         setIsSubmitting(true);
 
         try {
-            await signInWithEmailAndPassword(auth, email, password);
-            toast.success("Logged in successfully.");
-            router.replace(fromPath);
+            const credential = await signInWithEmailAndPassword(auth, email, password);
+            const idToken = await credential.user.getIdToken(true);
+            await syncChefuAccountSession(idToken, appId);
+            toast.success(`Signed in to ${appName}.`);
+            completeAuthRedirect(fromPath, router.replace);
         } catch (error) {
             let message = "Unable to login. Please try again.";
 
@@ -98,6 +140,20 @@ export function LoginPage() {
             password={password}
             setPassword={setPassword}
             isSubmitting={isSubmitting}
+            appName={appName}
+            registerHref={registerHref}
         />
     );
+}
+
+function completeAuthRedirect(
+    target: string,
+    replace: (href: string) => void,
+) {
+    if (target.startsWith("/")) {
+        replace(target);
+        return;
+    }
+
+    window.location.assign(target);
 }

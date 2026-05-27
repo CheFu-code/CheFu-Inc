@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { twMerge } from "tailwind-merge";
 import { auth } from "../../config/firebaseConfig";
+import { clearChefuAccountSession } from "../../lib/chefu-account";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export function Navbar() {
@@ -72,7 +73,7 @@ export function Navbar() {
 
     const handleSignOut = async () => {
         try {
-            await signOut(auth);
+            await Promise.allSettled([clearChefuAccountSession(), signOut(auth)]);
             setIsUserMenuOpen(false);
             toast.success("Logged out.");
             router.push("/");

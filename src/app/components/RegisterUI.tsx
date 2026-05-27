@@ -18,6 +18,8 @@ const RegisterUI = ({
     password,
     setPassword,
     isSubmitting,
+    appName,
+    loginHref,
 }: {
     onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
     email: string;
@@ -25,6 +27,8 @@ const RegisterUI = ({
     password: string;
     setPassword: (password: string) => void;
     isSubmitting: boolean;
+    appName: string;
+    loginHref: string;
 }) => {
     return (
         <section className="pt-32 pb-20 bg-slate-950 min-h-screen">
@@ -33,10 +37,10 @@ const RegisterUI = ({
                     <Card className="border-slate-800 bg-slate-900/90 text-slate-100 shadow-xl">
                         <CardHeader className="space-y-2">
                             <CardTitle className="text-3xl font-bold text-white">
-                                Register
+                                Create CheFu Account
                             </CardTitle>
                             <CardDescription className="text-slate-400">
-                                Sign up to continue.
+                                Create one account to continue to {appName}.
                             </CardDescription>
                         </CardHeader>
 
@@ -79,7 +83,7 @@ const RegisterUI = ({
                                 </div>
                                 <div className="items-center justify-end flex gap-2 text-sm">
                                     <span>Already have an account?</span>
-                                    <Link href={'/login'}>
+                                    <Link href={loginHref}>
                                         <span className="text-cyan-400 hover:text-cyan-300">
                                             Sign in
                                         </span>
@@ -98,7 +102,7 @@ const RegisterUI = ({
                                             Signing up...
                                         </>
                                     ) : (
-                                        "Sign Up"
+                                        `Create account for ${appName}`
                                     )}
                                 </Button>
                             </form>

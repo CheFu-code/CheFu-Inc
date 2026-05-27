@@ -18,6 +18,8 @@ const LoginUI = ({
     password,
     setPassword,
     isSubmitting,
+    appName,
+    registerHref,
 }: {
     onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
     email: string;
@@ -25,6 +27,8 @@ const LoginUI = ({
     password: string;
     setPassword: (password: string) => void;
     isSubmitting: boolean;
+    appName: string;
+    registerHref: string;
 }) => {
     return (
         <section className="pt-32 pb-20 bg-slate-950 min-h-screen">
@@ -33,10 +37,10 @@ const LoginUI = ({
                     <Card className="border-slate-800 bg-slate-900/90 text-slate-100 shadow-xl">
                         <CardHeader className="space-y-2">
                             <CardTitle className="text-3xl font-bold text-white">
-                                Login
+                                CheFu Account
                             </CardTitle>
                             <CardDescription className="text-slate-400">
-                                Sign in to continue.
+                                Sign in once to continue to {appName}.
                             </CardDescription>
                         </CardHeader>
 
@@ -79,7 +83,7 @@ const LoginUI = ({
                                 </div>
                                 <div className="items-center justify-end flex gap-2 text-sm">
                                     <span>Don&apos;t have an account?</span>
-                                    <Link href={'/register'}>
+                                    <Link href={registerHref}>
                                         <span className="text-cyan-400 hover:text-cyan-300">
                                             Sign up
                                         </span>
@@ -98,7 +102,7 @@ const LoginUI = ({
                                             Signing in...
                                         </>
                                     ) : (
-                                        "Sign In"
+                                        `Continue to ${appName}`
                                     )}
                                 </Button>
                             </form>
