@@ -1,24 +1,25 @@
 "use client";
 
 import { clsx } from "clsx";
-import { signOut } from "firebase/auth";
+import { signOut, type User } from "firebase/auth";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { twMerge } from "tailwind-merge";
 import { auth } from "../../config/firebaseConfig";
 import { clearChefuAccountSession } from "../../lib/chefu-account";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { getChefuAccountSession, type ChefuSessionUser } from "../../lib/chefu-session";
+import { UserDropdown } from "./UserDropdown";
 
 export function Navbar() {
     const [user, setUser] = useState(auth.currentUser);
+    const [sessionUser, setSessionUser] = useState<ChefuSessionUser | null>(null);
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-    const userMenuRef = useRef<HTMLDivElement>(null);
     const pathname = usePathname();
     const router = useRouter();
 
@@ -28,6 +29,20 @@ export function Navbar() {
         });
         return () => unsubscribe();
     }, []);
+
+    useEffect(() => {
+        let ignore = false;
+
+        async function loadSession() {
+            const nextSessionUser = await getChefuAccountSession("academy").catch(() => null);
+            if (!ignore) setSessionUser(nextSessionUser);
+        }
+
+        void loadSession();
+        return () => {
+            ignore = true;
+        };
+    }, [pathname]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -42,39 +57,10 @@ export function Navbar() {
         return () => clearTimeout(timeout);
     }, [pathname]);
 
-    useEffect(() => {
-        const timeout = setTimeout(() => setIsUserMenuOpen(false), 0);
-        return () => clearTimeout(timeout);
-    }, [pathname]);
-
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (
-                userMenuRef.current &&
-                !userMenuRef.current.contains(event.target as Node)
-            ) {
-                setIsUserMenuOpen(false);
-            }
-        };
-
-        const handleEscape = (event: KeyboardEvent) => {
-            if (event.key === "Escape") {
-                setIsUserMenuOpen(false);
-            }
-        };
-
-        document.addEventListener("mousedown", handleClickOutside);
-        document.addEventListener("keydown", handleEscape);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-            document.removeEventListener("keydown", handleEscape);
-        };
-    }, []);
-
     const handleSignOut = async () => {
         try {
             await Promise.allSettled([clearChefuAccountSession(), signOut(auth)]);
-            setIsUserMenuOpen(false);
+            setSessionUser(null);
             toast.success("Logged out.");
             router.push("/");
         } catch (error) {
@@ -92,6 +78,7 @@ export function Navbar() {
         { name: "Work", href: "/portfolio" },
         { name: "Insights", href: "/blog" },
     ];
+    const accountUser = toDropdownUser(user, sessionUser);
 
     return (
         <nav
@@ -107,9 +94,14 @@ export function Navbar() {
                     href="/"
                     className="text-2xl font-bold tracking-tighter text-white flex items-center gap-2"
                 >
-                    {/* <div className="w-8 h-8 bg-linear-to-tr from-cyan-500 to-violet-600 rounded-lg flex items-center justify-center">
-                        <span className="text-white font-mono text-lg">C</span>
-                    </div> */}
+                    <Image
+                        src="/chefu-inc-logo.svg"
+                        alt=""
+                        width={36}
+                        height={36}
+                        className="rounded-xl"
+                        priority
+                    />
                     CheFu <span className="text-cyan-400">Inc.</span>
                 </Link>
 
@@ -131,69 +123,9 @@ export function Navbar() {
                     ))}
 
                     {/* Avatar */}
-                    {user && (
-                        <div className="relative" ref={userMenuRef}>
-                            <button
-                                type="button"
-                                className="rounded-full ring-2 ring-transparent hover:ring-cyan-400/60 focus-visible:outline-none focus-visible:ring-cyan-400/80 transition cursor-pointer"
-                                onClick={() => setIsUserMenuOpen((prev) => !prev)}
-                                aria-haspopup="menu"
-                                aria-expanded={isUserMenuOpen}
-                                aria-label="Open user menu"
-                            >
-                                <Avatar>
-                                    <AvatarImage src={user.photoURL ?? undefined} />
-                                    <AvatarFallback className="text-black font-semibold">
-                                        {user.displayName
-                                            ? user.displayName[0].toUpperCase()
-                                            : "C"}
-                                    </AvatarFallback>
-                                </Avatar>
-                            </button>
-
-                            <AnimatePresence>
-                                {isUserMenuOpen && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: -6, scale: 0.98 }}
-                                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                                        exit={{ opacity: 0, y: -6, scale: 0.98 }}
-                                        transition={{ duration: 0.15, ease: "easeOut" }}
-                                        className="absolute right-0 top-12 w-56 rounded-xl border border-slate-700 bg-slate-900/95 backdrop-blur-md shadow-xl overflow-hidden"
-                                        role="menu"
-                                    >
-                                        <div className="px-4 py-3 border-b border-slate-700">
-                                            <p className="text-sm font-semibold text-white truncate">
-                                                {user.displayName || "User"}
-                                            </p>
-                                            <p className="text-xs text-slate-400 truncate">
-                                                {user.email}
-                                            </p>
-                                        </div>
-
-                                        <button
-                                            type="button"
-                                            className="w-full text-left px-4 py-2.5 text-sm text-slate-200 hover:bg-slate-800 transition cursor-pointer"
-                                            onClick={() => {
-                                                setIsUserMenuOpen(false);
-                                                router.push("/account");
-                                            }}
-                                            role="menuitem"
-                                        >
-                                            Manage account
-                                        </button>
-                                        <button
-                                            type="button"
-                                            className="w-full text-left px-4 py-2.5 text-sm text-red-300 hover:bg-slate-800 transition cursor-pointer"
-                                            onClick={handleSignOut}
-                                            role="menuitem"
-                                        >
-                                            Log out
-                                        </button>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-                    )}
+                    {accountUser ? (
+                        <UserDropdown user={accountUser} onSignOut={handleSignOut} />
+                    ) : null}
                     <button
                         onClick={() => router.push("/contact")}
                         className="px-5 py-2 rounded-full bg-white text-slate-950 font-semibold hover:bg-cyan-400 transition-colors text-sm cursor-pointer"
@@ -252,16 +184,14 @@ export function Navbar() {
                                 Start a Project
                             </Link>
 
-                            {user && (
+                            {accountUser && (
                                 <div className="flex items-center gap-3 mb-4">
-                                    <Avatar>
-                                        <AvatarImage src={user.photoURL ?? undefined} />
-                                        <AvatarFallback className="text-black font-semibold">
-                                            {user.displayName ? user.displayName[0].toUpperCase() : "C"}
-
-                                        </AvatarFallback>
-                                    </Avatar>
-                                    <span className="text-white font-medium">{user.displayName}</span>
+                                    <div className="flex size-10 items-center justify-center rounded-full bg-cyan-300 font-semibold text-slate-950">
+                                        {(accountUser.displayName || accountUser.email || "C").slice(0, 1).toUpperCase()}
+                                    </div>
+                                    <span className="text-white font-medium">
+                                        {accountUser.displayName || accountUser.email}
+                                    </span>
                                 </div>
                             )}
                         </div>
@@ -270,4 +200,24 @@ export function Navbar() {
             </AnimatePresence>
         </nav>
     );
+}
+
+function toDropdownUser(firebaseUser: User | null, sessionUser: ChefuSessionUser | null) {
+    if (firebaseUser) {
+        return {
+            displayName: firebaseUser.displayName,
+            email: firebaseUser.email,
+            photoURL: firebaseUser.photoURL,
+        };
+    }
+
+    if (sessionUser) {
+        return {
+            displayName: sessionUser.displayName,
+            email: sessionUser.email,
+            photoURL: sessionUser.photoURL,
+        };
+    }
+
+    return null;
 }

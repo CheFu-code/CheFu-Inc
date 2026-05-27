@@ -22,7 +22,10 @@ export const metadata: Metadata = {
     }),
     applicationName: siteName,
     icons: {
-        icon: "/favicon.ico",
+        icon: [
+            { url: "/chefu-inc-logo.svg", type: "image/svg+xml" },
+            { url: "/favicon.ico" },
+        ],
         apple: "/apple-touch-icon.png",
     },
 };

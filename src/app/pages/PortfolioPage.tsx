@@ -48,6 +48,16 @@ const projects = [
 
     {
         id: 5,
+        title: "Muzalo",
+        category: "Music Platform",
+        image: "/muzalo-logo.svg",
+        description:
+            "A music experience for discovering releases, opening Spotify embeds, and keeping CheFu audio products in one focused space.",
+        tags: ["Music", "Spotify Embeds", "Listening"],
+        link: "https://muzalo.chefuinc.com",
+    },
+    {
+        id: 6,
         title: "Quantum",
         category: "AI Workspace",
         image: "/quantum-logo.svg",
@@ -57,7 +67,7 @@ const projects = [
         link: "https://quantum.chefuinc.com",
     },
     {
-        id: 6,
+        id: 7,
         title: "DrippyBanks",
         category: "E-commerce",
         image: "/drippybanks.png",
