@@ -50,8 +50,7 @@ const projects = [
         id: 5,
         title: "Quantum",
         category: "AI Workspace",
-        image:
-            "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1080",
+        image: "/quantum-logo.svg",
         description:
             "An intelligent assistant for focused conversations, organized threads, and faster answers when ideas need momentum.",
         tags: ["AI Chat", "Saved Threads", "Research"],

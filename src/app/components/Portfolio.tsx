@@ -34,7 +34,8 @@ const projects = [
     id: 4,
     title: 'Quantum',
     category: 'AI Assistant',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1080',
+    image: '/quantum-logo.svg',
+    imageFit: 'contain',
     href: 'https://quantum.chefuinc.com',
     description: 'An intelligent workspace for focused conversations, organized threads, and faster answers when ideas need momentum.',
   },
@@ -79,7 +80,11 @@ export function Portfolio() {
                 alt={project.title}
                 fill
                 sizes="(min-width: 768px) 50vw, 100vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                className={`transition-transform duration-700 group-hover:scale-105 ${
+                  project.imageFit === 'contain'
+                    ? 'object-contain p-12 opacity-95'
+                    : 'object-cover opacity-80 group-hover:opacity-100'
+                }`}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-90" />
               <div className="absolute right-5 top-5 flex size-10 items-center justify-center rounded-full border border-white/20 bg-slate-950/70 text-white opacity-0 backdrop-blur transition-opacity group-hover:opacity-100">
