@@ -1,22 +1,21 @@
 "use client";
 
 import { signOut } from "firebase/auth";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { auth } from "../../config/firebaseConfig";
 import { clearChefuAccountSession, safeReturnTo } from "../../lib/chefu-account";
 
 export function LogoutPage() {
-    const router = useRouter();
     const searchParams = useSearchParams();
 
     useEffect(() => {
         const returnTo = safeReturnTo(searchParams.get("returnTo"), "/");
 
         Promise.allSettled([clearChefuAccountSession(), signOut(auth)]).finally(() => {
-            router.replace(returnTo);
+            window.location.replace(returnTo);
         });
-    }, [router, searchParams]);
+    }, [searchParams]);
 
     return (
         <main className="flex min-h-screen items-center justify-center bg-slate-950 px-6 text-white">
