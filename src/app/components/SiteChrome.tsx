@@ -6,7 +6,7 @@ import { BackToTopButton } from "./BackToTopButton";
 import { Footer } from "./Footer";
 import { Navbar } from "./Navbar";
 
-const standaloneRoutes = new Set(["/login", "/register", "/logout"]);
+const standaloneRoutes = new Set(["/login", "/register", "/logout", "/account"]);
 
 export function SiteChrome({ children }: { children: ReactNode }) {
     const pathname = usePathname();

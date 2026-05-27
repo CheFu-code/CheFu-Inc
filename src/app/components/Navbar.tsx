@@ -174,12 +174,12 @@ export function Navbar() {
                                             type="button"
                                             className="w-full text-left px-4 py-2.5 text-sm text-slate-200 hover:bg-slate-800 transition cursor-pointer"
                                             onClick={() => {
-                                setIsUserMenuOpen(false);
-                                                router.push("/contact");
+                                                setIsUserMenuOpen(false);
+                                                router.push("/account");
                                             }}
                                             role="menuitem"
                                         >
-                                            Contact us
+                                            Manage account
                                         </button>
                                         <button
                                             type="button"
