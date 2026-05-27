@@ -3,8 +3,8 @@ import { RegisterPage } from "../pages/RegisterPage";
 import { pageMetadata } from "../site-metadata";
 
 export const metadata = pageMetadata({
-    title: "Register | CheFu Inc.",
-    description: "Create a CheFu Inc. account to contact the team and manage project requests.",
+    title: "Create account | CheFu Account",
+    description: "Create one CheFu Account for CheFu Academy, Muzalo, Flow, and future CheFu apps.",
     path: "/register",
 });
 

@@ -3,8 +3,8 @@ import { LoginPage } from "../pages/LoginPage";
 import { pageMetadata } from "../site-metadata";
 
 export const metadata = pageMetadata({
-    title: "Login | CheFu Inc.",
-    description: "Sign in to CheFu Inc. to continue your project request.",
+    title: "Sign in | CheFu Account",
+    description: "Sign in with your CheFu Account to continue to CheFu apps and services.",
     path: "/login",
 });
 
