@@ -7,14 +7,13 @@ import Image from "next/image";
 const projects = [
     {
         id: 1,
-        title: "Neon Synth VST",
-        category: "Audio Software",
-        image:
-            "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1080",
+        title: "Flow Mail",
+        category: "Communication Platform",
+        image: "/flow-dashboard.png",
         description:
-            "An AI-powered synthesizer plugin that generates infinite unique patches based on mood.",
-        tags: ["C++", "JUCE", "Machine Learning"],
-        link: "#",
+            "A focused mail workspace for composing, routing, and managing product communication.",
+        tags: ["Inbox", "Campaigns", "Scheduling"],
+        link: "https://flow.chefuinc.com",
     },
     {
         id: 2,
@@ -32,9 +31,9 @@ const projects = [
         category: "Educational Platform",
         image:'/chefuAcademy.png',
         description:
-            "An interactive learning app offering structured lessons and tutorials for aspiring developers.",
-        tags: ["React", "Firebase", "TypeScript"],
-        link: "#",
+            "A learning platform for structured courses, videos, quizzes, flashcards, and developer SDK access.",
+        tags: ["Courses", "Video Learning", "Developer SDK"],
+        link: "https://academy.chefuinc.com",
     },
     {
         id: 4,
@@ -49,14 +48,14 @@ const projects = [
 
     {
         id: 5,
-        title: "CryptoVault",
-        category: "Web3 Security",
+        title: "Quantum",
+        category: "AI Workspace",
         image:
-            "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=1080",
+            "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1080",
         description:
-            "Secure wallet management system for institutional crypto investors.",
-        tags: ["Solidity", "Web3.js", "React"],
-        link: "#",
+            "An intelligent assistant for focused conversations, organized threads, and faster answers when ideas need momentum.",
+        tags: ["AI Chat", "Saved Threads", "Research"],
+        link: "https://quantum.chefuinc.com",
     },
     {
         id: 6,
@@ -117,6 +116,7 @@ export function PortfolioPage() {
                                     <a
                                         target="_blank"
                                         href={project.link}
+                                        rel="noreferrer"
                                         className="text-slate-400 hover:text-white transition-colors"
                                     >
                                         <ExternalLink className="w-5 h-5" />
