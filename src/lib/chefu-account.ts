@@ -1,4 +1,4 @@
-export type ChefuAppId = "academy" | "flow" | "muzalo";
+export type ChefuAppId = "academy" | "flow" | "muzalo" | "quantum";
 
 const CHEFU_APP_HEADER = "x-chefu-app";
 
@@ -6,6 +6,7 @@ const appLabels: Record<ChefuAppId, string> = {
     academy: "CheFu Academy",
     flow: "Flow Mail",
     muzalo: "Muzalo",
+    quantum: "Quantum",
 };
 
 export function apiUrl(path: string) {
@@ -20,6 +21,7 @@ export function resolveChefuApp(value?: string | null): ChefuAppId {
 
     if (normalized === "flow") return "flow";
     if (normalized === "muzalo" || normalized === "music") return "muzalo";
+    if (normalized === "quantum") return "quantum";
     return "academy";
 }
 
