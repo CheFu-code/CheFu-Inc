@@ -24,7 +24,6 @@ export const metadata: Metadata = {
     icons: {
         icon: [
             { url: "/chefu-inc-logo.svg", type: "image/svg+xml" },
-            { url: "/favicon.ico" },
         ],
         apple: "/apple-touch-icon.png",
     },
