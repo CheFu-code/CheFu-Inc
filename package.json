@@ -9,7 +9,8 @@
     "typecheck": "tsc --noEmit",
     "start": "next start",
     "lint": "eslint .",
-    "preview": "next start"
+    "preview": "next start",
+    "smoke": "node scripts/smoke-routes.mjs"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
