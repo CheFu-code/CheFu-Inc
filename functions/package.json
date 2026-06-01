@@ -17,7 +17,7 @@
     "firebase-functions": "^6.1.0"
   },
   "devDependencies": {
-    "@types/node": "^20.17.57",
+    "@types/node": "^25.9.1",
     "eslint": "^9.39.1",
     "typescript": "^5.9.3"
   }
