@@ -1,6 +1,6 @@
 "use client";
 
-import { CheFuUserDropdown } from "@chefu/ui";
+import { CheFuUserDropdown } from "chefu-ui";
 import { clsx } from "clsx";
 import { signOut, type User } from "firebase/auth";
 import { Menu, X } from "lucide-react";
