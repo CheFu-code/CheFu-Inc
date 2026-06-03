@@ -48,7 +48,7 @@ export function GET() {
 }
 
 export async function POST(request: Request) {
-    const rateLimit = checkRateLimit(request, {
+    const rateLimit = await checkRateLimit(request, {
         keyPrefix: "chefu-inc-mcp",
         limit: 120,
         windowMs: 60_000,
