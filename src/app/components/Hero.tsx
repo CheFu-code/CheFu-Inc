@@ -30,7 +30,7 @@ export function Hero() {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/50 border border-slate-700 backdrop-blur-sm mb-6">
             <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
             <span className="text-xs font-medium text-cyan-300 tracking-wide uppercase">
-              Innovation meets Imagination
+              Innovation, Networks & Creativity
             </span>
           </div>
 

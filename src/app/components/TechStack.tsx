@@ -2,7 +2,7 @@
 
 import type { SVGProps } from 'react';
 import { motion } from 'motion/react';
-import { Database, Cloud, Globe, Smartphone, Lock } from 'lucide-react';
+import { Database, Cloud, Globe, Smartphone, Lock, Laptop } from 'lucide-react';
 
 const techs = [
   { name: 'React, Nest.js & Next.js', icon: Globe },
@@ -10,6 +10,7 @@ const techs = [
   { name: 'Cloud Infrastructure', icon: Cloud },
   { name: 'Node.js & GraphQL', icon: Database },
   { name: 'React Native', icon: Smartphone },
+  { name: 'Electron.js', icon: Laptop },
   { name: 'Cybersecurity', icon: Lock },
 ];
 

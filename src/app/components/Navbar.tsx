@@ -103,7 +103,7 @@ export function Navbar() {
                         className="rounded-xl"
                         priority
                     />
-                    CheFu <span className="text-cyan-400">Inc.</span>
+                    CheFu <span className="text-cyan-400">INC.</span>
                 </Link>
 
                 {/* Desktop Nav */}
