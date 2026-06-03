@@ -5,7 +5,7 @@ import { motion } from 'motion/react';
 import { Database, Cloud, Globe, Smartphone, Lock } from 'lucide-react';
 
 const techs = [
-  { name: 'React & Next.js', icon: Globe },
+  { name: 'React, Nest.js & Next.js', icon: Globe },
   { name: 'Python & PyTorch', icon: BrainIcon }, // Custom defined below if needed, or reuse lucide
   { name: 'Cloud Infrastructure', icon: Cloud },
   { name: 'Node.js & GraphQL', icon: Database },
