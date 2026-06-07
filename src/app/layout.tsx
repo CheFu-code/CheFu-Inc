@@ -7,6 +7,8 @@ import { AppProviders } from "./providers";
 import { pageMetadata, siteName, siteUrl } from "./site-metadata";
 import "../styles/index.css";
 
+const adsensePublisherId = "ca-pub-8952058057579255";
+
 const inter = Inter({
     subsets: ["latin"],
     display: "swap",
@@ -40,6 +42,14 @@ export default function RootLayout({
 }: Readonly<{ children: ReactNode }>) {
     return (
         <html lang="en" className={inter.variable}>
+            <head>
+                <script
+                    async
+                    src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsensePublisherId}`}
+                    crossOrigin="anonymous"
+                />
+                <meta name="google-adsense-account" content={adsensePublisherId} />
+            </head>
             <body className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500/30 selection:text-cyan-100">
                 <AppProviders />
                 <WebMCPProvider />
