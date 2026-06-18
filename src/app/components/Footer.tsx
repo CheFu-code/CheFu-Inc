@@ -152,7 +152,7 @@ export function Footer() {
                 </div>
 
                 <div className="flex flex-col items-center justify-between gap-4 text-sm text-slate-500 md:flex-row">
-                    <p>&copy; {new Date().getFullYear()} CheFu INC. Owned and operated by CheFu Technologies (Pty) Ltd.</p>
+                    <p>&copy; {new Date().getFullYear()} CheFu INC. Owned and operated by CHEFU TECHNOLOGIES (Pty) Ltd.</p>
                     <div className="flex gap-6 mt-4 md:mt-0">
                         <Link href="/privacy" className="transition-colors hover:text-slate-200">
                             Privacy Policy
