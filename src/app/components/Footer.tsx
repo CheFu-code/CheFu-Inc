@@ -18,8 +18,8 @@ export function Footer() {
 
     const socialLinks = [
         { label: "Twitter", href: "https://x.com/CHEFU_TECH", icon: Twitter },
-        { label: "LinkedIn", href: "https://www.linkedin.com/in/chefu-inc-90b1663b1", icon: Linkedin },
-        { label: "GitHub", href: "https://github.com/CheFu-Inc", icon: Github },
+        { label: "LinkedIn", href: "https://www.linkedin.com/in/chefu-technologies-90b1663b1", icon: Linkedin },
+        { label: "GitHub", href: "https://github.com/CHEFU-TECHNOLOGIES", icon: Github },
         { label: "Instagram", href: "https://www.instagram.com/chefu_technologies", icon: Instagram },
     ];
 
