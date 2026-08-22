@@ -17,7 +17,7 @@ export function GET() {
                     {
                         href: openApiUrl,
                         type: "application/vnd.oai.openapi+json",
-                        title: "CheFu Inc OpenAPI description",
+                        title: "CHEFU TECHNOLOGIES OpenAPI description",
                     },
                     {
                         href: openIdConfigurationUrl,
@@ -39,14 +39,14 @@ export function GET() {
                     {
                         href: apiDocsUrl,
                         type: "text/html",
-                        title: "CheFu Inc API documentation",
+                        title: "CHEFU TECHNOLOGIES API documentation",
                     },
                 ],
                 status: [
                     {
                         href: healthUrl,
                         type: "application/json",
-                        title: "CheFu Inc API health",
+                        title: "CHEFU TECHNOLOGIES API health",
                     },
                 ],
             },

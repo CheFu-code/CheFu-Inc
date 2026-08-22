@@ -15,7 +15,7 @@ export function GET() {
             title: `${siteName} Discovery API`,
             version: "1.0.0",
             description:
-                "Machine-readable discovery endpoints for CheFu Inc agents and automated clients.",
+                "Machine-readable discovery endpoints for CHEFU TECHNOLOGIES agents and automated clients.",
         },
         servers: [{ url: siteUrl }],
         paths: {

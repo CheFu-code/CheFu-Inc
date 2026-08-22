@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-export const siteUrl = "https://chefuinc.com";
-export const siteName = "CheFu Inc.";
+export const siteUrl = "https://chefu.co.za";
+export const siteName = "CHEFU TECHNOLOGIES";
 
 type PageMetaInput = {
     title: string;

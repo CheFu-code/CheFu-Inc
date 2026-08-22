@@ -51,7 +51,7 @@ export function BlogPage() {
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Insights</h1>
           <p className="text-xl text-slate-400">
-            Thoughts, stories, and ideas from the team at CheFu Inc.
+            Thoughts, stories, and ideas from the team at CHEFU TECHNOLOGIES
           </p>
         </div>
 

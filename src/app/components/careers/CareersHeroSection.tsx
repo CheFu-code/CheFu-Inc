@@ -5,7 +5,7 @@ export function CareersHeroSection() {
         <div className="max-w-5xl mx-auto mb-16 text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-cyan-500/40 bg-cyan-500/10 px-4 py-1.5 text-cyan-300 text-sm">
                 <UserPlus2 className="h-4 w-4" />
-                Join CheFu Inc
+                Join CHEFU TECHNOLOGIES
             </span>
             <h1 className="mt-6 text-4xl md:text-5xl font-bold text-white leading-tight">
                 Build your career with purpose, ownership, and momentum.

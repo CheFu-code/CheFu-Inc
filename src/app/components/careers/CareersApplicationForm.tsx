@@ -359,7 +359,7 @@ export function CareersApplicationForm({
                 <div>
                     <h3 className="text-lg text-white font-medium mb-4">Short Questions</h3>
                     <div className="space-y-4">
-                        <FieldLabel label="Why do you want to join CheFu Inc?">
+                        <FieldLabel label="Why do you want to join CHEFU TECHNOLOGIES?">
                             <textarea
                                 {...register("whyJoin", {
                                     required: "This field is required",

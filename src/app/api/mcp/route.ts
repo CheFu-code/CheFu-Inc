@@ -4,7 +4,7 @@ import { checkRateLimit } from "../../../lib/rate-limit";
 const tools = [
     {
         name: "get_company_profile",
-        description: "Return a concise CheFu Inc company profile.",
+        description: "Return a concise CHEFU TECHNOLOGIES company profile.",
         inputSchema: {
             type: "object",
             properties: {},
@@ -14,7 +14,7 @@ const tools = [
     {
         name: "get_service_url",
         description:
-            "Return the best CheFu Inc URL for a requested service area.",
+            "Return the best CHEFU TECHNOLOGIES URL for a requested service area.",
         inputSchema: {
             type: "object",
             properties: {
@@ -96,7 +96,7 @@ export async function POST(request: Request) {
                     {
                         type: "text",
                         text:
-                            "CheFu Inc builds software platforms, practical AI systems, and high-fidelity music/audio production experiences.",
+                            "CHEFU TECHNOLOGIES builds software platforms, practical AI systems, and high-fidelity music/audio production experiences.",
                     },
                 ],
             });

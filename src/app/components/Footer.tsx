@@ -54,11 +54,11 @@ export function Footer() {
                             href="/"
                             className="mb-5 inline-flex items-center gap-2 text-2xl font-bold tracking-tighter text-white"
                         >
-                            
-                            CheFu <span className="text-cyan-400">INC.</span>
+
+                            CHEFU <span className="text-cyan-400">TECHNOLOGIES</span>
                         </Link>
                         <p className="mb-6 leading-relaxed text-slate-400">
-                            CheFu INC. builds modern digital products and creative technology
+                            CHEFU TECHNOLOGIES builds modern digital products and creative technology
                             experiences for ambitious teams.
                         </p>
                         <div className="flex gap-3">
@@ -152,7 +152,9 @@ export function Footer() {
                 </div>
 
                 <div className="flex flex-col items-center justify-between gap-4 text-sm text-slate-500 md:flex-row">
-                    <p>&copy; {new Date().getFullYear()} CheFu INC. Owned and operated by CHEFU TECHNOLOGIES (Pty) Ltd.</p>
+                    <p>
+                        &copy; {new Date().getFullYear()} CHEFU TECHNOLOGIES (Pty) Ltd. All rights reserved.
+                    </p>
                     <div className="flex gap-6 mt-4 md:mt-0">
                         <Link href="/privacy" className="transition-colors hover:text-slate-200">
                             Privacy Policy

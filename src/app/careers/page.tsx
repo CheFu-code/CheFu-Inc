@@ -2,9 +2,9 @@ import { CareersPage } from "../pages/CareersPage";
 import { pageMetadata } from "../site-metadata";
 
 export const metadata = pageMetadata({
-    title: "Careers | CheFu Inc.",
+    title: "Careers | CHEFU TECHNOLOGIES",
     description:
-        "Apply to join CheFu Inc. across engineering, AI, audio production, creative, and operations roles.",
+        "Apply to join CHEFU TECHNOLOGIES across engineering, AI, audio production, creative, and operations roles.",
     path: "/careers",
 });
 

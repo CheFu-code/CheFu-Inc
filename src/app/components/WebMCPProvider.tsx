@@ -40,16 +40,16 @@ export function WebMCPProvider() {
             {
                 name: "chefu_get_company_profile",
                 description:
-                    "Get a concise profile of CheFu Inc, including services and key website routes.",
+                    "Get a concise profile of CHEFU TECHNOLOGIES, including services and key website routes.",
                 inputSchema: {
                     type: "object",
                     properties: {},
                     additionalProperties: false,
                 },
                 execute: () => ({
-                    name: "CheFu Inc.",
+                    name: "CHEFU TECHNOLOGIES",
                     summary:
-                        "CheFu Inc builds software platforms, practical AI systems, and high-fidelity audio/media production experiences.",
+                        "CHEFU TECHNOLOGIES builds software platforms, practical AI systems, and high-fidelity audio/media production experiences.",
                     services: ["software development", "AI solutions", "music production"],
                     routes: {
                         services: "/services",
@@ -62,7 +62,7 @@ export function WebMCPProvider() {
             {
                 name: "chefu_open_service",
                 description:
-                    "Navigate the browser to the most relevant CheFu Inc service page.",
+                    "Navigate the browser to the most relevant CHEFU TECHNOLOGIES service page.",
                 inputSchema: {
                     type: "object",
                     properties: {
@@ -90,7 +90,7 @@ export function WebMCPProvider() {
             {
                 name: "chefu_prepare_project_intake",
                 description:
-                    "Create a project-intake checklist before a user contacts CheFu Inc.",
+                    "Create a project-intake checklist before a user contacts CHEFU TECHNOLOGIES",
                 inputSchema: {
                     type: "object",
                     properties: {

@@ -4,7 +4,7 @@ const CHEFU_APP_HEADER = "x-chefu-app";
 
 const DEFAULT_ALLOWED_RETURN_ORIGINS = [
     "https://api.chefuinc.com",
-    "https://chefuinc.com",
+    "https://chefu.co.za",
     "https://myaccount.chefuinc.com",
     "https://academy.chefuinc.com",
     "https://flow.chefuinc.com",

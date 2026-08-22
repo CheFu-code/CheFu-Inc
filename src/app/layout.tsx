@@ -18,9 +18,9 @@ const inter = Inter({
 export const metadata: Metadata = {
     metadataBase: new URL(siteUrl),
     ...pageMetadata({
-        title: "CheFu Inc. | Software, AI, and Audio Production",
+        title: "CHEFU TECHNOLOGIES | Software, AI, and Audio Production",
         description:
-            "CheFu Inc. builds fast software platforms, practical AI systems, and high-fidelity audio production for ambitious teams.",
+            "CHEFU TECHNOLOGIES builds fast software platforms, practical AI systems, and high-fidelity audio production for ambitious teams.",
     }),
     applicationName: siteName,
     icons: {

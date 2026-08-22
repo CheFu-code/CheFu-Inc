@@ -49,7 +49,7 @@ export const agentLinkHeader = [
 export const agentMarkdownByPath: Record<string, string> = {
     "/": `# ${siteName}
 
-CheFu Inc. builds software platforms, practical AI systems, and high-fidelity audio and media production for ambitious teams.
+CHEFU TECHNOLOGIES builds software platforms, practical AI systems, and high-fidelity audio and media production for ambitious teams.
 
 ## Core Services
 
@@ -80,7 +80,7 @@ CheFu Inc. builds software platforms, practical AI systems, and high-fidelity au
 `,
     "/about": `# About ${siteName}
 
-CheFu Inc. is a hybrid software, AI, and audio production company. The team combines product engineering, creative technology, and music production to build practical digital experiences.
+CHEFU TECHNOLOGIES is a hybrid software, AI, and audio production company. The team combines product engineering, creative technology, and music production to build practical digital experiences.
 
 ## Focus
 
@@ -90,7 +90,7 @@ CheFu Inc. is a hybrid software, AI, and audio production company. The team comb
 `,
     "/services": `# ${siteName} Services
 
-CheFu Inc. provides software development, AI solutions, and music production services.
+CHEFU TECHNOLOGIES provides software development, AI solutions, and music production services.
 
 ## Software Development
 
@@ -106,7 +106,7 @@ Beat production, recording support, mixing, mastering, sound design, and sonic b
 `,
     "/services/software": `# Software Development
 
-CheFu Inc. builds scalable digital products from MVPs to production systems.
+CHEFU TECHNOLOGIES builds scalable digital products from MVPs to production systems.
 
 ## Capabilities
 
@@ -116,7 +116,7 @@ CheFu Inc. builds scalable digital products from MVPs to production systems.
 `,
     "/services/ai": `# AI Solutions
 
-CheFu Inc. designs and builds intelligent systems for automation and product innovation.
+CHEFU TECHNOLOGIES designs and builds intelligent systems for automation and product innovation.
 
 ## Capabilities
 
@@ -127,7 +127,7 @@ CheFu Inc. designs and builds intelligent systems for automation and product inn
 `,
     "/services/music": `# Music And Audio Production
 
-CheFu Inc. provides audio production services for artists, brands, games, apps, and digital media.
+CHEFU TECHNOLOGIES provides audio production services for artists, brands, games, apps, and digital media.
 
 ## Capabilities
 
@@ -138,7 +138,7 @@ CheFu Inc. provides audio production services for artists, brands, games, apps, 
 `,
     "/portfolio": `# Portfolio
 
-CheFu Inc. showcases work across audio software, music production, educational platforms, ecommerce, mobile products, and AI-enabled systems.
+CHEFU TECHNOLOGIES showcases work across audio software, music production, educational platforms, ecommerce, mobile products, and AI-enabled systems.
 
 Visit /portfolio in a browser for visual project cards and outbound project links.
 `,
@@ -150,13 +150,13 @@ Typical project details include service type, goals, budget, timeline, and conta
 `,
     "/careers": `# Careers At ${siteName}
 
-CheFu Inc. accepts membership and career applications through the careers page.
+CHEFU TECHNOLOGIES accepts membership and career applications through the careers page.
 
 Applicants can submit profile details and supporting documents. Confirmation email delivery is handled by Firebase Functions and the Resend HTTP API.
 `,
     "/blog": `# ${siteName} Insights
 
-CheFu Inc. publishes ideas and articles about AI, software development, audio engineering, design, and creative technology.
+CHEFU TECHNOLOGIES publishes ideas and articles about AI, software development, audio engineering, design, and creative technology.
 `,
     "/faq": `# ${siteName} FAQ
 
@@ -164,11 +164,11 @@ Common topics include project timelines, independent artist collaboration, softw
 `,
     "/privacy": `# Privacy Policy
 
-CheFu Inc. publishes privacy information at /privacy.
+CHEFU TECHNOLOGIES publishes privacy information at /privacy.
 `,
     "/terms": `# Terms Of Service
 
-CheFu Inc. publishes service terms at /terms.
+CHEFU TECHNOLOGIES publishes service terms at /terms.
 `,
     [apiDocsPath]: `# ${siteName} API Documentation
 

@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 
-Sitemap: https://chefuinc.com/sitemap.xml
+Sitemap: https://chefu.co.za/sitemap.xml

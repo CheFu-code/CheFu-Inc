@@ -22,7 +22,7 @@ export function About() {
                 Bridging the Gap Between Art & Algorithms
               </h2>
               <p className="text-lg text-slate-400 mb-6 leading-relaxed">
-                CheFu Inc was founded on the belief that the future belongs to those who can synthesize creativity with technology. We are a team of musicians, engineers, and data scientists working together to push the boundaries of what's possible.
+                CHEFU TECHNOLOGIES was founded on the belief that the future belongs to those who can synthesize creativity with technology. We are a team of musicians, engineers, and data scientists working together to push the boundaries of what's possible.
               </p>
               <p className="text-lg text-slate-400 mb-8 leading-relaxed">
                 Whether it's composing a symphony with AI assistance or building a cloud-native platform that scales to millions, we bring the same level of passion and precision to every project.

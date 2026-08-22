@@ -20,7 +20,7 @@ export function AboutPage() {
                         We Are The Architects of <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-violet-500">Digital Sound & Logic</span>
                     </h1>
                     <p className="text-xl text-slate-400 leading-relaxed">
-                        CheFu Inc is a hybrid creative agency and software house. We don't just write code; we compose experiences. We don't just make beats; we engineer emotion.
+                        CHEFU TECHNOLOGIES is a hybrid creative agency and software house. We don't just write code; we compose experiences. We don't just make beats; we engineer emotion.
                     </p>
                 </motion.div>
 
@@ -34,7 +34,7 @@ export function AboutPage() {
                     >
                         <h2 className="text-3xl font-bold text-white">Our Story</h2>
                         <p className="text-slate-400 leading-relaxed">
-                            Founded by a collective of audio engineers and software developers, CheFu Inc emerged from the idea that the precision of code and the fluidity of music share a common language.
+                            Founded by a collective of audio engineers and software developers, CHEFU TECHNOLOGIES emerged from the idea that the precision of code and the fluidity of music share a common language.
                         </p>
                         <p className="text-slate-400 leading-relaxed">
                             We started in a small basement studio, building custom VST plugins for producers. Today, we are a full-scale agency delivering enterprise-level software and billboard-charting audio production services to clients worldwide.

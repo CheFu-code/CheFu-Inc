@@ -50,7 +50,7 @@ const faqs = [
   },
   {
     q: "Do you retain ownership of the IP you create?",
-    a: "For client work, we typically operate on a 'work for hire' basis, meaning you own the IP once final payment is settled. For our internal products (like our VSTs), CheFu Inc retains ownership."
+    a: "For client work, we typically operate on a 'work for hire' basis, meaning you own the IP once final payment is settled. For our internal products (like our VSTs), CHEFU TECHNOLOGIES retains ownership."
   },
   {
     q: "Can you help integrate AI into our existing legacy systems?",

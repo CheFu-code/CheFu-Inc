@@ -12,13 +12,13 @@ export type AgentSkill = {
 export const agentSkills: AgentSkill[] = [
     {
         slug: "company-profile",
-        name: "CheFu Inc Company Profile",
+        name: "CHEFU TECHNOLOGIES Company Profile",
         type: "knowledge",
         description:
-            "Understand CheFu Inc services, product areas, company positioning, and key routes.",
-        content: `# CheFu Inc Company Profile
+            "Understand CHEFU TECHNOLOGIES services, product areas, company positioning, and key routes.",
+        content: `# CHEFU TECHNOLOGIES Company Profile
 
-Use this skill when an agent needs to understand CheFu Inc as a company.
+Use this skill when an agent needs to understand CHEFU TECHNOLOGIES as a company.
 
 ## Company
 
@@ -41,13 +41,13 @@ ${siteName} builds software platforms, AI systems, and audio/media production ex
     },
     {
         slug: "project-intake",
-        name: "CheFu Inc Project Intake",
+        name: "CHEFU TECHNOLOGIES Project Intake",
         type: "workflow",
         description:
-            "Guide agents collecting project requirements before sending users to CheFu Inc contact channels.",
-        content: `# CheFu Inc Project Intake
+            "Guide agents collecting project requirements before sending users to CHEFU TECHNOLOGIES contact channels.",
+        content: `# CHEFU TECHNOLOGIES Project Intake
 
-Use this skill when a user wants to start a project with CheFu Inc.
+Use this skill when a user wants to start a project with CHEFU TECHNOLOGIES
 
 ## Collect
 
@@ -65,13 +65,13 @@ Send the user to ${siteUrl}/contact with a concise summary of the project detail
     },
     {
         slug: "agent-discovery",
-        name: "CheFu Inc Agent Discovery",
+        name: "CHEFU TECHNOLOGIES Agent Discovery",
         type: "discovery",
         description:
-            "Discover CheFu Inc machine-readable metadata, API catalog, OAuth metadata, and MCP server card.",
-        content: `# CheFu Inc Agent Discovery
+            "Discover CHEFU TECHNOLOGIES machine-readable metadata, API catalog, OAuth metadata, and MCP server card.",
+        content: `# CHEFU TECHNOLOGIES Agent Discovery
 
-Use this skill when an agent needs machine-readable discovery resources for CheFu Inc.
+Use this skill when an agent needs machine-readable discovery resources for CHEFU TECHNOLOGIES
 
 ## Resources
 

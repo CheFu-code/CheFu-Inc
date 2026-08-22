@@ -5,7 +5,6 @@ import { clsx } from "clsx";
 import { signOut, type User } from "firebase/auth";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -95,15 +94,8 @@ export function Navbar() {
                     href="/"
                     className="text-2xl font-bold tracking-tighter text-white flex items-center gap-2"
                 >
-                    <Image
-                        src="/chefu-inc-logo.svg"
-                        alt=""
-                        width={36}
-                        height={36}
-                        className="rounded-xl"
-                        priority
-                    />
-                    CheFu <span className="text-cyan-400">INC.</span>
+                   
+                    CHEFU <span className="text-cyan-400">TECHNOLOGIES</span>
                 </Link>
 
                 {/* Desktop Nav */}
