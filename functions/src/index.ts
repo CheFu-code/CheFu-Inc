@@ -95,9 +95,14 @@ export const sendMembershipApplicationConfirmation = onDocumentCreated(
                 "",
             );
 
-            if (!apiKey || !fromAddress) {
+            if (!apiKey) {
                 throw new Error(
-                    "Missing RESEND_API_KEY or valid RESEND_FROM_EMAIL configuration",
+                    "Configuration Error: RESEND_API_KEY is not configured. Please add it to your Firebase secrets/environment variables.",
+                );
+            }
+            if (!fromAddress) {
+                throw new Error(
+                    "Configuration Error: RESEND_FROM_EMAIL (or MEMBERSHIP_APPLICATION_FROM) is not configured. Please add it to your environment variables.",
                 );
             }
 
