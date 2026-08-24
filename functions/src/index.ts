@@ -21,7 +21,7 @@ const MEMBERSHIP_APPLICATION_APP_NAME =
 const MEMBERSHIP_APPLICATION_APP_URL =
     process.env.MEMBERSHIP_APPLICATION_APP_URL || "https://chefu.co.za";
 const MEMBERSHIP_APPLICATION_SUPPORT_EMAIL =
-    process.env.MEMBERSHIP_APPLICATION_SUPPORT_EMAIL || "hello@chefuinc.com";
+    process.env.MEMBERSHIP_APPLICATION_SUPPORT_EMAIL || "hello@chefu.co.za";
 
 export const sendMembershipApplicationConfirmation = onDocumentCreated(
     {
@@ -90,9 +90,9 @@ export const sendMembershipApplicationConfirmation = onDocumentCreated(
             const apiKey = RESEND_API_KEY.value() || process.env.RESEND_API_KEY || "";
             const fromAddress = normalizeFromAddress(
                 process.env.MEMBERSHIP_APPLICATION_FROM ||
-                    RESEND_FROM_EMAIL.value() ||
-                    process.env.RESEND_FROM_EMAIL ||
-                    "",
+                RESEND_FROM_EMAIL.value() ||
+                process.env.RESEND_FROM_EMAIL ||
+                "",
             );
 
             if (!apiKey || !fromAddress) {

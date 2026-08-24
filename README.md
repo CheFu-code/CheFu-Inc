@@ -138,8 +138,8 @@ Use a verified Resend sender for `RESEND_FROM_EMAIL` (for example: `Careers care
 MEMBERSHIP_APPLICATION_TEMPLATE_ID=re_...
 MEMBERSHIP_APPLICATION_FROM=Careers <careers@yourdomain.com>
 MEMBERSHIP_APPLICATION_APP_NAME=CHEFU TECHNOLOGIES
-MEMBERSHIP_APPLICATION_APP_URL=https://chefuinc.com
-MEMBERSHIP_APPLICATION_SUPPORT_EMAIL=hello@chefuinc.com
+MEMBERSHIP_APPLICATION_APP_URL=https://chefu.co.za
+MEMBERSHIP_APPLICATION_SUPPORT_EMAIL=hello@chefu.co.za
 ```
 
 If no `MEMBERSHIP_APPLICATION_TEMPLATE_ID` is configured, the function still sends the existing inline HTML/text confirmation through Resend's HTTP API.

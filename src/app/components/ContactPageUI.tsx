@@ -24,7 +24,7 @@ export const ContactPageUI = ({
 }) => {
     const consultationUrl =
         process.env.NEXT_PUBLIC_CONSULTATION_URL ||
-        "mailto:hello@chefuinc.com?subject=Consultation%20Request";
+        "mailto:hello@chefu.co.za?subject=Consultation%20Request";
 
     return (
         <div className="pt-32 pb-20 bg-slate-950 min-h-screen">
@@ -53,8 +53,8 @@ export const ContactPageUI = ({
                                     </div>
                                     <div>
                                         <h3 className="font-semibold text-white">Email Us</h3>
-                                        <p className="text-slate-400">hello@chefuinc.com</p>
-                                        <p className="text-slate-400">support@chefuinc.com</p>
+                                        <p className="text-slate-400">hello@chefu.co.za</p>
+                                        <p className="text-slate-400">support@chefu.co.za</p>
                                     </div>
                                 </div>
 

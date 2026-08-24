@@ -13,7 +13,7 @@ const projects = [
         description:
             "A focused mail workspace for composing, routing, and managing product communication.",
         tags: ["Inbox", "Campaigns", "Scheduling"],
-        link: "https://flow.chefuinc.com",
+        link: "https://flow.chefu.co.za",
     },
     {
         id: 2,
@@ -29,11 +29,11 @@ const projects = [
         id: 3,
         title: "CheFu Academy App",
         category: "Educational Platform",
-        image:'/chefuAcademy.png',
+        image: '/chefuAcademy.png',
         description:
             "A learning platform for structured courses, videos, quizzes, flashcards, and developer SDK access.",
         tags: ["Courses", "Video Learning", "Developer SDK"],
-        link: "https://academy.chefuinc.com",
+        link: "https://academy.chefu.co.za",
     },
     {
         id: 4,
@@ -54,7 +54,7 @@ const projects = [
         description:
             "A music experience for discovering releases, opening Spotify embeds, and keeping CheFu audio products in one focused space.",
         tags: ["Music", "Spotify Embeds", "Listening"],
-        link: "https://muzalo.chefuinc.com",
+        link: "https://muzalo.chefu.co.za",
     },
     {
         id: 6,
@@ -64,7 +64,7 @@ const projects = [
         description:
             "An intelligent assistant for focused conversations, organized threads, and faster answers when ideas need momentum.",
         tags: ["AI Chat", "Saved Threads", "Research"],
-        link: "https://quantum.chefuinc.com",
+        link: "https://quantum.chefu.co.za",
     },
     {
         id: 7,
@@ -74,7 +74,7 @@ const projects = [
         description:
             "A stylish e-commerce platform built with modern web technologies, showcasing products with a smooth and interactive shopping experience.",
         tags: ["Next.js", "Tailwind CSS", "Vercel"],
-        link: "https://drippybanks.chefuinc.com",
+        link: "https://drippybanks.chefu.co.za",
     },
 ];
 

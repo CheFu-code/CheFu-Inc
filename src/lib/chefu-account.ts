@@ -3,14 +3,14 @@ export type ChefuAppId = "academy" | "flow" | "muzalo" | "quantum";
 const CHEFU_APP_HEADER = "x-chefu-app";
 
 const DEFAULT_ALLOWED_RETURN_ORIGINS = [
-    "https://api.chefuinc.com",
+    "https://api.chefu.co.za",
     "https://chefu.co.za",
-    "https://myaccount.chefuinc.com",
-    "https://academy.chefuinc.com",
-    "https://flow.chefuinc.com",
-    "https://music.chefuinc.com",
-    "https://muzalo.chefuinc.com",
-    "https://quantum.chefuinc.com",
+    "https://myaccount.chefu.co.za",
+    "https://academy.chefu.co.za",
+    "https://flow.chefu.co.za",
+    "https://music.chefu.co.za",
+    "https://muzalo.chefu.co.za",
+    "https://quantum.chefu.co.za",
     "http://localhost:3000",
     "http://localhost:3001",
     "http://localhost:3002",
@@ -32,7 +32,7 @@ const appLabels: Record<ChefuAppId, string> = {
 
 export function apiUrl(path: string) {
     const baseUrl =
-        process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.chefuinc.com";
+        process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.chefu.co.za";
 
     return `${baseUrl.replace(/\/$/, "")}${path.startsWith("/") ? path : `/${path}`}`;
 }
