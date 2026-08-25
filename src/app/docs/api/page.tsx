@@ -67,8 +67,8 @@ export default function Page() {
                     CHEFU TECHNOLOGIES API Documentation
                 </h1>
                 <p className="mb-10 max-w-2xl text-lg leading-8 text-slate-400">
-                    These endpoints help agents and automated clients discover CheFu
-                    Inc metadata, authentication configuration, service descriptions,
+                    These endpoints help agents and automated clients discover CHEFU
+                    TECHNOLOGIES metadata, authentication configuration, service descriptions,
                     and browser-exposed tools.
                 </p>
 
