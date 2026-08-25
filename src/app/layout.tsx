@@ -6,6 +6,8 @@ import { WebMCPProvider } from "./components/WebMCPProvider";
 import { AppProviders } from "./providers";
 import { pageMetadata, siteName, siteUrl } from "./site-metadata";
 import "../styles/index.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
 
 const adsensePublisherId = "ca-pub-8952058057579255";
 
@@ -24,9 +26,7 @@ export const metadata: Metadata = {
     }),
     applicationName: siteName,
     icons: {
-        icon: [
-            { url: "/chefu-inc-logo.svg", type: "image/svg+xml" },
-        ],
+        icon: [{ url: "/chefu-inc-logo.svg", type: "image/svg+xml" }],
         apple: "/apple-touch-icon.png",
     },
 };
@@ -53,7 +53,11 @@ export default function RootLayout({
             <body className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500/30 selection:text-cyan-100">
                 <AppProviders />
                 <WebMCPProvider />
-                <SiteChrome>{children}</SiteChrome>
+                <SiteChrome>
+                    {children}
+                    <Analytics />
+                </SiteChrome>
+                <GoogleAnalytics gaId={process.env.NEXT_FIREBASE_MEASUREMENT_ID!} />
             </body>
         </html>
     );
