@@ -12,7 +12,7 @@ type ChefuAccountMeResponse = {
     user?: ChefuSessionUser;
 };
 
-export async function getChefuAccountSession(appId: ChefuAppId = "academy") {
+export async function getChefuAccountSession(appId: ChefuAppId = "root") {
     const response = await fetch(apiUrl("/auth/me"), {
         credentials: "include",
         headers: {

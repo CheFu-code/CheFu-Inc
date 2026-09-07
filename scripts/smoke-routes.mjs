@@ -1,4 +1,4 @@
-const baseUrl = process.env.SMOKE_BASE_URL;
+const baseUrl = process.env.SMOKE_BASE_URL || 'https://chefu.co.za';
 const routes = ["/", "/api/health", "/contact"];
 
 if (!baseUrl) {

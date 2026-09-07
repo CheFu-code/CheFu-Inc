@@ -24,7 +24,7 @@ export function Navbar() {
         let ignore = false;
 
         async function loadSession() {
-            const nextSessionUser = await getChefuAccountSession("academy").catch(() => null);
+            const nextSessionUser = await getChefuAccountSession("root").catch(() => null);
             if (!ignore) setSessionUser(nextSessionUser);
         }
 
