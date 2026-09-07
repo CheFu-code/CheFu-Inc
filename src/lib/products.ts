@@ -32,7 +32,7 @@ export function formatZar(minor: number) {
 
 export async function getProducts() {
   try {
-    const response = await fetch(apiUrl('/products'), { next: { revalidate: 60, tags: ['products'] } });
+    const response = await fetch(apiUrl('/products'), { next: { revalidate: 10, tags: ['products'] } });
     if (!response.ok) return [];
     return (await response.json() as { products?: Product[] }).products || [];
   } catch {
