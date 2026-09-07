@@ -31,14 +31,21 @@ export function formatZar(minor: number) {
 }
 
 export async function getProducts() {
-  const response = await fetch(apiUrl('/products'), { next: { revalidate: 60, tags: ['products'] } });
-  if (!response.ok) throw new Error('Products are temporarily unavailable.');
-  return (await response.json() as { products: Product[] }).products;
+  try {
+    const response = await fetch(apiUrl('/products'), { next: { revalidate: 60, tags: ['products'] } });
+    if (!response.ok) return [];
+    return (await response.json() as { products?: Product[] }).products || [];
+  } catch {
+    return [];
+  }
 }
 
 export async function getProduct(slug: string) {
-  const response = await fetch(apiUrl(`/products/slug/${encodeURIComponent(slug)}`), { next: { revalidate: 60, tags: [`product:${slug}`] } });
-  if (response.status === 404) return null;
-  if (!response.ok) throw new Error('Product is temporarily unavailable.');
-  return await response.json() as Product;
+  try {
+    const response = await fetch(apiUrl(`/products/slug/${encodeURIComponent(slug)}`), { next: { revalidate: 60, tags: [`product:${slug}`] } });
+    if (!response.ok) return null;
+    return await response.json() as Product;
+  } catch {
+    return null;
+  }
 }
