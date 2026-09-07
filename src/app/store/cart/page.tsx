@@ -1,5 +1,99 @@
-'use client';
-import Link from 'next/link';
-import { formatZar } from '../../../lib/products';
-import { useCart } from '../../../lib/cart';
-export default function CartPage() { const { lines, subtotalMinor, setQuantity, remove, clear } = useCart(); return <main className="min-h-screen bg-slate-950 px-6 pb-24 pt-36 text-slate-100"><div className="mx-auto max-w-4xl"><div className="flex items-end justify-between"><div><p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-400">CHEFU / CART</p><h1 className="mt-3 text-5xl font-bold">Your cart.</h1></div>{lines.length > 0 && <button onClick={clear} className="text-sm text-slate-400 hover:text-rose-300">Clear cart</button>}</div>{lines.length === 0 ? <div className="mt-12 rounded-2xl border border-slate-800 p-10 text-center"><p className="text-slate-400">Nothing here yet.</p><Link href="/store" className="mt-5 inline-block text-cyan-300">Browse the store →</Link></div> : <div className="mt-12 space-y-4">{lines.map(line => <div key={`${line.product.id}:${line.variant?.id || 'base'}`} className="flex flex-col gap-5 rounded-2xl border border-slate-800 p-5 sm:flex-row sm:items-center"><div className="flex-1"><h2 className="font-semibold">{line.product.name}</h2><p className="mt-1 text-sm text-slate-400">{formatZar(line.variant?.priceMinor || line.product.priceMinor)} each</p></div><div className="flex items-center gap-3"><button onClick={() => line.quantity > 1 ? setQuantity(`${line.product.id}:${line.variant?.id || 'base'}`, line.quantity - 1) : remove(`${line.product.id}:${line.variant?.id || 'base'}`)} className="h-9 w-9 rounded-full border border-slate-700">−</button><span>{line.quantity}</span><button onClick={() => setQuantity(`${line.product.id}:${line.variant?.id || 'base'}`, line.quantity + 1)} className="h-9 w-9 rounded-full border border-slate-700">+</button></div><p className="w-24 text-right font-semibold">{formatZar((line.variant?.priceMinor || line.product.priceMinor) * line.quantity)}</p></div>)}<div className="flex items-center justify-between border-t border-slate-800 pt-6 text-xl font-semibold"><span>Subtotal</span><span>{formatZar(subtotalMinor)}</span></div><p className="text-sm text-slate-500">Checkout will revalidate price and stock on the server.</p></div>}</div></main>; }
+"use client";
+import Link from "next/link";
+import { formatZar } from "../../../lib/products";
+import { useCart } from "../../../lib/cart";
+
+export default function CartPage() {
+    const { lines, subtotalMinor, setQuantity, remove, clear } = useCart();
+    return (
+        <main className="min-h-screen bg-slate-950 px-6 pb-24 pt-36 text-slate-100">
+            <div className="mx-auto max-w-4xl">
+                <div className="flex items-end justify-between">
+                    <div>
+                        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-400">
+                            CART
+                        </p>
+                        <h1 className="mt-3 text-5xl font-bold">Your cart.</h1>
+                    </div>
+                    {lines.length > 0 && (
+                        <button
+                            onClick={clear}
+                            className="text-sm text-slate-400 hover:text-rose-300"
+                        >
+                            Clear cart
+                        </button>
+                    )}
+                </div>
+                {lines.length === 0 ? (
+                    <div className="mt-12 rounded-2xl border border-slate-800 p-10 text-center">
+                        <p className="text-slate-400">Nothing here yet.</p>
+                        <Link href="/store" className="mt-5 inline-block text-cyan-300">
+                            Browse the store →
+                        </Link>
+                    </div>
+                ) : (
+                    <div className="mt-12 space-y-4">
+                        {lines.map((line) => (
+                            <div
+                                key={`${line.product.id}:${line.variant?.id || "base"}`}
+                                className="flex flex-col gap-5 rounded-2xl border border-slate-800 p-5 sm:flex-row sm:items-center"
+                            >
+                                <div className="flex-1">
+                                    <h2 className="font-semibold">{line.product.name}</h2>
+                                    <p className="mt-1 text-sm text-slate-400">
+                                        {formatZar(
+                                            line.variant?.priceMinor || line.product.priceMinor,
+                                        )}{" "}
+                                        each
+                                    </p>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <button
+                                        onClick={() =>
+                                            line.quantity > 1
+                                                ? setQuantity(
+                                                    `${line.product.id}:${line.variant?.id || "base"}`,
+                                                    line.quantity - 1,
+                                                )
+                                                : remove(
+                                                    `${line.product.id}:${line.variant?.id || "base"}`,
+                                                )
+                                        }
+                                        className="h-9 w-9 rounded-full border border-slate-700"
+                                    >
+                                        −
+                                    </button>
+                                    <span>{line.quantity}</span>
+                                    <button
+                                        onClick={() =>
+                                            setQuantity(
+                                                `${line.product.id}:${line.variant?.id || "base"}`,
+                                                line.quantity + 1,
+                                            )
+                                        }
+                                        className="h-9 w-9 rounded-full border border-slate-700"
+                                    >
+                                        +
+                                    </button>
+                                </div>
+                                <p className="w-24 text-right font-semibold">
+                                    {formatZar(
+                                        (line.variant?.priceMinor || line.product.priceMinor) *
+                                        line.quantity,
+                                    )}
+                                </p>
+                            </div>
+                        ))}
+                        <div className="flex items-center justify-between border-t border-slate-800 pt-6 text-xl font-semibold">
+                            <span>Subtotal</span>
+                            <span>{formatZar(subtotalMinor)}</span>
+                        </div>
+                        <p className="text-sm text-slate-500">
+                            Checkout will revalidate price and stock on the server.
+                        </p>
+                    </div>
+                )}
+            </div>
+        </main>
+    );
+}
