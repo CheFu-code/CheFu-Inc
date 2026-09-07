@@ -18,6 +18,10 @@ export function ProductShareButton({
 
     const handleShare = async () => {
         try {
+            /*
+             * Mobile browsers and supported desktop browsers
+             * will use the native share sheet.
+             */
             if (
                 typeof navigator !== "undefined" &&
                 typeof navigator.share === "function"
@@ -31,14 +35,26 @@ export function ProductShareButton({
                 return;
             }
 
-            await navigator.clipboard.writeText(productUrl);
+            /*
+             * Desktop fallback.
+             */
+            if (
+                typeof navigator !== "undefined" &&
+                navigator.clipboard
+            ) {
+                await navigator.clipboard.writeText(productUrl);
 
-            setCopied(true);
+                setCopied(true);
 
-            window.setTimeout(() => {
-                setCopied(false);
-            }, 2200);
+                window.setTimeout(() => {
+                    setCopied(false);
+                }, 2200);
+            }
         } catch (error) {
+            /*
+             * User cancelling the native share sheet
+             * is not an actual error.
+             */
             if (
                 error instanceof DOMException &&
                 error.name === "AbortError"
@@ -46,7 +62,10 @@ export function ProductShareButton({
                 return;
             }
 
-            console.error("Product sharing failed:", error);
+            console.error(
+                "Failed to share product:",
+                error,
+            );
         }
     };
 
@@ -54,7 +73,7 @@ export function ProductShareButton({
         <button
             type="button"
             onClick={handleShare}
-            className="group inline-flex w-fit items-center gap-2 rounded-full border border-slate-800 bg-slate-950/50 px-4 py-2.5 text-sm font-medium text-slate-300 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-400/50 hover:bg-slate-900 hover:text-cyan-300 active:translate-y-0"
+            className="group inline-flex min-h-10 w-fit items-center gap-2 rounded-full border border-slate-800 bg-slate-950/60 px-4 py-2 text-xs font-medium text-slate-300 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-400/50 hover:bg-slate-900 hover:text-cyan-300 active:translate-y-0 sm:text-sm"
             aria-label={`Share ${productName}`}
         >
             {copied ? (

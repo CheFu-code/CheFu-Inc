@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import {
     ArrowLeft,
+    Check,
     Package,
     ShieldCheck,
     Star,
+    Tag,
 } from "lucide-react";
 import { getProduct, formatZar } from "../../../../lib/products";
 import { ProductActions } from "./ProductActions";
+import { ProductGallery } from "./ProductGallery";
 import { ProductShareButton } from "../ProductShareButton";
 
 export const dynamic = "force-dynamic";
@@ -21,24 +23,21 @@ type ProductPageProps = {
     params: Promise<{ slug: string }>;
 };
 
-function getProductImage(product: Awaited<ReturnType<typeof getProduct>>) {
-    if (!product) {
-        return undefined;
+type GalleryImage = {
+    url: string;
+    alt?: string;
+};
+
+function getAbsoluteUrl(value: string) {
+    if (
+        value.startsWith("http://") ||
+        value.startsWith("https://")
+    ) {
+        return value;
     }
 
-    return (
-        product.thumbnail ||
-        product.images?.[0]?.url ||
-        undefined
-    );
-}
-
-function getAbsoluteUrl(pathOrUrl: string) {
-    if (pathOrUrl.startsWith("http://") || pathOrUrl.startsWith("https://")) {
-        return pathOrUrl;
-    }
-
-    return `${SITE_URL}${pathOrUrl.startsWith("/") ? pathOrUrl : `/${pathOrUrl}`}`;
+    return `${SITE_URL}${value.startsWith("/") ? value : `/${value}`
+        }`;
 }
 
 export async function generateMetadata({
@@ -67,24 +66,24 @@ export async function generateMetadata({
 
     const canonicalUrl = `${SITE_URL}/store/products/${product.slug}`;
 
-    const productImage = getProductImage(product);
-    const socialImage = productImage
-        ? getAbsoluteUrl(productImage)
-        : undefined;
+    const socialImage =
+        product.thumbnail ||
+        product.images?.[0]?.url ||
+        undefined;
 
     const keywords = [
         product.name,
         product.category,
-        ...(product.tags || []),
+        ...(product.tags ?? []),
         "CHEFU",
         "CHEFU Technologies",
         "CHEFU Store",
+        "South Africa",
     ].filter(Boolean);
 
     return {
         title: `${product.name} | CHEFU Technologies Store`,
         description,
-
         keywords,
 
         authors: [
@@ -119,14 +118,15 @@ export async function generateMetadata({
             siteName: SITE_NAME,
             locale: "en_ZA",
             type: "website",
-
             images: socialImage
                 ? [
                     {
-                        url: socialImage,
+                        url: getAbsoluteUrl(socialImage),
                         width: 1200,
                         height: 1200,
-                        alt: product.images?.[0]?.alt || product.name,
+                        alt:
+                            product.images?.[0]?.alt ||
+                            product.name,
                     },
                 ]
                 : undefined,
@@ -136,8 +136,9 @@ export async function generateMetadata({
             card: "summary_large_image",
             title: `${product.name} | CHEFU Technologies Store`,
             description,
-            images: socialImage ? [socialImage] : undefined,
-            creator: "@CHEFU",
+            images: socialImage
+                ? [getAbsoluteUrl(socialImage)]
+                : undefined,
         },
 
         category: product.category,
@@ -156,7 +157,7 @@ export default async function ProductPage({
 
     const unavailable =
         product.status === "OUT_OF_STOCK" ||
-        product.inventoryQuantity < 1;
+        product.inventoryQuantity <= 0;
 
     const lowStock =
         !unavailable &&
@@ -166,250 +167,319 @@ export default async function ProductPage({
         !!product.compareAtPriceMinor &&
         product.compareAtPriceMinor > product.priceMinor;
 
+    const discountPercentage = hasDiscount
+        ? Math.round(
+            ((product.compareAtPriceMinor! -
+                product.priceMinor) /
+                product.compareAtPriceMinor!) *
+            100,
+        )
+        : 0;
+
     const productUrl = `${SITE_URL}/store/products/${product.slug}`;
 
-    const primaryImage =
-        product.thumbnail ||
-        product.images?.[0]?.url ||
-        null;
+    /*
+     * Build a normalized gallery.
+     *
+     * thumbnail gets priority as the first image.
+     * Duplicate URLs are removed.
+     */
+    const galleryImages: GalleryImage[] = [];
 
-    const productImages =
-        product.images?.filter((image) => Boolean(image?.url)) || [];
+    if (product.thumbnail) {
+        galleryImages.push({
+            url: product.thumbnail,
+            alt: product.name,
+        });
+    }
 
-    const allImages =
-        primaryImage && !productImages.some((image) => image.url === primaryImage)
-            ? [
-                {
-                    url: primaryImage,
-                    alt: product.name,
-                },
-                ...productImages,
-            ]
-            : productImages;
+    for (const image of product.images ?? []) {
+        if (
+            image?.url &&
+            !galleryImages.some(
+                (existing) => existing.url === image.url,
+            )
+        ) {
+            galleryImages.push({
+                url: image.url,
+                alt: image.alt || product.name,
+            });
+        }
+    }
 
     return (
-        <main className="min-h-screen bg-slate-950 px-6 pb-24 pt-32 text-slate-100 md:pt-36">
-            <div className="mx-auto max-w-7xl">
+        <main className="min-h-screen bg-slate-950 text-slate-100">
+            <div className="mx-auto max-w-7xl px-4 pb-32 pt-24 sm:px-6 sm:pb-24 sm:pt-28 lg:px-8">
                 {/* Breadcrumb */}
                 <nav
                     aria-label="Breadcrumb"
-                    className="mb-8"
+                    className="mb-5 sm:mb-8"
                 >
                     <Link
                         href="/store"
-                        className="group inline-flex items-center gap-2 text-sm font-medium text-slate-400 transition-colors hover:text-cyan-300"
+                        className="group inline-flex min-h-10 items-center gap-2 rounded-full border border-slate-800 bg-slate-950/70 px-3.5 py-2 text-xs font-medium text-slate-400 backdrop-blur-sm transition-all duration-300 hover:border-slate-700 hover:text-cyan-300 sm:text-sm"
                     >
-                        <ArrowLeft className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1" />
+                        <ArrowLeft className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-x-1 sm:h-4 sm:w-4" />
                         Back to store
                     </Link>
                 </nav>
 
-                <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-                    {/* Product media */}
-                    <div className="lg:sticky lg:top-28 lg:self-start">
-                        <div className="relative aspect-square overflow-hidden rounded-3xl border border-slate-800 bg-slate-900">
-                            {primaryImage ? (
-                                <Image
-                                    src={primaryImage}
-                                    alt={product.images?.[0]?.alt || product.name}
-                                    fill
-                                    priority
-                                    sizes="(min-width: 1024px) 55vw, 100vw"
-                                    className="object-contain p-6 transition-transform duration-700 hover:scale-[1.025] md:p-10"
-                                />
-                            ) : (
-                                <div className="flex h-full items-center justify-center">
-                                    <Package
-                                        className="h-24 w-24 text-cyan-400/20 md:h-32 md:w-32"
-                                        strokeWidth={1}
-                                    />
-                                </div>
-                            )}
+                {/* Main product area */}
+                <div className="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(360px,0.95fr)] lg:items-start lg:gap-14 xl:gap-20">
+                    {/* Product gallery */}
+                    <ProductGallery
+                        productName={product.name}
+                        images={galleryImages}
+                        featured={product.featured}
+                        hasDiscount={hasDiscount}
+                        discountPercentage={discountPercentage}
+                    />
 
-                            {/* Featured */}
-                            {product.featured && (
-                                <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-950/75 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.15em] text-white backdrop-blur-md">
-                                    <Star className="h-3.5 w-3.5 fill-cyan-400 text-cyan-400" />
-                                    Featured
-                                </div>
-                            )}
-
-                            {/* Discount */}
-                            {hasDiscount && (
-                                <div className="absolute right-4 top-4 rounded-full border border-cyan-400/20 bg-slate-950/75 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.15em] text-cyan-300 backdrop-blur-md">
-                                    Special Price
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Thumbnail gallery */}
-                        {allImages.length > 1 && (
-                            <div className="mt-4 grid grid-cols-5 gap-3">
-                                {allImages.slice(0, 5).map((image, index) => (
-                                    <div
-                                        key={`${image.url}-${index}`}
-                                        className="relative aspect-square overflow-hidden rounded-xl border border-slate-800 bg-slate-900 transition-all duration-300 hover:border-cyan-400/50"
-                                    >
-                                        <Image
-                                            src={image.url}
-                                            alt={image.alt || `${product.name} image ${index + 1}`}
-                                            fill
-                                            sizes="120px"
-                                            className="object-cover"
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Product information */}
-                    <div className="flex flex-col justify-center">
-                        {/* Category */}
-                        <div className="flex flex-wrap items-center gap-3">
-                            <span className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-400">
+                    {/* Product details */}
+                    <section className="min-w-0">
+                        {/* Meta */}
+                        <div className="flex flex-wrap items-center gap-2">
+                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400 sm:text-xs">
                                 {product.category}
                             </span>
 
-                            {!unavailable && (
-                                <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/10 bg-emerald-400/5 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-300">
-                                    <ShieldCheck className="h-3 w-3" />
-                                    Available
+                            {product.featured && (
+                                <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-800 bg-slate-900/70 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wider text-slate-400">
+                                    <Star className="h-3 w-3 fill-cyan-400 text-cyan-400" />
+                                    Featured
                                 </span>
                             )}
                         </div>
 
-                        {/* Name */}
-                        <h1 className="mt-4 text-4xl font-bold tracking-[-0.03em] text-white sm:text-5xl lg:text-6xl">
+                        {/* Title */}
+                        <h1 className="mt-3 text-3xl font-bold leading-tight tracking-[-0.035em] text-white sm:text-4xl md:text-5xl lg:text-[3.6rem] lg:leading-[1.02]">
                             {product.name}
                         </h1>
 
-                        {/* Description */}
-                        <p className="mt-5 max-w-2xl text-base leading-8 text-slate-400 md:text-lg">
-                            {product.shortDescription || product.description}
+                        {/* Short description */}
+                        <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
+                            {product.shortDescription ||
+                                product.description}
                         </p>
 
-                        {/* Price */}
-                        <div className="mt-8 flex flex-wrap items-baseline gap-3">
-                            <span className="text-2xl font-bold text-white md:text-3xl">
-                                {formatZar(product.priceMinor)}
-                            </span>
-
-                            {hasDiscount && (
-                                <span className="text-base text-slate-600 line-through">
-                                    {formatZar(product.compareAtPriceMinor!)}
+                        {/* Price card */}
+                        <div className="mt-6 rounded-2xl border border-slate-800 bg-slate-900/45 p-4 sm:mt-8 sm:p-5">
+                            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                                <span className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                                    {formatZar(product.priceMinor)}
                                 </span>
-                            )}
+
+                                {hasDiscount && (
+                                    <>
+                                        <span className="text-sm text-slate-600 line-through sm:text-base">
+                                            {formatZar(
+                                                product.compareAtPriceMinor!,
+                                            )}
+                                        </span>
+
+                                        <span className="rounded-full bg-cyan-400/10 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-cyan-300">
+                                            Save {discountPercentage}%
+                                        </span>
+                                    </>
+                                )}
+                            </div>
+
+                            {/* Stock state */}
+                            <div className="mt-3 flex items-center gap-2">
+                                <span
+                                    className={`h-2 w-2 rounded-full ${unavailable
+                                            ? "bg-rose-400"
+                                            : lowStock
+                                                ? "animate-pulse bg-cyan-400"
+                                                : "bg-emerald-400"
+                                        }`}
+                                />
+
+                                <span
+                                    className={`text-xs font-medium sm:text-sm ${unavailable
+                                            ? "text-rose-300"
+                                            : lowStock
+                                                ? "text-cyan-300"
+                                                : "text-emerald-300"
+                                        }`}
+                                >
+                                    {unavailable
+                                        ? "Currently unavailable"
+                                        : lowStock
+                                            ? `Only ${product.inventoryQuantity} left in stock`
+                                            : "In stock and ready to order"}
+                                </span>
+                            </div>
                         </div>
 
-                        {/* Stock */}
-                        <div
-                            className={`mt-5 text-sm ${unavailable
-                                ? "text-rose-300"
-                                : lowStock
-                                    ? "text-cyan-300"
-                                    : "text-emerald-300"
-                                }`}
-                        >
-                            {unavailable
-                                ? "Currently unavailable"
-                                : lowStock
-                                    ? `Only ${product.inventoryQuantity} left in stock`
-                                    : "In stock and ready to order"}
-                        </div>
-
-                        {/* Actions */}
-                        <div className="mt-8">
+                        {/* Purchase actions */}
+                        <div className="mt-5 rounded-2xl border border-slate-800 bg-slate-950/70 p-4 sm:mt-6 sm:p-5">
                             <ProductActions
                                 product={product}
                                 disabled={unavailable}
                             />
                         </div>
 
-                        {/* Share + SKU */}
-                        <div className="mt-6 flex flex-col gap-3 border-t border-slate-800 pt-6 sm:flex-row sm:items-center sm:justify-between">
+                        {/* Share / SKU */}
+                        <div className="mt-4 flex flex-col gap-3 rounded-2xl border border-slate-800/80 bg-slate-950/40 p-4 sm:flex-row sm:items-center sm:justify-between">
                             <ProductShareButton
                                 productName={product.name}
                                 productDescription={
-                                    product.shortDescription || product.description
+                                    product.shortDescription ||
+                                    product.description
                                 }
                                 productUrl={productUrl}
                             />
 
-                            <span className="text-xs font-medium uppercase tracking-wider text-slate-600">
+                            <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-600">
                                 SKU {product.sku}
                             </span>
                         </div>
 
-                        {/* Product details */}
-                        <div className="mt-8 border-t border-slate-800 pt-8">
-                            <h2 className="text-sm font-semibold uppercase tracking-[0.15em] text-slate-500">
-                                Product details
-                            </h2>
+                        {/* Trust features */}
+                        <div className="mt-4 grid overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/30 sm:grid-cols-3">
+                            <div className="flex items-center gap-3 border-b border-slate-800 p-4 sm:border-b-0 sm:border-r">
+                                <ShieldCheck className="h-4 w-4 shrink-0 text-cyan-400" />
 
-                            <div className="mt-5 space-y-5">
                                 <div>
-                                    <h3 className="text-sm font-semibold text-white">
-                                        Description
-                                    </h3>
+                                    <p className="text-[11px] font-semibold text-white">
+                                        Quality
+                                    </p>
 
-                                    <p className="mt-2 whitespace-pre-line text-sm leading-7 text-slate-400">
-                                        {product.description || product.shortDescription}
+                                    <p className="mt-0.5 text-[10px] text-slate-600">
+                                        CHEFU selected
                                     </p>
                                 </div>
+                            </div>
 
-                                {product.tags?.length > 0 && (
-                                    <div>
-                                        <h3 className="text-sm font-semibold text-white">
-                                            Tags
-                                        </h3>
+                            <div className="flex items-center gap-3 border-b border-slate-800 p-4 sm:border-b-0 sm:border-r">
+                                <Package className="h-4 w-4 shrink-0 text-cyan-400" />
 
-                                        <div className="mt-3 flex flex-wrap gap-2">
-                                            {product.tags.map((tag) => (
-                                                <span
-                                                    key={tag}
-                                                    className="rounded-full border border-slate-800 bg-slate-900 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500"
-                                                >
-                                                    {tag}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
+                                <div>
+                                    <p className="text-[11px] font-semibold text-white">
+                                        Shipping
+                                    </p>
+
+                                    <p className="mt-0.5 text-[10px] text-slate-600">
+                                        Product dependent
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center gap-3 p-4">
+                                <Check className="h-4 w-4 shrink-0 text-cyan-400" />
+
+                                <div>
+                                    <p className="text-[11px] font-semibold text-white">
+                                        Secure
+                                    </p>
+
+                                    <p className="mt-0.5 text-[10px] text-slate-600">
+                                        Safe checkout
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
-                        {/* Confidence panel */}
-                        <div className="mt-8 rounded-2xl border border-slate-800 bg-slate-900/50 p-5">
+                        {/* Product information */}
+                        <div className="mt-8 border-t border-slate-900 pt-8">
+                            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
+                                Product information
+                            </p>
+
+                            <div className="mt-5">
+                                <h2 className="text-lg font-semibold text-white">
+                                    Description
+                                </h2>
+
+                                <p className="mt-3 whitespace-pre-line text-sm leading-7 text-slate-400">
+                                    {product.description ||
+                                        product.shortDescription}
+                                </p>
+                            </div>
+
+                            {/* Tags */}
+                            {product.tags?.length > 0 && (
+                                <div className="mt-7">
+                                    <h2 className="text-sm font-semibold text-white">
+                                        Product tags
+                                    </h2>
+
+                                    <div className="mt-3 flex flex-wrap gap-2">
+                                        {product.tags.map((tag) => (
+                                            <span
+                                                key={tag}
+                                                className="inline-flex items-center gap-1.5 rounded-full border border-slate-800 bg-slate-900 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500"
+                                            >
+                                                <Tag className="h-3 w-3" />
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Brand panel */}
+                        <div className="mt-8 rounded-2xl border border-slate-800 bg-slate-900/40 p-5">
                             <div className="flex gap-3">
                                 <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-cyan-400" />
 
                                 <div>
-                                    <h3 className="text-sm font-semibold text-white">
+                                    <h2 className="text-sm font-semibold text-white">
                                         Built by CHEFU Technologies
-                                    </h3>
+                                    </h2>
 
                                     <p className="mt-1.5 text-xs leading-6 text-slate-500">
-                                        Thoughtfully selected and designed for modern creators,
-                                        developers, and professionals.
+                                        Thoughtfully selected and designed
+                                        for modern creators, developers,
+                                        and professionals.
                                     </p>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
 
-                {/* SEO-friendly full description */}
-                <section className="mt-20 max-w-4xl border-t border-slate-900 pt-12">
-                    <h2 className="text-2xl font-bold text-white">
+                {/* Additional SEO content */}
+                <section className="mt-16 max-w-4xl border-t border-slate-900 pt-10 sm:mt-20 sm:pt-12">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400">
+                        More about this product
+                    </p>
+
+                    <h2 className="mt-3 text-2xl font-bold tracking-tight text-white sm:text-3xl">
                         About {product.name}
                     </h2>
 
-                    <p className="mt-5 whitespace-pre-line text-base leading-8 text-slate-400">
-                        {product.description || product.shortDescription}
+                    <p className="mt-5 whitespace-pre-line text-sm leading-7 text-slate-400 sm:text-base sm:leading-8">
+                        {product.description ||
+                            product.shortDescription}
                     </p>
                 </section>
             </div>
+
+            {/* Mobile purchase bar */}
+            {!unavailable && (
+                <div className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-800/90 bg-slate-950/95 px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-xl lg:hidden">
+                    <div className="mx-auto flex max-w-7xl items-center gap-3">
+                        <div className="min-w-0 flex-1">
+                            <p className="truncate text-[11px] font-medium text-slate-500">
+                                {product.name}
+                            </p>
+
+                            <p className="mt-0.5 text-sm font-bold text-white">
+                                {formatZar(product.priceMinor)}
+                            </p>
+                        </div>
+
+                        <ProductActions
+                            product={product}
+                            disabled={unavailable}
+                            compact
+                        />
+                    </div>
+                </div>
+            )}
         </main>
     );
 }
