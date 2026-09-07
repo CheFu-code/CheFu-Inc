@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "motion/react";
 import { ArrowRight, PlayCircle, Sparkles } from "lucide-react";
 import Image from "next/image";
