@@ -6,8 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import type { FormData } from "../../types";
 import { ContactPageUI } from "../components/ContactPageUI";
-import { auth, db } from "../../config/firebaseConfig";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { apiUrl } from "../../lib/chefu-account";
 
 export function ContactPage() {
     const router = useRouter();
@@ -47,31 +46,33 @@ export function ContactPage() {
     }, [searchParams, setValue]);
 
     const onSubmit = async (data: FormData) => {
-        const user = auth.currentUser;
-        if (!user) {
-            toast.error("Please login to send a message", {
-                action: {
-                    label: "Login",
-                    onClick: () => router.push("/login?next=/contact"),
-                },
-            });
-            return;
-        }
         try {
-            await addDoc(collection(db, "contactRequests"), {
-                ...data,
-                userId: user.uid,
-                userEmail: user.email ?? data.email,
-                createdAt: serverTimestamp(),
+            const response = await fetch(apiUrl("/submissions/contact"), {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify(data),
             });
+
+            if (response.status === 401) {
+                toast.error("Please login to send a message", {
+                    action: {
+                        label: "Login",
+                        onClick: () => router.push("/login?next=/contact"),
+                    },
+                });
+                return;
+            }
+            if (!response.ok) throw new Error("The message could not be submitted.");
 
             toast.success("Message sent!", {
                 description: "We'll be in touch shortly.",
             });
             reset();
         } catch (error) {
-            console.error("Error adding document: ", error);
-            toast.error("Failed to send message. Please try again later.");
+            toast.error("Failed to send message. Please try again later.", {
+                description: error instanceof Error ? error.message : undefined,
+            });
         }
     };
 

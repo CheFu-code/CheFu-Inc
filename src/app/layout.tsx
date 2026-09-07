@@ -6,7 +6,6 @@ import { WebMCPProvider } from "./components/WebMCPProvider";
 import { AppProviders } from "./providers";
 import { pageMetadata, siteName, siteUrl } from "./site-metadata";
 import "../styles/index.css";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import { CartProvider } from "../lib/cart";
 
@@ -58,7 +57,6 @@ export default function RootLayout({
                     <CartProvider>{children}</CartProvider>
                     <Analytics />
                 </SiteChrome>
-                <GoogleAnalytics gaId={process.env.NEXT_FIREBASE_MEASUREMENT_ID!} />
             </body>
         </html>
     );

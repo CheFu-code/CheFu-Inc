@@ -2,16 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
-import {
-    Timestamp,
-    addDoc,
-    collection,
-    serverTimestamp,
-    updateDoc,
-} from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { toast } from "sonner";
-import { db, storage } from "../../config/firebaseConfig";
+import { apiUrl } from "../../lib/chefu-account";
 import { CareersApplicationForm } from "../components/careers/CareersApplicationForm";
 import { CareersApplicationSuccess } from "../components/careers/CareersApplicationSuccess";
 import { CareersBenefitsSection } from "../components/careers/CareersBenefitsSection";
@@ -76,11 +68,12 @@ export function CareersPage() {
             const cvFile = data.cvFile?.[0];
             const preferredWorkMode =
                 data.country === "South Africa" ? data.preferredWorkMode : "Remote";
-            const retentionExpiresAt = Timestamp.fromDate(
-                new Date(Date.now() + 180 * 24 * 60 * 60 * 1000),
-            );
-
-            const docRef = await addDoc(collection(db, "membershipApplications"), {
+            const cvBase64 = cvFile ? await fileToBase64(cvFile) : undefined;
+            const response = await fetch(apiUrl("/submissions/careers"), {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({
                 fullName: data.fullName,
                 email: data.email,
                 phone: data.phone ?? "",
@@ -100,31 +93,22 @@ export function CareersPage() {
                 portfolioLink: data.portfolioLink ?? "",
                 musicPortfolioLink: data.musicPortfolioLink ?? "",
                 cvFileName: cvFile?.name ?? "",
-                cvFileSize: cvFile?.size ?? null,
-                cvFileUrl: "",
+                cvContentType: cvFile?.type ?? "",
+                cvBase64,
                 whyJoin: data.whyJoin,
                 whatMakesYouDifferent: data.whatMakesYouDifferent,
                 hoursPerWeek: data.hoursPerWeek,
-                status: "submitted",
-                confirmationEmailStatus: "pending",
                 consentGiven: data.acceptTerms,
-                consentCapturedAt: serverTimestamp(),
-                retentionExpiresAt,
-                createdAt: serverTimestamp(),
+                website: data.website ?? "",
+                }),
             });
-
-            if (cvFile) {
-                const safeFileName = cvFile.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-                const cvStorageRef = ref(
-                    storage,
-                    `membershipApplications/${docRef.id}/cv/${Date.now()}_${safeFileName}`,
-                );
-                await uploadBytes(cvStorageRef, cvFile, { contentType: cvFile.type });
-                const cvFileUrl = await getDownloadURL(cvStorageRef);
-                await updateDoc(docRef, { cvFileUrl });
+            if (!response.ok) {
+                const errorBody = await response.json().catch(() => null) as { message?: string } | null;
+                throw new Error(errorBody?.message || "The application could not be submitted.");
             }
+            const result = await response.json() as { applicationId: string };
 
-            setApplicationId(docRef.id);
+            setApplicationId(result.applicationId);
             setSubmittedEmail(data.email);
             setLastSubmissionAt(now);
             toast.success("Application submitted", {
@@ -166,4 +150,13 @@ export function CareersPage() {
             </div>
         </div>
     );
+}
+
+function fileToBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(String(reader.result));
+        reader.onerror = () => reject(new Error("Unable to read the CV file."));
+        reader.readAsDataURL(file);
+    });
 }

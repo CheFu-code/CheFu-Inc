@@ -2,7 +2,6 @@
 
 import { CheFuUserDropdown } from "chefu-ui";
 import { clsx } from "clsx";
-import { signOut, type User } from "firebase/auth";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
@@ -10,25 +9,16 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { twMerge } from "tailwind-merge";
-import { auth } from "../../config/firebaseConfig";
 import { accountAppUrl } from "../../lib/account-app";
 import { clearChefuAccountSession } from "../../lib/chefu-account";
 import { getChefuAccountSession, type ChefuSessionUser } from "../../lib/chefu-session";
 
 export function Navbar() {
-    const [user, setUser] = useState(auth.currentUser);
     const [sessionUser, setSessionUser] = useState<ChefuSessionUser | null>(null);
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const pathname = usePathname();
     const router = useRouter();
-
-    useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((nextUser) => {
-            setUser(nextUser);
-        });
-        return () => unsubscribe();
-    }, []);
 
     useEffect(() => {
         let ignore = false;
@@ -59,7 +49,7 @@ export function Navbar() {
 
     const handleSignOut = async () => {
         try {
-            await Promise.allSettled([clearChefuAccountSession(), signOut(auth)]);
+            await clearChefuAccountSession();
             setSessionUser(null);
             toast.success("Logged out.");
             router.push("/");
@@ -79,7 +69,13 @@ export function Navbar() {
         { name: "Insights", href: "/blog" },
         { name: "Store", href: "/store" },
     ];
-    const accountUser = toDropdownUser(user, sessionUser);
+    const accountUser = sessionUser
+        ? {
+            displayName: sessionUser.displayName,
+            email: sessionUser.email,
+            photoURL: sessionUser.photoURL,
+        }
+        : null;
 
     return (
         <nav
@@ -200,22 +196,3 @@ export function Navbar() {
     );
 }
 
-function toDropdownUser(firebaseUser: User | null, sessionUser: ChefuSessionUser | null) {
-    if (firebaseUser) {
-        return {
-            displayName: firebaseUser.displayName,
-            email: firebaseUser.email,
-            photoURL: firebaseUser.photoURL,
-        };
-    }
-
-    if (sessionUser) {
-        return {
-            displayName: sessionUser.displayName,
-            email: sessionUser.email,
-            photoURL: sessionUser.photoURL,
-        };
-    }
-
-    return null;
-}
