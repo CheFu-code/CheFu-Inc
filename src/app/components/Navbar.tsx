@@ -77,6 +77,7 @@ export function Navbar() {
         { name: "Services", href: "/services" },
         { name: "Work", href: "/portfolio" },
         { name: "Insights", href: "/blog" },
+        { name: "Store", href: "/store" },
     ];
     const accountUser = toDropdownUser(user, sessionUser);
 

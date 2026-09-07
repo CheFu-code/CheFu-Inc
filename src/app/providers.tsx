@@ -4,6 +4,7 @@ import { sendEmailVerification } from "firebase/auth";
 import { useEffect } from "react";
 import { Toaster, toast } from "sonner";
 import { auth } from "../config/firebaseConfig";
+import { CartProvider } from "../lib/cart";
 
 export function AppProviders() {
     useEffect(() => {
@@ -29,5 +30,5 @@ export function AppProviders() {
         return () => unsubscribe();
     }, []);
 
-    return <Toaster position="top-right" />;
+    return <CartProvider><Toaster position="top-right" /></CartProvider>;
 }

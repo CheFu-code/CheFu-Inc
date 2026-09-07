@@ -8,6 +8,7 @@ import { pageMetadata, siteName, siteUrl } from "./site-metadata";
 import "../styles/index.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
+import { CartProvider } from "../lib/cart";
 
 const adsensePublisherId = "ca-pub-8952058057579255";
 
@@ -54,7 +55,7 @@ export default function RootLayout({
                 <AppProviders />
                 <WebMCPProvider />
                 <SiteChrome>
-                    {children}
+                    <CartProvider>{children}</CartProvider>
                     <Analytics />
                 </SiteChrome>
                 <GoogleAnalytics gaId={process.env.NEXT_FIREBASE_MEASUREMENT_ID!} />
