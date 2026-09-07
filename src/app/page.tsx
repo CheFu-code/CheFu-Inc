@@ -7,6 +7,8 @@ export const metadata = pageMetadata({
         "CHEFU TECHNOLOGIES builds fast software platforms, practical AI systems, and high-fidelity audio production for ambitious teams.",
 });
 
+export const dynamic = "force-dynamic";
+
 export default function Page() {
     return <Home />;
 }
