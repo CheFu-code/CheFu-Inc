@@ -28,17 +28,19 @@ const CartContext = createContext<CartContextValue | null>(null);
 const key = (line: CartLine) =>
     `${line.product.id}:${line.variant?.id || "base"}`;
 
+function readStoredCart(): CartLine[] {
+    if (typeof window === "undefined") return [];
+
+    try {
+        const stored = window.localStorage.getItem("chefu-cart");
+        return stored ? (JSON.parse(stored) as CartLine[]) : [];
+    } catch {
+        return [];
+    }
+}
+
 export function CartProvider({ children }: { children: ReactNode }) {
-    const [lines, setLines] = useState<CartLine[]>([]);
-    useEffect(() => {
-        try {
-            setLines(
-                JSON.parse(localStorage.getItem("chefu-cart") || "[]") as CartLine[],
-            );
-        } catch {
-            setLines([]);
-        }
-    }, []);
+    const [lines, setLines] = useState<CartLine[]>(readStoredCart);
     useEffect(() => {
         localStorage.setItem("chefu-cart", JSON.stringify(lines));
     }, [lines]);
