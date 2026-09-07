@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { getProduct, formatZar } from "../../../../lib/products";
 import { ProductActions } from "./ProductActions";
-import { ProductShareButton } from "./ProductShareButton";
+import { ProductShareButton } from "../ProductShareButton";
 
 export const dynamic = "force-dynamic";
 
