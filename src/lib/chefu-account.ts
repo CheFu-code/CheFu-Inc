@@ -1,26 +1,17 @@
-export type ChefuAppId = "academy" | "flow" | "muzalo" | "quantum";
+export type ChefuAppId = "academy" | "flow" | "muzalo" | "quantum" | "root";
 
 const CHEFU_APP_HEADER = "x-chefu-app";
 
 const DEFAULT_ALLOWED_RETURN_ORIGINS = [
     "https://api.chefu.co.za",
     "https://chefu.co.za",
+    "https://www.chefu.co.za",
     "https://myaccount.chefu.co.za",
     "https://academy.chefu.co.za",
     "https://flow.chefu.co.za",
     "https://music.chefu.co.za",
     "https://muzalo.chefu.co.za",
     "https://quantum.chefu.co.za",
-    "http://localhost:3000",
-    "http://localhost:3001",
-    "http://localhost:3002",
-    "http://localhost:3003",
-    "http://localhost:4000",
-    "http://127.0.0.1:3000",
-    "http://127.0.0.1:3001",
-    "http://127.0.0.1:3002",
-    "http://127.0.0.1:3003",
-    "http://127.0.0.1:4000",
 ];
 
 const appLabels: Record<ChefuAppId, string> = {
@@ -28,6 +19,7 @@ const appLabels: Record<ChefuAppId, string> = {
     flow: "Flow Mail",
     muzalo: "Muzalo",
     quantum: "Quantum",
+    root: 'CHEFU Technologies',
 };
 
 export function apiUrl(path: string) {
@@ -41,10 +33,12 @@ export function resolveChefuApp(value?: string | null): ChefuAppId {
     const normalized = value?.trim().toLowerCase();
 
     if (normalized === "flow") return "flow";
-    if (normalized === "muzalo" || normalized === "music") return "muzalo";
+    if (normalized === "muzalo") return "muzalo";
     if (normalized === "quantum") return "quantum";
-    return "academy";
-}
+    if (normalized === "root") return "root";
+    if (normalized === "academy") return "academy";
+    return "root";
+}   
 
 export function chefuAppLabel(appId: ChefuAppId) {
     return appLabels[appId];
@@ -151,7 +145,7 @@ export async function syncChefuAccountSession(idToken: string, appId: ChefuAppId
             requestId?: string;
         };
         const message =
-            data.error || data.message || "Unable to start your CheFu account session.";
+            data.error || data.message || "Unable to start your account session.";
         const requestId = data.requestId ? ` Request ID: ${data.requestId}` : "";
 
         throw new Error(`${message}${requestId}`);
