@@ -8,11 +8,25 @@ service cloud.firestore {
 
     match /membershipApplications/{applicationId} {
       allow read, list: if isAdmin();
-      allow update, delete: if isAdmin();
+      allow update: if isAdmin()
+        || (resource.data.consentGiven == true
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['cvFileUrl'])
+          && request.resource.data.cvFileUrl is string
+          && request.resource.data.cvFileUrl.matches('https://firebasestorage.googleapis.com/.*'));
+      allow delete: if isAdmin();
       allow create: if request.resource.data.consentGiven == true
         && request.resource.data.email is string
         && request.resource.data.fullName is string
         && request.resource.data.retentionExpiresAt is timestamp;
+    }
+
+    match /contactRequests/{requestId} {
+      allow create: if request.auth != null
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.userEmail is string
+        && request.resource.data.createdAt == request.time;
+      allow read, update, delete: if isAdmin()
+        || (request.auth != null && resource.data.userId == request.auth.uid);
     }
   }
 }

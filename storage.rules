@@ -8,8 +8,11 @@ service firebase.storage {
 
     match /membershipApplications/{applicationId}/cv/{fileName} {
       allow read: if isAdmin();
-      allow write: if request.resource.size < 10 * 1024 * 1024
+      allow create: if resource == null
+        && firestore.get(/databases/(default)/documents/membershipApplications/$(applicationId)).data.consentGiven == true
+        && request.resource.size < 10 * 1024 * 1024
         && request.resource.contentType.matches('application/pdf|application/msword|application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+      allow update, delete: if isAdmin();
     }
   }
 }
