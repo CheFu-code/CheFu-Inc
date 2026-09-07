@@ -1,129 +1,126 @@
-"use client";
-
 import { CheFuUserDropdown } from "chefu-ui";
 import { clsx } from "clsx";
-import { Menu, X } from "lucide-react";
+import {
+    BriefcaseBusiness,
+    CircleHelp,
+    Code2,
+    Home,
+    Info,
+    Menu,
+    X,
+    type LucideIcon,
+} from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { toast } from "sonner";
 import { twMerge } from "tailwind-merge";
 import { accountAppUrl } from "../../lib/account-app";
-import { clearChefuAccountSession } from "../../lib/chefu-account";
-import { getChefuAccountSession, type ChefuSessionUser } from "../../lib/chefu-session";
+import { navLinks, useNavbar } from "./useNavbar";
+
+const navIcons: Record<string, LucideIcon> = {
+    Home,
+    About: Info,
+    Services: Code2,
+    Careers: BriefcaseBusiness,
+    FAQ: CircleHelp,
+};
 
 export function Navbar() {
-    const [sessionUser, setSessionUser] = useState<ChefuSessionUser | null>(null);
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const pathname = usePathname();
-    const router = useRouter();
-
-    useEffect(() => {
-        let ignore = false;
-
-        async function loadSession() {
-            const nextSessionUser = await getChefuAccountSession("root").catch(() => null);
-            if (!ignore) setSessionUser(nextSessionUser);
-        }
-
-        void loadSession();
-        return () => {
-            ignore = true;
-        };
-    }, [pathname]);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    useEffect(() => {
-        const timeout = setTimeout(() => setIsMobileMenuOpen(false), 0);
-        return () => clearTimeout(timeout);
-    }, [pathname]);
-
-    const handleSignOut = async () => {
-        try {
-            await clearChefuAccountSession();
-            setSessionUser(null);
-            toast.success("Logged out.");
-            router.push("/");
-        } catch (error) {
-            toast.error("Failed to log out.", {
-                description:
-                    error instanceof Error ? error.message : "Unknown error occurred.",
-            });
-        }
-    };
-
-    const navLinks = [
-        { name: "Home", href: "/" },
-        { name: "About", href: "/about" },
-        { name: "Services", href: "/services" },
-        { name: "Work", href: "/portfolio" },
-        { name: "Insights", href: "/blog" },
-        { name: "Store", href: "/store" },
-    ];
-    const accountUser = sessionUser
-        ? {
-            displayName: sessionUser.displayName,
-            email: sessionUser.email,
-            photoURL: sessionUser.photoURL,
-        }
-        : null;
+    const {
+        accountUser,
+        handleSignOut,
+        isMobileMenuOpen,
+        isScrolled,
+        pathname,
+        router,
+        setIsMobileMenuOpen,
+    } = useNavbar();
 
     return (
         <nav
             className={twMerge(
-                "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent",
+                "fixed top-0 left-0 right-0 z-50 border-b border-transparent transition-all duration-500 ease-out",
                 isScrolled || isMobileMenuOpen
-                    ? "bg-slate-950/90 backdrop-blur-md border-slate-800 py-4"
+                    ? "bg-slate-950/90 backdrop-blur-xl border-slate-800/80 py-4"
                     : "bg-transparent py-6",
             )}
         >
             <div className="container mx-auto px-6 flex items-center justify-between">
+                {/* Logo */}
                 <Link
                     href="/"
-                    className="text-2xl font-bold tracking-tighter text-white flex items-center gap-2"
+                    className="group flex items-center gap-2 text-2xl font-bold tracking-tighter text-white transition-opacity duration-200 hover:opacity-90"
                 >
-                   
-                    CHEFU <span className="text-cyan-400">TECHNOLOGIES</span>
+                    <span>CHEFU</span>
+                    <span className="text-cyan-400 transition-colors duration-200 group-hover:text-cyan-300">
+                        TECHNOLOGIES
+                    </span>
                 </Link>
 
                 {/* Desktop Nav */}
-                <div className="hidden md:flex items-center gap-8">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            className={clsx(
-                                "text-sm font-medium transition-colors hover:text-cyan-400",
-                                pathname === link.href
-                                    ? "text-cyan-400"
-                                    : "text-slate-300",
-                            )}
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
+                <div className="hidden md:flex items-center gap-3">
+                    <div className="flex items-center gap-1 rounded-full border border-slate-800/70 bg-slate-950/30 p-1 backdrop-blur-sm">
+                        {navLinks.map((link) => {
+                            const isActive = pathname === link.href;
+                            const Icon = navIcons[link.name];
 
-                    {/* Avatar */}
+                            return (
+                                <Link
+                                    key={link.name}
+                                    href={link.href}
+                                    className={clsx(
+                                        "group relative flex items-center rounded-full px-4 py-2 text-sm font-medium",
+                                        "transition-all duration-300 ease-out",
+                                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50",
+                                        isActive
+                                            ? "bg-slate-800/80 text-cyan-400 shadow-sm"
+                                            : "text-slate-300 hover:bg-slate-900/70 hover:text-cyan-400",
+                                    )}
+                                >
+                                    {Icon && !isActive && (
+                                        <span
+                                            className={clsx(
+                                                "flex w-0 overflow-hidden opacity-0",
+                                                "transition-all duration-300 ease-out",
+                                                "group-hover:mr-2 group-hover:w-4 group-hover:opacity-100",
+                                            )}
+                                        >
+                                            <Icon className="h-3.5 w-3.5 shrink-0" />
+                                        </span>
+                                    )}
+
+                                    <span className="whitespace-nowrap">
+                                        {link.name}
+                                    </span>
+                                </Link>
+                            );
+                        })}
+                    </div>
+
+                    {/* Account */}
                     {accountUser ? (
                         <CheFuUserDropdown
-                            accountHref={accountAppUrl("/account", { app: "academy" })}
+                            accountHref={accountAppUrl("/account", {
+                                app: "root",
+                            })}
                             onSignOut={handleSignOut}
                             user={accountUser}
                             variant="cyan"
                         />
                     ) : null}
+
+                    {/* CTA */}
                     <button
                         onClick={() => router.push("/contact")}
-                        className="px-5 py-2 rounded-full bg-white text-slate-950 font-semibold hover:bg-cyan-400 transition-colors text-sm cursor-pointer"
+                        className={clsx(
+                            "cursor-pointer rounded-full px-5 py-2.5",
+                            "bg-white text-sm font-semibold text-slate-950",
+                            "border border-white/10",
+                            "transition-all duration-300",
+                            "hover:-translate-y-0.5 hover:bg-cyan-400",
+                            "hover:shadow-[0_10px_35px_rgb(34,211,238,0.12)]",
+                            "active:translate-y-0",
+                            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50",
+                        )}
                     >
                         Start a Project
                     </button>
@@ -131,10 +128,52 @@ export function Navbar() {
 
                 {/* Mobile Toggle */}
                 <button
-                    className="md:hidden text-white cursor-pointer"
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    type="button"
+                    aria-label={
+                        isMobileMenuOpen ? "Close menu" : "Open menu"
+                    }
+                    aria-expanded={isMobileMenuOpen}
+                    onClick={() =>
+                        setIsMobileMenuOpen(!isMobileMenuOpen)
+                    }
+                    className={clsx(
+                        "flex h-10 w-10 items-center justify-center rounded-full",
+                        "border border-slate-800/80 bg-slate-950/50",
+                        "text-white backdrop-blur-sm",
+                        "transition-all duration-200",
+                        "hover:border-slate-700 hover:bg-slate-900",
+                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50",
+                        "md:hidden",
+                    )}
                 >
-                    {isMobileMenuOpen ? <X /> : <Menu />}
+                    <AnimatePresence mode="wait" initial={false}>
+                        <motion.span
+                            key={isMobileMenuOpen ? "close" : "menu"}
+                            initial={{
+                                opacity: 0,
+                                rotate: -45,
+                                scale: 0.8,
+                            }}
+                            animate={{
+                                opacity: 1,
+                                rotate: 0,
+                                scale: 1,
+                            }}
+                            exit={{
+                                opacity: 0,
+                                rotate: 45,
+                                scale: 0.8,
+                            }}
+                            transition={{ duration: 0.15 }}
+                            className="flex"
+                        >
+                            {isMobileMenuOpen ? (
+                                <X className="h-5 w-5" />
+                            ) : (
+                                <Menu className="h-5 w-5" />
+                            )}
+                        </motion.span>
+                    </AnimatePresence>
                 </button>
             </div>
 
@@ -145,54 +184,118 @@ export function Navbar() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-slate-950 border-b border-slate-800 overflow-hidden"
+                        transition={{
+                            duration: 0.3,
+                            ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className="md:hidden overflow-hidden border-t border-slate-800/60 bg-slate-950/95 backdrop-blur-xl"
                     >
-                        <div className="flex flex-col p-6 gap-4">
-                            {navLinks.map((link) => (
+                        <motion.div
+                            initial={{ opacity: 0, y: -8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{
+                                delay: 0.05,
+                                duration: 0.25,
+                            }}
+                            className="flex flex-col p-6"
+                        >
+                            <div className="flex flex-col gap-1">
+                                {navLinks.map((link) => {
+                                    const isActive =
+                                        pathname === link.href;
+                                    const Icon = navIcons[link.name];
+
+                                    return (
+                                        <Link
+                                            key={link.name}
+                                            href={link.href}
+                                            onClick={() =>
+                                                setIsMobileMenuOpen(false)
+                                            }
+                                            className={clsx(
+                                                "flex items-center justify-between rounded-xl px-4 py-3.5",
+                                                "text-base font-medium transition-all duration-200",
+                                                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50",
+                                                isActive
+                                                    ? "bg-slate-900 text-cyan-400"
+                                                    : "text-slate-300 hover:bg-slate-900/70 hover:text-white",
+                                            )}
+                                        >
+                                            <span className="flex items-center gap-3">
+                                                {Icon && (
+                                                    <Icon className="h-4 w-4" />
+                                                )}
+
+                                                <span>{link.name}</span>
+                                            </span>
+
+                                            {isActive && (
+                                                <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+                                            )}
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+
+                            <div className="my-4 h-px bg-slate-800/80" />
+
+                            <div className="grid grid-cols-2 gap-2">
                                 <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    className={clsx(
-                                        "text-lg font-medium hover:text-cyan-400",
-                                        pathname === link.href
-                                            ? "text-cyan-400"
-                                            : "text-slate-300",
-                                    )}
+                                    href="/careers"
+                                    onClick={() =>
+                                        setIsMobileMenuOpen(false)
+                                    }
+                                    className="rounded-xl border border-slate-800/70 px-4 py-3 text-center text-sm font-medium text-slate-400 transition-colors hover:border-slate-700 hover:text-cyan-400"
                                 >
-                                    {link.name}
+                                    Careers
                                 </Link>
-                            ))}
-                            <div className="h-px bg-slate-800 my-2" />
-                            <Link
-                                href="/careers"
-                                className="text-slate-400 hover:text-cyan-400"
-                            >
-                                Careers
-                            </Link>
-                            <Link href="/faq" className="text-slate-400 hover:text-cyan-400">
-                                FAQ
-                            </Link>
+
+                                <Link
+                                    href="/faq"
+                                    onClick={() =>
+                                        setIsMobileMenuOpen(false)
+                                    }
+                                    className="rounded-xl border border-slate-800/70 px-4 py-3 text-center text-sm font-medium text-slate-400 transition-colors hover:border-slate-700 hover:text-cyan-400"
+                                >
+                                    FAQ
+                                </Link>
+                            </div>
+
                             <Link
                                 href="/contact"
-                                className="mt-4 w-full py-3 rounded-lg bg-linear-to-r from-cyan-500 to-violet-600 text-white font-bold text-center"
+                                onClick={() =>
+                                    setIsMobileMenuOpen(false)
+                                }
+                                className={clsx(
+                                    "mt-3 flex w-full items-center justify-center rounded-xl py-3.5",
+                                    "border border-white/10 bg-white",
+                                    "text-sm font-bold text-slate-950",
+                                    "transition-all duration-300",
+                                    "hover:bg-cyan-400",
+                                    "hover:shadow-[0_10px_35px_rgb(34,211,238,0.12)]",
+                                )}
                             >
                                 Start a Project
                             </Link>
 
                             {accountUser ? (
-                                <CheFuUserDropdown
-                                    accountHref={accountAppUrl("/account", { app: "academy" })}
-                                    onSignOut={handleSignOut}
-                                    triggerClassName="w-full justify-between"
-                                    user={accountUser}
-                                    variant="cyan"
-                                />
+                                <div className="mt-3 border-t border-slate-800/70 pt-3">
+                                    <CheFuUserDropdown
+                                        accountHref={accountAppUrl(
+                                            "/account",
+                                            { app: "root" },
+                                        )}
+                                        onSignOut={handleSignOut}
+                                        triggerClassName="w-full justify-between rounded-xl border border-slate-800/70 bg-slate-900/40 px-4 py-3"
+                                        user={accountUser}
+                                        variant="cyan"
+                                    />
+                                </div>
                             ) : null}
-                        </div>
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
         </nav>
     );
 }
-
