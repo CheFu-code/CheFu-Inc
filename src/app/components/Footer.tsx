@@ -1,4 +1,4 @@
-import { ArrowRight, Github, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
+import { Github, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
 import Link from 'next/link';
 
 export function Footer() {
@@ -26,27 +26,7 @@ export function Footer() {
     return (
         <footer className="relative z-10 bg-slate-950 border-t border-slate-800/70 pt-16 pb-8">
             <div className="container mx-auto px-6">
-                <div className="mb-14 rounded-3xl border border-slate-700/70 bg-linear-to-r from-slate-900 via-slate-900 to-cyan-950/40 px-8 py-10 md:px-12 md:py-14">
-                    <div className="mx-auto max-w-3xl text-center">
-                        <p className="mb-3 text-sm font-semibold tracking-wide text-cyan-300 uppercase">
-                            Let&apos;s build something meaningful
-                        </p>
-                        <h2 className="mb-5 text-3xl font-bold text-white md:text-5xl">
-                            Ready to launch your next digital project?
-                        </h2>
-                        <p className="mx-auto mb-8 max-w-2xl text-slate-300 md:text-lg">
-                            From software platforms to AI integrations and media production,
-                            we deliver practical, high-quality work with clear communication.
-                        </p>
-                        <Link
-                            href="/contact"
-                            className="inline-flex items-center gap-2 rounded-full bg-cyan-400 px-7 py-3 text-sm font-bold text-slate-950 transition-colors hover:bg-cyan-300"
-                        >
-                            Start a Project
-                            <ArrowRight className="h-4 w-4" />
-                        </Link>
-                    </div>
-                </div>
+                
 
                 <div className="mb-12 grid grid-cols-1 gap-10 border-b border-slate-800 pb-12 md:grid-cols-2 lg:grid-cols-4">
                     <div>
