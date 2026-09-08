@@ -51,7 +51,7 @@ export function ProductActions({
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950",
                 "disabled:cursor-not-allowed disabled:bg-slate-700 disabled:text-slate-400",
                 compact
-                    ? "min-h-10 w-auto min-w-[124px] rounded-full px-4 py-2.5 text-xs"
+                    ? "min-h-10 w-auto min-w-[112px] max-w-[46vw] shrink-0 rounded-full px-3 py-2.5 text-[11px] sm:min-w-[124px] sm:px-4 sm:text-xs"
                     : "min-h-12 w-full rounded-full px-6 py-4 text-sm",
                 added
                     ? "bg-emerald-400 text-slate-950"
@@ -64,7 +64,7 @@ export function ProductActions({
                 <span className="absolute inset-0 -translate-x-full bg-cyan-300 transition-transform duration-500 ease-out group-hover:translate-x-0" />
             )}
 
-            <span className="relative z-10 inline-flex items-center justify-center gap-2">
+            <span className="relative z-10 inline-flex min-w-0 max-w-full items-center justify-center gap-1.5 whitespace-nowrap sm:gap-2">
                 {disabled ? (
                     "Unavailable"
                 ) : added ? (

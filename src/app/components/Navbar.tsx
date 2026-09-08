@@ -48,7 +48,7 @@ export function Navbar() {
                 {/* Logo */}
                 <Link
                     href="/"
-                    className="group flex items-center gap-2 text-2xl font-bold tracking-tighter text-white transition-opacity duration-200 hover:opacity-90"
+                    className="group flex items-center gap-1.5 text-lg font-bold tracking-tighter text-white transition-opacity duration-200 hover:opacity-90 sm:gap-2 sm:text-2xl"
                 >
                     <span>CHEFU</span>
                     <span className="text-cyan-400 transition-colors duration-200 group-hover:text-cyan-300">

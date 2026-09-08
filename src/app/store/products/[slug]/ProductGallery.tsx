@@ -31,7 +31,7 @@ export function ProductGallery({
     return (
         <div className="min-w-0 lg:sticky lg:top-28 lg:w-full lg:max-w-[440px] lg:self-start">
             {/* Main media */}
-            <div className="relative mx-auto aspect-square max-h-[min(36vw,360px)] overflow-hidden rounded-xl border border-slate-800 bg-slate-900/70 shadow-sm">
+            <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-lg sm:aspect-square sm:max-h-[min(36vw,360px)] sm:rounded-xl sm:border sm:border-slate-800 sm:bg-slate-900/70 sm:shadow-sm">
                 {activeImage ? (
                     <Image
                         key={activeImage.url}
@@ -40,7 +40,7 @@ export function ProductGallery({
                         fill
                         priority={activeIndex === 0}
                         sizes="(max-width: 1023px) 100vw, 440px"
-                        className="object-contain p-10 sm:p-14"
+                        className="object-contain p-0 sm:p-10"
                     />
                 ) : (
                     <div className="flex h-full items-center justify-center">
