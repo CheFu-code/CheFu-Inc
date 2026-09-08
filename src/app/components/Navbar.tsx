@@ -7,6 +7,7 @@ import {
     Home,
     Info,
     Menu,
+    ShoppingCart,
     X,
     type LucideIcon,
 } from "lucide-react";
@@ -14,6 +15,7 @@ import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import { accountAppUrl } from "../../lib/account-app";
+import { useCart } from "../../lib/cart";
 import { navLinks, useNavbar } from "./useNavbar";
 
 const navIcons: Record<string, LucideIcon> = {
@@ -34,6 +36,7 @@ export function Navbar() {
         router,
         setIsMobileMenuOpen,
     } = useNavbar();
+    const { count } = useCart();
 
     return (
         <nav
@@ -108,6 +111,19 @@ export function Navbar() {
                         />
                     ) : null}
 
+                    <Link
+                        href="/store/cart"
+                        aria-label={`Shopping cart${count > 0 ? `, ${count} ${count === 1 ? "item" : "items"}` : ", empty"}`}
+                        className="relative flex h-10 w-10 items-center justify-center rounded-full border border-slate-800/80 bg-slate-950/30 text-slate-300 backdrop-blur-sm transition-all duration-200 hover:border-cyan-400/50 hover:bg-slate-900 hover:text-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50"
+                    >
+                        <ShoppingCart className="h-4 w-4" />
+                        {count > 0 && (
+                            <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-cyan-400 px-1 text-[10px] font-bold text-slate-950">
+                                {count > 99 ? "99+" : count}
+                            </span>
+                        )}
+                    </Link>
+
                     {/* CTA */}
                     <button
                         onClick={() => router.push("/contact")}
@@ -126,55 +142,69 @@ export function Navbar() {
                     </button>
                 </div>
 
-                {/* Mobile Toggle */}
-                <button
-                    type="button"
-                    aria-label={
-                        isMobileMenuOpen ? "Close menu" : "Open menu"
-                    }
-                    aria-expanded={isMobileMenuOpen}
-                    onClick={() =>
-                        setIsMobileMenuOpen(!isMobileMenuOpen)
-                    }
-                    className={clsx(
-                        "flex h-10 w-10 items-center justify-center rounded-full",
-                        "border border-slate-800/80 bg-slate-950/50",
-                        "text-white backdrop-blur-sm",
-                        "transition-all duration-200",
-                        "hover:border-slate-700 hover:bg-slate-900",
-                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50",
-                        "md:hidden",
-                    )}
-                >
-                    <AnimatePresence mode="wait" initial={false}>
-                        <motion.span
-                            key={isMobileMenuOpen ? "close" : "menu"}
-                            initial={{
-                                opacity: 0,
-                                rotate: -45,
-                                scale: 0.8,
-                            }}
-                            animate={{
-                                opacity: 1,
-                                rotate: 0,
-                                scale: 1,
-                            }}
-                            exit={{
-                                opacity: 0,
-                                rotate: 45,
-                                scale: 0.8,
-                            }}
-                            transition={{ duration: 0.15 }}
-                            className="flex"
-                        >
-                            {isMobileMenuOpen ? (
-                                <X className="h-5 w-5" />
-                            ) : (
-                                <Menu className="h-5 w-5" />
-                            )}
-                        </motion.span>
-                    </AnimatePresence>
-                </button>
+                {/* Mobile actions */}
+                <div className="flex items-center gap-2 md:hidden">
+                    <Link
+                        href="/store/cart"
+                        aria-label={`Shopping cart${count > 0 ? `, ${count} ${count === 1 ? "item" : "items"}` : ", empty"}`}
+                        className="relative flex h-10 w-10 items-center justify-center rounded-full border border-slate-800/80 bg-slate-950/50 text-white backdrop-blur-sm transition-all duration-200 hover:border-cyan-400/50 hover:bg-slate-900 hover:text-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50"
+                    >
+                        <ShoppingCart className="h-5 w-5" />
+                        {count > 0 && (
+                            <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-cyan-400 px-1 text-[10px] font-bold text-slate-950">
+                                {count > 99 ? "99+" : count}
+                            </span>
+                        )}
+                    </Link>
+
+                    <button
+                        type="button"
+                        aria-label={
+                            isMobileMenuOpen ? "Close menu" : "Open menu"
+                        }
+                        aria-expanded={isMobileMenuOpen}
+                        onClick={() =>
+                            setIsMobileMenuOpen(!isMobileMenuOpen)
+                        }
+                        className={clsx(
+                            "flex h-10 w-10 items-center justify-center rounded-full",
+                            "border border-slate-800/80 bg-slate-950/50",
+                            "text-white backdrop-blur-sm",
+                            "transition-all duration-200",
+                            "hover:border-slate-700 hover:bg-slate-900",
+                            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50",
+                        )}
+                    >
+                        <AnimatePresence mode="wait" initial={false}>
+                            <motion.span
+                                key={isMobileMenuOpen ? "close" : "menu"}
+                                initial={{
+                                    opacity: 0,
+                                    rotate: -45,
+                                    scale: 0.8,
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    rotate: 0,
+                                    scale: 1,
+                                }}
+                                exit={{
+                                    opacity: 0,
+                                    rotate: 45,
+                                    scale: 0.8,
+                                }}
+                                transition={{ duration: 0.15 }}
+                                className="flex"
+                            >
+                                {isMobileMenuOpen ? (
+                                    <X className="h-5 w-5" />
+                                ) : (
+                                    <Menu className="h-5 w-5" />
+                                )}
+                            </motion.span>
+                        </AnimatePresence>
+                    </button>
+                </div>
             </div>
 
             {/* Mobile Menu */}

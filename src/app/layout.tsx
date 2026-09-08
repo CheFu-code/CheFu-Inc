@@ -53,10 +53,12 @@ export default function RootLayout({
             <body className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500/30 selection:text-cyan-100">
                 <AppProviders />
                 <WebMCPProvider />
-                <SiteChrome>
-                    <CartProvider>{children}</CartProvider>
-                    <Analytics />
-                </SiteChrome>
+                <CartProvider>
+                    <SiteChrome>
+                        {children}
+                        <Analytics />
+                    </SiteChrome>
+                </CartProvider>
             </body>
         </html>
     );

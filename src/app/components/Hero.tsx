@@ -163,7 +163,7 @@ export function Hero() {
                             delay: 0.1,
                             ease,
                         }}
-                        className="mb-7 inline-flex items-center gap-2 rounded-full border border-slate-700/80 bg-slate-800/40 px-4 py-2 shadow-[0_8px_30px_rgba(0,0,0,0.15)] backdrop-blur-md"
+                        className="mb-7 hidden items-center gap-2 rounded-full border border-slate-700/80 bg-slate-800/40 px-4 py-2 shadow-[0_8px_30px_rgba(0,0,0,0.15)] backdrop-blur-md md:inline-flex"
                     >
                         <motion.span
                             animate={{
@@ -197,15 +197,25 @@ export function Hero() {
                         initial={{
                             opacity: 0,
                             y: 45,
+                            rotateX: 58,
+                            rotateY: -8,
+                            z: -120,
                         }}
                         animate={{
                             opacity: 1,
                             y: 0,
+                            rotateX: 0,
+                            rotateY: 0,
+                            z: 0,
                         }}
                         transition={{
                             duration: 1,
                             delay: 0.2,
                             ease,
+                        }}
+                        style={{
+                            perspective: 1200,
+                            transformStyle: "preserve-3d",
                         }}
                         className="mx-auto max-w-6xl text-5xl font-bold leading-[0.95] tracking-[-0.045em] text-white sm:text-6xl md:text-7xl lg:text-8xl"
                     >
@@ -217,11 +227,17 @@ export function Hero() {
                                 opacity: 0,
                                 filter:
                                     "blur(12px)",
+                                rotateX: -42,
+                                rotateY: 7,
+                                z: -80,
                             }}
                             animate={{
                                 opacity: 1,
                                 filter:
                                     "blur(0px)",
+                                rotateX: 0,
+                                rotateY: 0,
+                                z: 0,
                             }}
                             transition={{
                                 duration: 1,
@@ -240,15 +256,23 @@ export function Hero() {
                         initial={{
                             opacity: 0,
                             y: 25,
+                            rotateX: 28,
+                            z: -55,
                         }}
                         animate={{
                             opacity: 1,
                             y: 0,
+                            rotateX: 0,
+                            z: 0,
                         }}
                         transition={{
                             duration: 0.8,
                             delay: 0.65,
                             ease,
+                        }}
+                        style={{
+                            perspective: 900,
+                            transformStyle: "preserve-3d",
                         }}
                         className="mx-auto mt-7 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg md:text-xl"
                     >
