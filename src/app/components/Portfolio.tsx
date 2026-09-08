@@ -44,7 +44,7 @@ const projects = [
 
 export function Portfolio() {
   return (
-    <section className="py-24 bg-slate-900">
+    <section className="py-24 bg-slate-900/90">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16">
           <div className="max-w-2xl">

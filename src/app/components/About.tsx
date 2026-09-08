@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 export function About() {
   return (
-    <section className="py-24 bg-slate-900 overflow-hidden">
+    <section className="py-24 bg-slate-900/90 overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           

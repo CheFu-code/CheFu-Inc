@@ -36,7 +36,7 @@ export function TechStack() {
     const marqueeItems = [...techs, ...techs];
 
     return (
-        <section className="relative overflow-hidden border-t border-slate-900 bg-slate-950 py-20">
+        <section className="relative overflow-hidden border-t border-slate-900 bg-slate-950/88 py-20">
             <div className="container mx-auto px-6">
                 {/* Header */}
                 <div className="mb-12 text-center">

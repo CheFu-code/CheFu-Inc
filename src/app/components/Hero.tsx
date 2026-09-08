@@ -14,8 +14,6 @@ import {
 import Link from "next/link";
 import { useRef } from "react";
 
-import { AudioScene } from "./hero/AudioScene";
-
 const ease = [
     0.22,
     1,
@@ -67,30 +65,11 @@ export function Hero() {
             [0.7, 0.45, 0]
         );
 
-    /*
-     * We pass the scroll value to React Three Fiber.
-     *
-     * MotionValue changes are read here without
-     * introducing another animation system.
-     */
-    const scrollProgress =
-        scrollYProgress.get();
-
     return (
         <section
             ref={heroRef}
             className="relative min-h-screen overflow-hidden bg-slate-950 pt-20"
         >
-            {/* =====================================================
-                3D AUDIO WORLD
-            ====================================================== */}
-
-            <AudioScene
-                scrollProgress={
-                    scrollProgress
-                }
-            />
-
             {/* =====================================================
                 ATMOSPHERE
             ====================================================== */}

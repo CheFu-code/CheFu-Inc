@@ -1,16 +1,21 @@
 "use client";
 
 import { Line } from "@react-three/drei";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
+import type { MotionValue } from "motion/react";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
 type AudioSceneProps = {
-    scrollProgress?: number;
+    scrollProgress: MotionValue<number>;
+    reducedMotion: boolean;
+    mobile: boolean;
 };
 
 type WaveProps = {
-    scrollProgress: number;
+    scrollProgress: MotionValue<number>;
+    reducedMotion: boolean;
+    mobile: boolean;
 };
 
 function seededRandom(seed: number) {
@@ -18,7 +23,113 @@ function seededRandom(seed: number) {
     return value - Math.floor(value);
 }
 
-function AudioWave({ scrollProgress }: WaveProps) {
+function NetworkField({
+    scrollProgress,
+    reducedMotion,
+}: WaveProps) {
+    const groupRef = useRef<THREE.Group>(null);
+
+    const network = useMemo(() => {
+        const nodeCount = 18;
+        const nodes = Array.from(
+            { length: nodeCount },
+            (_, index) =>
+                new THREE.Vector3(
+                    (seededRandom(index * 3) - 0.5) * 8,
+                    (seededRandom(index * 3 + 1) - 0.5) * 4.5,
+                    (seededRandom(index * 3 + 2) - 0.5) * 3,
+                ),
+        );
+
+        const edges = nodes.flatMap((node, index) => [
+            [node, nodes[(index + 1) % nodeCount]],
+            [node, nodes[(index + 5) % nodeCount]],
+        ]);
+
+        return { nodes, edges };
+    }, []);
+
+    useFrame(({ clock }) => {
+        if (!groupRef.current) return;
+
+        const progress = reducedMotion
+            ? 0.35
+            : scrollProgress.get();
+        const networkProgress = THREE.MathUtils.clamp(
+            (progress - 0.12) / 0.42,
+            0,
+            1,
+        );
+        const easedProgress = THREE.MathUtils.smoothstep(
+            networkProgress,
+            0,
+            1,
+        );
+
+        groupRef.current.scale.setScalar(
+            THREE.MathUtils.lerp(0.04, 1, easedProgress),
+        );
+        groupRef.current.position.z = THREE.MathUtils.lerp(
+            1.5,
+            -0.7,
+            easedProgress,
+        );
+
+        if (!reducedMotion) {
+            groupRef.current.rotation.y =
+                Math.sin(clock.elapsedTime * 0.16) * 0.08;
+            groupRef.current.rotation.x =
+                Math.sin(clock.elapsedTime * 0.11) * 0.04;
+        }
+    });
+
+    return (
+        <group ref={groupRef}>
+            {network.edges.map(([start, end], index) => (
+                <Line
+                    key={index}
+                    points={[start, end]}
+                    color={index % 3 === 0 ? "#67e8f9" : "#6366f1"}
+                    transparent
+                    opacity={0.16}
+                    lineWidth={0.7}
+                    depthWrite={false}
+                />
+            ))}
+
+            <points>
+                <bufferGeometry>
+                    <bufferAttribute
+                        attach="attributes-position"
+                        args={[
+                            new Float32Array(
+                                network.nodes.flatMap((node) => [
+                                    node.x,
+                                    node.y,
+                                    node.z,
+                                ]),
+                            ),
+                            3,
+                        ]}
+                    />
+                </bufferGeometry>
+                <pointsMaterial
+                    color="#a5f3fc"
+                    size={0.045}
+                    transparent
+                    opacity={0.7}
+                    depthWrite={false}
+                />
+            </points>
+        </group>
+    );
+}
+
+function AudioWave({
+    scrollProgress,
+    reducedMotion,
+    mobile,
+}: WaveProps) {
     const groupRef = useRef<THREE.Group>(null);
 
     const {
@@ -73,7 +184,7 @@ function AudioWave({ scrollProgress }: WaveProps) {
             return points;
         });
 
-        const particleCount = 900;
+        const particleCount = mobile ? 420 : 900;
 
         const particles = new Float32Array(
             particleCount * 3
@@ -123,7 +234,7 @@ function AudioWave({ scrollProgress }: WaveProps) {
             particles,
             particleColors,
         };
-    }, []);
+    }, [mobile]);
 
     useFrame((state) => {
         if (!groupRef.current) return;
@@ -135,10 +246,14 @@ function AudioWave({ scrollProgress }: WaveProps) {
 
         const time = state.clock.elapsedTime;
 
+        const progress = reducedMotion
+            ? 0
+            : scrollProgress.get();
+
         groupRef.current.rotation.y =
             THREE.MathUtils.lerp(
                 groupRef.current.rotation.y,
-                scrollProgress * 0.65 +
+                progress * 0.65 +
                     Math.sin(time * 0.25) * 0.04,
                 0.045
             );
@@ -146,27 +261,32 @@ function AudioWave({ scrollProgress }: WaveProps) {
         groupRef.current.rotation.x =
             THREE.MathUtils.lerp(
                 groupRef.current.rotation.x,
-                scrollProgress * 0.45,
+                progress * 0.45,
                 0.045
             );
 
         groupRef.current.position.z =
             THREE.MathUtils.lerp(
                 groupRef.current.position.z,
-                scrollProgress * -3.2,
+                progress * -3.2,
                 0.045
             );
 
         groupRef.current.position.y =
             THREE.MathUtils.lerp(
                 groupRef.current.position.y,
-                scrollProgress * 1.1,
+                progress * 1.1,
                 0.045
             );
     });
 
     return (
         <group ref={groupRef}>
+            <NetworkField
+                scrollProgress={scrollProgress}
+                reducedMotion={reducedMotion}
+                mobile={mobile}
+            />
             {/* =============================================
                 MAIN AUDIO WAVES
             ============================================== */}
@@ -258,8 +378,10 @@ function AudioWave({ scrollProgress }: WaveProps) {
 
 function CameraRig({
     scrollProgress,
+    reducedMotion,
 }: {
-    scrollProgress: number;
+    scrollProgress: MotionValue<number>;
+    reducedMotion: boolean;
 }) {
     useFrame(({ camera }) => {
         /*
@@ -267,22 +389,26 @@ function CameraRig({
          * the audio field as the user scrolls.
          */
 
+        const progress = reducedMotion
+            ? 0
+            : scrollProgress.get();
+
         const targetZ = THREE.MathUtils.lerp(
             7,
             3.2,
-            scrollProgress
+            progress
         );
 
         const targetX = THREE.MathUtils.lerp(
             0,
             -1.1,
-            scrollProgress
+            progress
         );
 
         const targetY = THREE.MathUtils.lerp(
             0,
             0.5,
-            scrollProgress
+            progress
         );
 
         camera.position.x = THREE.MathUtils.lerp(
@@ -305,7 +431,7 @@ function CameraRig({
 
         camera.lookAt(
             0,
-            scrollProgress * 0.4,
+            progress * 0.4,
             0
         );
     });
@@ -315,15 +441,20 @@ function CameraRig({
 
 function Scene({
     scrollProgress,
+    reducedMotion,
+    mobile,
 }: AudioSceneProps) {
     return (
         <>
             <CameraRig
-                scrollProgress={scrollProgress ?? 0}
+                scrollProgress={scrollProgress}
+                reducedMotion={reducedMotion}
             />
 
             <AudioWave
-                scrollProgress={scrollProgress ?? 0}
+                scrollProgress={scrollProgress}
+                reducedMotion={reducedMotion}
+                mobile={mobile}
             />
 
             <ambientLight intensity={0.08} />
@@ -332,35 +463,15 @@ function Scene({
 }
 
 export function AudioScene({
-    scrollProgress = 0,
+    scrollProgress,
+    reducedMotion,
+    mobile,
 }: AudioSceneProps) {
     return (
-        <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0"
-        >
-            <Canvas
-                camera={{
-                    position: [0, 0, 7],
-                    fov: 45,
-                    near: 0.1,
-                    far: 100,
-                }}
-                dpr={[1, 1.75]}
-                gl={{
-                    antialias: true,
-                    alpha: true,
-                    powerPreference:
-                        "high-performance",
-                }}
-                fallback={null}
-            >
-                <Scene
-                    scrollProgress={
-                        scrollProgress
-                    }
-                />
-            </Canvas>
-        </div>
+        <Scene
+            scrollProgress={scrollProgress}
+            reducedMotion={reducedMotion}
+            mobile={mobile}
+        />
     );
 }

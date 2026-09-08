@@ -17,7 +17,7 @@ export function StorePreview({ products }: { products: Product[] }) {
         useStorePreview(products);
 
     return (
-        <section className="relative overflow-hidden bg-slate-900 py-20 md:py-24">
+        <section className="relative overflow-hidden bg-slate-900/90 py-20 md:py-24">
             {/* Ambient background */}
             <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-500/5 blur-[120px]" />
 
