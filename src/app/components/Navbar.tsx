@@ -33,7 +33,6 @@ export function Navbar() {
         isMobileMenuOpen,
         isScrolled,
         pathname,
-        router,
         setIsMobileMenuOpen,
     } = useNavbar();
     const { count } = useCart();
@@ -124,22 +123,7 @@ export function Navbar() {
                         )}
                     </Link>
 
-                    {/* CTA */}
-                    <button
-                        onClick={() => router.push("/contact")}
-                        className={clsx(
-                            "cursor-pointer rounded-full px-5 py-2.5",
-                            "bg-white text-sm font-semibold text-slate-950",
-                            "border border-white/10",
-                            "transition-all duration-300",
-                            "hover:-translate-y-0.5 hover:bg-cyan-400",
-                            "hover:shadow-[0_10px_35px_rgb(34,211,238,0.12)]",
-                            "active:translate-y-0",
-                            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50",
-                        )}
-                    >
-                        Start a Project
-                    </button>
+                    
                 </div>
 
                 {/* Mobile actions */}
@@ -290,23 +274,6 @@ export function Navbar() {
                                     FAQ
                                 </Link>
                             </div>
-
-                            <Link
-                                href="/contact"
-                                onClick={() =>
-                                    setIsMobileMenuOpen(false)
-                                }
-                                className={clsx(
-                                    "mt-3 flex w-full items-center justify-center rounded-xl py-3.5",
-                                    "border border-white/10 bg-white",
-                                    "text-sm font-bold text-slate-950",
-                                    "transition-all duration-300",
-                                    "hover:bg-cyan-400",
-                                    "hover:shadow-[0_10px_35px_rgb(34,211,238,0.12)]",
-                                )}
-                            >
-                                Start a Project
-                            </Link>
 
                             {accountUser ? (
                                 <div className="mt-3 border-t border-slate-800/70 pt-3">

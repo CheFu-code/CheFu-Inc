@@ -188,17 +188,7 @@ export function StorePreview({ products }: { products: Product[] }) {
                                                 )}
                                             </div>
 
-                                            <div className="mt-3 flex items-center justify-between border-t border-slate-800/80 pt-3 sm:mt-4 sm:pt-4">
-                                                <span className="text-[9px] text-slate-600 sm:text-xs sm:text-slate-500">
-                                                    {isOutOfStock
-                                                        ? "Unavailable"
-                                                        : "View product"}
-                                                </span>
-
-                                                <span className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-800 text-slate-500 transition-all duration-300 group-hover:border-cyan-400/50 group-hover:bg-cyan-400/10 group-hover:text-cyan-300 sm:h-8 sm:w-8">
-                                                    <ArrowUpRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 sm:h-3.5 sm:w-3.5" />
-                                                </span>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </Link>
