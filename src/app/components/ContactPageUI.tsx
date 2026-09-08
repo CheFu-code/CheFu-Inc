@@ -34,8 +34,7 @@ export const ContactPageUI = ({
                         Start a Project
                     </h1>
                     <p className="text-xl text-slate-400">
-                        Ready to bring your vision to life? Fill out the form below and
-                        let's discuss how we can help.
+                        Tell us what you are building, improving, or securing. We will use your brief to understand the problem, identify the right CHEFU capability, and follow up about a practical next step.
                     </p>
                 </div>
 
@@ -66,8 +65,8 @@ export const ContactPageUI = ({
                                         <h3 className="font-semibold text-white">Call Us</h3>
                                         <p className="text-slate-400">+27 60 603 1205</p>
                                         <p className="text-slate-500 text-sm">
-                                            Mon-Fri, 9am - 6pm PST
-                                        </p>
+                                                    Johannesburg, South Africa · Remote-first
+                                                </p>
                                     </div>
                                 </div>
                             </div>
@@ -78,8 +77,7 @@ export const ContactPageUI = ({
                                 Not sure what you need?
                             </h3>
                             <p className="text-slate-400 mb-4">
-                                Schedule a free 30-minute consultation call with one of our
-                                specialists.
+                                Prefer a conversation first? Book a consultation and include the product, software, AI, or audio problem you want to discuss.
                             </p>
                             <a
                                 href={consultationUrl}
@@ -166,6 +164,7 @@ export const ContactPageUI = ({
                                         className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors appearance-none"
                                     >
                                         <option value="">Select a type...</option>
+                                        <option value="Digital Product">Digital Product</option>
                                         <option value="Audio Production">Audio Production</option>
                                         <option value="AI Solution">AI Solution</option>
                                         <option value="Software Development">

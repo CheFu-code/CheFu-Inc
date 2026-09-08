@@ -4,19 +4,19 @@ import React from 'react';
 import { motion } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Music, Brain, Code, ArrowRight, Mic2, Layers, Smartphone, Server, Radio, ArrowUpRight } from 'lucide-react';
+import { Music, Brain, Code, ArrowRight, Mic2, Layers, Smartphone, Server, Radio, ArrowUpRight, Workflow, Database } from 'lucide-react';
 
 const serviceDetails = [
   {
-    id: 'music',
-    title: 'Audio & Music Production',
-    link: '/services/music',
-    icon: Music,
-    description: 'Sonic branding and professional audio engineering for artists and businesses.',
+    id: 'software',
+    title: 'Software Development',
+    link: '/services/software',
+    icon: Code,
+    description: 'Scalable web, mobile, backend, and cloud applications engineered around the way your organization works.',
     items: [
-      { title: 'Beat Production', desc: 'Custom instrumentals tailored to your genre and style.', icon: Layers },
-      { title: 'Mixing & Mastering', desc: 'Industry-standard polishing to make your tracks radio-ready.', icon: Mic2 },
-      { title: 'Sound Design', desc: 'Creating unique soundscapes for games, films, and apps.', icon: Radio },
+      { title: 'Digital Products', desc: 'Turn a product idea into a usable, maintainable application.', icon: Layers },
+      { title: 'Web and Mobile Applications', desc: 'Build reliable experiences for customers, teams, and communities.', icon: Smartphone },
+      { title: 'Cloud Systems', desc: 'Connect services, data, and infrastructure into a production-ready system.', icon: Server },
     ]
   },
   {
@@ -24,47 +24,26 @@ const serviceDetails = [
     title: 'Artificial Intelligence',
     link: '/services/ai',
     icon: Brain,
-    description: 'Harnessing the power of neural networks to solve complex problems.',
+    description: 'Practical AI systems that help organizations automate work, interpret information, and build better products.',
     items: [
-      { title: 'Predictive Analytics', desc: 'Forecasting trends using historical data and ML models.', icon: Server },
-      { title: 'NLP Solutions', desc: 'Chatbots and voice assistants that understand human context.', icon: Smartphone },
-      { title: 'Computer Vision', desc: 'Image recognition systems for security and automation.', icon: Layers },
+      { title: 'AI Applications', desc: 'Create useful AI features and products around real user needs.', icon: Brain },
+      { title: 'Automation and Agents', desc: 'Connect models, tools, and workflows to reduce repetitive work.', icon: Workflow },
+      { title: 'Data and Machine Learning', desc: 'Use data-informed systems where prediction or classification adds value.', icon: Database },
     ]
   },
   {
-    id: 'software',
-    title: 'Software Development',
-    link: '/services/software',
-    icon: Code,
-    description: 'Full-cycle development from concept to deployment.',
+    id: 'music',
+    title: 'Audio & Music Production',
+    link: '/services/music',
+    icon: Music,
+    description: 'A specialized creative technology capability for artists, brands, games, apps, and digital media.',
     items: [
-      { title: 'Web Applications', desc: 'Responsive, scalable React and Next.js applications.', icon: GlobeIcon },
-      { title: 'Mobile Apps', desc: 'Native and cross-platform mobile experiences.', icon: Smartphone },
-      { title: 'Cloud Systems', desc: 'Robust backend architectures on AWS and Azure.', icon: Server },
+      { title: 'Beat Production', desc: 'Custom instrumentals tailored to your genre and style.', icon: Layers },
+      { title: 'Mixing & Mastering', desc: 'Industry-standard polishing to make your tracks radio-ready.', icon: Mic2 },
+      { title: 'Sound Design', desc: 'Creating unique soundscapes for games, films, and apps.', icon: Radio },
     ]
   }
 ];
-
-function GlobeIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-      <path d="M2 12h20" />
-    </svg>
-  );
-}
 
 
 export function ServicesPage() {
@@ -74,7 +53,7 @@ export function ServicesPage() {
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Our Services</h1>
           <p className="text-xl text-slate-400">
-            Comprehensive solutions designed to elevate your brand and streamline your operations.
+            Product engineering and specialist capabilities for organizations building useful digital systems.
           </p>
         </div>
 

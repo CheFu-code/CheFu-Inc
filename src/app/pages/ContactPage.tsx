@@ -35,6 +35,8 @@ export function ContactPage() {
                 setValue("projectType", "Software Development");
             } else if (service.includes("AI")) {
                 setValue("projectType", "AI Solution");
+            } else if (service.includes("Digital Product")) {
+                setValue("projectType", "Digital Product");
             } else {
                 setValue("projectType", "Other");
             }

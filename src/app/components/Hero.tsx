@@ -276,12 +276,7 @@ export function Hero() {
                         }}
                         className="mx-auto mt-7 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg md:text-xl"
                     >
-                        We blend high-fidelity
-                        audio production with
-                        cutting-edge AI and
-                        software development to
-                        create immersive digital
-                        experiences for the future.
+                        CHEFU TECHNOLOGIES is a product and engineering company building software platforms, practical AI systems, and digital products. We also create audio technology and production experiences where sound is part of the product.
                     </motion.p>
 
                     {/* CTAs */}
@@ -307,7 +302,7 @@ export function Hero() {
                             className="group relative flex items-center gap-2 overflow-hidden rounded-full bg-white px-7 py-4 font-bold text-slate-950 shadow-[0_12px_35px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-1 hover:bg-cyan-400 hover:shadow-[0_16px_45px_rgba(34,211,238,0.14)]"
                         >
                             <span className="relative z-10">
-                                Start Your Journey
+                                Work with CHEFU
                             </span>
 
                             <ArrowRight className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
@@ -316,13 +311,13 @@ export function Hero() {
                         </Link>
 
                         <Link
-                            href="/portfolio"
+                            href="/products"
                             className="group flex items-center gap-2 rounded-full border border-slate-700/80 bg-slate-950/20 px-7 py-4 font-medium text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-600 hover:bg-slate-800/70"
                         >
                             <PlayCircle className="h-4 w-4 text-cyan-400 transition-transform duration-300 group-hover:scale-110" />
 
                             <span>
-                                View Our Work
+                                Explore our products
                             </span>
                         </Link>
                     </motion.div>

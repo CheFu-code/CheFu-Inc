@@ -19,21 +19,21 @@ export function About() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                Bridging the Gap Between Art & Algorithms
+                A technology company built around products
               </h2>
               <p className="text-lg text-slate-400 mb-6 leading-relaxed">
-                CHEFU TECHNOLOGIES was founded on the belief that the future belongs to those who can synthesize creativity with technology. We are a team of musicians, engineers, and data scientists working together to push the boundaries of what's possible.
+                CHEFU TECHNOLOGIES (Pty) Ltd is a South African technology company that builds software platforms, practical AI systems, and digital products. Our work combines product thinking with full-stack engineering.
               </p>
               <p className="text-lg text-slate-400 mb-8 leading-relaxed">
-                Whether it's composing a symphony with AI assistance or building a cloud-native platform that scales to millions, we bring the same level of passion and precision to every project.
+                We build our own products and work with organizations that need a capable engineering partner from product definition through production. Music and audio remain a genuine creative technology capability, but software and AI are our core.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  'Forward-Thinking Strategy',
-                  'Cross-Disciplinary Teams',
-                  'Agile Development',
-                  'High-Fidelity Results'
+                  'Product engineering',
+                  'Software and AI systems',
+                  'Concept to production',
+                  'Security-conscious delivery'
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-3">
                     <CheckCircle2 className="w-5 h-5 text-cyan-500 flex-shrink-0" />

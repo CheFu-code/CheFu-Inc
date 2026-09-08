@@ -55,6 +55,7 @@ export function pageMetadata({
 export const routes = [
     "/",
     "/about",
+    "/products",
     "/services",
     "/services/music",
     "/services/software",
@@ -72,4 +73,5 @@ export const routes = [
     "/store",
     "/privacy",
     "/terms",
+    "/security",
 ] as const;

@@ -16,20 +16,20 @@ import {
 } from "lucide-react";
 
 const techs = [
-    { name: "React, Next.js & NestJS", icon: Globe },
-    { name: "TypeScript & Node.js", icon: Code2 },
-    { name: "Python & PyTorch", icon: Brain },
-    { name: "AI & LLM Systems", icon: Brain },
-    { name: "Firebase & Firestore", icon: Database },
-    { name: "PostgreSQL & SQL", icon: Database },
-    { name: "Cloud Infrastructure", icon: Cloud },
-    { name: "Vercel & Serverless", icon: Cloud },
-    { name: "Docker & CI/CD", icon: Workflow },
-    { name: "React Native & Expo", icon: Smartphone },
-    { name: "Electron.js", icon: Laptop },
-    { name: "REST & GraphQL APIs", icon: Server },
-    { name: "Authentication & Passkeys", icon: KeyRound },
-    { name: "Cybersecurity", icon: Lock },
+    { group: "Application", name: "React, Next.js & NestJS", icon: Globe },
+    { group: "Application", name: "React Native & Expo", icon: Smartphone },
+    { group: "Backend", name: "TypeScript & Node.js", icon: Code2 },
+    { group: "Backend", name: "REST & GraphQL APIs", icon: Server },
+    { group: "AI", name: "Python & PyTorch", icon: Brain },
+    { group: "AI", name: "AI & LLM Systems", icon: Brain },
+    { group: "Data", name: "Firebase & Firestore", icon: Database },
+    { group: "Data", name: "PostgreSQL & SQL", icon: Database },
+    { group: "Infrastructure", name: "Cloud Infrastructure", icon: Cloud },
+    { group: "Infrastructure", name: "Vercel & Serverless", icon: Cloud },
+    { group: "Infrastructure", name: "Docker & CI/CD", icon: Workflow },
+    { group: "Security", name: "Authentication & Passkeys", icon: KeyRound },
+    { group: "Security", name: "Cybersecurity", icon: Lock },
+    { group: "Application", name: "Electron.js", icon: Laptop },
 ];
 
 export function TechStack() {
@@ -41,14 +41,12 @@ export function TechStack() {
                 {/* Header */}
                 <div className="mb-12 text-center">
                     <h3 className="mb-4 text-2xl font-bold text-white">
-                        Built on Modern Technology
+                        Technology chosen for the problem
                     </h3>
 
                     <p className="mx-auto max-w-2xl text-slate-400">
                         From intelligent systems and cloud infrastructure to
-                        high-performance applications, we use proven
-                        technologies to build secure, scalable,
-                        production-ready products.
+                        The stack changes with the product. We use proven technologies to build secure, scalable, production-ready systems rather than treating a framework list as a solution.
                     </p>
                 </div>
             </div>
@@ -85,9 +83,14 @@ export function TechStack() {
                                     />
                                 </div>
 
-                                <span className="text-sm font-semibold leading-5 text-slate-300">
-                                    {tech.name}
-                                </span>
+                                <div>
+                                    <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-cyan-300/80">
+                                        {tech.group}
+                                    </span>
+                                    <span className="mt-1 block text-sm font-semibold leading-5 text-slate-300">
+                                        {tech.name}
+                                    </span>
+                                </div>
                             </div>
                         ))}
                     </motion.div>

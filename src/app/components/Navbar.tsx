@@ -6,6 +6,7 @@ import {
     Code2,
     Home,
     Info,
+    Package,
     Menu,
     ShoppingCart,
     X,
@@ -23,6 +24,7 @@ const navIcons: Record<string, LucideIcon> = {
     Home,
     About: Info,
     Services: Code2,
+    Products: Package,
     Careers: BriefcaseBusiness,
     FAQ: CircleHelp,
 };

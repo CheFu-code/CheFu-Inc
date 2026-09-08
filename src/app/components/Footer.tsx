@@ -5,9 +5,11 @@ import Image from 'next/image';
 export function Footer() {
     const companyLinks = [
         { label: "About", to: "/about" },
+        { label: "Products", to: "/products" },
         { label: "Careers", to: "/careers" },
         { label: "Insights", to: "/blog" },
         { label: "FAQ", to: "/faq" },
+        { label: "Security", to: "/security" },
     ];
 
     const serviceLinks = [

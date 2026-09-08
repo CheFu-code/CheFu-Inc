@@ -4,43 +4,7 @@ import { motion } from 'motion/react';
 import { ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-
-const projects = [
-  {
-    id: 1,
-    title: 'CheFu Academy',
-    category: 'Learning Platform',
-    image: '/chefuAcademy.png',
-    href: 'https://academy.chefu.co.za',
-    description: 'A full learning platform for courses, videos, quizzes, flashcards, downloads, and developer SDK access.',
-  },
-  {
-    id: 2,
-    title: 'Flow Mail',
-    category: 'Communication Suite',
-    image: '/flow-dashboard.png',
-    href: 'https://flow.chefu.co.za',
-    description: 'A CheFu mail workspace for sending, receiving, organizing, and managing product communication.',
-  },
-  {
-    id: 3,
-    title: 'Muzalo',
-    category: 'Music Platform',
-    image: '/muzalo-logo.svg',
-    imageFit: 'contain',
-    href: 'https://muzalo.chefu.co.za',
-    description: 'A music experience for discovering, organizing, and interacting with CheFu audio products and releases.',
-  },
-  {
-    id: 4,
-    title: 'Quantum',
-    category: 'AI Assistant',
-    image: '/quantum-logo.svg',
-    imageFit: 'contain',
-    href: 'https://quantum.chefu.co.za',
-    description: 'An intelligent workspace for focused conversations, organized threads, and faster answers when ideas need momentum.',
-  },
-];
+import { companyProducts } from '../products/product-data';
 
 export function Portfolio() {
   return (
@@ -49,24 +13,24 @@ export function Portfolio() {
         <div className="flex flex-col md:flex-row justify-between items-end mb-16">
           <div className="max-w-2xl">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              Selected Works
+              Products built by CHEFU
             </h2>
             <p className="text-slate-400 text-lg">
-              A glimpse into the active products in the CheFu ecosystem.
+              Software, AI, learning, communication, and music products built across the CHEFU ecosystem.
             </p>
           </div>
           <Link
-            href="/portfolio"
+            href="/products"
             className="hidden md:inline-flex items-center text-cyan-400 font-semibold hover:text-cyan-300 transition-colors mt-4 md:mt-0"
           >
-            View all projects <ExternalLink className="w-4 h-4 ml-2" />
+            Explore products <ExternalLink className="w-4 h-4 ml-2" />
           </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
+          {companyProducts.map((project, index) => (
             <motion.a
-              key={project.id}
+              key={project.name}
               href={project.href}
               target="_blank"
               rel="noreferrer"
@@ -78,7 +42,7 @@ export function Portfolio() {
             >
               <Image
                 src={project.image}
-                alt={project.title}
+                alt={`${project.name} product interface`}
                 fill
                 sizes="(min-width: 768px) 50vw, 100vw"
                 className={`transition-transform duration-700 group-hover:scale-105 ${project.imageFit === 'contain'
@@ -95,7 +59,7 @@ export function Portfolio() {
                 <span className="text-xs font-bold uppercase tracking-wider text-cyan-400 mb-2 block">
                   {project.category}
                 </span>
-                <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
+                <h3 className="text-2xl font-bold text-white mb-2">{project.name}</h3>
                 <p className="text-slate-300 line-clamp-2">{project.description}</p>
               </div>
             </motion.a>
@@ -104,10 +68,10 @@ export function Portfolio() {
 
         <div className="mt-12 text-center md:hidden">
           <Link
-            href="/portfolio"
+            href="/products"
             className="inline-flex items-center text-cyan-400 font-semibold hover:text-cyan-300 transition-colors"
           >
-            View all projects <ExternalLink className="w-4 h-4 ml-2" />
+            Explore products <ExternalLink className="w-4 h-4 ml-2" />
           </Link>
         </div>
       </div>
