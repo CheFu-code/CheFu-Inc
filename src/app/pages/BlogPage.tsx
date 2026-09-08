@@ -3,45 +3,8 @@
 import { motion } from 'motion/react';
 import { Calendar, User, ArrowRight, Tag } from 'lucide-react';
 import Image from 'next/image';
-
-const posts = [
-  {
-    id: 1,
-    title: "The Future of AI in Music Mastering",
-    excerpt: "How neural networks are learning to listen like professional audio engineers, and what this means for the industry.",
-    date: "Oct 12, 2025",
-    author: "Sarah Jenkins",
-    category: "AI & Audio",
-    image: "https://images.unsplash.com/photo-1761912149936-8f662fc2a13e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmdXR1cmlzdGljJTIwdGVjaG5vbG9neSUyMGJsb2clMjBoZWFkZXIlMjBkaWdpdGFsJTIwYWJzdHJhY3R8ZW58MXx8fHwxNzcwOTg3NDk0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-  },
-  {
-    id: 2,
-    title: "Optimizing React for Real-Time Audio Visualizers",
-    excerpt: "A deep dive into WebAudio API and Canvas optimization techniques for high-performance browser-based visuals.",
-    date: "Sep 28, 2025",
-    author: "Alex Chen",
-    category: "Development",
-    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=1080"
-  },
-  {
-    id: 3,
-    title: "Why We Switched to Rust for Our Core Audio Engine",
-    excerpt: "Performance benchmarks and safety guarantees that made Rust the obvious choice for our new VST framework.",
-    date: "Sep 15, 2025",
-    author: "Marcus Thorne",
-    category: "Engineering",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1080"
-  },
-  {
-    id: 4,
-    title: "Designing for Voice: UX Patterns for AI Assistants",
-    excerpt: "Voice interfaces are becoming ubiquitous. Here are the key principles for designing natural, human-like conversations.",
-    date: "Aug 30, 2025",
-    author: "Elena Rodriguez",
-    category: "Design",
-    image: "https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&q=80&w=1080"
-  }
-];
+import Link from 'next/link';
+import { posts } from '../blog/blog-posts';
 
 export function BlogPage() {
   return (
@@ -57,7 +20,8 @@ export function BlogPage() {
 
         {/* Featured Post */}
         <div className="mb-16">
-           <motion.div 
+           <Link href={`/blog/${posts[0].slug}`} className="block">
+             <motion.div 
              initial={{ opacity: 0, y: 20 }}
              animate={{ opacity: 1, y: 0 }}
              className="relative rounded-3xl overflow-hidden aspect-[21/9] group cursor-pointer"
@@ -87,14 +51,15 @@ export function BlogPage() {
                     <span className="flex items-center gap-2"><Calendar className="w-4 h-4" /> {posts[0].date}</span>
                  </div>
               </div>
-           </motion.div>
+             </motion.div>
+           </Link>
         </div>
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.slice(1).map((post, index) => (
+            <Link key={post.slug} href={`/blog/${post.slug}`} className="block h-full">
             <motion.div
-              key={post.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
@@ -120,6 +85,7 @@ export function BlogPage() {
                  </div>
               </div>
             </motion.div>
+            </Link>
           ))}
         </div>
         

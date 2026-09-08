@@ -26,8 +26,41 @@ export const metadata: Metadata = {
     }),
     applicationName: siteName,
     icons: {
-        icon: [{ url: "/chefu-inc-logo.svg", type: "image/svg+xml" }],
-        apple: "/apple-touch-icon.png",
+        icon: [{ url: "/chefu-technologies-logo.png", type: "image/png" }],
+        apple: "/chefu-technologies-logo.png",
+    },
+};
+
+const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "CHEFU TECHNOLOGIES (Pty) Ltd",
+    legalName: "CHEFU TECHNOLOGIES (Pty) Ltd",
+    url: siteUrl,
+    logo: new URL("/chefu-technologies-logo.png", siteUrl).toString(),
+    email: "hello@chefu.co.za",
+    address: {
+        "@type": "PostalAddress",
+        addressLocality: "Johannesburg",
+        addressCountry: "ZA",
+    },
+    sameAs: [
+        "https://x.com/CHEFU_TECH",
+        "https://www.linkedin.com/in/chefu-technologies-90b1663b1",
+        "https://github.com/CHEFU-TECHNOLOGIES",
+        "https://www.instagram.com/chefu_technologies",
+    ],
+};
+
+const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteName,
+    url: siteUrl,
+    publisher: {
+        "@type": "Organization",
+        name: "CHEFU TECHNOLOGIES (Pty) Ltd",
+        url: siteUrl,
     },
 };
 
@@ -51,6 +84,12 @@ export default function RootLayout({
                 <meta name="google-adsense-account" content={adsensePublisherId} />
             </head>
             <body className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500/30 selection:text-cyan-100">
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify([organizationJsonLd, websiteJsonLd]).replace(/</g, "\\u003c"),
+                    }}
+                />
                 <AppProviders />
                 <WebMCPProvider />
                 <CartProvider>

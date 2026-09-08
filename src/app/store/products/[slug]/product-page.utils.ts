@@ -78,28 +78,54 @@ export function getProductPageData(product: Product): ProductPageData {
 
     const productSchema = {
         "@context": "https://schema.org",
-        "@type": "Product",
-        name: product.name,
-        description: product.description || product.shortDescription,
-        sku: product.sku,
-        category: product.category,
-        url: productUrl,
-        image: galleryImages.map((image) => getAbsoluteUrl(image.url)),
-        brand: {
-            "@type": "Brand",
-            name: SITE_NAME,
-        },
-        offers: {
-            "@type": "Offer",
-            url: productUrl,
-            priceCurrency: product.currency,
-            price: (product.priceMinor / 100).toFixed(2),
-            availability:
-                product.status === "ACTIVE" && product.inventoryQuantity > 0
-                    ? "https://schema.org/InStock"
-                    : "https://schema.org/OutOfStock",
-            itemCondition: "https://schema.org/NewCondition",
-        },
+        "@graph": [
+            {
+                "@type": "Product",
+                name: product.name,
+                description: product.description || product.shortDescription,
+                sku: product.sku,
+                category: product.category,
+                url: productUrl,
+                image: galleryImages.map((image) => getAbsoluteUrl(image.url)),
+                brand: {
+                    "@type": "Brand",
+                    name: SITE_NAME,
+                },
+                offers: {
+                    "@type": "Offer",
+                    url: productUrl,
+                    priceCurrency: product.currency,
+                    price: (product.priceMinor / 100).toFixed(2),
+                    availability:
+                        product.status === "ACTIVE" && product.inventoryQuantity > 0
+                            ? "https://schema.org/InStock"
+                            : "https://schema.org/OutOfStock",
+                    itemCondition: "https://schema.org/NewCondition",
+                },
+            },
+            {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                    {
+                        "@type": "ListItem",
+                        position: 1,
+                        name: "Store",
+                        item: `${SITE_URL}/store`,
+                    },
+                    {
+                        "@type": "ListItem",
+                        position: 2,
+                        name: product.category,
+                    },
+                    {
+                        "@type": "ListItem",
+                        position: 3,
+                        name: product.name,
+                        item: productUrl,
+                    },
+                ],
+            },
+        ],
     };
 
     return {

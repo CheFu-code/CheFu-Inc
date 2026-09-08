@@ -14,7 +14,7 @@ function useScenePreferences() {
     const [preferences, setPreferences] = useState({
         reducedMotion: false,
         mobile: false,
-        enabled: true,
+        enabled: false,
     });
 
     useEffect(() => {

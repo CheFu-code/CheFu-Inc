@@ -587,7 +587,7 @@ export function TermsOfService() {
                             href="https://chefu.co.za"
                             className="text-cyan-400 hover:underline"
                         >
-                            www.chefu.co.za
+                            chefu.co.za
                         </a>
                     </p>
 

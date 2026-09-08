@@ -1,5 +1,6 @@
 import { Github, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
 import Link from 'next/link';
+import Image from 'next/image';
 
 export function Footer() {
     const companyLinks = [
@@ -32,9 +33,18 @@ export function Footer() {
                     <div>
                         <Link
                             href="/"
+                            aria-label="CHEFU TECHNOLOGIES home"
                             className="mb-5 inline-flex items-center gap-2 text-2xl font-bold tracking-tighter text-white"
                         >
-
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-md bg-white">
+                                <Image
+                                    src="/chefu-technologies-logo.png"
+                                    alt="CHEFU TECHNOLOGIES logo"
+                                    width={36}
+                                    height={36}
+                                    className="h-full w-full object-contain"
+                                />
+                            </span>
                             CHEFU <span className="text-cyan-400">TECHNOLOGIES</span>
                         </Link>
                         <p className="mb-6 leading-relaxed text-slate-400">

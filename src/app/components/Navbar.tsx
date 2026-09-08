@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
+import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import { accountAppUrl } from "../../lib/account-app";
 import { useCart } from "../../lib/cart";
@@ -50,8 +51,18 @@ export function Navbar() {
                 {/* Logo */}
                 <Link
                     href="/"
-                    className="group flex items-center gap-1.5 text-lg font-bold tracking-tighter text-white transition-opacity duration-200 hover:opacity-90 sm:gap-2 sm:text-2xl"
+                    aria-label="CHEFU TECHNOLOGIES home"
+                    className="group flex items-center gap-2 text-lg font-bold tracking-tighter text-white transition-opacity duration-200 hover:opacity-90 sm:gap-2.5 sm:text-2xl"
                 >
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-md bg-white sm:h-9 sm:w-9">
+                        <Image
+                            src="/chefu-technologies-logo.png"
+                            alt="CHEFU TECHNOLOGIES logo"
+                            width={36}
+                            height={36}
+                            className="h-full w-full object-contain"
+                        />
+                    </span>
                     <span>CHEFU</span>
                     <span className="text-cyan-400 transition-colors duration-200 group-hover:text-cyan-300">
                         TECHNOLOGIES

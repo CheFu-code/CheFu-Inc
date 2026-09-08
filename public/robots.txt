@@ -1,5 +1,12 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /account
+Disallow: /login
+Disallow: /register
+Disallow: /logout
+Disallow: /store/cart
+Disallow: /.well-known/
 
 
 Sitemap: https://chefu.co.za/sitemap.xml

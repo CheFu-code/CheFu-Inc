@@ -10,11 +10,22 @@ type PageMetaInput = {
     image?: string;
 };
 
+export const noIndexMetadata: Metadata = {
+    robots: {
+        index: false,
+        follow: false,
+        googleBot: {
+            index: false,
+            follow: false,
+        },
+    },
+};
+
 export function pageMetadata({
     title,
     description,
     path = "/",
-    image = "/android-chrome-512x512.png",
+    image = "/chefu-technologies-logo.png",
 }: PageMetaInput): Metadata {
     const url = new URL(path, siteUrl).toString();
 
@@ -51,11 +62,14 @@ export const routes = [
     "/portfolio",
     "/contact",
     "/docs/api",
-    "/login",
-    "/register",
     "/careers",
     "/blog",
+    "/blog/the-future-of-ai-in-music-mastering",
+    "/blog/optimizing-react-for-real-time-audio-visualizers",
+    "/blog/why-we-switched-to-rust-for-our-core-audio-engine",
+    "/blog/designing-for-voice-ux-patterns-for-ai-assistants",
     "/faq",
+    "/store",
     "/privacy",
     "/terms",
 ] as const;

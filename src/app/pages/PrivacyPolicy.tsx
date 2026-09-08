@@ -42,7 +42,7 @@ export function PrivacyPolicy() {
                             href="https://chefu.co.za"
                             className="text-cyan-400 hover:underline"
                         >
-                            www.chefu.co.za
+                            chefu.co.za
                         </a>{' '}
                         and, where applicable, our applications, platforms, account
                         systems, forms, and other services operated by CHEFU TECHNOLOGIES.
@@ -76,7 +76,7 @@ export function PrivacyPolicy() {
                                 href="https://chefu.co.za"
                                 className="text-cyan-400 hover:underline"
                             >
-                                www.chefu.co.za
+                                chefu.co.za
                             </a>
                         </p>
                     </div>
