@@ -29,9 +29,9 @@ export function ProductGallery({
     const activeImage = images[activeIndex];
 
     return (
-        <div className="min-w-0 lg:sticky lg:top-28 lg:self-start">
+        <div className="min-w-0 lg:sticky lg:top-28 lg:w-full lg:max-w-[440px] lg:self-start">
             {/* Main media */}
-            <div className="relative aspect-square overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 sm:rounded-3xl">
+            <div className="relative mx-auto aspect-square max-h-[min(36vw,360px)] overflow-hidden rounded-xl border border-slate-800 bg-slate-900/70 shadow-sm">
                 {activeImage ? (
                     <Image
                         key={activeImage.url}
@@ -39,39 +39,37 @@ export function ProductGallery({
                         alt={activeImage.alt || productName}
                         fill
                         priority={activeIndex === 0}
-                        sizes="(max-width: 1023px) 100vw, 55vw"
-                        className="object-contain p-5 sm:p-8 md:p-12"
+                        sizes="(max-width: 1023px) 100vw, 440px"
+                        className="object-contain p-10 sm:p-14"
                     />
                 ) : (
                     <div className="flex h-full items-center justify-center">
                         <Package
-                            className="h-20 w-20 text-cyan-400/20 sm:h-28 sm:w-28"
+                            className="h-20 w-20 text-slate-600 sm:h-24 sm:w-24"
                             strokeWidth={1}
                         />
                     </div>
                 )}
 
                 {/* Bottom fade */}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-950/40 to-transparent" />
-
                 {/* Featured */}
                 {featured && (
-                    <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-slate-950/75 px-2.5 py-1.5 text-[9px] font-bold uppercase tracking-wider text-white backdrop-blur-md sm:left-4 sm:top-4 sm:text-[10px]">
-                        <Star className="h-3 w-3 fill-cyan-400 text-cyan-400" />
+                    <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-md border border-slate-700 bg-slate-950/90 px-2.5 py-1.5 text-[9px] font-bold uppercase tracking-wider text-slate-200 shadow-sm sm:left-4 sm:top-4 sm:text-[10px]">
+                        <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
                         Featured
                     </div>
                 )}
 
                 {/* Discount */}
                 {hasDiscount && (
-                    <div className="absolute right-3 top-3 rounded-full border border-cyan-400/20 bg-slate-950/75 px-2.5 py-1.5 text-[9px] font-bold uppercase tracking-wider text-cyan-300 backdrop-blur-md sm:right-4 sm:top-4 sm:text-[10px]">
+                    <div className="absolute right-3 top-3 rounded-md border border-rose-400/20 bg-slate-950/90 px-2.5 py-1.5 text-[9px] font-bold uppercase tracking-wider text-rose-300 shadow-sm sm:right-4 sm:top-4 sm:text-[10px]">
                         Save {discountPercentage}%
                     </div>
                 )}
 
                 {/* Image counter */}
                 {images.length > 1 && (
-                    <div className="absolute bottom-3 right-3 rounded-full border border-white/10 bg-slate-950/70 px-2.5 py-1.5 text-[9px] font-medium text-slate-300 backdrop-blur-md sm:bottom-4 sm:right-4">
+                    <div className="absolute bottom-3 right-3 rounded-md border border-slate-700 bg-slate-950/90 px-2.5 py-1.5 text-[9px] font-medium text-slate-300 shadow-sm sm:bottom-4 sm:right-4">
                         {activeIndex + 1} / {images.length}
                     </div>
                 )}
@@ -94,9 +92,9 @@ export function ProductGallery({
                                     onClick={() =>
                                         setActiveIndex(index)
                                     }
-                                    className={`relative h-16 w-16 shrink-0 overflow-hidden rounded-xl border bg-slate-900 transition-all duration-300 sm:h-20 sm:w-20 ${active
+                                        className={`relative h-14 w-14 shrink-0 overflow-hidden rounded-lg border bg-slate-900 transition-all duration-300 sm:h-16 sm:w-16 ${active
                                             ? "border-cyan-400 ring-1 ring-cyan-400/30"
-                                            : "border-slate-800 opacity-60 hover:border-slate-700 hover:opacity-100"
+                                            : "border-slate-800 opacity-60 hover:border-slate-600 hover:opacity-100"
                                         }`}
                                 >
                                     <Image
