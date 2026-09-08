@@ -30,3 +30,6 @@ dist-ssr
 .env*
 !.env.example
 tsconfig.tsbuildinfo
+
+# TypeScript build info
+*.tsbuildinfo
