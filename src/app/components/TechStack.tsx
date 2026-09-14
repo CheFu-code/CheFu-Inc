@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
     Brain,
     Cloud,
@@ -31,39 +32,65 @@ const techs = [
     { group: "Application", name: "Electron.js", icon: Laptop },
 ];
 
+const marqueeTechs = [...techs, ...techs];
+
 export function TechStack() {
+    const [isPaused, setIsPaused] = useState(false);
+
     return (
         <section className="border-t border-[#e5e1dc] bg-[#f3f0ee] py-24">
             <div className="container mx-auto px-6">
                 <div className="mb-12 max-w-3xl">
-                    
                     <h3 className="text-3xl font-semibold tracking-[-0.05em] text-[#111827] md:text-5xl">
                         Tools selected for the problem, not the trend.
                     </h3>
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-                    {techs.map((tech) => {
-                        const Icon = tech.icon;
+                <div
+                    className="relative overflow-hidden"
+                    onMouseEnter={() => setIsPaused(true)}
+                    onMouseLeave={() => setIsPaused(false)}
+                >
+                    <div
+                        className="flex w-max gap-4 [animation:tech-scroll_28s_linear_infinite]"
+                        style={{ animationPlayState: isPaused ? "paused" : "running" }}
+                    >
+                        {marqueeTechs.map((tech, index) => {
+                            const Icon = tech.icon;
 
-                        return (
-                            <div key={tech.name} className="flex items-center gap-4 rounded-[1.1rem] border border-[#e5e1dc] bg-white p-4">
-                                <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-[#e5e1dc] bg-[#f7f5f3] text-[#1f3c5b]">
-                                    <Icon className="h-5 w-5" strokeWidth={1.8} />
-                                </div>
-                                <div className="min-w-0">
-                                    <div className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#6b7280]">
-                                        {tech.group}
+                            return (
+                                <div
+                                    key={`${tech.name}-${index}`}
+                                    className="flex w-[280px] shrink-0 items-center gap-4 rounded-[1.1rem] border border-[#e5e1dc] bg-white p-4"
+                                >
+                                    <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-[#e5e1dc] bg-[#f7f5f3] text-[#1f3c5b]">
+                                        <Icon className="h-5 w-5" strokeWidth={1.8} />
                                     </div>
-                                    <div className="mt-1 text-sm font-medium text-[#111827]">
-                                        {tech.name}
+                                    <div className="min-w-0">
+                                        <div className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#6b7280]">
+                                            {tech.group}
+                                        </div>
+                                        <div className="mt-1 text-sm font-medium text-[#111827]">
+                                            {tech.name}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
+
+            <style jsx>{`
+                @keyframes tech-scroll {
+                    from {
+                        transform: translateX(0);
+                    }
+                    to {
+                        transform: translateX(-50%);
+                    }
+                }
+            `}</style>
         </section>
     );
 }

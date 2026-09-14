@@ -74,8 +74,8 @@ export function Navbar() {
                                         "transition-colors duration-200 ease-out",
                                         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1f3c5b]/25",
                                         isActive
-                                            ? "bg-[#111827] text-[#f7f5f3]"
-                                            : "text-[#4b5563] hover:bg-[#f3f2ef] hover:text-[#111827]",
+                                            ? "bg-[#1f3c5b] text-[#f7f5f3]"
+                                            : "text-[#374151] hover:bg-[#f3f2ef] hover:text-[#111827]",
                                     )}
                                 >
                                     {Icon && !isActive && (
@@ -223,10 +223,10 @@ export function Navbar() {
                                             className={clsx(
                                                 "flex items-center justify-between rounded-xl px-4 py-3.5",
                                                 "text-base font-medium transition-all duration-200",
-                                                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50",
+                                                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1f3c5b]/25",
                                                 isActive
-                                                    ? "bg-slate-900 text-cyan-400"
-                                                    : "text-slate-300 hover:bg-slate-900/70 hover:text-white",
+                                                    ? "bg-[#1f3c5b] text-[#f7f5f3]"
+                                                    : "text-[#374151] hover:bg-[#eeeae6] hover:text-[#111827]",
                                             )}
                                         >
                                             <span className="flex items-center gap-3">
@@ -253,7 +253,7 @@ export function Navbar() {
                                     onClick={() =>
                                         setIsMobileMenuOpen(false)
                                     }
-                                    className="rounded-xl border border-slate-800/70 px-4 py-3 text-center text-sm font-medium text-slate-400 transition-colors hover:border-slate-700 hover:text-cyan-400"
+                                    className="rounded-xl border border-[#d8d2ce] bg-white px-4 py-3 text-center text-sm font-medium text-[#374151] transition-colors hover:border-[#c9c2bd] hover:text-[#111827]"
                                 >
                                     Careers
                                 </Link>
@@ -263,7 +263,7 @@ export function Navbar() {
                                     onClick={() =>
                                         setIsMobileMenuOpen(false)
                                     }
-                                    className="rounded-xl border border-slate-800/70 px-4 py-3 text-center text-sm font-medium text-slate-400 transition-colors hover:border-slate-700 hover:text-cyan-400"
+                                    className="rounded-xl border border-[#d8d2ce] bg-white px-4 py-3 text-center text-sm font-medium text-[#374151] transition-colors hover:border-[#c9c2bd] hover:text-[#111827]"
                                 >
                                     FAQ
                                 </Link>

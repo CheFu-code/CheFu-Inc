@@ -29,7 +29,7 @@ export function About() {
                             </p>
                         </div>
 
-                        <div className="rounded-[1.5rem] border border-[#e5e1dc] bg-white p-6 shadow-[0_12px_30px_rgba(15,23,42,0.03)]">
+                        <div className="rounded-none border-0 bg-transparent p-0 shadow-none md:rounded-[1.5rem] md:border md:border-[#e5e1dc] md:bg-white md:p-6 md:shadow-[0_12px_30px_rgba(15,23,42,0.03)]">
                             <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-[#6b7280]">
                                 What we do
                             </p>
