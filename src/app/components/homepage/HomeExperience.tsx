@@ -57,10 +57,10 @@ export function HomeExperience({ children }: HomeExperienceProps) {
         useScenePreferences();
 
     return (
-        <div className="relative isolate overflow-clip bg-slate-950">
+        <div className="relative isolate overflow-clip bg-[#f5f5f4]">
             <div
                 aria-hidden="true"
-                className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(circle_at_50%_18%,rgba(34,211,238,0.08),transparent_34%),radial-gradient(circle_at_80%_65%,rgba(139,92,246,0.07),transparent_30%),#020617]"
+                className="pointer-events-none fixed inset-0 z-0 bg-[#f5f5f4]"
             >
                 {enabled && (
                     <Canvas

@@ -13,11 +13,11 @@ export function SiteChrome({ children }: { children: ReactNode }) {
     const isStandaloneRoute = standaloneRoutes.has(pathname);
 
     if (isStandaloneRoute) {
-        return <div className="min-h-screen bg-[#f7f8fb]">{children}</div>;
+        return <div className="min-h-screen bg-[#f5f5f4]">{children}</div>;
     }
 
     return (
-        <div className="flex min-h-screen flex-col bg-slate-950">
+        <div className="flex min-h-screen flex-col bg-[#f5f5f4] text-[#18181b]">
             <Navbar />
             <BackToTopButton />
             <main className="grow">{children}</main>

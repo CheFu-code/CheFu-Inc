@@ -1,16 +1,13 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { CheckCircle2 } from 'lucide-react';
 import Image from 'next/image';
 
 export function About() {
   return (
-    <section className="py-24 bg-slate-900/90 overflow-hidden">
+    <section className="overflow-hidden bg-[#f3f2f0] py-24">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row items-center gap-16">
-          
-          {/* Text Content */}
+        <div className="flex flex-col items-center gap-16 lg:flex-row">
           <div className="lg:w-1/2">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -18,40 +15,39 @@ export function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              <h2 className="mb-6 text-3xl font-bold text-[#111827] md:text-5xl">
                 A technology company built around products
               </h2>
-              <p className="text-lg text-slate-400 mb-6 leading-relaxed">
+              <p className="mb-6 text-lg leading-relaxed text-[#57534e]">
                 CHEFU TECHNOLOGIES (Pty) Ltd is a South African technology company that builds software platforms, practical AI systems, and digital products. Our work combines product thinking with full-stack engineering.
               </p>
-              <p className="text-lg text-slate-400 mb-8 leading-relaxed">
+              <p className="mb-8 text-lg leading-relaxed text-[#57534e]">
                 We build our own products and work with organizations that need a capable engineering partner from product definition through production. Music and audio remain a genuine creative technology capability, but software and AI are our core.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {[
                   'Product engineering',
                   'Software and AI systems',
                   'Concept to production',
                   'Security-conscious delivery'
                 ].map((item) => (
-                  <div key={item} className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-cyan-500 flex-shrink-0" />
-                    <span className="text-slate-200 font-medium">{item}</span>
+                  <div key={item} className="flex items-center gap-3 rounded-xl border border-[#e7e5e4] bg-white p-3 shadow-sm">
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#2563eb]" />
+                    <span className="font-medium text-[#1f2937]">{item}</span>
                   </div>
                 ))}
               </div>
             </motion.div>
           </div>
 
-          {/* Image */}
-          <div className="lg:w-1/2 relative">
+          <div className="relative lg:w-1/2">
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative z-10 rounded-2xl overflow-hidden border border-slate-700 shadow-2xl shadow-cyan-900/20"
+              className="relative z-10 overflow-hidden rounded-2xl border border-[#d6d3d1] bg-white shadow-sm"
             >
               <Image
                 src="https://images.unsplash.com/photo-1758691737182-d42aefd6dee8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmdXR1cmlzdGljJTIwbW9kZXJuJTIwb2ZmaWNlJTIwdGVhbSUyMG1lZXRpbmd8ZW58MXx8fHwxNzcwOTg1NjI0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
@@ -61,12 +57,7 @@ export function About() {
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="h-auto w-full"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-slate-900/60 to-transparent" />
             </motion.div>
-
-            {/* Decorative Elements */}
-            <div className="absolute -top-10 -right-10 w-32 h-32 bg-cyan-500/20 rounded-full blur-3xl" />
-            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-violet-500/20 rounded-full blur-3xl" />
           </div>
         </div>
       </div>

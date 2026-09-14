@@ -8,7 +8,6 @@ import {
 
 import {
     ArrowRight,
-    PlayCircle,
 } from "lucide-react";
 
 import Link from "next/link";
@@ -68,7 +67,7 @@ export function Hero() {
     return (
         <section
             ref={heroRef}
-            className="relative min-h-screen overflow-hidden bg-slate-950 pt-20"
+            className="relative min-h-screen overflow-hidden bg-[#f5f5f4] pt-20"
         >
             {/* =====================================================
                 ATMOSPHERE
@@ -80,7 +79,7 @@ export function Hero() {
                         opacity:
                             backgroundOpacity,
                     }}
-                    className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/35 to-slate-950"
+                    className="absolute inset-0 bg-[#f5f5f4]"
                 />
 
                 <motion.div
@@ -106,7 +105,7 @@ export function Hero() {
                         repeat: Infinity,
                         ease: "easeInOut",
                     }}
-                    className="absolute left-1/2 top-1/3 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/[0.07] blur-[130px]"
+                    className="absolute left-1/2 top-1/3 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#dbeafe] blur-[125px]"
                 />
 
                 <motion.div
@@ -127,7 +126,7 @@ export function Hero() {
                         repeat: Infinity,
                         ease: "easeInOut",
                     }}
-                    className="absolute right-[-10%] top-[20%] h-[420px] w-[420px] rounded-full bg-violet-600/[0.08] blur-[120px]"
+                    className="absolute right-[-10%] top-[20%] h-[360px] w-[360px] rounded-full bg-[#e2e8f0] blur-[120px]"
                 />
             </div>
 
@@ -163,7 +162,7 @@ export function Hero() {
                             delay: 0.1,
                             ease,
                         }}
-                        className="mb-7 hidden items-center gap-2 rounded-full border border-slate-700/80 bg-slate-800/40 px-4 py-2 shadow-[0_8px_30px_rgba(0,0,0,0.15)] backdrop-blur-md md:inline-flex"
+                        className="mb-7 hidden items-center gap-2 rounded-full border border-[#d6d3d1] bg-white/80 px-4 py-2 shadow-sm backdrop-blur-sm md:inline-flex"
                     >
                         <motion.span
                             animate={{
@@ -183,7 +182,7 @@ export function Hero() {
                                 repeat: Infinity,
                                 ease: "easeInOut",
                             }}
-                            className="h-2 w-2 rounded-full bg-cyan-500"
+                            className="h-2 w-2 rounded-full bg-[#2563eb]"
                         />
 
                         <span className="text-xs font-medium uppercase tracking-[0.18em] text-cyan-300">
@@ -217,7 +216,7 @@ export function Hero() {
                             perspective: 1200,
                             transformStyle: "preserve-3d",
                         }}
-                        className="mx-auto max-w-6xl text-5xl font-bold leading-[0.95] tracking-[-0.045em] text-white sm:text-6xl md:text-7xl lg:text-8xl"
+                        className="mx-auto max-w-6xl text-5xl font-bold leading-[0.95] tracking-[-0.045em] text-[#111827] sm:text-6xl md:text-7xl lg:text-8xl"
                     >
                         Engineering Sound.
                         <br />
@@ -244,7 +243,7 @@ export function Hero() {
                                 delay: 0.45,
                                 ease,
                             }}
-                            className="mt-2 inline-block bg-gradient-to-r from-cyan-400 via-cyan-300 to-violet-500 bg-clip-text text-transparent"
+                            className="mt-2 inline-block text-[#2563eb]"
                         >
                             Building Intelligence.
                         </motion.span>
@@ -274,7 +273,7 @@ export function Hero() {
                             perspective: 900,
                             transformStyle: "preserve-3d",
                         }}
-                        className="mx-auto mt-7 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg md:text-xl"
+                        className="mx-auto mt-7 max-w-2xl text-base leading-8 text-[#57534e] sm:text-lg md:text-xl"
                     >
                         CHEFU TECHNOLOGIES is a product and engineering company building software platforms, practical AI systems, and digital products. We also create audio technology and production experiences where sound is part of the product.
                     </motion.p>
@@ -299,23 +298,19 @@ export function Hero() {
                     >
                         <Link
                             href="/contact"
-                            className="group relative flex items-center gap-2 overflow-hidden rounded-full bg-white px-7 py-4 font-bold text-slate-950 shadow-[0_12px_35px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-1 hover:bg-cyan-400 hover:shadow-[0_16px_45px_rgba(34,211,238,0.14)]"
+                            className="group relative flex items-center gap-2 overflow-hidden rounded-full bg-[#111827] px-7 py-4 font-bold text-[#f5f5f4] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#1f2937]"
                         >
                             <span className="relative z-10">
                                 Work with CHEFU
                             </span>
 
-                            <ArrowRight className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
-
-                            <span className="absolute inset-0 -translate-x-full bg-cyan-400 transition-transform duration-500 group-hover:translate-x-0" />
+                            <ArrowRight className="relative z-10 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                         </Link>
 
                         <Link
                             href="/products"
-                            className="group flex items-center gap-2 rounded-full border border-slate-700/80 bg-slate-950/20 px-7 py-4 font-medium text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-600 hover:bg-slate-800/70"
+                            className="group flex items-center gap-2 rounded-full border border-[#d6d3d1] bg-white/70 px-7 py-4 font-medium text-[#111827] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[#a8a29e] hover:bg-white"
                         >
-                            <PlayCircle className="h-4 w-4 text-cyan-400 transition-transform duration-300 group-hover:scale-110" />
-
                             <span>
                                 Explore our products
                             </span>
@@ -335,15 +330,15 @@ export function Hero() {
                             duration: 1,
                             delay: 1.15,
                         }}
-                        className="mx-auto mt-16 flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.2em] text-slate-600"
+                        className="mx-auto mt-16 flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.2em] text-[#78716c]"
                     >
-                        <span className="h-px w-8 bg-slate-800" />
+                        <span className="h-px w-8 bg-[#d6d3d1]" />
 
                         <span>
                             Technology • Audio • Intelligence
                         </span>
 
-                        <span className="h-px w-8 bg-slate-800" />
+                        <span className="h-px w-8 bg-[#d6d3d1]" />
                     </motion.div>
                 </div>
             </motion.div>
@@ -377,12 +372,10 @@ export function Hero() {
                     repeat: Infinity,
                     ease: "easeInOut",
                 }}
-                className="pointer-events-none absolute bottom-[-250px] left-1/2 h-[550px] w-[550px] -translate-x-1/2 rounded-full bg-violet-600/20 blur-[110px]"
+                className="pointer-events-none absolute bottom-[-220px] left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-[#dbeafe] blur-[120px]"
             />
 
-            {/* Bottom fade */}
-
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-950 to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-[#f5f5f4]" />
         </section>
     );
 }

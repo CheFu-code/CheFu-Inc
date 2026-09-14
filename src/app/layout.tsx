@@ -65,7 +65,7 @@ const websiteJsonLd = {
 };
 
 export const viewport: Viewport = {
-    themeColor: "#020617",
+    themeColor: "#111827",
     width: "device-width",
     initialScale: 1,
 };
@@ -83,7 +83,7 @@ export default function RootLayout({
                 />
                 <meta name="google-adsense-account" content={adsensePublisherId} />
             </head>
-            <body className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500/30 selection:text-cyan-100">
+            <body className="min-h-screen bg-[#f5f5f4] text-[#18181b] font-sans selection:bg-[#2563eb]/20 selection:text-[#111827]">
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{

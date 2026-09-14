@@ -27,7 +27,7 @@ export function Footer() {
     ];
 
     return (
-        <footer className="relative z-10 bg-slate-950 border-t border-slate-800/70 pt-16 pb-8">
+        <footer className="relative z-10 border-t border-[#d6d3d1] bg-[#f5f5f4] pt-16 pb-8">
             <div className="container mx-auto px-6">
                 
 
@@ -36,7 +36,7 @@ export function Footer() {
                         <Link
                             href="/"
                             aria-label="CHEFU TECHNOLOGIES home"
-                            className="mb-5 inline-flex items-center gap-2 text-2xl font-bold tracking-tighter text-white"
+                            className="mb-5 inline-flex items-center gap-2 text-2xl font-bold tracking-tighter text-[#111827]"
                         >
                             <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-md bg-white">
                                 <Image
@@ -47,9 +47,9 @@ export function Footer() {
                                     className="h-full w-full object-contain"
                                 />
                             </span>
-                            CHEFU <span className="text-cyan-400">TECHNOLOGIES</span>
+                            CHEFU <span className="text-[#2563eb]">TECHNOLOGIES</span>
                         </Link>
-                        <p className="mb-6 leading-relaxed text-slate-400">
+                        <p className="mb-6 leading-relaxed text-[#57534e]">
                             CHEFU TECHNOLOGIES builds modern digital products and creative technology
                             experiences for ambitious teams.
                         </p>
@@ -63,7 +63,7 @@ export function Footer() {
                                         target="_blank"
                                         rel="noreferrer"
                                         aria-label={item.label}
-                                        className="rounded-full border border-slate-700 bg-slate-900 p-2 text-slate-400 transition-colors hover:border-cyan-500/60 hover:text-cyan-300"
+                                        className="rounded-full border border-[#d6d3d1] bg-white p-2 text-[#57534e] transition-colors hover:border-[#2563eb]/40 hover:text-[#2563eb]"
                                     >
                                         <Icon className="h-4 w-4" />
                                     </a>
@@ -113,16 +113,16 @@ export function Footer() {
                             Contact
                         </h4>
                         <ul className="space-y-4">
-                            <li className="flex items-start gap-3 text-slate-400">
-                                <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-cyan-400" />
+                            <li className="flex items-start gap-3 text-[#57534e]">
+                                <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-[#2563eb]" />
                                 <span>
                                     Johannesburg, South Africa
                                     <br />
                                     Remote-first collaboration
                                 </span>
                             </li>
-                            <li className="flex items-center gap-3 text-slate-400">
-                                <Mail className="h-5 w-5 shrink-0 text-cyan-400" />
+                            <li className="flex items-center gap-3 text-[#57534e]">
+                                <Mail className="h-5 w-5 shrink-0 text-[#2563eb]" />
                                 <a
                                     href="mailto:hello@chefu.co.za"
                                     className="transition-colors hover:text-cyan-300"
@@ -130,8 +130,8 @@ export function Footer() {
                                     hello@chefu.co.za
                                 </a>
                             </li>
-                            <li className="flex items-center gap-3 text-slate-400">
-                                <Phone className="h-5 w-5 shrink-0 text-cyan-400" />
+                            <li className="flex items-center gap-3 text-[#57534e]">
+                                <Phone className="h-5 w-5 shrink-0 text-[#2563eb]" />
                                 <a
                                     href="tel:+27606031205"
                                     className="transition-colors hover:text-cyan-300"
@@ -143,15 +143,15 @@ export function Footer() {
                     </div>
                 </div>
 
-                <div className="flex flex-col items-center justify-between gap-4 text-sm text-slate-500 md:flex-row">
+                <div className="flex flex-col items-center justify-between gap-4 text-sm text-[#57534e] md:flex-row">
                     <p>
                         &copy; {new Date().getFullYear()} CHEFU TECHNOLOGIES (Pty) Ltd. All rights reserved.
                     </p>
                     <div className="flex gap-6 mt-4 md:mt-0">
-                        <Link href="/privacy" className="transition-colors hover:text-slate-200">
+                        <Link href="/privacy" className="transition-colors hover:text-[#111827]">
                             Privacy Policy
                         </Link>
-                        <Link href="/terms" className="transition-colors hover:text-slate-200">
+                        <Link href="/terms" className="transition-colors hover:text-[#111827]">
                             Terms of Service
                         </Link>
                     </div>

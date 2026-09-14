@@ -43,9 +43,9 @@ export function Navbar() {
     return (
         <nav
             className={twMerge(
-                "fixed top-0 left-0 right-0 z-50 border-b border-transparent transition-all duration-500 ease-out",
+                "fixed top-0 left-0 right-0 z-50 border-b border-transparent transition-all duration-300 ease-out",
                 isScrolled || isMobileMenuOpen
-                    ? "bg-slate-950/90 backdrop-blur-xl border-slate-800/80 py-4"
+                    ? "border-[#d6d3d1] bg-[#f5f5f4]/90 py-4 shadow-sm backdrop-blur-md"
                     : "bg-transparent py-6",
             )}
         >
@@ -54,7 +54,7 @@ export function Navbar() {
                 <Link
                     href="/"
                     aria-label="CHEFU TECHNOLOGIES home"
-                    className="group flex items-center gap-2 text-lg font-bold tracking-tighter text-white transition-opacity duration-200 hover:opacity-90 sm:gap-2.5 sm:text-2xl"
+                    className="group flex items-center gap-2 text-lg font-bold tracking-tighter text-[#111827] transition-opacity duration-200 hover:opacity-90 sm:gap-2.5 sm:text-2xl"
                 >
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-md bg-white sm:h-9 sm:w-9">
                         <Image
@@ -66,14 +66,14 @@ export function Navbar() {
                         />
                     </span>
                     <span>CHEFU</span>
-                    <span className="text-cyan-400 transition-colors duration-200 group-hover:text-cyan-300">
+                    <span className="text-[#2563eb] transition-colors duration-200 group-hover:text-[#1d4ed8]">
                         TECHNOLOGIES
                     </span>
                 </Link>
 
                 {/* Desktop Nav */}
                 <div className="hidden md:flex items-center gap-3">
-                    <div className="flex items-center gap-1 rounded-full border border-slate-800/70 bg-slate-950/30 p-1 backdrop-blur-sm">
+                    <div className="flex items-center gap-1 rounded-full border border-[#d6d3d1] bg-white/70 p-1 shadow-sm backdrop-blur-sm">
                         {navLinks.map((link) => {
                             const isActive = pathname === link.href;
                             const Icon = navIcons[link.name];
@@ -84,11 +84,11 @@ export function Navbar() {
                                     href={link.href}
                                     className={clsx(
                                         "group relative flex items-center rounded-full px-4 py-2 text-sm font-medium",
-                                        "transition-all duration-300 ease-out",
-                                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50",
+                                        "transition-all duration-200 ease-out",
+                                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/40",
                                         isActive
-                                            ? "bg-slate-800/80 text-cyan-400 shadow-sm"
-                                            : "text-slate-300 hover:bg-slate-900/70 hover:text-cyan-400",
+                                            ? "bg-[#111827] text-[#f5f5f4] shadow-sm"
+                                            : "text-[#374151] hover:bg-[#f3f2f0] hover:text-[#111827]",
                                     )}
                                 >
                                     {Icon && !isActive && (
@@ -126,7 +126,7 @@ export function Navbar() {
                     <Link
                         href="/store/cart"
                         aria-label={`Shopping cart${count > 0 ? `, ${count} ${count === 1 ? "item" : "items"}` : ", empty"}`}
-                        className="relative flex h-10 w-10 items-center justify-center rounded-full border border-slate-800/80 bg-slate-950/30 text-slate-300 backdrop-blur-sm transition-all duration-200 hover:border-cyan-400/50 hover:bg-slate-900 hover:text-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50"
+                        className="relative flex h-10 w-10 items-center justify-center rounded-full border border-[#d6d3d1] bg-white/80 text-[#374151] backdrop-blur-sm transition-all duration-200 hover:border-[#2563eb]/40 hover:bg-[#f3f2f0] hover:text-[#111827] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/40"
                     >
                         <ShoppingCart className="h-4 w-4" />
                         {count > 0 && (
@@ -144,7 +144,7 @@ export function Navbar() {
                     <Link
                         href="/store/cart"
                         aria-label={`Shopping cart${count > 0 ? `, ${count} ${count === 1 ? "item" : "items"}` : ", empty"}`}
-                        className="relative flex h-10 w-10 items-center justify-center rounded-full border border-slate-800/80 bg-slate-950/50 text-white backdrop-blur-sm transition-all duration-200 hover:border-cyan-400/50 hover:bg-slate-900 hover:text-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50"
+                        className="relative flex h-10 w-10 items-center justify-center rounded-full border border-[#d6d3d1] bg-white/80 text-[#111827] backdrop-blur-sm transition-all duration-200 hover:border-[#2563eb]/40 hover:bg-[#f3f2f0] hover:text-[#111827] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/40"
                     >
                         <ShoppingCart className="h-5 w-5" />
                         {count > 0 && (
@@ -165,11 +165,11 @@ export function Navbar() {
                         }
                         className={clsx(
                             "flex h-10 w-10 items-center justify-center rounded-full",
-                            "border border-slate-800/80 bg-slate-950/50",
-                            "text-white backdrop-blur-sm",
+                            "border border-[#d6d3d1] bg-white/80",
+                            "text-[#111827] backdrop-blur-sm",
                             "transition-all duration-200",
-                            "hover:border-slate-700 hover:bg-slate-900",
-                            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50",
+                            "hover:border-[#d6d3d1] hover:bg-[#f3f2f0]",
+                            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/40",
                         )}
                     >
                         <AnimatePresence mode="wait" initial={false}>
