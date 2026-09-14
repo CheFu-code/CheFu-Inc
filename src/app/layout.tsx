@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     ...pageMetadata({
         title: "CHEFU TECHNOLOGIES | Software, AI, and Audio Production",
         description:
-            "CHEFU TECHNOLOGIES builds fast software platforms, practical AI systems, and high-fidelity audio production for ambitious teams.",
+            "Chefu Technologies builds fast software platforms, practical AI systems, and high-fidelity audio production for ambitious teams.",
     }),
     applicationName: siteName,
     icons: {

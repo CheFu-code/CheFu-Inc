@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
 import {
     Brain,
     Cloud,
@@ -33,72 +32,40 @@ const techs = [
 ];
 
 export function TechStack() {
-    const marqueeItems = [...techs, ...techs];
-
     return (
-        <section className="relative overflow-hidden border-t border-slate-900 bg-slate-950/88 py-20">
+        <section className="border-t border-[#e5e1dc] bg-[#f3f0ee] py-24">
             <div className="container mx-auto px-6">
-                {/* Header */}
-                <div className="mb-12 text-center">
-                    <h3 className="mb-4 text-2xl font-bold text-white">
-                        Technology chosen for the problem
-                    </h3>
-
-                    <p className="mx-auto max-w-2xl text-slate-400">
-                        From intelligent systems and cloud infrastructure to
-                        The stack changes with the product. We use proven technologies to build secure, scalable, production-ready systems rather than treating a framework list as a solution.
+                <div className="mb-12 max-w-3xl">
+                    <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[#6b7280]">
+                        Technology
                     </p>
+                    <h3 className="text-3xl font-semibold tracking-[-0.05em] text-[#111827] md:text-5xl">
+                        Tools selected for the problem, not the trend.
+                    </h3>
                 </div>
-            </div>
 
-            {/* Marquee wrapper */}
-            <div className="relative">
-                {/* Left fade */}
-                <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-slate-950 to-transparent md:w-40" />
+                <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+                    {techs.map((tech) => {
+                        const Icon = tech.icon;
 
-                {/* Right fade */}
-                <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-slate-950 to-transparent md:w-40" />
-
-                {/* Moving track */}
-                <div className="group overflow-hidden">
-                    <motion.div
-                        className="flex w-max gap-5 py-3"
-                        animate={{ x: ["0%", "-50%"] }}
-                        transition={{
-                            duration: 55,
-                            repeat: Infinity,
-                            repeatType: "loop",
-                            ease: "linear",
-                        }}
-                    >
-                        {marqueeItems.map((tech, index) => (
-                            <div
-                                key={`${tech.name}-${index}`}
-                                className="flex h-28 w-[220px] shrink-0 items-center gap-4 rounded-2xl border border-slate-800 bg-slate-900 px-5 transition-all duration-300 hover:border-cyan-500/50 hover:bg-slate-800"
-                            >
-                                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-800 bg-slate-950">
-                                    <tech.icon
-                                        className="h-5 w-5 text-cyan-400"
-                                        strokeWidth={1.8}
-                                    />
+                        return (
+                            <div key={tech.name} className="flex items-center gap-4 rounded-[1.1rem] border border-[#e5e1dc] bg-white p-4">
+                                <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-[#e5e1dc] bg-[#f7f5f3] text-[#1f3c5b]">
+                                    <Icon className="h-5 w-5" strokeWidth={1.8} />
                                 </div>
-
-                                <div>
-                                    <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-cyan-300/80">
+                                <div className="min-w-0">
+                                    <div className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#6b7280]">
                                         {tech.group}
-                                    </span>
-                                    <span className="mt-1 block text-sm font-semibold leading-5 text-slate-300">
+                                    </div>
+                                    <div className="mt-1 text-sm font-medium text-[#111827]">
                                         {tech.name}
-                                    </span>
+                                    </div>
                                 </div>
                             </div>
-                        ))}
-                    </motion.div>
+                        );
+                    })}
                 </div>
             </div>
-
-            {/* Subtle bottom accent */}
-            <div className="pointer-events-none absolute bottom-0 left-1/2 h-px w-1/3 -translate-x-1/2 bg-slate-900" />
         </section>
     );
 }
