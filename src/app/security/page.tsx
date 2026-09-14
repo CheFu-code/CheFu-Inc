@@ -36,12 +36,12 @@ const practices = [
 
 export default function SecurityPage() {
     return (
-        <main className="min-h-screen bg-slate-950 px-6 pb-24 pt-32 text-slate-200">
+        <main className="min-h-screen bg-stone-50 px-6 pb-24 pt-32 text-slate-800">
             <div className="mx-auto max-w-5xl">
                 <header className="max-w-3xl">
-                    <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">Trust and security</p>
-                    <h1 className="text-4xl font-bold tracking-tight text-white md:text-6xl">Security is part of the product.</h1>
-                    <p className="mt-6 text-lg leading-8 text-slate-400 md:text-xl">
+                    <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-cyan-700">Trust and security</p>
+                    <h1 className="text-4xl font-bold tracking-tight text-slate-900 md:text-6xl">Security is part of the product.</h1>
+                    <p className="mt-6 text-lg leading-8 text-slate-600 md:text-xl">
                         CHEFU TECHNOLOGIES builds and operates software systems with security, privacy, and responsible access in mind. This page describes the public practices we can verify without exposing sensitive implementation details.
                     </p>
                 </header>
@@ -51,23 +51,23 @@ export default function SecurityPage() {
                     {practices.map((practice) => {
                         const Icon = practice.icon;
                         return (
-                            <article key={practice.title} className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6">
-                                <Icon className="h-7 w-7 text-cyan-400" />
-                                <h3 className="mt-5 text-xl font-bold text-white">{practice.title}</h3>
-                                <p className="mt-3 leading-7 text-slate-400">{practice.description}</p>
+                            <article key={practice.title} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                                <Icon className="h-7 w-7 text-cyan-600" />
+                                <h3 className="mt-5 text-xl font-bold text-slate-900">{practice.title}</h3>
+                                <p className="mt-3 leading-7 text-slate-600">{practice.description}</p>
                             </article>
                         );
                     })}
                 </section>
 
-                <section className="mt-16 border-t border-slate-800 pt-10">
-                    <h2 className="text-2xl font-bold text-white">Reporting a concern</h2>
-                    <p className="mt-3 max-w-2xl leading-7 text-slate-400">
-                        For a security or privacy concern involving a CHEFU website or product, contact the team at <a className="text-cyan-300 hover:text-cyan-200" href="mailto:hello@chefu.co.za">hello@chefu.co.za</a>. Please do not include passwords, access tokens, or other secrets in an initial report.
+                <section className="mt-16 border-t border-slate-200 pt-10">
+                    <h2 className="text-2xl font-bold text-slate-900">Reporting a concern</h2>
+                    <p className="mt-3 max-w-2xl leading-7 text-slate-600">
+                        For a security or privacy concern involving a CHEFU website or product, contact the team at <a className="text-cyan-700 hover:text-cyan-600" href="mailto:hello@chefu.co.za">hello@chefu.co.za</a>. Please do not include passwords, access tokens, or other secrets in an initial report.
                     </p>
                     <div className="mt-6 flex flex-wrap gap-4">
-                        <Link href="/privacy" className="font-semibold text-cyan-300 hover:text-cyan-200">Read the Privacy Policy</Link>
-                        <Link href="/contact" className="font-semibold text-cyan-300 hover:text-cyan-200">Contact CHEFU</Link>
+                        <Link href="/privacy" className="font-semibold text-cyan-700 hover:text-cyan-600">Read the Privacy Policy</Link>
+                        <Link href="/contact" className="font-semibold text-cyan-700 hover:text-cyan-600">Contact CHEFU</Link>
                     </div>
                 </section>
             </div>

@@ -20,9 +20,7 @@ export function StorePreview({ products }: { products: Product[] }) {
             <div className="container mx-auto px-6">
                 <div className="mb-10 flex flex-col justify-between gap-5 md:mb-12 md:flex-row md:items-end">
                     <div className="max-w-2xl">
-                        <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[#6b7280]">
-                            Store
-                        </p>
+                        
                         <h2 className="text-3xl font-semibold tracking-[-0.05em] text-[#111827] md:text-5xl">
                             Tools for focused work.
                         </h2>
@@ -106,11 +104,11 @@ export function StorePreview({ products }: { products: Product[] }) {
                                             {product.name}
                                         </h3>
 
-                                        <p className="mt-2 line-clamp-2 text-sm leading-6 text-[#5f5b56]">
+                                        <p className="mt-2 line-clamp-2 min-h-[3rem] text-sm leading-6 text-[#5f5b56]">
                                             {product.shortDescription}
                                         </p>
 
-                                        <div className="mt-5 flex items-baseline gap-2">
+                                        <div className="mt-auto flex items-baseline gap-2 pt-5">
                                             <span className="text-base font-semibold text-[#111827]">
                                                 {formatZar(product.priceMinor)}
                                             </span>

@@ -61,23 +61,23 @@ export default async function BlogArticlePage({ params }: BlogPageProps) {
     };
 
     return (
-        <main className="min-h-screen bg-slate-950 px-6 pb-24 pt-32 text-slate-200">
+        <main className="min-h-screen bg-stone-50 px-6 pb-24 pt-32 text-slate-800">
             <article className="mx-auto max-w-3xl">
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd).replace(/</g, "\\u003c") }}
                 />
-                <Link href="/blog" className="text-sm font-semibold text-cyan-300 hover:text-cyan-200">
+                <Link href="/blog" className="text-sm font-semibold text-cyan-700 hover:text-cyan-600">
                     Back to insights
                 </Link>
-                <p className="mt-8 text-sm font-semibold uppercase tracking-wider text-cyan-300">{post.category}</p>
-                <h1 className="mt-3 text-4xl font-bold leading-tight text-white md:text-6xl">{post.title}</h1>
-                <p className="mt-6 text-xl leading-8 text-slate-400">{post.excerpt}</p>
+                <p className="mt-8 text-sm font-semibold uppercase tracking-wider text-cyan-700">{post.category}</p>
+                <h1 className="mt-3 text-4xl font-bold leading-tight text-slate-900 md:text-6xl">{post.title}</h1>
+                <p className="mt-6 text-xl leading-8 text-slate-600">{post.excerpt}</p>
                 <div className="mt-6 text-sm text-slate-500">{post.author} · {post.date}</div>
-                <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-2xl">
+                <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-2xl ring-1 ring-slate-200">
                     <Image src={post.image} alt={post.title} fill priority sizes="(min-width: 768px) 768px, 100vw" className="object-cover" />
                 </div>
-                <div className="prose prose-invert mt-10 max-w-none prose-lg">
+                <div className="prose prose-slate mt-10 max-w-none prose-lg">
                     {post.content.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                 </div>
             </article>

@@ -5,16 +5,16 @@ import { companyProducts } from "./product-data";
 
 export function ProductsPage() {
     return (
-        <main className="min-h-screen bg-slate-950 px-6 pb-24 pt-32 text-slate-200">
+        <main className="min-h-screen bg-stone-50 px-6 pb-24 pt-32 text-slate-800">
             <div className="mx-auto max-w-7xl">
                 <header className="max-w-3xl">
-                    <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                    <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-cyan-700">
                         Built by CHEFU
                     </p>
-                    <h1 className="text-4xl font-bold tracking-tight text-white md:text-6xl">
+                    <h1 className="text-4xl font-bold tracking-tight text-slate-900 md:text-6xl">
                         Products we build and operate.
                     </h1>
-                    <p className="mt-6 text-lg leading-8 text-slate-400 md:text-xl">
+                    <p className="mt-6 text-lg leading-8 text-slate-600 md:text-xl">
                         CHEFU TECHNOLOGIES develops software, AI systems, and digital products for focused work, learning, communication, and creative technology.
                     </p>
                 </header>
@@ -22,22 +22,22 @@ export function ProductsPage() {
                 <section aria-labelledby="product-grid-heading" className="mt-16">
                     <div className="mb-8 flex items-end justify-between gap-6">
                         <div>
-                            <h2 id="product-grid-heading" className="text-2xl font-bold text-white md:text-3xl">
+                            <h2 id="product-grid-heading" className="text-2xl font-bold text-slate-900 md:text-3xl">
                                 The CHEFU product ecosystem
                             </h2>
-                            <p className="mt-2 text-slate-400">
+                            <p className="mt-2 text-slate-600">
                                 Explore the products and platforms built across the company.
                             </p>
                         </div>
-                        <Link href="/services" className="hidden items-center gap-2 text-sm font-semibold text-cyan-300 hover:text-cyan-200 md:inline-flex">
+                        <Link href="/services" className="hidden items-center gap-2 text-sm font-semibold text-cyan-700 hover:text-cyan-600 md:inline-flex">
                             Need a product built? <ArrowUpRight className="h-4 w-4" />
                         </Link>
                     </div>
 
                     <div className="grid gap-6 md:grid-cols-2">
                         {companyProducts.map((product) => (
-                            <article key={product.name} className="group overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/80 transition-colors hover:border-cyan-400/50">
-                                <div className="relative aspect-[16/9] overflow-hidden bg-slate-950">
+                            <article key={product.name} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white transition-colors hover:border-cyan-400/60 hover:shadow-sm">
+                                <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
                                     <Image
                                         src={product.image}
                                         alt={`${product.name} product interface`}
@@ -47,10 +47,10 @@ export function ProductsPage() {
                                     />
                                 </div>
                                 <div className="p-6 md:p-8">
-                                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-300">{product.category}</p>
-                                    <h3 className="mt-3 text-2xl font-bold text-white">{product.name}</h3>
-                                    <p className="mt-3 leading-7 text-slate-400">{product.description}</p>
-                                    <a href={product.href} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-cyan-300">
+                                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-700">{product.category}</p>
+                                    <h3 className="mt-3 text-2xl font-bold text-slate-900">{product.name}</h3>
+                                    <p className="mt-3 leading-7 text-slate-600">{product.description}</p>
+                                    <a href={product.href} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-slate-900 hover:text-cyan-700">
                                         Visit product <ExternalLink className="h-4 w-4" />
                                     </a>
                                 </div>
@@ -59,15 +59,15 @@ export function ProductsPage() {
                     </div>
                 </section>
 
-                <section aria-labelledby="product-engineering-heading" className="mt-20 border-t border-slate-800 pt-12">
+                <section aria-labelledby="product-engineering-heading" className="mt-20 border-t border-slate-200 pt-12">
                     <div className="flex max-w-3xl items-start gap-4">
-                        <Code2 className="mt-1 h-6 w-6 shrink-0 text-cyan-400" />
+                        <Code2 className="mt-1 h-6 w-6 shrink-0 text-cyan-600" />
                         <div>
-                            <h2 id="product-engineering-heading" className="text-2xl font-bold text-white">From product idea to production system.</h2>
-                            <p className="mt-3 leading-7 text-slate-400">
+                            <h2 id="product-engineering-heading" className="text-2xl font-bold text-slate-900">From product idea to production system.</h2>
+                            <p className="mt-3 leading-7 text-slate-600">
                                 The same engineering capabilities behind CHEFU products are available to organizations that need software platforms, AI systems, and connected digital experiences.
                             </p>
-                            <Link href="/contact?service=Digital%20Product" className="mt-5 inline-flex items-center gap-2 font-semibold text-cyan-300 hover:text-cyan-200">
+                            <Link href="/contact?service=Digital%20Product" className="mt-5 inline-flex items-center gap-2 font-semibold text-cyan-700 hover:text-cyan-600">
                                 Discuss a product <ArrowUpRight className="h-4 w-4" />
                             </Link>
                         </div>

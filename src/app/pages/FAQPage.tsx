@@ -64,17 +64,17 @@ const faqs = [
 
 export function FAQPage() {
   return (
-    <div className="pt-32 pb-20 bg-slate-950 min-h-screen">
+    <div className="min-h-screen bg-stone-50 pb-20 pt-32 text-slate-800">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row gap-16 items-start">
+        <div className="flex flex-col items-start gap-16 md:flex-row">
           
-          <div className="md:w-1/3 sticky top-32">
-            <span className="text-cyan-400 font-bold uppercase tracking-wider mb-2 block">Support</span>
-            <h1 className="text-4xl font-bold text-white mb-6">Frequently Asked Questions</h1>
-            <p className="text-slate-400 mb-8">
+          <div className="sticky top-32 md:w-1/3">
+            <span className="mb-2 block text-sm font-bold uppercase tracking-[0.18em] text-cyan-700">Support</span>
+            <h1 className="mb-6 text-4xl font-bold text-slate-900">Frequently Asked Questions</h1>
+            <p className="mb-8 text-slate-600">
               Can't find the answer you're looking for? Reach out to our support team directly.
             </p>
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/5] md:aspect-auto md:h-64">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl md:aspect-auto md:h-64">
                 <Image
                     src="https://images.unsplash.com/photo-1618218168350-6e7c81151b64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdXN0b21lciUyMHN1cHBvcnQlMjBoZWxwJTIwZmFxJTIwcXVlc3Rpb25zfGVufDF8fHx8MTc3MDk4NzQ5NHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                     alt="Support"
@@ -82,11 +82,11 @@ export function FAQPage() {
                     sizes="(min-width: 768px) 33vw, 100vw"
                     className="object-cover"
                 />
-                <div className="absolute inset-0 bg-violet-900/40 mix-blend-multiply" />
+                <div className="absolute inset-0 bg-violet-900/10" />
             </div>
           </div>
 
-          <div className="md:w-2/3 w-full">
+          <div className="w-full md:w-2/3">
             <SimpleAccordion items={faqs} />
           </div>
 

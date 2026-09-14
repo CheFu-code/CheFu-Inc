@@ -27,44 +27,43 @@ export const ContactPageUI = ({
         "mailto:hello@chefu.co.za?subject=Consultation%20Request";
 
     return (
-        <div className="pt-32 pb-20 bg-slate-950 min-h-screen">
+        <div className="min-h-screen bg-stone-50 pb-20 pt-32 text-slate-800">
             <div className="container mx-auto px-6">
-                <div className="text-center max-w-3xl mx-auto mb-16">
-                    <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+                <div className="mx-auto mb-16 max-w-3xl text-center">
+                    <h1 className="mb-6 text-4xl font-bold text-slate-900 md:text-6xl">
                         Start a Project
                     </h1>
-                    <p className="text-xl text-slate-400">
+                    <p className="text-xl text-slate-600">
                         Tell us what you are building, improving, or securing. We will use your brief to understand the problem, identify the right CHEFU capability, and follow up about a practical next step.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
-                    {/* Contact Info */}
+                <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 lg:grid-cols-2">
                     <div className="space-y-12">
                         <div>
-                            <h2 className="text-2xl font-bold text-white mb-6">
+                            <h2 className="mb-6 text-2xl font-bold text-slate-900">
                                 Contact Information
                             </h2>
                             <div className="space-y-6">
                                 <div className="flex items-start gap-4">
-                                    <div className="p-3 bg-slate-900 rounded-lg border border-slate-800 text-cyan-400">
-                                        <Mail className="w-6 h-6" />
+                                    <div className="rounded-lg border border-slate-200 bg-white p-3 text-cyan-700">
+                                        <Mail className="h-6 w-6" />
                                     </div>
                                     <div>
-                                        <h3 className="font-semibold text-white">Email Us</h3>
-                                        <p className="text-slate-400">hello@chefu.co.za</p>
-                                        <p className="text-slate-400">support@chefu.co.za</p>
+                                        <h3 className="font-semibold text-slate-900">Email Us</h3>
+                                        <p className="text-slate-600">hello@chefu.co.za</p>
+                                        <p className="text-slate-600">support@chefu.co.za</p>
                                     </div>
                                 </div>
 
                                 <div className="flex items-start gap-4">
-                                    <div className="p-3 bg-slate-900 rounded-lg border border-slate-800 text-cyan-400">
-                                        <Phone className="w-6 h-6" />
+                                    <div className="rounded-lg border border-slate-200 bg-white p-3 text-cyan-700">
+                                        <Phone className="h-6 w-6" />
                                     </div>
                                     <div>
-                                        <h3 className="font-semibold text-white">Call Us</h3>
-                                        <p className="text-slate-400">+27 60 603 1205</p>
-                                        <p className="text-slate-500 text-sm">
+                                        <h3 className="font-semibold text-slate-900">Call Us</h3>
+                                        <p className="text-slate-600">+27 60 603 1205</p>
+                                        <p className="text-sm text-slate-500">
                                                     Johannesburg, South Africa · Remote-first
                                                 </p>
                                     </div>
@@ -72,52 +71,51 @@ export const ContactPageUI = ({
                             </div>
                         </div>
 
-                        <div className="bg-linear-to-br from-violet-900/20 to-cyan-900/20 p-8 rounded-2xl border border-slate-800">
-                            <h3 className="text-lg font-bold text-white mb-2">
+                        <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+                            <h3 className="mb-2 text-lg font-bold text-slate-900">
                                 Not sure what you need?
                             </h3>
-                            <p className="text-slate-400 mb-4">
+                            <p className="mb-4 text-slate-600">
                                 Prefer a conversation first? Book a consultation and include the product, software, AI, or audio problem you want to discuss.
                             </p>
                             <a
                                 href={consultationUrl}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="text-cyan-400 font-semibold hover:text-white transition-colors"
+                                className="font-semibold text-cyan-700 transition-colors hover:text-cyan-600"
                             >
                                 Book a consultation &rarr;
                             </a>
                         </div>
                     </div>
 
-                    {/* Form */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="bg-slate-900 p-8 md:p-10 rounded-2xl border border-slate-800 shadow-xl"
+                        className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm md:p-10"
                     >
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                                 <div className="space-y-2">
-                                    <label htmlFor="name" className="text-sm font-medium text-slate-300">
+                                    <label htmlFor="name" className="text-sm font-medium text-slate-700">
                                         Name
                                     </label>
                                     <input
                                         {...register("name", { required: "Name is required" })}
                                         id="name"
-                                        className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors"
+                                        className="w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 transition-colors focus:border-cyan-500 focus:outline-none"
                                         placeholder="Your name"
                                         type="text"
                                     />
                                     {errors.name && (
-                                        <span className="text-red-400 text-xs">
+                                        <span className="text-xs text-red-500">
                                             {errors.name.message}
                                         </span>
                                     )}
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-slate-300">
+                                    <label className="text-sm font-medium text-slate-700">
                                         Email
                                     </label>
                                     <input
@@ -128,12 +126,12 @@ export const ContactPageUI = ({
                                                 message: "Invalid email",
                                             },
                                         })}
-                                        className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors"
+                                        className="w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 transition-colors focus:border-cyan-500 focus:outline-none"
                                         placeholder="john@example.com"
                                         type="email"
                                     />
                                     {errors.email && (
-                                        <span className="text-red-400 text-xs">
+                                        <span className="text-xs text-red-500">
                                             {errors.email.message}
                                         </span>
                                     )}
@@ -141,27 +139,27 @@ export const ContactPageUI = ({
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-sm font-medium text-slate-300">
+                                <label className="text-sm font-medium text-slate-700">
                                     Company (Optional)
                                 </label>
                                 <input
                                     {...register("company")}
-                                    className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors"
+                                    className="w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 transition-colors focus:border-cyan-500 focus:outline-none"
                                     placeholder="Your company name"
                                     type="text"
                                 />
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-slate-300">
+                                    <label className="text-sm font-medium text-slate-700">
                                         Project Type
                                     </label>
                                     <select
                                         {...register("projectType", {
                                             required: "Please select a type",
                                         })}
-                                        className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors appearance-none"
+                                        className="w-full appearance-none rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 transition-colors focus:border-cyan-500 focus:outline-none"
                                     >
                                         <option value="">Select a type...</option>
                                         <option value="Digital Product">Digital Product</option>
@@ -173,18 +171,18 @@ export const ContactPageUI = ({
                                         <option value="Other">Other</option>
                                     </select>
                                     {errors.projectType && (
-                                        <span className="text-red-400 text-xs">
+                                        <span className="text-xs text-red-500">
                                             {errors.projectType.message}
                                         </span>
                                     )}
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-slate-300">
+                                    <label className="text-sm font-medium text-slate-700">
                                         Estimated Budget
                                     </label>
                                     <select
                                         {...register("budget")}
-                                        className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors appearance-none"
+                                        className="w-full appearance-none rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 transition-colors focus:border-cyan-500 focus:outline-none"
                                     >
                                         <option value="">Select a range...</option>
                                         <option value="< $5k">&lt; $5k</option>
@@ -196,7 +194,7 @@ export const ContactPageUI = ({
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-sm font-medium text-slate-300">
+                                <label className="text-sm font-medium text-slate-700">
                                     Project Details
                                 </label>
                                 <textarea
@@ -204,11 +202,11 @@ export const ContactPageUI = ({
                                         required: "Please tell us about your project",
                                     })}
                                     rows={4}
-                                    className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors resize-none"
+                                    className="w-full resize-none rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 transition-colors focus:border-cyan-500 focus:outline-none"
                                     placeholder="Tell us about your goals, timeline, and requirements..."
                                 />
                                 {errors.message && (
-                                    <span className="text-red-400 text-xs">
+                                    <span className="text-xs text-red-500">
                                         {errors.message.message}
                                     </span>
                                 )}
@@ -217,16 +215,16 @@ export const ContactPageUI = ({
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full cursor-pointer py-4 bg-linear-to-r from-cyan-500 to-violet-600 text-white font-bold rounded-lg hover:shadow-lg hover:shadow-cyan-500/20 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-linear-to-r from-cyan-500 to-violet-600 py-4 font-bold text-white transition-all hover:shadow-lg hover:shadow-cyan-500/20 disabled:cursor-not-allowed disabled:opacity-70"
                             >
                                 {isSubmitting ? (
                                     <>
-                                        <Loader2 className="w-5 h-5 animate-spin" />
+                                        <Loader2 className="h-5 w-5 animate-spin" />
                                         Sending...
                                     </>
                                 ) : (
                                     <>
-                                        Send Request <Send className="w-4 h-4" />
+                                        Send Request <Send className="h-4 w-4" />
                                     </>
                                 )}
                             </button>

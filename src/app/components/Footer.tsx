@@ -1,6 +1,5 @@
 import { Github, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
 import Link from 'next/link';
-import Image from 'next/image';
 
 export function Footer() {
     const companyLinks = [
@@ -124,9 +123,12 @@ export function Footer() {
                     <p>
                         &copy; {new Date().getFullYear()} CHEFU TECHNOLOGIES (Pty) Ltd. All rights reserved.
                     </p>
-                    <div className="mt-4 flex gap-6 md:mt-0">
+                    <div className="mt-4 flex flex-wrap gap-4 md:mt-0 md:gap-6">
                         <Link href="/privacy" className="transition-colors hover:text-[#111827]">
                             Privacy Policy
+                        </Link>
+                        <Link href="/cookies" className="transition-colors hover:text-[#111827]">
+                            Cookie Policy
                         </Link>
                         <Link href="/terms" className="transition-colors hover:text-[#111827]">
                             Terms of Service

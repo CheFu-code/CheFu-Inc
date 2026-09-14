@@ -72,6 +72,7 @@ export const routes = [
     "/faq",
     "/store",
     "/privacy",
+    "/cookies",
     "/terms",
     "/security",
 ] as const;

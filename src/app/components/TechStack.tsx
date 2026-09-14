@@ -36,9 +36,7 @@ export function TechStack() {
         <section className="border-t border-[#e5e1dc] bg-[#f3f0ee] py-24">
             <div className="container mx-auto px-6">
                 <div className="mb-12 max-w-3xl">
-                    <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[#6b7280]">
-                        Technology
-                    </p>
+                    
                     <h3 className="text-3xl font-semibold tracking-[-0.05em] text-[#111827] md:text-5xl">
                         Tools selected for the problem, not the trend.
                     </h3>

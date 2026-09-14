@@ -3,21 +3,20 @@ import { Home } from 'lucide-react';
 
 export function NotFoundPage() {
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-6 text-center">
-      <h1 className="text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-violet-600 mb-4">404</h1>
-      <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Page Not Found</h2>
-      <p className="text-slate-400 max-w-md mb-8">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-stone-50 p-6 text-center text-slate-800">
+      <h1 className="mb-4 bg-gradient-to-r from-cyan-700 to-violet-600 bg-clip-text text-9xl font-bold text-transparent">404</h1>
+      <h2 className="mb-4 text-2xl font-bold text-slate-900 md:text-3xl">Page Not Found</h2>
+      <p className="mb-8 max-w-md text-slate-600">
         The signal you are looking for has been lost in the noise. It seems this page does not exist or has been moved.
       </p>
       <Link 
         href="/" 
-        className="px-8 py-4 bg-white text-slate-950 font-bold rounded-full hover:bg-cyan-50 transition-colors flex items-center gap-2"
+        className="flex items-center gap-2 rounded-full bg-slate-900 px-8 py-4 font-bold text-white transition-colors hover:bg-slate-800"
       >
         <Home className="w-4 h-4" /> Return Home
       </Link>
       
-      {/* Abstract bg element */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-900/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-200/20 blur-[120px]" />
     </div>
   );
 }

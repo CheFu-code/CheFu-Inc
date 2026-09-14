@@ -28,7 +28,7 @@ export default function CartPage() {
     };
 
     return (
-        <main className="min-h-screen bg-slate-950 px-4 pb-24 pt-20 text-slate-100 sm:px-6 sm:pt-34">
+        <main className="min-h-screen bg-stone-50 px-4 pb-24 pt-20 text-slate-800 sm:px-6 sm:pt-34">
             <div className="mx-auto w-full max-w-6xl">
                 <nav
                     aria-label="Breadcrumb"

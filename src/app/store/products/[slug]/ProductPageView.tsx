@@ -42,7 +42,7 @@ export function ProductPageView({
     } = pageData;
 
     return (
-        <main className="min-h-screen w-full max-w-full overflow-x-hidden bg-slate-950 text-slate-100">
+        <main className="min-h-screen w-full max-w-full overflow-x-hidden bg-stone-50 text-slate-800">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{

@@ -80,18 +80,18 @@ const projects = [
 
 export function PortfolioPage() {
     return (
-        <div className="pt-32 pb-20 bg-slate-950 min-h-screen">
+        <div className="min-h-screen bg-stone-50 pb-20 pt-32 text-slate-800">
             <div className="container mx-auto px-6">
-                <div className="text-center max-w-3xl mx-auto mb-16">
-                    <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+                <div className="mx-auto mb-16 max-w-3xl text-center">
+                    <h1 className="mb-6 text-4xl font-bold text-slate-900 md:text-6xl">
                         Our Work
                     </h1>
-                    <p className="text-xl text-slate-400">
+                    <p className="text-xl text-slate-600">
                         A showcase of our best projects across music, AI, and software.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {projects.map((project, index) => (
                         <motion.div
                             key={project.id}
@@ -99,7 +99,7 @@ export function PortfolioPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1, duration: 0.5 }}
                             viewport={{ once: true }}
-                            className="group bg-slate-900 rounded-xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col h-full"
+                            className="group flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition-all hover:border-cyan-400/50"
                         >
                             <div className="relative aspect-video overflow-hidden">
                                 <Image
@@ -107,18 +107,18 @@ export function PortfolioPage() {
                                     alt={project.title}
                                     fill
                                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                                    className="object-contain group-hover:scale-105 transition-transform duration-500"
+                                    className="object-contain transition-transform duration-500 group-hover:scale-105"
                                 />
-                                <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors" />
+                                <div className="absolute inset-0 bg-slate-100/50 transition-colors group-hover:bg-transparent" />
                             </div>
 
-                            <div className="p-6 flex flex-col grow">
-                                <div className="flex justify-between items-start mb-4">
+                            <div className="flex grow flex-col p-6">
+                                <div className="mb-4 flex items-start justify-between">
                                     <div>
-                                        <span className="text-xs font-bold uppercase text-cyan-400 mb-1 block">
+                                        <span className="mb-1 block text-xs font-bold uppercase text-cyan-700">
                                             {project.category}
                                         </span>
-                                        <h3 className="text-xl font-bold text-white">
+                                        <h3 className="text-xl font-bold text-slate-900">
                                             {project.title}
                                         </h3>
                                     </div>
@@ -126,21 +126,21 @@ export function PortfolioPage() {
                                         target="_blank"
                                         href={project.link}
                                         rel="noreferrer"
-                                        className="text-slate-400 hover:text-white transition-colors"
+                                        className="text-slate-500 transition-colors hover:text-slate-900"
                                     >
                                         <ExternalLink className="w-5 h-5" />
                                     </a>
                                 </div>
 
-                                <p className="text-slate-400 text-sm mb-6 grow">
+                                <p className="mb-6 grow text-sm text-slate-600">
                                     {project.description}
                                 </p>
 
-                                <div className="flex flex-wrap gap-2 mt-auto">
+                                <div className="mt-auto flex flex-wrap gap-2">
                                     {project.tags.map((tag) => (
                                         <span
                                             key={tag}
-                                            className="px-3 py-1 bg-slate-800 text-xs rounded-full text-slate-300"
+                                            className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-700"
                                         >
                                             {tag}
                                         </span>

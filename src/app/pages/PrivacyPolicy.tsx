@@ -2,15 +2,15 @@ import { ShieldCheck } from 'lucide-react';
 
 export function PrivacyPolicy() {
     return (
-        <div className="pt-32 pb-20 bg-slate-950 min-h-screen text-slate-300">
-            <div className="container mx-auto px-6 max-w-4xl">
-                <div className="mb-12 border-b border-slate-800 pb-8">
-                    <div className="flex items-center gap-3 mb-4 text-cyan-400">
-                        <ShieldCheck className="w-8 h-8" />
+        <div className="min-h-screen bg-stone-50 pb-20 pt-32 text-slate-700">
+            <div className="container mx-auto max-w-4xl px-6">
+                <div className="mb-12 border-b border-slate-200 pb-8">
+                    <div className="mb-4 flex items-center gap-3 text-cyan-700">
+                        <ShieldCheck className="h-8 w-8" />
                         <span className="font-bold uppercase tracking-wider">Legal</span>
                     </div>
 
-                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                    <h1 className="mb-4 text-4xl font-bold text-slate-900 md:text-5xl">
                         Privacy Policy
                     </h1>
 
@@ -19,7 +19,7 @@ export function PrivacyPolicy() {
                     </p>
                 </div>
 
-                <div className="prose prose-invert prose-lg max-w-none">
+                <div className="prose prose-slate prose-lg max-w-none">
                     <p>
                         CHEFU TECHNOLOGIES (Pty) Ltd. ("CHEFU TECHNOLOGIES",
                         "we", "us", or "our") respects your privacy and is committed to
@@ -55,7 +55,7 @@ export function PrivacyPolicy() {
                         together with this Privacy Policy.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         1. Who We Are
                     </h3>
 
@@ -64,9 +64,9 @@ export function PrivacyPolicy() {
                         Privacy Policy is:
                     </p>
 
-                    <div className="border border-slate-800 rounded-xl p-6 my-6 bg-slate-900/40">
+                    <div className="my-6 rounded-xl border border-slate-200 bg-slate-100 p-6">
                         <p className="mb-2">
-                            <strong className="text-white">
+                            <strong className="text-slate-900">
                                 CHEFU TECHNOLOGIES (Pty) Ltd.
                             </strong>
                         </p>
@@ -81,7 +81,7 @@ export function PrivacyPolicy() {
                         </p>
                     </div>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         2. Information We Collect
                     </h3>
 
@@ -91,7 +91,7 @@ export function PrivacyPolicy() {
                         every category of information described below from every user.
                     </p>
 
-                    <h4 className="text-white font-semibold mt-6 mb-3">
+                    <h4 className="mt-6 mb-3 font-semibold text-slate-900">
                         2.1 Information You Provide Directly
                     </h4>
 
@@ -114,7 +114,7 @@ export function PrivacyPolicy() {
                         <li>Other information you voluntarily provide in connection with a CHEFU TECHNOLOGIES service.</li>
                     </ul>
 
-                    <h4 className="text-white font-semibold mt-6 mb-3">
+                    <h4 className="mt-6 mb-3 font-semibold text-slate-900">
                         2.2 Account and Authentication Information
                     </h4>
 
@@ -140,7 +140,7 @@ export function PrivacyPolicy() {
                         prevent abuse, and maintain account security.
                     </p>
 
-                    <h4 className="text-white font-semibold mt-6 mb-3">
+                    <h4 className="mt-6 mb-3 font-semibold text-slate-900">
                         2.3 Information Collected Automatically
                     </h4>
 
@@ -169,7 +169,7 @@ export function PrivacyPolicy() {
                         improve reliability and performance.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         3. Information We Receive From Third Parties
                     </h3>
 
@@ -192,7 +192,7 @@ export function PrivacyPolicy() {
                         because you use that provider to authenticate with CHEFU TECHNOLOGIES.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         4. How We Use Personal Information
                     </h3>
 
@@ -219,7 +219,7 @@ export function PrivacyPolicy() {
                         <li>Establishing, exercising, or defending legal rights where necessary.</li>
                     </ul>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         5. Legal Basis for Processing
                     </h3>
 
@@ -239,7 +239,7 @@ export function PrivacyPolicy() {
                         another lawful basis.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         6. Authentication and Firebase Services
                     </h3>
 
@@ -263,7 +263,7 @@ export function PrivacyPolicy() {
                         necessary for the functionality being provided.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         7. Data Stored in Cloud Services
                     </h3>
 
@@ -281,7 +281,7 @@ export function PrivacyPolicy() {
                         category of information described in this policy.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         8. Images and Uploaded Content
                     </h3>
 
@@ -305,7 +305,7 @@ export function PrivacyPolicy() {
                         permitted or required by law.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         9. Cookies and Similar Technologies
                     </h3>
 
@@ -334,7 +334,7 @@ export function PrivacyPolicy() {
                         that require authentication or session management.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         10. Communications
                     </h3>
 
@@ -357,7 +357,7 @@ export function PrivacyPolicy() {
                         appropriate means to opt out where required by applicable law.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         11. When We Share Personal Information
                     </h3>
 
@@ -388,7 +388,7 @@ export function PrivacyPolicy() {
                         subject to their contractual and legal obligations.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         12. Third-Party Services
                     </h3>
 
@@ -412,7 +412,7 @@ export function PrivacyPolicy() {
                         you access.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         13. Data Security
                     </h3>
 
@@ -441,7 +441,7 @@ export function PrivacyPolicy() {
                         notify us if you believe your account has been compromised.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         14. Data Retention
                     </h3>
 
@@ -465,7 +465,7 @@ export function PrivacyPolicy() {
                         technical, legal, and operational requirements.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         15. Your Privacy Rights
                     </h3>
 
@@ -493,7 +493,7 @@ export function PrivacyPolicy() {
                         limitations, exemptions, or conditions.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         16. South African Privacy Protection
                     </h3>
 
@@ -519,7 +519,7 @@ export function PrivacyPolicy() {
                         the details provided below.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         17. International Processing
                     </h3>
 
@@ -535,7 +535,7 @@ export function PrivacyPolicy() {
                         data-protection requirements and appropriate safeguards.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         18. Children's Privacy
                     </h3>
 
@@ -552,7 +552,7 @@ export function PrivacyPolicy() {
                         appropriate action.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         19. Links to Other Websites
                     </h3>
 
@@ -568,7 +568,7 @@ export function PrivacyPolicy() {
                         apply.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         20. Business and Service Transactions
                     </h3>
 
@@ -588,7 +588,7 @@ export function PrivacyPolicy() {
                         provider.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         21. Changes to This Privacy Policy
                     </h3>
 
@@ -611,7 +611,7 @@ export function PrivacyPolicy() {
                         extent permitted by applicable law.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         22. Contact Us
                     </h3>
 
@@ -639,7 +639,7 @@ export function PrivacyPolicy() {
                         your account and prevent unauthorized disclosure.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         23. Effective Date
                     </h3>
 

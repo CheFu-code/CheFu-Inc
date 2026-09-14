@@ -58,23 +58,23 @@ const endpoints = [
 
 export default function Page() {
     return (
-        <div className="min-h-screen bg-slate-950 px-6 pb-20 pt-32 text-slate-200">
+        <div className="min-h-screen bg-stone-50 px-6 pb-20 pt-32 text-slate-800">
             <main className="mx-auto max-w-4xl">
-                <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-cyan-300">
+                <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-cyan-700">
                     Agent Discovery
                 </p>
-                <h1 className="mb-6 text-4xl font-bold text-white md:text-5xl">
+                <h1 className="mb-6 text-4xl font-bold text-slate-900 md:text-5xl">
                     CHEFU TECHNOLOGIES API Documentation
                 </h1>
-                <p className="mb-10 max-w-2xl text-lg leading-8 text-slate-400">
+                <p className="mb-10 max-w-2xl text-lg leading-8 text-slate-600">
                     These endpoints help agents and automated clients discover CHEFU
                     TECHNOLOGIES metadata, authentication configuration, service descriptions,
                     and browser-exposed tools.
                 </p>
 
-                <div className="overflow-hidden rounded-xl border border-slate-800">
+                <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
                     <table className="w-full border-collapse text-left text-sm">
-                        <thead className="bg-slate-900 text-slate-300">
+                        <thead className="bg-slate-100 text-slate-700">
                             <tr>
                                 <th className="px-4 py-3 font-semibold">Endpoint</th>
                                 <th className="px-4 py-3 font-semibold">Purpose</th>
@@ -85,15 +85,15 @@ export default function Page() {
                             {endpoints.map((endpoint) => (
                                 <tr
                                     key={endpoint.path}
-                                    className="border-t border-slate-800"
+                                    className="border-t border-slate-200"
                                 >
-                                    <td className="px-4 py-3 font-mono text-cyan-300">
+                                    <td className="px-4 py-3 font-mono text-cyan-700">
                                         {endpoint.path}
                                     </td>
-                                    <td className="px-4 py-3 text-slate-300">
+                                    <td className="px-4 py-3 text-slate-700">
                                         {endpoint.label}
                                     </td>
-                                    <td className="px-4 py-3 text-slate-400">
+                                    <td className="px-4 py-3 text-slate-600">
                                         {endpoint.type}
                                     </td>
                                 </tr>

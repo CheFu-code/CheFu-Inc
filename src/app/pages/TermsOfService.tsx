@@ -2,15 +2,15 @@ import { Scale } from 'lucide-react';
 
 export function TermsOfService() {
     return (
-        <div className="pt-32 pb-20 bg-slate-950 min-h-screen text-slate-300">
-            <div className="container mx-auto px-6 max-w-4xl">
-                <div className="mb-12 border-b border-slate-800 pb-8">
-                    <div className="flex items-center gap-3 mb-4 text-cyan-400">
-                        <Scale className="w-8 h-8" />
+        <div className="min-h-screen bg-stone-50 pb-20 pt-32 text-slate-700">
+            <div className="container mx-auto max-w-4xl px-6">
+                <div className="mb-12 border-b border-slate-200 pb-8">
+                    <div className="mb-4 flex items-center gap-3 text-cyan-700">
+                        <Scale className="h-8 w-8" />
                         <span className="font-bold uppercase tracking-wider">Legal</span>
                     </div>
 
-                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                    <h1 className="mb-4 text-4xl font-bold text-slate-900 md:text-5xl">
                         Terms of Service
                     </h1>
 
@@ -19,7 +19,7 @@ export function TermsOfService() {
                     </p>
                 </div>
 
-                <div className="prose prose-invert prose-lg max-w-none">
+                <div className="prose prose-slate prose-lg max-w-none">
                     <p>
                         These Terms of Service ("Terms") govern your access to and use of
                         the websites, applications, platforms, products, and services
@@ -40,7 +40,7 @@ export function TermsOfService() {
                         or transaction.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         1. About CHEFU TECHNOLOGIES
                     </h3>
 
@@ -68,7 +68,7 @@ export function TermsOfService() {
                         services.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         2. Acceptance of These Terms
                     </h3>
 
@@ -91,7 +91,7 @@ export function TermsOfService() {
                         legally authorized person where required.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         3. Changes to the Services
                     </h3>
 
@@ -111,7 +111,7 @@ export function TermsOfService() {
                         available indefinitely.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         4. User Accounts
                     </h3>
 
@@ -137,7 +137,7 @@ export function TermsOfService() {
                         accessed without authorization.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         5. Authentication and Passkeys
                     </h3>
 
@@ -161,7 +161,7 @@ export function TermsOfService() {
                         or another security risk has occurred.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         6. Acceptable Use
                     </h3>
 
@@ -188,7 +188,7 @@ export function TermsOfService() {
                         <li>Use a service to facilitate activity that is prohibited by applicable law.</li>
                     </ul>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         7. User Content
                     </h3>
 
@@ -222,7 +222,7 @@ export function TermsOfService() {
                         these Terms, or operate the relevant service.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         8. Intellectual Property
                     </h3>
 
@@ -251,7 +251,7 @@ export function TermsOfService() {
                         property except where expressly permitted by us or applicable law.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         9. Trademarks and Branding
                     </h3>
 
@@ -267,7 +267,7 @@ export function TermsOfService() {
                         partnership.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         10. Third-Party Services
                     </h3>
 
@@ -290,7 +290,7 @@ export function TermsOfService() {
                         policies, or functionality.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         11. External Links
                     </h3>
 
@@ -310,7 +310,7 @@ export function TermsOfService() {
                         services.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         12. Payments and Purchases
                     </h3>
 
@@ -333,7 +333,7 @@ export function TermsOfService() {
                         their own terms and privacy policies.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         13. Availability and Service Reliability
                     </h3>
 
@@ -354,7 +354,7 @@ export function TermsOfService() {
                         service, users, infrastructure, or information.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         14. No Professional Advice
                     </h3>
 
@@ -370,7 +370,7 @@ export function TermsOfService() {
                         where your circumstances require it.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         15. Disclaimers
                     </h3>
 
@@ -391,7 +391,7 @@ export function TermsOfService() {
                         under applicable law.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         16. Limitation of Liability
                     </h3>
 
@@ -409,7 +409,7 @@ export function TermsOfService() {
                         or other mandatory legal requirements.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         17. Indemnity
                     </h3>
 
@@ -427,7 +427,7 @@ export function TermsOfService() {
                         prohibited by applicable law.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         18. Suspension and Termination
                     </h3>
 
@@ -458,7 +458,7 @@ export function TermsOfService() {
                         matters.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         19. Privacy
                     </h3>
 
@@ -474,7 +474,7 @@ export function TermsOfService() {
                         the Privacy Policy.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         20. South African Law and Consumer Rights
                     </h3>
 
@@ -496,7 +496,7 @@ export function TermsOfService() {
                         mandatory South African consumer-protection law.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         21. Governing Law
                     </h3>
 
@@ -513,7 +513,7 @@ export function TermsOfService() {
                         rights that may apply.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         22. Changes to These Terms
                     </h3>
 
@@ -535,7 +535,7 @@ export function TermsOfService() {
                         permitted by applicable law.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         23. Severability
                     </h3>
 
@@ -551,7 +551,7 @@ export function TermsOfService() {
                         continue in effect.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         24. No Waiver
                     </h3>
 
@@ -560,7 +560,7 @@ export function TermsOfService() {
                         constitute a waiver of our right to enforce that provision later.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         25. Entire Agreement
                     </h3>
 
@@ -572,7 +572,7 @@ export function TermsOfService() {
                         where a separate written agreement expressly governs.
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         26. Contact Us
                     </h3>
 
@@ -601,7 +601,7 @@ export function TermsOfService() {
                         </a>
                     </p>
 
-                    <h3 className="text-white font-bold mt-10 mb-4 text-xl">
+                    <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
                         27. Effective Date
                     </h3>
 

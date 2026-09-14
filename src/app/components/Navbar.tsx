@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
-import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import { accountAppUrl } from "../../lib/account-app";
 import { useCart } from "../../lib/cart";
@@ -43,10 +42,8 @@ export function Navbar() {
     return (
         <nav
             className={twMerge(
-                "fixed top-0 left-0 right-0 z-50 border-b border-transparent transition-colors duration-200 ease-out",
-                isScrolled || isMobileMenuOpen
-                    ? "border-[#e5e1dc] bg-[#f7f5f3]/90 py-4"
-                    : "bg-transparent py-6",
+                "fixed top-0 left-0 right-0 z-50 border-b border-[#e5e1dc] bg-[#f7f5f3]/90 backdrop-blur-sm transition-colors duration-200 ease-out",
+                isScrolled || isMobileMenuOpen ? "py-4 shadow-sm" : "py-4",
             )}
         >
             <div className="container mx-auto flex items-center justify-between px-6">
@@ -55,15 +52,7 @@ export function Navbar() {
                     aria-label="CHEFU TECHNOLOGIES home"
                     className="group flex items-center gap-2 text-lg font-semibold tracking-[-0.04em] text-[#111827] transition-opacity duration-200 hover:opacity-90 sm:gap-2.5 sm:text-2xl"
                 >
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-md border border-[#e5e1dc] bg-white sm:h-9 sm:w-9">
-                        <Image
-                            src="/chefu-technologies-logo.png"
-                            alt="CHEFU TECHNOLOGIES logo"
-                            width={36}
-                            height={36}
-                            className="h-full w-full object-contain"
-                        />
-                    </span>
+                    
                     <span>CHEFU</span>
                     <span className="text-[#1f3c5b]">
                         TECHNOLOGIES
@@ -207,7 +196,7 @@ export function Navbar() {
                             duration: 0.3,
                             ease: [0.22, 1, 0.36, 1],
                         }}
-                        className="md:hidden overflow-hidden border-t border-slate-800/60 bg-slate-950/95 backdrop-blur-xl"
+                        className="md:hidden overflow-hidden border-t border-[#e5e1dc] bg-[#f7f5f3]/95 backdrop-blur-xl"
                     >
                         <motion.div
                             initial={{ opacity: 0, y: -8 }}
