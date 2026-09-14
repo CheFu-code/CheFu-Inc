@@ -73,6 +73,7 @@ export const routes = [
     "/store",
     "/privacy",
     "/cookies",
+    "/shipping",
     "/terms",
     "/security",
 ] as const;
