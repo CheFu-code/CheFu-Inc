@@ -20,6 +20,8 @@ import { formatZar } from "../../../lib/products";
 
 export default function CartPage() {
     const { lines, count, subtotalMinor, setQuantity, remove, clear } = useCart();
+    const deliveryMinor = 6000;
+    const totalMinor = subtotalMinor + deliveryMinor;
 
     const handleCheckout = () => {
         toast.info("Secure checkout is being prepared.", {
@@ -47,22 +49,12 @@ export default function CartPage() {
 
                 <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                     <div>
-                        <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">
-                            Your cart
-                        </p>
+                       
                         <h1 className="text-2xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-3xl">
                             Shopping cart
                         </h1>
                     </div>
-                    {lines.length > 0 && (
-                        <Link
-                            href="/store"
-                            className="inline-flex items-center gap-2 text-sm font-medium text-slate-700 transition-colors hover:text-slate-900"
-                        >
-                            <ArrowLeft className="h-4 w-4" />
-                            Continue shopping
-                        </Link>
-                    )}
+                   
                 </div>
 
                 {lines.length === 0 ? (
@@ -218,8 +210,8 @@ export default function CartPage() {
                                     </div>
                                     <div className="flex items-center justify-between gap-4 text-slate-600">
                                         <span>Delivery</span>
-                                        <span className="text-right text-xs text-slate-500">
-                                            Calculated at checkout
+                                        <span className="font-medium text-slate-900">
+                                            {formatZar(deliveryMinor)}
                                         </span>
                                     </div>
                                 </div>
@@ -232,7 +224,7 @@ export default function CartPage() {
                                         </p>
                                     </div>
                                     <p className="text-2xl font-bold tracking-[-0.04em] text-slate-900">
-                                        {formatZar(subtotalMinor)}
+                                        {formatZar(totalMinor)}
                                     </p>
                                 </div>
 

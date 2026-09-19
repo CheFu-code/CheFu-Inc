@@ -14,11 +14,16 @@ export function useStorePreview(products: Product[]) {
         event.preventDefault();
         event.stopPropagation();
 
-        const url = `${window.location.origin}/store/products/${product.slug}`;
+        const url = new URL(`${window.location.origin}/store/products/${product.slug}`);
+        url.searchParams.set("utm_source", "store_preview");
+        url.searchParams.set("utm_medium", "share");
+        url.searchParams.set("utm_campaign", product.slug);
+
+        const shareUrl = url.toString();
         const shareData = {
             title: product.name,
             text: product.shortDescription,
-            url,
+            url: shareUrl,
         };
 
         try {
@@ -27,7 +32,7 @@ export function useStorePreview(products: Product[]) {
                 return;
             }
 
-            await navigator.clipboard.writeText(url);
+            await navigator.clipboard.writeText(shareUrl);
             setCopiedProductId(product.id);
 
             window.setTimeout(() => {
