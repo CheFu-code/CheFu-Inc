@@ -26,7 +26,10 @@ export function StorePreview({ products }: { products: Product[] }) {
                         </h2>
                     </div>
 
-                    <Link href="/store" className="inline-flex w-fit items-center gap-2 text-sm font-medium text-[#111827] transition-colors hover:text-[#1f3c5b]">
+                    <Link
+                        href="/store?utm_source=store_preview&utm_medium=header&utm_campaign=shop_now"
+                        className="inline-flex w-fit items-center gap-2 text-sm font-medium text-[#111827] transition-colors hover:text-[#1f3c5b]"
+                    >
                         Shop now
                         <ArrowUpRight className="h-4 w-4" />
                     </Link>
@@ -54,7 +57,7 @@ export function StorePreview({ products }: { products: Product[] }) {
                             return (
                                 <Link
                                     key={product.id}
-                                    href={`/store/products/${product.slug}`}
+                                    href={`/store/products/${product.slug}?utm_source=store_preview&utm_medium=card&utm_campaign=${product.slug}`}
                                     className="group flex h-full min-w-0 flex-col overflow-hidden rounded-[1.25rem] border border-[#e5e1dc] bg-white"
                                 >
                                     <div className="relative aspect-[4/3] overflow-hidden bg-[#f3f2ef]">

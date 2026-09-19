@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type MouseEvent } from "react";
+import { withUtm } from "../../lib/utm";
 import type { Product } from "../../lib/products";
 
 export function useStorePreview(products: Product[]) {
@@ -14,12 +15,12 @@ export function useStorePreview(products: Product[]) {
         event.preventDefault();
         event.stopPropagation();
 
-        const url = new URL(`${window.location.origin}/store/products/${product.slug}`);
-        url.searchParams.set("utm_source", "store_preview");
-        url.searchParams.set("utm_medium", "share");
-        url.searchParams.set("utm_campaign", product.slug);
-
-        const shareUrl = url.toString();
+        const shareUrl = withUtm(
+            `${window.location.origin}/store/products/${product.slug}`,
+            "store_preview",
+            "share",
+            product.slug,
+        );
         const shareData = {
             title: product.name,
             text: product.shortDescription,

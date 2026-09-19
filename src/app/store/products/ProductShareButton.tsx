@@ -18,6 +18,11 @@ export function ProductShareButton({
 
     const handleShare = async () => {
         try {
+            const shareUrl = new URL(productUrl);
+            shareUrl.searchParams.set("utm_source", "product_share");
+            shareUrl.searchParams.set("utm_medium", "share");
+            shareUrl.searchParams.set("utm_campaign", productUrl.split("/").pop() ?? "product");
+
             /*
              * Mobile browsers and supported desktop browsers
              * will use the native share sheet.
@@ -29,7 +34,7 @@ export function ProductShareButton({
                 await navigator.share({
                     title: `${productName} | CHEFU Technologies`,
                     text: productDescription,
-                    url: productUrl,
+                    url: shareUrl.toString(),
                 });
 
                 return;
@@ -42,7 +47,7 @@ export function ProductShareButton({
                 typeof navigator !== "undefined" &&
                 navigator.clipboard
             ) {
-                await navigator.clipboard.writeText(productUrl);
+                await navigator.clipboard.writeText(shareUrl.toString());
 
                 setCopied(true);
 

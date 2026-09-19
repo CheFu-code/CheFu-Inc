@@ -34,7 +34,7 @@ export function StoreProductCard({ product }: StoreProductCardProps) {
     return (
         <article className="group relative flex min-w-0 h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white text-slate-900 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-400/60 hover:shadow-md sm:rounded-xl">
             <Link
-                href={`/store/products/${product.slug}`}
+                href={`/store/products/${product.slug}?utm_source=store_catalog&utm_medium=card&utm_campaign=${product.slug}`}
                 className="flex min-w-0 flex-1 flex-col"
             >
                 <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
