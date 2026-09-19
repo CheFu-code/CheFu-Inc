@@ -32,12 +32,12 @@ export function StoreProductCard({ product }: StoreProductCardProps) {
     };
 
     return (
-        <article className="group relative flex min-w-0 h-full flex-col overflow-hidden rounded-xl border border-slate-800 bg-slate-950/60 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/60 hover:bg-slate-950 sm:rounded-2xl">
+        <article className="group relative flex min-w-0 h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white text-slate-900 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-400/60 hover:shadow-md sm:rounded-xl">
             <Link
                 href={`/store/products/${product.slug}`}
                 className="flex min-w-0 flex-1 flex-col"
             >
-                <div className="relative aspect-[4/3] overflow-hidden bg-slate-900 sm:aspect-[4/3]">
+                <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
                     {image ? (
                         <Image
                             fill
@@ -47,31 +47,31 @@ export function StoreProductCard({ product }: StoreProductCardProps) {
                             className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                         />
                     ) : (
-                        <span className="flex h-full items-center justify-center text-4xl font-bold text-slate-700 sm:text-6xl">
+                        <span className="flex h-full items-center justify-center text-3xl font-bold text-slate-400 sm:text-5xl">
                             C
                         </span>
                     )}
                 </div>
 
-                <div className="flex flex-1 flex-col p-3 sm:p-4">
-                    <p className="truncate text-[9px] font-semibold uppercase tracking-[0.14em] text-slate-500 sm:text-[10px]">
+                <div className="flex flex-1 flex-col p-2.5 sm:p-3">
+                    <p className="truncate text-[8px] font-semibold uppercase tracking-[0.12em] text-slate-500 sm:text-[9px]">
                         {product.category}
                     </p>
-                    <h2 className="mt-1.5 line-clamp-2 text-sm font-semibold leading-5 tracking-tight text-white sm:mt-2 sm:text-lg sm:leading-6">
+                    <h2 className="mt-1.5 line-clamp-2 text-sm font-semibold leading-5 tracking-tight text-slate-900 sm:text-base sm:leading-5">
                         {product.name}
                     </h2>
-                    <p className="mt-1 line-clamp-2 min-h-[2.25rem] text-[11px] leading-4 text-slate-500 sm:mt-1.5 sm:min-h-[2.75rem] sm:text-sm sm:leading-relaxed sm:text-slate-400">
+                    <p className="mt-1 line-clamp-2 min-h-[2rem] text-[10px] leading-4 text-slate-600 sm:min-h-[2.25rem] sm:text-xs sm:leading-5">
                         {product.shortDescription}
                     </p>
-                    <div className="mt-auto flex flex-wrap items-baseline justify-between gap-1.5 pt-3 sm:pt-4">
-                        <span className="text-sm font-semibold text-white sm:text-base">
+                    <div className="mt-auto flex flex-wrap items-baseline justify-between gap-1 pt-2 sm:pt-3">
+                        <span className="text-sm font-semibold text-slate-900 sm:text-base">
                             {formatZar(product.priceMinor)}
                         </span>
                         <span
                             className={
                                 unavailable
-                                    ? "text-[10px] text-rose-300 sm:text-xs"
-                                    : "text-[10px] text-emerald-300 sm:text-xs"
+                                    ? "text-[9px] text-rose-600 sm:text-[10px]"
+                                    : "text-[9px] text-emerald-700 sm:text-[10px]"
                             }
                         >
                             {unavailable ? "Out of stock" : "Available"}
