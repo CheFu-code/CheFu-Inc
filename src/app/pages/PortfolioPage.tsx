@@ -7,13 +7,13 @@ import Image from "next/image";
 const projects = [
     {
         id: 1,
-        title: "Flow Mail",
-        category: "Communication Platform",
-        image: "/flow-dashboard.png",
+        title: "Infinity",
+        category: "Android Game",
+        image: "/infinity-logo.png",
         description:
-            "A focused mail workspace for composing, routing, and managing product communication.",
-        tags: ["Inbox", "Campaigns", "Scheduling"],
-        link: "https://flow.chefu.co.za",
+            "A sleek puzzle game where players merge numbers, chase big combos, and keep the board alive as long as possible.",
+        tags: ["2048", "Puzzle", "Infinity"],
+        link: "https://infinity.chefu.co.za",
     },
     {
         id: 2,
@@ -65,17 +65,7 @@ const projects = [
             "An intelligent assistant for focused conversations, organized threads, and faster answers when ideas need momentum.",
         tags: ["AI Chat", "Saved Threads", "Research"],
         link: "https://quantum.chefu.co.za",
-    },
-    {
-        id: 7,
-        title: "DrippyBanks",
-        category: "E-commerce",
-        image: "/drippybanks.png",
-        description:
-            "A stylish e-commerce platform built with modern web technologies, showcasing products with a smooth and interactive shopping experience.",
-        tags: ["Next.js", "Tailwind CSS", "Vercel"],
-        link: "https://drippybanks.chefu.co.za",
-    },
+    }
 ];
 
 export function PortfolioPage() {

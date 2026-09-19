@@ -17,11 +17,11 @@ export const companyProducts: CompanyProduct[] = [
         description: "An intelligent workspace for focused conversations, organized threads, and faster answers.",
     },
     {
-        name: "Flow Mail",
-        category: "Communication platform",
-        image: "/flow-dashboard.png",
-        href: "https://flow.chefu.co.za",
-        description: "A focused mail workspace for sending, receiving, organizing, and managing product communication.",
+        name: "Infinity",
+        category: "Android game",
+        image: "/infinity-logo.png",
+        href: "https://infinity.chefu.co.za",
+        description: "A sleek number-merging puzzle game built for fast, addictive mobile play and satisfying combo chains.",
     },
     {
         name: "CheFu Academy",
