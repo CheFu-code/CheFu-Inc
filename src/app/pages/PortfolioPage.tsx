@@ -7,122 +7,158 @@ import Image from "next/image";
 const projects = [
     {
         id: 1,
-        title: "Infinity",
-        category: "Android Game",
-        image: "/infinity-logo.png",
-        description:
-            "A sleek puzzle game where players merge numbers, chase big combos, and keep the board alive as long as possible.",
-        tags: ["2048", "Puzzle", "Infinity"],
-        link: "https://infinity.chefu.co.za",
-    },
-    {
-        id: 2,
-        title: "Tomorrow Is Forever — CheFu",
-        category: "Music Production",
+        title: "Tomorrow Is Forever",
+        category: "Single",
         image: "/tomorrowisforever.webp",
         description:
-            "CheFu's latest house track delivering deep grooves and immersive soundscapes for every listener.",
-        tags: ["House Music", "Sound Design", "Electronic"],
+            "A deep, immersive house release shaped for late-night listening and warm, soulful grooves.",
+        tags: ["House", "Deep Groove", "Late Night"],
         link: "https://open.spotify.com/track/1oZyZ2rAj8GbgEpNMSWD5C",
     },
     {
-        id: 3,
-        title: "CheFu Academy App",
-        category: "Educational Platform",
-        image: '/chefuAcademy.png',
+        id: 2,
+        title: "Echo Chambers",
+        category: "Single",
+        image: "/poweroflove.jpg",
         description:
-            "A learning platform for structured courses, videos, quizzes, flashcards, and developer SDK access.",
-        tags: ["Courses", "Video Learning", "Developer SDK"],
-        link: "https://academy.chefu.co.za",
+            "A cinematic electronic statement with layered textures, atmospheric movement, and rich sonic detail.",
+        tags: ["Electronic", "Atmospheric", "Dolby Atmos"],
+        link: "https://open.spotify.com/track/6vmxsrRw01EeuTUDVJuLdO",
+    },
+    {
+        id: 3,
+        title: "Power of Love",
+        category: "Single",
+        image: "/poweroflove.jpg",
+        description:
+            "An uplifting house cut blending emotional hooks with rhythm-driven production and clean melodic energy.",
+        tags: ["House", "Melody", "Feel Good"],
+        link: "https://open.spotify.com/track/6vmxsrRw01EeuTUDVJuLdO",
     },
     {
         id: 4,
-        title: "Echo Chambers",
-        category: "Music Production",
-        image: "/poweroflove.jpg",
+        title: "CheFu Artist Profile",
+        category: "Artist Page",
+        image: "/chefu-technologies-logo.png",
         description:
-            "CheFu's Debut House Music Track — a journey in sound design and immersive Dolby Atmos.",
-        tags: ["House Music", "Dolby Atmos", "Sound Design"],
-        link: "https://open.spotify.com/track/6vmxsrRw01EeuTUDVJuLdO",
+            "Discover the full catalog, latest releases, and the complete artist story on Spotify.",
+        tags: ["Spotify", "Catalog", "Latest Releases"],
+        link: "https://open.spotify.com/artist/07fFH9mxSS0g69Wbz8PXNn",
     },
-
     {
         id: 5,
-        title: "Muzalo",
-        category: "Music Platform",
-        image: "/muzalo-logo.svg",
+        title: "House Sessions",
+        category: "Collection",
+        image: "/tomorrowisforever.webp",
         description:
-            "A music experience for discovering releases, opening Spotify embeds, and keeping CheFu audio products in one focused space.",
-        tags: ["Music", "Spotify Embeds", "Listening"],
-        link: "https://muzalo.chefu.co.za",
+            "Curated listening for fans of warm synth textures, rhythm-first production, and club-ready motion.",
+        tags: ["Collection", "House", "Selection"],
+        link: "https://open.spotify.com/artist/07fFH9mxSS0g69Wbz8PXNn",
     },
     {
         id: 6,
-        title: "Quantum",
-        category: "AI Workspace",
-        image: "/quantum-logo.svg",
+        title: "CheFu Discography",
+        category: "Catalog",
+        image: "/chefu-technologies-logo.png",
         description:
-            "An intelligent assistant for focused conversations, organized threads, and faster answers when ideas need momentum.",
-        tags: ["AI Chat", "Saved Threads", "Research"],
-        link: "https://quantum.chefu.co.za",
+            "A showcase of standout tracks and releases from the CheFu sound across electronic and house influences.",
+        tags: ["Discography", "Tracks", "Electronic"],
+        link: "https://open.spotify.com/artist/07fFH9mxSS0g69Wbz8PXNn",
     }
 ];
 
 export function PortfolioPage() {
     return (
-        <div className="min-h-screen bg-stone-50 pb-20 pt-32 text-slate-800">
-            <div className="container mx-auto px-6">
-                <div className="mx-auto mb-16 max-w-3xl text-center">
-                    <h1 className="mb-6 text-4xl font-bold text-slate-900 md:text-6xl">
-                        Our Work
-                    </h1>
-                    <p className="text-xl text-slate-600">
-                        A showcase of our best projects across music, AI, and software.
-                    </p>
+        <div className="min-h-screen bg-[#070b14] pb-20 pt-28 text-slate-100">
+            <div className="container mx-auto px-5 md:px-8">
+                <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[radial-gradient(circle_at_top,_rgba(34,197,94,0.18),_transparent_30%),linear-gradient(135deg,#0d1321_0%,#111827_40%,#090d18_100%)] p-6 shadow-2xl shadow-emerald-950/30 md:p-10">
+                    <div className="absolute -left-20 top-12 h-52 w-52 rounded-full bg-emerald-500/20 blur-3xl" />
+                    <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-cyan-500/10 blur-3xl" />
+
+                    <div className="relative z-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+                        <div className="max-w-2xl">
+                            <span className="mb-4 inline-flex items-center rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">
+                                CheFu
+                            </span>
+                            <h1 className="text-4xl font-black tracking-tight text-white md:text-6xl">
+                                Songs & Albums
+                            </h1>
+                            <p className="mt-4 max-w-xl text-base text-slate-300 md:text-lg">
+                                Curated releases, atmospheric grooves, and house-driven moments built for deep listening.
+                            </p>
+                        </div>
+
+                        <div className="flex flex-col items-start gap-3 sm:flex-row lg:flex-col">
+                            <a
+                                href="https://open.spotify.com/artist/07fFH9mxSS0g69Wbz8PXNn"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-400"
+                            >
+                                Listen on Spotify
+                                <ExternalLink className="h-4 w-4" />
+                            </a>
+                            <span className="text-sm text-slate-400">Streaming now</span>
+                        </div>
+                    </div>
+
+                    <div className="relative z-10 mt-10 grid gap-4 sm:grid-cols-3">
+                        {[
+                            { label: "Releases", value: "6+" },
+                            { label: "Style", value: "House" },
+                            { label: "Mood", value: "Atmospheric" },
+                        ].map((stat) => (
+                            <div
+                                key={stat.label}
+                                className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur-sm"
+                            >
+                                <div className="text-2xl font-bold text-white">{stat.value}</div>
+                                <div className="text-sm text-slate-300">{stat.label}</div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
-                <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
                     {projects.map((project, index) => (
-                        <motion.div
+                        <motion.a
                             key={project.id}
+                            href={project.link}
+                            target="_blank"
+                            rel="noreferrer"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1, duration: 0.5 }}
+                            transition={{ delay: index * 0.08, duration: 0.45 }}
                             viewport={{ once: true }}
-                            className="group flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition-all hover:border-cyan-400/50"
+                            className="group relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/10 bg-slate-900/70 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-400/60 hover:shadow-[0_20px_60px_rgba(16,185,129,0.2)]"
                         >
-                            <div className="relative aspect-video overflow-hidden">
+                            <div className="relative aspect-[4/3] overflow-hidden">
                                 <Image
                                     src={project.image}
                                     alt={project.title}
                                     fill
-                                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                                    className="object-contain transition-transform duration-500 group-hover:scale-105"
+                                    sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
-                                <div className="absolute inset-0 bg-slate-100/50 transition-colors group-hover:bg-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/15 to-transparent" />
+                                <div className="absolute left-4 top-4 flex items-center justify-between gap-3">
+                                    <span className="rounded-full border border-white/15 bg-slate-950/70 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-300">
+                                        {project.category}
+                                    </span>
+                                </div>
+                                <div className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-slate-950/60 text-slate-100 backdrop-blur-sm">
+                                    <ExternalLink className="h-4 w-4" />
+                                </div>
                             </div>
 
-                            <div className="flex grow flex-col p-6">
-                                <div className="mb-4 flex items-start justify-between">
-                                    <div>
-                                        <span className="mb-1 block text-xs font-bold uppercase text-cyan-700">
-                                            {project.category}
-                                        </span>
-                                        <h3 className="text-xl font-bold text-slate-900">
-                                            {project.title}
-                                        </h3>
-                                    </div>
-                                    <a
-                                        target="_blank"
-                                        href={project.link}
-                                        rel="noreferrer"
-                                        className="text-slate-500 transition-colors hover:text-slate-900"
-                                    >
-                                        <ExternalLink className="w-5 h-5" />
-                                    </a>
+                            <div className="flex grow flex-col p-5">
+                                <div className="mb-3 flex items-start justify-between gap-4">
+                                    <h3 className="text-2xl font-bold tracking-tight text-white">
+                                        {project.title}
+                                    </h3>
                                 </div>
 
-                                <p className="mb-6 grow text-sm text-slate-600">
+                                <p className="mb-5 text-sm leading-6 text-slate-300">
                                     {project.description}
                                 </p>
 
@@ -130,14 +166,14 @@ export function PortfolioPage() {
                                     {project.tags.map((tag) => (
                                         <span
                                             key={tag}
-                                            className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-700"
+                                            className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.12em] text-slate-200"
                                         >
                                             {tag}
                                         </span>
                                     ))}
                                 </div>
                             </div>
-                        </motion.div>
+                        </motion.a>
                     ))}
                 </div>
             </div>
