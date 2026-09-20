@@ -26,30 +26,6 @@ export function About() {
                                 foundation of the business.
                             </p>
                         </div>
-
-                        <div className="rounded-none border-0 bg-transparent p-0 shadow-none md:rounded-[1.5rem] md:border md:border-[#e5e1dc] md:bg-white md:p-6 md:shadow-[0_12px_30px_rgba(15,23,42,0.03)]">
-                            <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-[#6b7280]">
-                                What we do
-                            </p>
-                            <div className="mt-5 space-y-4">
-                                {[
-                                    "Product engineering",
-                                    "Software and AI systems",
-                                    "Concept to production",
-                                    "Security-conscious delivery",
-                                ].map((item) => (
-                                    <div
-                                        key={item}
-                                        className="flex items-center gap-3 border-b border-[#e5e1dc] pb-3 last:border-b-0 last:pb-0"
-                                    >
-                                        <span className="h-2 w-2 rounded-full bg-[#1f3c5b]" />
-                                        <span className="text-sm font-medium text-[#1f2937]">
-                                            {item}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

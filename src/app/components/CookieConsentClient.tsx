@@ -58,21 +58,12 @@ function persistPreferences(preferences: ConsentPreferences) {
 }
 
 export function CookieConsentClient() {
-    const [showBanner, setShowBanner] = useState(false);
+    const storedPreferences = readStoredPreferences();
+
+    const [showBanner, setShowBanner] = useState(() => storedPreferences === null);
     const [showModal, setShowModal] = useState(false);
     const [preferences, setPreferences] =
-        useState<ConsentPreferences>(defaultPreferences);
-
-    useEffect(() => {
-        const stored = readStoredPreferences();
-
-        if (!stored) {
-            setShowBanner(true);
-            return;
-        }
-
-        setPreferences(stored);
-    }, []);
+        useState<ConsentPreferences>(() => storedPreferences ?? defaultPreferences);
 
     const applyPreferences = (nextPreferences: ConsentPreferences) => {
         setPreferences(nextPreferences);

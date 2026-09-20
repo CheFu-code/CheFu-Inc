@@ -77,9 +77,7 @@ export function PortfolioPage() {
 
                     <div className="relative z-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
                         <div className="max-w-2xl">
-                            <span className="mb-4 inline-flex items-center rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">
-                                CheFu
-                            </span>
+                           
                             <h1 className="text-4xl font-black tracking-tight text-white md:text-6xl">
                                 Songs & Albums
                             </h1>
