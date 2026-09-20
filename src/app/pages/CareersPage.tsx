@@ -126,7 +126,7 @@ export function CareersPage() {
     };
 
     return (
-        <div className="pt-32 pb-20 bg-slate-950 min-h-screen">
+        <div className="min-h-screen bg-[#f5f5f4] pb-20 pt-32 text-[#111827]">
             <div className="container mx-auto px-6">
                 <CareersHeroSection />
                 <CareersBenefitsSection />

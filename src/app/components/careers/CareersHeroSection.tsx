@@ -1,19 +1,35 @@
-
 export function CareersHeroSection() {
     return (
-        <div className="max-w-5xl mx-auto mb-16 text-center">
-           
-            <h1 className="mt-6 text-4xl md:text-5xl font-bold text-white leading-tight">
-                Build your career with purpose, ownership, and momentum.
+        <div className="mx-auto mb-16 max-w-5xl text-center">
+            <span className="inline-flex items-center rounded-full border border-[#d1d5db] bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1f3c5b]">
+                Join CHEFU
+            </span>
+
+            <h1 className="mt-6 text-3xl font-bold leading-tight text-[#111827] md:text-4xl">
+                Build with purpose, ownership, and momentum.
             </h1>
-            <p className="mt-5 text-lg text-slate-300 max-w-3xl mx-auto">
-                We are not only a tech team. We are a creative company building across
-                software, AI, and music production. If you want meaningful work and rapid
-                growth, this is your lane.
+
+            <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-[#374151]">
+                We are a creative technology company building across software, AI,
+                and music production. We work with people who care about solving real
+                problems, shipping with quality, and learning quickly in a fast-moving
+                environment.
             </p>
-            <p className="mt-3 text-sm text-slate-400">
-                Rolling applications. Priority review every Friday.
-            </p>
+
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm text-[#374151]">
+                {[
+                    "Remote-friendly",
+                    "Product + creative work",
+                    "Rolling applications",
+                ].map((item) => (
+                    <span
+                        key={item}
+                        className="rounded-full border border-[#e5e1dc] bg-white px-3 py-1.5"
+                    >
+                        {item}
+                    </span>
+                ))}
+            </div>
         </div>
     );
 }

@@ -35,11 +35,11 @@ export function CareersApplicationForm({
     isSouthAfrica: boolean;
 }) {
     return (
-        <section className="max-w-5xl mx-auto rounded-2xl border border-slate-800 bg-slate-900/60 p-6 md:p-8">
-            <h2 className="text-2xl font-semibold text-white mb-6">Application Form</h2>
+        <section className="mx-auto max-w-5xl rounded-2xl border border-[#e5e1dc] bg-[#f7f5f3] p-6 md:p-8">
+            <h2 className="mb-6 text-xl font-semibold text-[#111827]">Application Form</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
                 <div>
-                    <h3 className="text-lg text-white font-medium mb-4">Basic Info</h3>
+                    <h3 className="mb-4 text-base font-medium text-[#111827]">Basic Info</h3>
                     <div className="grid md:grid-cols-2 gap-4">
                         <FieldLabel label="Full Name">
                             <input
@@ -132,7 +132,7 @@ export function CareersApplicationForm({
                 </div>
 
                 <div>
-                    <h3 className="text-lg text-white font-medium mb-4">Professional Info</h3>
+                    <h3 className="mb-4 text-base font-medium text-[#111827]">Professional Info</h3>
                     <div className="grid md:grid-cols-2 gap-4">
                         <FieldLabel label="Department">
                             <select
@@ -341,7 +341,7 @@ export function CareersApplicationForm({
                                 placeholder="https://linkedin.com/in/yourname"
                             />
                         </FieldLabel>
-                        <p className="text-xs text-slate-400">
+                        <p className="text-xs text-[#4b5563]">
                             Share only what applies to you. Leave optional links blank if
                             not relevant.
                         </p>
@@ -350,14 +350,14 @@ export function CareersApplicationForm({
                                 type="file"
                                 accept=".pdf,.doc,.docx"
                                 {...register("cvFile")}
-                                className="block w-full rounded-xl border border-slate-700 bg-slate-950/50 px-3 py-2 text-sm text-slate-300 file:mr-4 file:rounded-lg file:border-0 file:bg-cyan-500/15 file:px-3 file:py-2 file:text-cyan-300 hover:file:bg-cyan-500/25"
+                                className="block w-full rounded-xl border border-[#e5e1dc] bg-white px-3 py-2 text-sm text-[#111827] file:mr-4 file:rounded-lg file:border-0 file:bg-cyan-500/15 file:px-3 file:py-2 file:text-cyan-700 hover:file:bg-cyan-500/25"
                             />
                         </FieldLabel>
                     </div>
                 </div>
 
                 <div>
-                    <h3 className="text-lg text-white font-medium mb-4">Short Questions</h3>
+                    <h3 className="mb-4 text-base font-medium text-[#111827]">Short Questions</h3>
                     <div className="space-y-4">
                         <FieldLabel label="Why do you want to join Chefu Technologies?">
                             <textarea
@@ -398,8 +398,8 @@ export function CareersApplicationForm({
                     </div>
                 </div>
 
-                <div className="rounded-xl border border-slate-800 bg-slate-950/70 p-4">
-                    <label className="flex items-start gap-3 text-sm text-slate-300">
+                <div className="rounded-xl border border-[#e5e1dc] bg-white p-4">
+                    <label className="flex items-start gap-3 text-sm text-[#374151]">
                         <input
                             type="checkbox"
                             {...register("acceptTerms", {

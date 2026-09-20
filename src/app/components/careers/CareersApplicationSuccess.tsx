@@ -6,11 +6,11 @@ export function CareersApplicationSuccess({
     submittedEmail: string;
 }) {
     return (
-        <section className="max-w-5xl mx-auto mt-8 rounded-2xl border border-emerald-600/30 bg-emerald-500/10 p-6">
-            <h3 className="text-xl font-semibold text-emerald-300">
+        <section className="mx-auto mt-8 max-w-5xl rounded-2xl border border-emerald-600/30 bg-emerald-500/10 p-6">
+            <h3 className="text-xl font-semibold text-emerald-700">
                 Application received
             </h3>
-            <p className="mt-2 text-slate-200">
+            <p className="mt-2 text-[#1f2937]">
                 Thank you for applying. A confirmation email will be sent to{" "}
                 <span className="font-medium">{submittedEmail || "your inbox"}</span>{" "}
                 once your application is queued by our team.
