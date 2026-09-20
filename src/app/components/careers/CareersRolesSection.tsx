@@ -1,4 +1,3 @@
-import { Briefcase } from "lucide-react";
 import { roles } from "./careersData";
 
 export function CareersRolesSection() {
@@ -11,9 +10,8 @@ export function CareersRolesSection() {
                 {roles.map((role) => (
                     <div
                         key={role}
-                        className="flex items-center gap-2 rounded-xl border border-[#e5e1dc] bg-white px-4 py-3 text-[#374151]"
+                        className="rounded-xl border border-[#e5e1dc] bg-white px-4 py-3 text-[#374151]"
                     >
-                        <Briefcase className="h-4 w-4 text-[#1f3c5b]" />
                         {role}
                     </div>
                 ))}

@@ -237,7 +237,7 @@ export function CareersApplicationForm({
                                 </p>
                             )}
                             {!isSouthAfrica && (
-                                <p className="text-xs text-amber-300">
+                                <p className="text-xs text-[#374151]">
                                     Work mode is locked to Remote when country is not South
                                     Africa.
                                 </p>

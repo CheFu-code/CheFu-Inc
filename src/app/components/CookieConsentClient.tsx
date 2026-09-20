@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import {
@@ -106,7 +107,11 @@ export function CookieConsentClient() {
                     <DialogHeader>
                         <DialogTitle>Cookie preferences</DialogTitle>
                         <DialogDescription>
-                            Choose which types of cookies you want to allow. Essential cookies are always enabled.
+                            Choose which types of cookies you want to allow. Essential cookies are always enabled. {" "}
+                            <Link href="/cookies" className="font-medium text-emerald-700 underline-offset-2 hover:underline">
+                                Learn more
+                            </Link>
+                            .
                         </DialogDescription>
                     </DialogHeader>
 
