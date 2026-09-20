@@ -21,7 +21,7 @@ export function StorePreview({ products }: { products: Product[] }) {
                 <div className="mb-10 flex flex-col justify-between gap-5 md:mb-12 md:flex-row md:items-end">
                     <div className="max-w-2xl">
                         
-                        <h2 className="text-3xl font-semibold tracking-[-0.05em] text-[#111827] md:text-5xl">
+                        <h2 className="text-2xl font-semibold tracking-[-0.05em] text-[#111827] md:text-4xl">
                             Tools for focused work.
                         </h2>
                     </div>

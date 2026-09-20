@@ -38,7 +38,7 @@ export function Services() {
           <p className="mb-4 text-center text-[11px] font-medium uppercase tracking-[0.22em] text-[#6b7280]">
             Expertise
           </p>
-          <h2 className="text-center text-3xl font-semibold tracking-[-0.05em] text-[#111827] md:text-5xl">
+          <h2 className="text-center text-2xl font-semibold tracking-[-0.05em] text-[#111827] md:text-4xl">
             Built for product thinking and delivery.
           </h2>
         </div>
@@ -57,14 +57,14 @@ export function Services() {
               </div>
 
               <div className="flex flex-1 flex-col p-7">
-                <h3 className="mb-3 text-2xl font-semibold tracking-[-0.04em] text-[#111827]">
+                <h3 className="mb-3 text-xl font-semibold tracking-[-0.04em] text-[#111827]">
                   {service.title}
                 </h3>
-                <p className="mb-6 text-base leading-7 text-[#5f5b56]">
+                <p className="mb-6 text-sm leading-6 text-[#5f5b56]">
                   {service.description}
                 </p>
 
-                <ul className="mb-7 space-y-3 text-sm text-[#374151]">
+                <ul className="mb-7 space-y-3 text-xs text-[#374151]">
                   {service.features.map((feature) => (
                     <li key={feature} className="flex items-center gap-3 border-b border-[#f0ece8] pb-2 last:border-b-0 last:pb-0">
                       <span className="h-1.5 w-1.5 rounded-full bg-[#1f3c5b]" />

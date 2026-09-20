@@ -13,7 +13,7 @@ export function Portfolio() {
             <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.22em] text-[#6b7280]">
               Portfolio
             </p>
-            <h2 className="text-3xl font-semibold tracking-[-0.05em] text-[#111827] md:text-4xl">
+            <h2 className="text-2xl font-semibold tracking-[-0.05em] text-[#111827] md:text-3xl">
               Our Products.
             </h2>
           </div>
@@ -45,10 +45,10 @@ export function Portfolio() {
                 <div className="mb-2 text-[9px] font-medium uppercase tracking-[0.16em] text-[#6b7280]">
                   {project.category}
                 </div>
-                <h3 className="mb-2 text-xl font-semibold tracking-[-0.04em] text-[#111827]">
+                <h3 className="mb-2 text-lg font-semibold tracking-[-0.04em] text-[#111827]">
                   {project.name}
                 </h3>
-                <p className="text-sm leading-6 text-[#5f5b56]">
+                <p className="text-xs leading-5 text-[#5f5b56]">
                   {project.description}
                 </p>
               </div>
