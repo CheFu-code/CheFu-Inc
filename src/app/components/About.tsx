@@ -1,5 +1,3 @@
-"use client";
-
 export function About() {
     return (
         <section className="border-t border-[#e5e1dc] bg-[#f5f1ed] py-24">
