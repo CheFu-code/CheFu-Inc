@@ -2,7 +2,7 @@
     "id": "/",
     "name": "CHEFU TECHNOLOGIES",
     "short_name": "CheFu",
-    "description": "CHEFU TECHNOLOGIES builds innovative technology solutions, software products, and scalable digital platforms.",
+    "description": "Chefu Technologies builds innovative technology solutions, software products, and scalable digital platforms.",
     "start_url": "/",
     "scope": "/",
     "display": "standalone",
@@ -20,7 +20,11 @@
     "categories": [
         "business",
         "productivity",
-        "technology"
+        "technology",
+        "software",
+        "digital platforms",
+        "music",
+        "entertainment"
     ],
     "icons": [
         {

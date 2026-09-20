@@ -2,9 +2,9 @@ import { BlogPage } from "../pages/BlogPage";
 import { pageMetadata } from "../site-metadata";
 
 export const metadata = pageMetadata({
-    title: "Insights | CHEFU TECHNOLOGIES",
+    title: "Insights | Chefu Technologies",
     description:
-        "Read CHEFU TECHNOLOGIES insights on AI, software engineering, audio production, and creative technology.",
+        "Read Chefu Technologies insights on AI, software engineering, audio production, and creative technology.",
     path: "/blog",
 });
 

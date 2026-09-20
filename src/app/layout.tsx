@@ -8,6 +8,8 @@ import { pageMetadata, siteName, siteUrl } from "./site-metadata";
 import "../styles/index.css";
 import { Analytics } from "@vercel/analytics/next";
 import { CartProvider } from "../lib/cart";
+import { CookieConsent } from "./components/CookieConsent";
+import { CookieConsentClient } from "./components/CookieConsentClient";
 
 const adsensePublisherId = "ca-pub-8952058057579255";
 
@@ -96,6 +98,7 @@ export default function RootLayout({
                     <SiteChrome>
                         {children}
                         <Analytics />
+                        <CookieConsentClient />
                     </SiteChrome>
                 </CartProvider>
             </body>

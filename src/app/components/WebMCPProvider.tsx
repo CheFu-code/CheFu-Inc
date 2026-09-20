@@ -49,7 +49,7 @@ export function WebMCPProvider() {
                 execute: () => ({
                     name: "CHEFU TECHNOLOGIES",
                     summary:
-                        "CHEFU TECHNOLOGIES builds software platforms, practical AI systems, and high-fidelity audio/media production experiences.",
+                        "Chefu Technologies builds software platforms, practical AI systems, and high-fidelity audio/media production experiences.",
                     services: ["software development", "AI solutions", "music production"],
                     routes: {
                         services: "/services",
