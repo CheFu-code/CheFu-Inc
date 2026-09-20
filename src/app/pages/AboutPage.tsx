@@ -78,7 +78,7 @@ export function AboutPage() {
                 </div>
 
                 <div className="mb-24">
-                    <h2 className="mb-12 text-center text-3xl font-bold text-slate-900">The Minds Behind CheFu</h2>
+                    <h2 className="mb-12 text-center text-3xl font-bold text-slate-900">The Minds Behind Us</h2>
                     <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
                         {[
                             { name: "Kurisani Maluleke", role: "CEO & Chief Architect", icon: Globe },
