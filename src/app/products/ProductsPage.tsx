@@ -5,23 +5,21 @@ import { companyProducts } from "./product-data";
 
 export function ProductsPage() {
     return (
-        <main className="min-h-screen bg-stone-50 px-6 pb-24 pt-32 text-slate-800">
-            <div className="mx-auto max-w-7xl">
+        <main className="min-h-screen bg-stone-50 px-4 pb-20 pt-24 text-slate-800 sm:px-6 sm:pt-28">
+            <div className="mx-auto max-w-6xl">
                 <header className="max-w-3xl">
-                   
-                    <h1 className="text-3xl font-semibold tracking-[-0.04em] text-slate-900 md:text-4xl">
+                    <h1 className="text-2xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-3xl md:text-4xl">
                         Products we build and operate.
                     </h1>
-                    <p className="mt-5 text-base leading-7 text-slate-600 md:text-lg">
-                        CHEFU TECHNOLOGIES develops software, AI systems, and digital products for focused work, learning, communication, and creative technology.
+                    <p className="mt-4 text-sm leading-6 text-slate-600 sm:text-base md:text-lg md:leading-7">
+                        Chefu Technologies develops software, AI systems, and digital products for focused work, learning, communication, and creative technology.
                     </p>
                 </header>
 
-                <section aria-labelledby="product-grid-heading" className="mt-16">
-                    <div className="mb-8 flex items-end justify-between gap-6">
+                <section aria-labelledby="product-grid-heading" className="mt-10 sm:mt-12">
+                    <div className="mb-6 flex items-end justify-between gap-4">
                         <div>
-                            
-                            <p className="mt-2 text-sm text-slate-600">
+                            <p className="text-sm text-slate-600">
                                 Explore the products and platforms built across the company.
                             </p>
                         </div>
@@ -30,7 +28,7 @@ export function ProductsPage() {
                         </Link>
                     </div>
 
-                    <div className="grid gap-4 md:grid-cols-2">
+                    <div className="grid gap-3 md:grid-cols-2 md:gap-4">
                         {companyProducts.map((product) => (
                             <article key={product.name} className="group overflow-hidden rounded-xl border border-slate-200 bg-white transition-colors hover:border-cyan-400/60 hover:shadow-sm">
                                 <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
@@ -39,14 +37,14 @@ export function ProductsPage() {
                                         alt={`${product.name} product interface`}
                                         fill
                                         sizes="(min-width: 768px) 50vw, 100vw"
-                                        className={product.imageFit === "contain" ? "object-contain p-12 transition-transform duration-500 group-hover:scale-105" : "object-cover transition-transform duration-500 group-hover:scale-105"}
+                                        className={product.imageFit === "contain" ? "object-contain p-9 transition-transform duration-500 group-hover:scale-105 sm:p-10" : "object-cover transition-transform duration-500 group-hover:scale-105"}
                                     />
                                 </div>
-                                <div className="p-4 md:p-5">
-                                    <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-cyan-700">{product.category}</p>
-                                    <h3 className="mt-2 text-lg font-semibold tracking-[-0.03em] text-slate-900">{product.name}</h3>
-                                    <p className="mt-2 text-xs leading-5 text-slate-600">{product.description}</p>
-                                    <a href={product.href} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 text-xs font-medium text-slate-900 hover:text-cyan-700">
+                                <div className="p-3 sm:p-4">
+                                    <p className="text-[8.5px] font-semibold uppercase tracking-[0.16em] text-cyan-700">{product.category}</p>
+                                    <h3 className="mt-2 text-base font-semibold tracking-[-0.03em] text-slate-900 sm:text-lg">{product.name}</h3>
+                                    <p className="mt-2 text-[11px] leading-5 text-slate-600 sm:text-xs">{product.description}</p>
+                                    <a href={product.href} target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-2 text-[11px] font-medium text-slate-900 hover:text-cyan-700 sm:text-xs">
                                         Visit product <ExternalLink className="h-3.5 w-3.5" />
                                     </a>
                                 </div>

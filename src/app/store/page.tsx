@@ -25,9 +25,6 @@ export default async function StorePage() {
                         </div>
 
                         <div className="flex items-center gap-3 text-xs text-slate-600 sm:text-sm">
-                            <span className="rounded-full border border-[#e5e1dc] bg-white px-2.5 py-1 sm:px-3 sm:py-1.5">
-                                {products.length} products
-                            </span>
                             <span className="hidden sm:inline">Free delivery over ZAR 1,000</span>
                         </div>
                     </div>

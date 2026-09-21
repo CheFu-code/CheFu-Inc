@@ -1,5 +1,3 @@
-'use client';
-
 import { motion } from 'motion/react';
 import { Calendar, User, ArrowRight, Tag } from 'lucide-react';
 import Image from 'next/image';
@@ -14,7 +12,7 @@ export function BlogPage() {
         <div className="mx-auto mb-20 max-w-3xl text-center">
           <h1 className="mb-6 text-4xl font-bold text-slate-900 md:text-6xl">Insights</h1>
           <p className="text-xl text-slate-600">
-            Thoughts, stories, and ideas from the team at CHEFU TECHNOLOGIES
+            Thoughts, stories, and ideas from the team at Chefu Technologies.
           </p>
         </div>
 
