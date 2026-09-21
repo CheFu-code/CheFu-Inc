@@ -32,7 +32,7 @@ export function StoreProductCard({ product }: StoreProductCardProps) {
     };
 
     return (
-        <article className="group relative flex min-w-0 h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white text-slate-900 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-400/60 hover:shadow-md sm:rounded-xl">
+        <article className="group flex h-full min-w-0 flex-col overflow-hidden rounded-xl border border-[#e5e1dc] bg-white text-slate-900 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
             <Link
                 href={`/store/products/${product.slug}?utm_source=store_catalog&utm_medium=card&utm_campaign=${product.slug}`}
                 className="flex min-w-0 flex-1 flex-col"
@@ -41,10 +41,10 @@ export function StoreProductCard({ product }: StoreProductCardProps) {
                     {image ? (
                         <Image
                             fill
-                            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
+                            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
                             src={image}
                             alt={product.images[0]?.alt || product.name}
-                            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                            className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                         />
                     ) : (
                         <span className="flex h-full items-center justify-center text-3xl font-bold text-slate-400 sm:text-5xl">
@@ -53,54 +53,53 @@ export function StoreProductCard({ product }: StoreProductCardProps) {
                     )}
                 </div>
 
-                <div className="flex flex-1 flex-col p-2.5 sm:p-3">
-                    <p className="truncate text-[8px] font-semibold uppercase tracking-[0.12em] text-slate-500 sm:text-[9px]">
+                <div className="flex flex-1 flex-col p-3">
+                    <p className="text-[9px] font-semibold uppercase tracking-[0.12em] text-slate-500">
                         {product.category}
                     </p>
-                    <h2 className="mt-1.5 line-clamp-2 text-sm font-semibold leading-5 tracking-tight text-slate-900 sm:text-base sm:leading-5">
+                    <h2 className="mt-2 line-clamp-2 text-sm font-semibold leading-5 tracking-tight text-slate-900 sm:text-[15px] sm:leading-5">
                         {product.name}
                     </h2>
-                    <p className="mt-1 line-clamp-2 min-h-[2rem] text-[10px] leading-4 text-slate-600 sm:min-h-[2.25rem] sm:text-xs sm:leading-5">
+                    <p className="mt-2 line-clamp-2 min-h-[2.5rem] text-[11px] leading-4 text-slate-600 sm:text-xs sm:leading-5">
                         {product.shortDescription}
                     </p>
-                    <div className="mt-auto flex flex-wrap items-baseline justify-between gap-1 pt-2 sm:pt-3">
-                        <span className="text-sm font-semibold text-slate-900 sm:text-base">
+
+                    <div className="mt-4 flex items-center justify-between gap-3">
+                        <span className="text-base font-semibold text-slate-900 sm:text-lg">
                             {formatZar(product.priceMinor)}
                         </span>
                         <span
                             className={
                                 unavailable
-                                    ? "text-[9px] text-rose-600 sm:text-[10px]"
-                                    : "text-[9px] text-emerald-700 sm:text-[10px]"
+                                    ? "text-[10px] font-medium text-rose-600"
+                                    : "text-[10px] font-medium text-emerald-700"
                             }
                         >
-                            {unavailable ? "Out of stock" : "Available"}
+                            {unavailable ? "Out of stock" : "In stock"}
                         </span>
                     </div>
                 </div>
             </Link>
 
-            <button
-                type="button"
-                aria-label={
-                    unavailable
-                        ? `${product.name} is out of stock`
-                        : added
-                          ? `${product.name} added to cart`
-                          : `Add ${product.name} to cart`
-                }
-                title={unavailable ? "Out of stock" : "Add to cart"}
-                disabled={unavailable}
-                onClick={handleAdd}
-                className={`absolute right-2 top-2 flex h-9 w-9 items-center justify-center rounded-full border border-cyan-300/40 bg-cyan-400 text-slate-950 shadow-lg shadow-cyan-500/20 transition-all duration-200 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 sm:right-3 sm:top-3 sm:h-10 sm:w-10 sm:opacity-0 sm:group-hover:opacity-100 ${unavailable ? "cursor-not-allowed border-slate-700 bg-slate-700 text-slate-400 shadow-none" : "hover:scale-105 hover:bg-cyan-300"}`}
-            >
-                {added ? (
-                    <Check className="h-4 w-4" />
-                ) : (
-                    <Plus className="h-5 w-5" />
-                )}
-            </button>
-
+            <div className="px-3 pb-3">
+                <button
+                    type="button"
+                    aria-label={
+                        unavailable
+                            ? `${product.name} is out of stock`
+                            : added
+                              ? `${product.name} added to cart`
+                              : `Add ${product.name} to cart`
+                    }
+                    title={unavailable ? "Out of stock" : "Add to cart"}
+                    disabled={unavailable}
+                    onClick={handleAdd}
+                    className={`flex w-full items-center justify-center gap-2 rounded-lg border px-3 py-2 text-xs font-medium transition-colors sm:text-sm ${unavailable ? "cursor-not-allowed border-slate-200 bg-slate-100 text-slate-400" : "border-[#1f3c5b] bg-[#1f3c5b] text-white hover:bg-[#17314d]"}`}
+                >
+                    {added ? <Check className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+                    {unavailable ? "Unavailable" : added ? "Added" : "Add to cart"}
+                </button>
+            </div>
         </article>
     );
 }

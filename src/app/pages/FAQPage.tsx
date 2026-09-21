@@ -4,7 +4,7 @@ import { FAQAccordion } from "../components/FAQAccordion";
 const faqs = [
     {
         q: "Do you work with independent artists and founders, or only larger teams?",
-        a: "We work with both. CHEFU supports early-stage founders, growing teams, and independent artists, especially where there is a clear product goal, a need for creative execution, or a desire to connect software, AI, and audio in a meaningful way.",
+        a: "We work with both. We supports early-stage founders, growing teams, and independent artists, especially where there is a clear product goal, a need for creative execution, or a desire to connect software, AI, and audio in a meaningful way.",
     },
     {
         q: "What kinds of projects do you take on?",
@@ -16,7 +16,7 @@ const faqs = [
     },
     {
         q: "Who owns the final work and the intellectual property?",
-        a: "For client projects, ownership is usually structured around the engagement terms, with final IP ownership defined in the contract and release milestones. For internal or product work created by CHEFU, ownership remains with CHEFU unless otherwise agreed in writing.",
+        a: "For client projects, ownership is usually structured around the engagement terms, with final IP ownership defined in the contract and release milestones. For internal or product work created by us, ownership remains with us unless otherwise agreed in writing.",
     },
     {
         q: "Can you modernise or extend existing systems?",

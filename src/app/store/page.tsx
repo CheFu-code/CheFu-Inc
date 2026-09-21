@@ -12,25 +12,33 @@ export const dynamic = "force-dynamic";
 
 export default async function StorePage() {
     const products = await getProducts();
+
     return (
-        <main className="min-h-screen bg-stone-50 px-4 pb-24 pt-28 text-slate-800 sm:px-6 sm:pt-36">
-            <div className="mx-auto w-full max-w-5xl">
-                <div className="mb-10 flex flex-col gap-5 md:mb-12 md:flex-row md:items-end">
-                    <div>
-                        <h1 className="max-w-3xl text-3xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
-                            Built for the way you work.
-                        </h1>
-                        <p className="mt-4 max-w-xl text-sm leading-6 text-slate-600 sm:text-base sm:leading-relaxed">
-                            Essentials for developers, creators, and modern teams—thoughtful, functional, and designed for everyday use.
-                        </p>
+        <main className="min-h-screen bg-[#f5f5f4] px-4 pb-24 pt-24 text-slate-800 sm:px-6 sm:pt-28">
+            <div className="mx-auto w-full max-w-6xl">
+                <div className="mb-8 border-b border-[#e5e1dc] pb-6">
+                    <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                        <div>
+                            
+                            <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                                Shop essentials
+                            </h1>
+                        </div>
+                        <div className="flex items-center gap-3 text-sm text-slate-600">
+                            <span className="rounded-full border border-[#e5e1dc] bg-white px-3 py-1.5">
+                                {products.length} products
+                            </span>
+                            <span className="hidden sm:inline">Free delivery over ZAR 1,000</span>
+                        </div>
                     </div>
                 </div>
+
                 {products.length === 0 ? (
                     <p className="rounded-2xl border border-slate-200 bg-white p-8 text-slate-600">
                         The store is being stocked. Check back soon.
                     </p>
                 ) : (
-                    <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
                         {products.map((product) => (
                             <StoreProductCard key={product.id} product={product} />
                         ))}

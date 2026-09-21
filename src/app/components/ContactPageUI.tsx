@@ -30,18 +30,18 @@ export const ContactPageUI = ({
         <div className="min-h-screen bg-stone-50 pb-20 pt-32 text-slate-800">
             <div className="container mx-auto px-6">
                 <div className="mx-auto mb-16 max-w-3xl text-center">
-                    <h1 className="mb-6 text-4xl font-bold text-slate-900 md:text-6xl">
+                    <h1 className="mb-6 text-3xl font-bold text-slate-900 md:text-5xl">
                         Start a Project
                     </h1>
-                    <p className="text-xl text-slate-600">
-                        Tell us what you are building, improving, or securing. We will use your brief to understand the problem, identify the right CHEFU capability, and follow up about a practical next step.
+                    <p className="text-base leading-7 text-slate-600 md:text-lg">
+                        Tell us what you are building, improving, or securing. We will use your brief to understand the problem, identify the right capability, and follow up about a practical next step.
                     </p>
                 </div>
 
                 <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 lg:grid-cols-2">
                     <div className="space-y-12">
                         <div>
-                            <h2 className="mb-6 text-2xl font-bold text-slate-900">
+                            <h2 className="mb-6 text-xl font-bold text-slate-900">
                                 Contact Information
                             </h2>
                             <div className="space-y-6">
@@ -72,7 +72,7 @@ export const ContactPageUI = ({
                         </div>
 
                         <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-                            <h3 className="mb-2 text-lg font-bold text-slate-900">
+                            <h3 className="mb-2 text-base font-bold text-slate-900">
                                 Not sure what you need?
                             </h3>
                             <p className="mb-4 text-slate-600">
