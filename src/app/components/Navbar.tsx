@@ -1,6 +1,7 @@
 import { CheFuUserDropdown } from "chefu-ui";
 import { clsx } from "clsx";
 import {
+    BookOpen,
     BriefcaseBusiness,
     CircleHelp,
     Code2,
@@ -9,6 +10,7 @@ import {
     Package,
     Menu,
     ShoppingCart,
+    Store,
     X,
     type LucideIcon,
 } from "lucide-react";
@@ -25,6 +27,8 @@ const navIcons: Record<string, LucideIcon> = {
     Services: Code2,
     Products: Package,
     Careers: BriefcaseBusiness,
+    Insights: BookOpen,
+    Store,
     FAQ: CircleHelp,
 };
 
@@ -78,8 +82,8 @@ export function Navbar() {
                                             : "text-[#374151] hover:bg-[#f3f2ef] hover:text-[#111827]",
                                     )}
                                 >
-                                    {Icon && !isActive && (
-                                        <span className="mr-2 flex h-4 w-4 items-center justify-center opacity-60 group-hover:opacity-100">
+                                    {Icon && isActive && (
+                                        <span className="mr-2 flex h-4 w-4 items-center justify-center opacity-100">
                                             <Icon className="h-3.5 w-3.5 shrink-0" />
                                         </span>
                                     )}
@@ -230,7 +234,7 @@ export function Navbar() {
                                             )}
                                         >
                                             <span className="flex items-center gap-3">
-                                                {Icon && (
+                                                {Icon && isActive && (
                                                     <Icon className="h-4 w-4" />
                                                 )}
 

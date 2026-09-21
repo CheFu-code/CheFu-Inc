@@ -8,9 +8,7 @@ export function Portfolio() {
       <div className="container mx-auto px-5 md:px-6">
         <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
-            <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.22em] text-[#6b7280]">
-              Portfolio
-            </p>
+            
             <h2 className="text-2xl font-semibold tracking-[-0.05em] text-[#111827] md:text-3xl">
               Our Products.
             </h2>

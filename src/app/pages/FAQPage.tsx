@@ -42,9 +42,7 @@ export function FAQPage() {
             <div className="mx-auto max-w-6xl">
                 <div className="grid gap-12 lg:grid-cols-[0.9fr_1.4fr] lg:items-start">
                     <aside className="lg:sticky lg:top-28">
-                        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
-                            Support
-                        </p>
+                        
                         <h1 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
                             Frequently asked questions
                         </h1>

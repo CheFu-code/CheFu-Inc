@@ -33,9 +33,7 @@ export function Services() {
     <section className="bg-[#f7f5f3] py-24">
       <div className="container mx-auto px-6">
         <div className="mx-auto mb-16 max-w-3xl">
-          <p className="mb-4 text-center text-[11px] font-medium uppercase tracking-[0.22em] text-[#6b7280]">
-            Expertise
-          </p>
+          
           <h2 className="text-center text-2xl font-semibold tracking-[-0.05em] text-[#111827] md:text-4xl">
             Built for product thinking and delivery.
           </h2>

@@ -10,16 +10,6 @@ import {
 import Link from 'next/link';
 import { FaWhatsapp } from 'react-icons/fa';
 
-function ThreadIcon({ className }: { className?: string }) {
-    return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={className} aria-hidden="true">
-            <path d="M9 9.5c.5-1.5 1.8-2.3 3.5-2.3 2.4 0 4 1.3 4 3.7 0 1.8-1 3.1-2.5 3.8-1.7.8-3.5.8-4.9.1-1.2-.6-2-1.8-2-3.6 0-1.5.7-2.8 2.1-3.7 1-.6 2.2-.8 3.2-.8 1 0 1.8.2 2.6.7" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M9.2 15.2c-.8-.5-1.3-1.3-1.3-2.4 0-1.6 1.3-2.8 3.1-2.8 1.5 0 2.5.8 3.1 2.1" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M7 17.4c.8 1.3 2.2 2.1 4.1 2.1 2.2 0 4.1-1.4 5-3.6" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-    );
-}
-
 export function Footer() {
     const companyLinks = [
         { label: "About", to: "/about" },
@@ -42,7 +32,6 @@ export function Footer() {
         { label: "LinkedIn", href: "https://www.linkedin.com/in/chefu-technologies-90b1663b1", icon: Linkedin },
         { label: "GitHub", href: "https://github.com/CHEFU-TECHNOLOGIES", icon: Github },
         { label: "Instagram", href: "https://www.instagram.com/chefu_technologies", icon: Instagram },
-        { label: "Thread", href: "https://www.threads.com/@chefu_technologies", icon: ThreadIcon },
         { label: "WhatsApp", href: "https://wa.me/27606031205", icon: FaWhatsapp },
     ];
 
