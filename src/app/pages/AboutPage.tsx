@@ -20,7 +20,7 @@ export function AboutPage() {
                         We Are The Architects of <span className="bg-gradient-to-r from-cyan-700 to-violet-600 bg-clip-text text-transparent">Digital Sound & Logic</span>
                     </h1>
                     <p className="text-xl leading-relaxed text-slate-600">
-                        CHEFU TECHNOLOGIES is a hybrid creative agency and software house. We don't just write code; we compose experiences. We don't just make beats; we engineer emotion.
+                        Chefu Technologies is a hybrid creative agency and software house. We don't just write code; we compose experiences. We don't just make beats; we engineer emotion.
                     </p>
                 </motion.div>
 

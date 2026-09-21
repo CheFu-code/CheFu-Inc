@@ -80,7 +80,7 @@ CHEFU TECHNOLOGIES builds software platforms, practical AI systems, and high-fid
 `,
     "/about": `# About ${siteName}
 
-CHEFU TECHNOLOGIES is a hybrid software, AI, and audio production company. The team combines product engineering, creative technology, and music production to build practical digital experiences.
+Chefu Technologies is a hybrid software, AI, and audio production company. The team combines product engineering, creative technology, and music production to build practical digital experiences.
 
 ## Focus
 
@@ -90,7 +90,7 @@ CHEFU TECHNOLOGIES is a hybrid software, AI, and audio production company. The t
 `,
     "/services": `# ${siteName} Services
 
-CHEFU TECHNOLOGIES provides software development, AI solutions, and music production services.
+Chefu Technologies provides software development, AI solutions, and music production services.
 
 ## Software Development
 
