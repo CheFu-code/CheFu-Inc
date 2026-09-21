@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from 'motion/react';
 import { Calendar, User, ArrowRight, Tag } from 'lucide-react';
 import Image from 'next/image';
