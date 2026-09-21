@@ -17,6 +17,10 @@ export function StoreProductCard({ product }: StoreProductCardProps) {
     const image = product.thumbnail || product.images[0]?.url;
     const unavailable =
         product.status === "OUT_OF_STOCK" || product.inventoryQuantity === 0;
+    const lowStock =
+        !unavailable &&
+        product.inventoryQuantity > 0 &&
+        product.inventoryQuantity <= (product.lowStockThreshold || 5);
 
     const handleAdd = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
@@ -54,9 +58,17 @@ export function StoreProductCard({ product }: StoreProductCardProps) {
                 </div>
 
                 <div className="flex flex-1 flex-col p-3">
-                    <p className="text-[9px] font-semibold uppercase tracking-[0.12em] text-slate-500">
-                        {product.category}
-                    </p>
+                    <div className="flex items-center justify-between gap-2">
+                        <p className="text-[9px] font-semibold uppercase tracking-[0.12em] text-slate-500">
+                            {product.category}
+                        </p>
+                        {!unavailable && lowStock ? (
+                            <span className="rounded-full bg-amber-50 px-1.5 py-0.5 text-[9px] font-medium text-amber-700">
+                                Low stock
+                            </span>
+                        ) : null}
+                    </div>
+
                     <h2 className="mt-2 line-clamp-2 text-sm font-semibold leading-5 tracking-tight text-slate-900 sm:text-[15px] sm:leading-5">
                         {product.name}
                     </h2>
@@ -64,18 +76,27 @@ export function StoreProductCard({ product }: StoreProductCardProps) {
                         {product.shortDescription}
                     </p>
 
-                    <div className="mt-4 flex items-center justify-between gap-3">
-                        <span className="text-base font-semibold text-slate-900 sm:text-lg">
-                            {formatZar(product.priceMinor)}
-                        </span>
+                    <div className="mt-4 flex items-end justify-between gap-3">
+                        <div className="flex items-baseline gap-2">
+                            <span className="text-base font-semibold text-slate-900 sm:text-lg">
+                                {formatZar(product.priceMinor)}
+                            </span>
+                            {product.compareAtPriceMinor && product.compareAtPriceMinor > product.priceMinor ? (
+                                <span className="text-[10px] text-slate-400 line-through">
+                                    {formatZar(product.compareAtPriceMinor)}
+                                </span>
+                            ) : null}
+                        </div>
                         <span
                             className={
                                 unavailable
                                     ? "text-[10px] font-medium text-rose-600"
-                                    : "text-[10px] font-medium text-emerald-700"
+                                    : lowStock
+                                      ? "text-[10px] font-medium text-amber-700"
+                                      : "text-[10px] font-medium text-emerald-700"
                             }
                         >
-                            {unavailable ? "Out of stock" : "In stock"}
+                            {unavailable ? "Out of stock" : lowStock ? "Low stock" : "In stock"}
                         </span>
                     </div>
                 </div>

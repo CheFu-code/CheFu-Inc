@@ -1,6 +1,6 @@
 import { getProducts } from "../../lib/products";
-import { StoreProductCard } from "./StoreProductCard";
 import { pageMetadata } from "../site-metadata";
+import { StoreCatalogClient } from "./StoreCatalogClient";
 
 export const metadata = pageMetadata({
     title: "Store | Technology for the way you work",
@@ -19,11 +19,11 @@ export default async function StorePage() {
                 <div className="mb-8 border-b border-[#e5e1dc] pb-6">
                     <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                         <div>
-                            
                             <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
                                 Shop essentials
                             </h1>
                         </div>
+
                         <div className="flex items-center gap-3 text-sm text-slate-600">
                             <span className="rounded-full border border-[#e5e1dc] bg-white px-3 py-1.5">
                                 {products.length} products
@@ -38,11 +38,7 @@ export default async function StorePage() {
                         The store is being stocked. Check back soon.
                     </p>
                 ) : (
-                    <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
-                        {products.map((product) => (
-                            <StoreProductCard key={product.id} product={product} />
-                        ))}
-                    </div>
+                    <StoreCatalogClient initialProducts={products} />
                 )}
             </div>
         </main>
