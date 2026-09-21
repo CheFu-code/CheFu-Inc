@@ -46,18 +46,18 @@ export function ProductActions({
             }
             className={[
                 "group relative inline-flex items-center justify-center",
-                "overflow-hidden font-bold",
+                "overflow-hidden font-semibold",
                 "transition-all duration-300",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950",
-                "disabled:cursor-not-allowed disabled:bg-slate-700 disabled:text-slate-400",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1f3c5b]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
+                "disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400",
                 compact
-                    ? "min-h-10 w-auto min-w-[112px] max-w-[46vw] shrink-0 rounded-full px-3 py-2.5 text-[11px] sm:min-w-[124px] sm:px-4 sm:text-xs"
-                    : "min-h-12 w-full rounded-full px-6 py-4 text-sm",
+                    ? "min-h-10 w-auto min-w-[108px] max-w-[46vw] shrink-0 rounded-lg px-3 py-2.5 text-[10.5px] sm:min-w-[120px] sm:px-3.5 sm:text-xs"
+                    : "min-h-11 w-full rounded-lg px-5 py-3.5 text-sm",
                 added
-                    ? "bg-emerald-400 text-slate-950"
+                    ? "bg-emerald-600 text-white"
                     : disabled
-                      ? "bg-slate-700 text-slate-400"
-                      : "bg-cyan-400 text-slate-950 hover:-translate-y-0.5 hover:bg-cyan-300 hover:shadow-[0_12px_30px_rgba(34,211,238,0.14)] active:translate-y-0",
+                      ? "bg-slate-200 text-slate-500"
+                      : "bg-[#1f3c5b] text-white shadow-sm hover:-translate-y-0.5 hover:bg-[#17314d] hover:shadow-[0_8px_20px_rgba(31,60,91,0.12)] active:translate-y-0",
             ].join(" ")}
         >
             {!disabled && !added && (
