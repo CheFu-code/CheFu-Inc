@@ -53,7 +53,7 @@ export function ProductPageView({
                 }}
             />
             <div className="mx-auto w-full max-w-[1440px] min-w-0 px-4 pb-32 pt-24 sm:px-6 sm:pb-24 sm:pt-28 lg:px-8">
-                <nav aria-label="Breadcrumb" className="mb-5 flex items-center gap-1 text-xs text-slate-500 sm:mb-7">
+                <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-1 text-[11px] text-slate-500 sm:mb-6">
                     <Link
                         href="/store"
                         className="inline-flex min-h-9 items-center gap-1.5 font-medium transition-colors hover:text-[#1f3c5b]"
@@ -67,7 +67,7 @@ export function ProductPageView({
                     <span className="max-w-[180px] truncate text-slate-700">{product.name}</span>
                 </nav>
 
-                <div className="grid min-w-0 gap-6 sm:gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(360px,0.9fr)] lg:items-start lg:gap-10">
+                <div className="grid min-w-0 gap-5 sm:gap-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(340px,0.92fr)] lg:items-start lg:gap-8">
                     <div className="min-w-0 lg:sticky lg:top-28">
                         <ProductGallery
                             productName={product.name}
@@ -89,17 +89,17 @@ export function ProductPageView({
                             )}
                         </div>
 
-                        <h1 className="mt-3 text-[1.55rem] font-bold leading-tight tracking-tight text-slate-900 sm:text-2xl">
+                        <h1 className="mt-3 text-[1.4rem] font-bold leading-tight tracking-tight text-slate-900 sm:text-[1.8rem]">
                             {product.name}
                         </h1>
 
-                        <p className="mt-3 text-[12.5px] leading-5 text-slate-600 sm:text-sm sm:leading-6">
+                        <p className="mt-2 text-[12.5px] leading-5 text-slate-600 sm:text-sm sm:leading-6">
                             {product.shortDescription || product.description}
                         </p>
 
-                        <div className="mt-5 border-y border-[#e5e1dc] py-4">
+                        <div className="mt-4 border-y border-[#e5e1dc] py-4">
                             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                                <span className="text-[1.75rem] font-bold tracking-tight text-slate-900 sm:text-2xl">
+                                <span className="text-[1.65rem] font-bold tracking-tight text-slate-900 sm:text-[2rem]">
                                     {formatZar(product.priceMinor)}
                                 </span>
                                 {hasDiscount && (
@@ -114,7 +114,7 @@ export function ProductPageView({
                                 )}
                             </div>
                             <p className="mt-1 text-[10.5px] text-slate-500 sm:text-xs">Price includes VAT where applicable</p>
-                            <div className="mt-4 flex items-center gap-2 text-[11px] font-semibold sm:text-xs">
+                            <div className="mt-3 flex items-center gap-2 text-[11px] font-semibold sm:text-xs">
                                 {unavailable ? (
                                     <span className="text-rose-600">Currently unavailable</span>
                                 ) : lowStock ? (
@@ -125,11 +125,11 @@ export function ProductPageView({
                             </div>
                         </div>
 
-                        <div className="mt-5 hidden lg:block">
+                        <div className="mt-4 hidden lg:block">
                             <ProductActions product={product} disabled={unavailable} />
                         </div>
 
-                        <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+                        <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
                             <ProductShareButton
                                 productName={product.name}
                                 productDescription={product.shortDescription || product.description}
@@ -138,17 +138,17 @@ export function ProductPageView({
                             <span className="text-xs text-slate-500">SKU: {product.sku}</span>
                         </div>
 
-                        <div className="mt-6 divide-y divide-[#e5e1dc] border-y border-[#e5e1dc] text-sm">
-                            <div className="flex gap-3 py-4">
-                                <Truck className="mt-0.5 h-5 w-5 shrink-0 text-[#1f3c5b]" />
+                        <div className="mt-5 divide-y divide-[#e5e1dc] border-y border-[#e5e1dc] text-sm">
+                            <div className="flex gap-3 py-3.5">
+                                <Truck className="mt-0.5 h-4 w-4 shrink-0 text-[#1f3c5b]" />
                                 <div><p className="font-semibold text-slate-900">Delivery options</p><p className="mt-1 text-xs text-slate-500">Shipping availability depends on your location and this product.</p></div>
                             </div>
-                            <div className="flex gap-3 py-4">
-                                <RotateCcw className="mt-0.5 h-5 w-5 shrink-0 text-[#1f3c5b]" />
+                            <div className="flex gap-3 py-3.5">
+                                <RotateCcw className="mt-0.5 h-4 w-4 shrink-0 text-[#1f3c5b]" />
                                 <div><p className="font-semibold text-slate-900">Simple returns</p><p className="mt-1 text-xs text-slate-500">We are here to help if your order is not right.</p></div>
                             </div>
-                            <div className="flex gap-3 py-4">
-                                <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-[#1f3c5b]" />
+                            <div className="flex gap-3 py-3.5">
+                                <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#1f3c5b]" />
                                 <div><p className="font-semibold text-slate-900">Secure checkout</p><p className="mt-1 text-xs text-slate-500">Your payment details are handled securely.</p></div>
                             </div>
                         </div>

@@ -30,7 +30,6 @@ export function ProductGallery({
 
     return (
         <div className="min-w-0 lg:sticky lg:top-28 lg:w-full lg:max-w-[440px] lg:self-start">
-            {/* Main media */}
             <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-xl border border-[#e5e1dc] bg-white shadow-sm sm:aspect-square sm:max-h-[min(34vw,330px)] sm:rounded-xl">
                 {activeImage ? (
                     <Image
@@ -40,7 +39,7 @@ export function ProductGallery({
                         fill
                         priority={activeIndex === 0}
                         sizes="(max-width: 1023px) 100vw, 440px"
-                        className="object-contain p-0 sm:p-10"
+                        className="object-contain p-0 sm:p-8"
                     />
                 ) : (
                     <div className="flex h-full items-center justify-center">
@@ -51,25 +50,21 @@ export function ProductGallery({
                     </div>
                 )}
 
-                {/* Bottom fade */}
-                {/* Featured */}
                 {featured && (
-                    <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-md border border-slate-700 bg-slate-950/90 px-2.5 py-1.5 text-[9px] font-bold uppercase tracking-wider text-slate-200 shadow-sm sm:left-4 sm:top-4 sm:text-[10px]">
+                    <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-[#e5e1dc] bg-white/90 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.1em] text-slate-700 shadow-sm sm:left-4 sm:top-4 sm:text-[10px]">
                         <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
                         Featured
                     </div>
                 )}
 
-                {/* Discount */}
                 {hasDiscount && (
-                    <div className="absolute right-3 top-3 rounded-md border border-rose-400/20 bg-slate-950/90 px-2.5 py-1.5 text-[9px] font-bold uppercase tracking-wider text-rose-300 shadow-sm sm:right-4 sm:top-4 sm:text-[10px]">
+                    <div className="absolute right-3 top-3 rounded-full border border-rose-200 bg-rose-50 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.1em] text-rose-600 shadow-sm sm:right-4 sm:top-4 sm:text-[10px]">
                         Save {discountPercentage}%
                     </div>
                 )}
 
-                {/* Image counter */}
                 {images.length > 1 && (
-                    <div className="absolute bottom-3 right-3 rounded-md border border-slate-700 bg-slate-950/90 px-2.5 py-1.5 text-[9px] font-medium text-slate-300 shadow-sm sm:bottom-4 sm:right-4">
+                    <div className="absolute bottom-3 right-3 rounded-full border border-[#e5e1dc] bg-white/90 px-2.5 py-1 text-[9px] font-medium text-slate-600 shadow-sm sm:bottom-4 sm:right-4">
                         {activeIndex + 1} / {images.length}
                     </div>
                 )}
@@ -92,9 +87,9 @@ export function ProductGallery({
                                     onClick={() =>
                                         setActiveIndex(index)
                                     }
-                                        className={`relative h-14 w-14 shrink-0 overflow-hidden rounded-lg border bg-slate-900 transition-all duration-300 sm:h-16 sm:w-16 ${active
-                                            ? "border-cyan-400 ring-1 ring-cyan-400/30"
-                                            : "border-slate-800 opacity-60 hover:border-slate-600 hover:opacity-100"
+                                        className={`relative h-14 w-14 shrink-0 overflow-hidden rounded-lg border bg-slate-100 transition-all duration-200 sm:h-16 sm:w-16 ${active
+                                            ? "border-[#1f3c5b] ring-1 ring-[#1f3c5b]/15"
+                                            : "border-[#e5e1dc] opacity-80 hover:border-slate-400 hover:opacity-100"
                                         }`}
                                 >
                                     <Image
