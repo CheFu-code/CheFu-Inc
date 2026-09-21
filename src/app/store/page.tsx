@@ -3,9 +3,9 @@ import { StoreProductCard } from "./StoreProductCard";
 import { pageMetadata } from "../site-metadata";
 
 export const metadata = pageMetadata({
-    title: "CHEFU Store | Technology for the way you work",
+    title: "Store | Technology for the way you work",
     description:
-        "Physical products from CHEFU TECHNOLOGIES for focused work and everyday technology.",
+        "Products from Chefu Technologies for focused work and everyday technology.",
     path: "/store",
 });
 export const dynamic = "force-dynamic";

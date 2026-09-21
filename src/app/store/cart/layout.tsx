@@ -4,7 +4,7 @@ import { siteName, siteUrl } from "../../site-metadata";
 
 export const metadata: Metadata = {
     title: `Shopping cart | ${siteName}`,
-    description: "Review products selected from the CHEFU store.",
+    description: "Review products selected from the our store.",
     alternates: {
         canonical: `${siteUrl}/store/cart`,
     },
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     },
     openGraph: {
         title: `Shopping cart | ${siteName}`,
-        description: "Review products selected from the CHEFU store.",
+        description: "Review products selected from the our store.",
         url: `${siteUrl}/store/cart`,
         siteName,
         type: "website",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary",
         title: `Shopping cart | ${siteName}`,
-        description: "Review products selected from the CHEFU store.",
+        description: "Review products selected from the our store.",
     },
 };
 

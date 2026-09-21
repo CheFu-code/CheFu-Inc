@@ -16,7 +16,7 @@ export type ProductPageData = {
 };
 
 const SITE_URL = "https://chefu.co.za";
-const SITE_NAME = "CHEFU Technologies";
+const SITE_NAME = "Chefu Technologies";
 
 export function getAbsoluteUrl(value: string) {
     if (

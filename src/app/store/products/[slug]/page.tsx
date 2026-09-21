@@ -10,7 +10,7 @@ import {
 export const dynamic = "force-dynamic";
 
 const SITE_URL = "https://chefu.co.za";
-const SITE_NAME = "CHEFU Technologies";
+const SITE_NAME = "Chefu Technologies";
 
 type ProductPageProps = {
     params: Promise<{ slug: string }>;
@@ -24,9 +24,9 @@ export async function generateMetadata({
 
     if (!product) {
         return {
-            title: "Product not found | CHEFU Technologies Store",
+            title: "Product not found | Chefu Technologies Store",
             description:
-                "The requested CHEFU Technologies product could not be found.",
+                "The requested Chefu Technologies product could not be found.",
             robots: {
                 index: false,
                 follow: false,
@@ -38,7 +38,7 @@ export async function generateMetadata({
         product.seoDescription?.trim() ||
         product.shortDescription?.trim() ||
         product.description?.trim() ||
-        `Shop ${product.name} from CHEFU Technologies.`;
+        `Shop ${product.name} from Chefu Technologies.`;
 
     const canonicalUrl = `${SITE_URL}/store/products/${product.slug}`;
 
@@ -58,14 +58,14 @@ export async function generateMetadata({
         product.name,
         product.category,
         ...(product.tags ?? []),
-        "CHEFU",
-        "CHEFU Technologies",
-        "CHEFU Store",
+        "Chefu",
+        "Chefu Technologies",
+        "Chefu Technologies Store",
         "South Africa",
     ].filter(Boolean);
 
     return {
-        title: `${product.name} | CHEFU Technologies Store`,
+        title: `${product.name} | Chefu Technologies Store`,
         description,
         keywords,
         authors: [
@@ -91,7 +91,7 @@ export async function generateMetadata({
             },
         },
         openGraph: {
-            title: `${product.name} | CHEFU Technologies Store`,
+            title: `${product.name} | Chefu Technologies Store`,
             description,
             url: canonicalUrl,
             siteName: SITE_NAME,
@@ -108,7 +108,7 @@ export async function generateMetadata({
         },
         twitter: {
             card: "summary_large_image",
-            title: `${product.name} | CHEFU Technologies Store`,
+            title: `${product.name} | Chefu Technologies Store`,
             description,
             images: socialImage
                 ? [getAbsoluteUrl(socialImage)]

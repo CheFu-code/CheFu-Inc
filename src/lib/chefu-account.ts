@@ -19,7 +19,7 @@ const appLabels: Record<ChefuAppId, string> = {
     flow: "Flow Mail",
     muzalo: "Muzalo",
     quantum: "Quantum",
-    root: 'CHEFU Technologies',
+    root: 'Chefu Technologies',
 };
 
 export function apiUrl(path: string) {

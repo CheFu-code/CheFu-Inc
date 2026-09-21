@@ -32,7 +32,7 @@ export function ProductShareButton({
                 typeof navigator.share === "function"
             ) {
                 await navigator.share({
-                    title: `${productName} | CHEFU Technologies`,
+                    title: `${productName} | Chefu Technologies`,
                     text: productDescription,
                     url: shareUrl.toString(),
                 });

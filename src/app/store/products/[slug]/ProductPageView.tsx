@@ -172,7 +172,7 @@ export function ProductPageView({
                             <h3 className="text-sm font-bold uppercase tracking-wide text-slate-500">Sold by</h3>
                             <div className="mt-3 flex items-start gap-3">
                                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-cyan-400" />
-                                <div className="min-w-0 max-w-full"><p className="break-words font-semibold text-white [overflow-wrap:anywhere]">CHEFU Technologies</p><p className="mt-1 break-words text-xs leading-5 text-slate-500 [overflow-wrap:anywhere]">Thoughtfully selected technology for modern workspaces.</p></div>
+                                <div className="min-w-0 max-w-full"><p className="break-words font-semibold text-white [overflow-wrap:anywhere]">Chefu Technologies</p><p className="mt-1 break-words text-xs leading-5 text-slate-500 [overflow-wrap:anywhere]">Thoughtfully selected technology for modern workspaces.</p></div>
                             </div>
                             <div className="mt-5 flex items-start gap-3 text-xs text-slate-400">
                                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-slate-500" />
@@ -210,7 +210,7 @@ export function ProductPageView({
                             <h3 className="text-sm font-bold uppercase tracking-wide text-slate-500">Sold by</h3>
                             <div className="mt-3 flex items-start gap-3">
                                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-cyan-400" />
-                                <div className="min-w-0 max-w-full"><p className="break-words font-semibold text-white [overflow-wrap:anywhere]">CHEFU Technologies</p><p className="mt-1 break-words text-xs leading-5 text-slate-500 [overflow-wrap:anywhere]">Thoughtfully selected technology for modern workspaces.</p></div>
+                                <div className="min-w-0 max-w-full"><p className="break-words font-semibold text-white [overflow-wrap:anywhere]">Chefu Technologies</p><p className="mt-1 break-words text-xs leading-5 text-slate-500 [overflow-wrap:anywhere]">Thoughtfully selected technology for modern workspaces.</p></div>
                             </div>
                             <div className="mt-5 flex items-start gap-3 text-xs text-slate-400">
                                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-slate-500" />
