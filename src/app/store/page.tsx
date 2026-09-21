@@ -14,18 +14,18 @@ export default async function StorePage() {
     const products = await getProducts();
 
     return (
-        <main className="min-h-screen bg-[#f5f5f4] px-4 pb-24 pt-24 text-slate-800 sm:px-6 sm:pt-28">
+        <main className="min-h-screen bg-[#f5f5f4] px-4 pb-20 pt-20 text-slate-800 sm:px-6 sm:pt-24">
             <div className="mx-auto w-full max-w-6xl">
-                <div className="mb-8 border-b border-[#e5e1dc] pb-6">
-                    <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                <div className="mb-6 border-b border-[#e5e1dc] pb-5">
+                    <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                         <div>
-                            <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                            <h1 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-[2.2rem]">
                                 Shop essentials
                             </h1>
                         </div>
 
-                        <div className="flex items-center gap-3 text-sm text-slate-600">
-                            <span className="rounded-full border border-[#e5e1dc] bg-white px-3 py-1.5">
+                        <div className="flex items-center gap-3 text-xs text-slate-600 sm:text-sm">
+                            <span className="rounded-full border border-[#e5e1dc] bg-white px-2.5 py-1 sm:px-3 sm:py-1.5">
                                 {products.length} products
                             </span>
                             <span className="hidden sm:inline">Free delivery over ZAR 1,000</span>

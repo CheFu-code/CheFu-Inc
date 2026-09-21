@@ -41,7 +41,7 @@ export function StoreProductCard({ product }: StoreProductCardProps) {
                 href={`/store/products/${product.slug}?utm_source=store_catalog&utm_medium=card&utm_campaign=${product.slug}`}
                 className="flex min-w-0 flex-1 flex-col"
             >
-                <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                <div className="relative aspect-[4/4.3] overflow-hidden bg-slate-100">
                     {image ? (
                         <Image
                             fill
@@ -59,30 +59,30 @@ export function StoreProductCard({ product }: StoreProductCardProps) {
 
                 <div className="flex flex-1 flex-col p-3">
                     <div className="flex items-center justify-between gap-2">
-                        <p className="text-[9px] font-semibold uppercase tracking-[0.12em] text-slate-500">
+                        <p className="text-[8.5px] font-semibold uppercase tracking-[0.12em] text-slate-500">
                             {product.category}
                         </p>
                         {!unavailable && lowStock ? (
-                            <span className="rounded-full bg-amber-50 px-1.5 py-0.5 text-[9px] font-medium text-amber-700">
+                            <span className="rounded-full bg-amber-50 px-1.5 py-0.5 text-[8.5px] font-medium text-amber-700">
                                 Low stock
                             </span>
                         ) : null}
                     </div>
 
-                    <h2 className="mt-2 line-clamp-2 text-sm font-semibold leading-5 tracking-tight text-slate-900 sm:text-[15px] sm:leading-5">
+                    <h2 className="mt-2 line-clamp-2 text-[0.95rem] font-semibold leading-5 tracking-tight text-slate-900 sm:text-[1rem]">
                         {product.name}
                     </h2>
-                    <p className="mt-2 line-clamp-2 min-h-[2.5rem] text-[11px] leading-4 text-slate-600 sm:text-xs sm:leading-5">
+                    <p className="mt-2 line-clamp-2 min-h-[2.5rem] text-[10.5px] leading-4 text-slate-600 sm:text-xs sm:leading-5">
                         {product.shortDescription}
                     </p>
 
                     <div className="mt-4 flex items-end justify-between gap-3">
                         <div className="flex items-baseline gap-2">
-                            <span className="text-base font-semibold text-slate-900 sm:text-lg">
+                            <span className="text-base font-semibold text-slate-900 sm:text-[1.05rem]">
                                 {formatZar(product.priceMinor)}
                             </span>
                             {product.compareAtPriceMinor && product.compareAtPriceMinor > product.priceMinor ? (
-                                <span className="text-[10px] text-slate-400 line-through">
+                                <span className="text-[9.5px] text-slate-400 line-through">
                                     {formatZar(product.compareAtPriceMinor)}
                                 </span>
                             ) : null}
@@ -90,10 +90,10 @@ export function StoreProductCard({ product }: StoreProductCardProps) {
                         <span
                             className={
                                 unavailable
-                                    ? "text-[10px] font-medium text-rose-600"
+                                    ? "text-[9.5px] font-medium text-rose-600"
                                     : lowStock
-                                      ? "text-[10px] font-medium text-amber-700"
-                                      : "text-[10px] font-medium text-emerald-700"
+                                      ? "text-[9.5px] font-medium text-amber-700"
+                                      : "text-[9.5px] font-medium text-emerald-700"
                             }
                         >
                             {unavailable ? "Out of stock" : lowStock ? "Low stock" : "In stock"}
