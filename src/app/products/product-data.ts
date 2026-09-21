@@ -20,7 +20,7 @@ export const companyProducts: CompanyProduct[] = [
         name: "Infinity",
         category: "Android game",
         image: "/infinity-logo.png",
-        href: "https://infinity.chefu.co.za",
+        href: "https://play.google.com/store/apps/details?id=co.za.chefu.infinity",
         description: "A sleek number-merging puzzle game built for fast, addictive mobile play and satisfying combo chains.",
     },
     {

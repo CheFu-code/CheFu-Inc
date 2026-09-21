@@ -43,7 +43,7 @@ export function CookieConsent({
                             type="button"
                             size="sm"
                             variant="outline"
-                            className="border-[#d1d5db] bg-transparent px-3 py-2 text-[11px] text-[#111827] hover:bg-[#f3f2ef] sm:text-xs"
+                            className="border-[#d1d5db] bg-transparent px-3 py-2 text-[11px] text-[#111827] hover:text-[#111827] hover:bg-[#f3f2ef] sm:text-xs"
                             onClick={onAcceptNecessary}
                         >
                             Only necessary

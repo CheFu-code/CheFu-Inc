@@ -2,9 +2,9 @@ import { PortfolioPage } from "../pages/PortfolioPage";
 import { pageMetadata } from "../site-metadata";
 
 export const metadata = pageMetadata({
-    title: "Portfolio | CHEFU TECHNOLOGIES",
+    title: "Portfolio | Chefu Technologies",
     description:
-        "Explore selected software, AI, music production, and creative technology projects from CHEFU TECHNOLOGIES",
+        "Explore selected software, AI, music production, and creative technology projects from Chefu Technologies",
     path: "/portfolio",
 });
 
