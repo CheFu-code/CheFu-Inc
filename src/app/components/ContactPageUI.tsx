@@ -81,7 +81,7 @@ export const ContactPageUI = ({
                             <a
                                 href={consultationUrl}
                                 target="_blank"
-                                rel="noreferrer"
+                                rel="noopener noreferrer"
                                 className="font-semibold text-cyan-700 transition-colors hover:text-cyan-600"
                             >
                                 Book a consultation &rarr;

@@ -24,7 +24,8 @@ export function Portfolio() {
               key={project.name}
               href={project.href}
               target="_blank"
-              rel="noreferrer"
+            
+              rel="noopener noreferrer"
               className="group overflow-hidden rounded-[1rem] border border-[#e5e1dc] bg-white transition-transform duration-200 hover:-translate-y-0.5"
             >
               <div className="relative aspect-[4/3] overflow-hidden border-b border-[#e5e1dc] bg-[#f3f2ef]">

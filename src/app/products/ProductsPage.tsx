@@ -44,7 +44,7 @@ export function ProductsPage() {
                                     <p className="text-[8.5px] font-semibold uppercase tracking-[0.16em] text-cyan-700">{product.category}</p>
                                     <h3 className="mt-2 text-base font-semibold tracking-[-0.03em] text-slate-900 sm:text-lg">{product.name}</h3>
                                     <p className="mt-2 text-[11px] leading-5 text-slate-600 sm:text-xs">{product.description}</p>
-                                    <a href={product.href} target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-2 text-[11px] font-medium text-slate-900 hover:text-cyan-700 sm:text-xs">
+                                    <a href={product.href} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-2 text-[11px] font-medium text-slate-900 hover:text-cyan-700 sm:text-xs">
                                         Visit product <ExternalLink className="h-3.5 w-3.5" />
                                     </a>
                                 </div>

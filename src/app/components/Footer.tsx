@@ -59,7 +59,8 @@ export function Footer() {
                                         key={item.label}
                                         href={item.href}
                                         target="_blank"
-                                        rel="noreferrer"
+                                        rel="noopener noreferrer"
+                                        
                                         aria-label={item.label}
                                         className="rounded-full border border-[#e5e1dc] bg-white p-2 text-[#5f5b56] transition-colors hover:text-[#111827]"
                                     >

@@ -90,7 +90,8 @@ export function PortfolioPage() {
                             <a
                                 href="https://open.spotify.com/artist/07fFH9mxSS0g69Wbz8PXNn"
                                 target="_blank"
-                                rel="noreferrer"
+                                
+                                rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-400"
                             >
                                 Listen on Spotify
@@ -123,7 +124,8 @@ export function PortfolioPage() {
                             key={project.id}
                             href={project.link}
                             target="_blank"
-                            rel="noreferrer"
+                            
+                            rel="noopener noreferrer"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.08, duration: 0.45 }}
