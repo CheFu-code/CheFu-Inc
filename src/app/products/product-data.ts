@@ -24,11 +24,11 @@ export const companyProducts: CompanyProduct[] = [
         description: "A sleek number-merging puzzle game built for fast, addictive mobile play and satisfying combo chains.",
     },
     {
-        name: "CheFu Academy",
-        category: "Learning platform",
-        image: "/chefuAcademy.png",
-        href: "https://academy.chefu.co.za",
-        description: "A learning platform for courses, videos, quizzes, flashcards, downloads, and developer SDK access.",
+        name: "Cloudence",
+        category: "Cloud storage platform",
+        image: "/cloudence.png",
+        href: "https://cloudence.chefu.co.za?utm_source=chefu&utm_medium=product&utm_campaign=cloudence",
+        description: "A secure cloud storage platform for storing, managing, and accessing your files from anywhere.",
     },
     {
         name: "Muzalo",
