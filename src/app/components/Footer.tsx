@@ -8,7 +8,7 @@ import {
     Twitter,
 } from "lucide-react";
 import Link from 'next/link';
-import { FaWhatsapp } from 'react-icons/fa';
+import { FaFacebook, FaWhatsapp } from 'react-icons/fa';
 
 export function Footer() {
     const companyLinks = [
@@ -33,6 +33,7 @@ export function Footer() {
         { label: "GitHub", href: "https://github.com/CHEFU-TECHNOLOGIES", icon: Github },
         { label: "Instagram", href: "https://www.instagram.com/chefu_technologies", icon: Instagram },
         { label: "WhatsApp", href: "https://wa.me/27606031205", icon: FaWhatsapp },
+        { label: "Facebook", href: "https://www.facebook.com/chefu.technologies/", icon: FaFacebook },
     ];
 
     return (
