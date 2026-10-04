@@ -7,6 +7,7 @@ import { AppProviders } from "./providers";
 import { pageMetadata, siteName, siteUrl } from "./site-metadata";
 import "../styles/index.css";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { CartProvider } from "../lib/cart";
 import { CookieConsentClient } from "./components/CookieConsentClient";
 
@@ -88,18 +89,26 @@ export default function RootLayout({
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
-                        __html: JSON.stringify([organizationJsonLd, websiteJsonLd]).replace(/</g, "\\u003c"),
+                        __html: JSON.stringify([
+                            organizationJsonLd,
+                            websiteJsonLd,
+                        ]).replace(/</g, "\\u003c"),
                     }}
                 />
+
                 <AppProviders />
                 <WebMCPProvider />
+
                 <CartProvider>
                     <SiteChrome>
                         {children}
-                        <Analytics />
-                        <CookieConsentClient />
                     </SiteChrome>
                 </CartProvider>
+
+                <Analytics />
+                <SpeedInsights />
+
+                <CookieConsentClient />
             </body>
         </html>
     );
