@@ -30,12 +30,4 @@ export const companyProducts: CompanyProduct[] = [
         href: "https://cloudence.chefu.co.za?utm_source=chefu&utm_medium=product&utm_campaign=cloudence",
         description: "A secure cloud storage platform for storing, managing, and accessing your files from anywhere.",
     },
-    {
-        name: "Muzalo",
-        category: "Music platform",
-        image: "/muzalo-logo.svg",
-        imageFit: "contain",
-        href: "https://muzalo.chefu.co.za",
-        description: "A music experience for discovering, organizing, and interacting with CHEFU audio products and releases.",
-    },
 ];
