@@ -5,7 +5,6 @@ Disallow: /account
 Disallow: /login
 Disallow: /register
 Disallow: /logout
-Disallow: /store/cart
 Disallow: /.well-known/
 
 
