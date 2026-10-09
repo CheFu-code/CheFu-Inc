@@ -1,4 +1,4 @@
-export type ChefuAppId = "academy" | "flow" | "muzalo" | "quantum" | "root";
+export type ChefuAppId = "academy" | "flow" | "quantum" | "root";
 
 const CHEFU_APP_HEADER = "x-chefu-app";
 
@@ -9,15 +9,12 @@ const DEFAULT_ALLOWED_RETURN_ORIGINS = [
     "https://myaccount.chefu.co.za",
     "https://academy.chefu.co.za",
     "https://flow.chefu.co.za",
-    "https://music.chefu.co.za",
-    "https://muzalo.chefu.co.za",
     "https://quantum.chefu.co.za",
 ];
 
 const appLabels: Record<ChefuAppId, string> = {
     academy: "CheFu Academy",
     flow: "Flow Mail",
-    muzalo: "Muzalo",
     quantum: "Quantum",
     root: 'Chefu Technologies',
 };
@@ -33,7 +30,6 @@ export function resolveChefuApp(value?: string | null): ChefuAppId {
     const normalized = value?.trim().toLowerCase();
 
     if (normalized === "flow") return "flow";
-    if (normalized === "muzalo") return "muzalo";
     if (normalized === "quantum") return "quantum";
     if (normalized === "root") return "root";
     if (normalized === "academy") return "academy";
