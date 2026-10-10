@@ -6,8 +6,6 @@ import { WebMCPProvider } from "./components/WebMCPProvider";
 import { AppProviders } from "./providers";
 import { pageMetadata, siteName, siteUrl } from "./site-metadata";
 import "../styles/index.css";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import { CartProvider } from "../lib/cart";
 import { CookieConsentClient } from "./components/CookieConsentClient";
 
@@ -78,11 +76,6 @@ export default function RootLayout({
     return (
         <html lang="en" className={inter.variable}>
             <head>
-                <script
-                    async
-                    src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsensePublisherId}`}
-                    crossOrigin="anonymous"
-                />
                 <meta name="google-adsense-account" content={adsensePublisherId} />
             </head>
             <body className="min-h-screen bg-[#f5f5f4] text-[#18181b] font-sans selection:bg-[#2563eb]/20 selection:text-[#111827]">
@@ -104,9 +97,6 @@ export default function RootLayout({
                         {children}
                     </SiteChrome>
                 </CartProvider>
-
-                <Analytics />
-                <SpeedInsights />
 
                 <CookieConsentClient />
             </body>

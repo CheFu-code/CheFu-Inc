@@ -1,7 +1,8 @@
 'use client';
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+import { toast } from "sonner";
 import { Button } from "./ui/button";
 import {
     Dialog,
@@ -12,6 +13,7 @@ import {
     DialogTitle,
 } from "./ui/dialog";
 import { CookieConsent } from "./CookieConsent";
+import { ConsentAwareScripts } from "./ConsentAwareScripts";
 
 type ConsentPreferences = {
     necessary: true;
@@ -20,30 +22,34 @@ type ConsentPreferences = {
 };
 
 const STORAGE_KEY = "chefu_cookie_consent";
-const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
-
 const defaultPreferences: ConsentPreferences = {
     necessary: true,
     analytics: false,
     marketing: false,
 };
 
-function readStoredPreferences(): ConsentPreferences | null {
-    if (typeof window === "undefined") {
-        return null;
-    }
-
+function readStoredPreferences(raw: string | null): ConsentPreferences | null {
     try {
-        const raw = window.localStorage.getItem(STORAGE_KEY);
-
         if (!raw) {
             return null;
         }
 
+        const parsed: unknown = JSON.parse(raw);
+        if (
+            !parsed ||
+            typeof parsed !== "object" ||
+            !("analytics" in parsed) ||
+            !("marketing" in parsed) ||
+            typeof parsed.analytics !== "boolean" ||
+            typeof parsed.marketing !== "boolean"
+        ) {
+            return null;
+        }
         return {
-            ...defaultPreferences,
-            ...JSON.parse(raw),
-        } as ConsentPreferences;
+            necessary: true,
+            analytics: parsed.analytics,
+            marketing: parsed.marketing,
+        };
     } catch {
         return null;
     }
@@ -51,26 +57,67 @@ function readStoredPreferences(): ConsentPreferences | null {
 
 function persistPreferences(preferences: ConsentPreferences) {
     if (typeof window === "undefined") {
-        return;
+        return false;
     }
 
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences));
-    document.cookie = `${STORAGE_KEY}=${encodeURIComponent(JSON.stringify(preferences))}; path=/; max-age=${COOKIE_MAX_AGE}; SameSite=Lax`;
+    try {
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences));
+        window.dispatchEvent(new Event("chefu-cookie-consent-change"));
+        return true;
+    } catch {
+        toast.error("Unable to save cookie preferences. Please check your browser storage settings.");
+        return false;
+    }
+}
+
+function subscribeToConsent(listener: () => void) {
+    if (typeof window === "undefined") return () => {};
+    window.addEventListener("storage", listener);
+    window.addEventListener("chefu-cookie-consent-change", listener);
+    return () => {
+        window.removeEventListener("storage", listener);
+        window.removeEventListener("chefu-cookie-consent-change", listener);
+    };
+}
+
+function getConsentSnapshot() {
+    try {
+        return window.localStorage.getItem(STORAGE_KEY);
+    } catch {
+        return null;
+    }
 }
 
 export function CookieConsentClient() {
-    const storedPreferences = readStoredPreferences();
-
-    const [showBanner, setShowBanner] = useState(() => storedPreferences === null);
+    const storedValue = useSyncExternalStore(
+        subscribeToConsent,
+        getConsentSnapshot,
+        () => "__server__",
+    );
+    const hasLoadedPreferences = storedValue !== "__server__";
+    const storedPreferences = readStoredPreferences(storedValue);
+    const preferences = storedPreferences ?? defaultPreferences;
+    const showBanner = hasLoadedPreferences && storedPreferences === null;
     const [showModal, setShowModal] = useState(false);
-    const [preferences, setPreferences] =
-        useState<ConsentPreferences>(() => storedPreferences ?? defaultPreferences);
+    const [draftPreferences, setDraftPreferences] =
+        useState<ConsentPreferences>(defaultPreferences);
+
+    useEffect(() => {
+        document.cookie = `${STORAGE_KEY}=; path=/; max-age=0; SameSite=Lax`;
+    }, []);
+
+    const openPreferences = () => {
+        setDraftPreferences(preferences);
+        setShowModal(true);
+    };
 
     const applyPreferences = (nextPreferences: ConsentPreferences) => {
-        setPreferences(nextPreferences);
-        persistPreferences(nextPreferences);
-        setShowBanner(false);
+        if (!persistPreferences(nextPreferences)) return;
+        const withdrewOptionalConsent =
+            (preferences.analytics && !nextPreferences.analytics) ||
+            (preferences.marketing && !nextPreferences.marketing);
         setShowModal(false);
+        if (withdrewOptionalConsent) window.location.reload();
     };
 
     const handleAcceptAll = () => {
@@ -86,7 +133,7 @@ export function CookieConsentClient() {
     };
 
     const handleToggle = (key: "analytics" | "marketing") => {
-        setPreferences((current) => ({
+        setDraftPreferences((current) => ({
             ...current,
             [key]: !current[key],
         }));
@@ -94,12 +141,28 @@ export function CookieConsentClient() {
 
     return (
         <>
+            {hasLoadedPreferences ? (
+                <ConsentAwareScripts
+                    analyticsEnabled={preferences.analytics}
+                    marketingEnabled={preferences.marketing}
+                />
+            ) : null}
             {showBanner ? (
                 <CookieConsent
-                    onPreferences={() => setShowModal(true)}
+                    onPreferences={openPreferences}
                     onAcceptNecessary={handleAcceptNecessary}
                     onAcceptAll={handleAcceptAll}
                 />
+            ) : null}
+
+            {!showBanner ? (
+                <button
+                    type="button"
+                    onClick={openPreferences}
+                    className="fixed bottom-3 left-3 z-40 rounded-full border border-slate-300 bg-white px-3 py-2 text-xs font-medium text-slate-700 shadow-md transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-700"
+                >
+                    Cookie settings
+                </button>
             ) : null}
 
             <Dialog open={showModal} onOpenChange={setShowModal}>
@@ -132,12 +195,12 @@ export function CookieConsentClient() {
                             <div>
                                 <p className="font-medium text-slate-900">Analytics</p>
                                 <p className="text-sm text-slate-600">
-                                    Helps us understand how visitors use the site.
+                                    Enables Vercel Analytics and Speed Insights to measure site usage and performance.
                                 </p>
                             </div>
                             <input
                                 type="checkbox"
-                                checked={preferences.analytics}
+                                checked={draftPreferences.analytics}
                                 onChange={() => handleToggle("analytics")}
                                 className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
                             />
@@ -147,12 +210,12 @@ export function CookieConsentClient() {
                             <div>
                                 <p className="font-medium text-slate-900">Marketing</p>
                                 <p className="text-sm text-slate-600">
-                                    Used to support personalised or promotional experiences.
+                                    Enables Google AdSense advertising and related measurement technologies.
                                 </p>
                             </div>
                             <input
                                 type="checkbox"
-                                checked={preferences.marketing}
+                                checked={draftPreferences.marketing}
                                 onChange={() => handleToggle("marketing")}
                                 className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
                             />
@@ -178,7 +241,7 @@ export function CookieConsentClient() {
                             <Button
                                 type="button"
                                 className="bg-emerald-500 text-slate-950 hover:bg-emerald-400"
-                                onClick={() => applyPreferences(preferences)}
+                                onClick={() => applyPreferences(draftPreferences)}
                             >
                                 Save preferences
                             </Button>

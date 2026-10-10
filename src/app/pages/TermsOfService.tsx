@@ -15,7 +15,7 @@ export function TermsOfService() {
                     </h1>
 
                     <p className="text-slate-500">
-                        Last updated: August 22, 2026
+                        Last updated: October 10, 2026
                     </p>
                 </div>
 
@@ -48,6 +48,10 @@ export function TermsOfService() {
                         CHEFU TECHNOLOGIES (Pty) Ltd. is a South African technology company
                         that develops and provides digital products, software, websites,
                         applications, technology services, and related solutions.
+                    </p>
+                    <p>
+                        Company registration number: 2026/139936/07. Postal address:
+                        145 Dinga, Malamulele, Limpopo, 0982, South Africa.
                     </p>
 
                     <p>
@@ -315,6 +319,15 @@ export function TermsOfService() {
                     </h3>
 
                     <p>
+                        Before you place an order, the applicable service will present
+                        the material product or service description, price, applicable
+                        taxes, delivery charges and terms, payment method, and any
+                        cancellation, refund, or return conditions that apply. An order is
+                        accepted only when we confirm it through the relevant service.
+                        Mandatory consumer rights are not limited by this section.
+                    </p>
+
+                    <p>
                         Where a CHEFU TECHNOLOGIES service allows you to purchase products or services,
                         additional pricing, payment, delivery, refund, cancellation, or
                         transaction terms may apply.
@@ -331,6 +344,12 @@ export function TermsOfService() {
                         Payments may be processed through third-party payment providers.
                         Those providers may process payment information in accordance with
                         their own terms and privacy policies.
+                    </p>
+                    <p>
+                        As of the date of these Terms, the online cart on chefu.co.za
+                        does not complete checkout or accept payment. Prices and delivery
+                        amounts displayed in the cart are indicative until a working
+                        checkout presents and confirms the final order terms.
                     </p>
 
                     <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
@@ -606,7 +625,7 @@ export function TermsOfService() {
                     </h3>
 
                     <p>
-                        These Terms of Service are effective from August 22, 2026.
+                        These Terms of Service are effective from October 10, 2026.
                     </p>
                 </div>
             </div>

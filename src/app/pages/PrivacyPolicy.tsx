@@ -15,7 +15,7 @@ export function PrivacyPolicy() {
                     </h1>
 
                     <p className="text-slate-500">
-                        Last updated: August 22, 2026
+                        Last updated: October 10, 2026
                     </p>
                 </div>
 
@@ -71,12 +71,30 @@ export function PrivacyPolicy() {
                             </strong>
                         </p>
                         <p className="mb-0">
+                            Company registration number: 2026/139936/07
+                        </p>
+                        <p className="mb-0">
+                            Postal address: 145 Dinga, Malamulele, Limpopo, 0982, South Africa
+                        </p>
+                        <p className="mb-0">
                             Website:{' '}
                             <a
                                 href="https://chefu.co.za"
                                 className="text-cyan-400 hover:underline"
                             >
                                 chefu.co.za
+                            </a>
+                        </p>
+                        <p className="mb-0">
+                            Location: Johannesburg, South Africa
+                        </p>
+                        <p className="mb-0">
+                            Privacy enquiries:{" "}
+                            <a
+                                href="mailto:privacy@chefu.co.za"
+                                className="text-cyan-400 hover:underline"
+                            >
+                                privacy@chefu.co.za
                             </a>
                         </p>
                     </div>
@@ -114,8 +132,55 @@ export function PrivacyPolicy() {
                         <li>Other information you voluntarily provide in connection with a CHEFU TECHNOLOGIES service.</li>
                     </ul>
 
+                    <h4 id="career-applicants" className="mt-6 mb-3 font-semibold text-slate-900">
+                        2.2 Career Applicants
+                    </h4>
+
+                    <p>
+                        If you apply for a role, we collect the information you submit in
+                        the application form, which may include your name, email address,
+                        phone number, country, province or city, work authorization,
+                        education, experience, skills, role preferences, portfolio or
+                        professional-profile links, written answers, and an optional CV
+                        or resume. Please do not include sensitive personal information
+                        that is not needed to assess your application.
+                    </p>
+                    <p>
+                        We use this information to receive, assess, administer, and
+                        communicate with you about your application and to protect the
+                        recruitment process. Access is limited to people involved in
+                        recruitment and service providers supporting the application
+                        system and confirmation emails. Application records and uploaded
+                        CVs are scheduled for deletion 180 days after submission, unless
+                        a legal hold or applicable law requires a longer period. You can
+                        ask us to remove your application
+                        sooner by writing to{" "}
+                        <a href="mailto:privacy@chefu.co.za" className="text-cyan-400 hover:underline">
+                            privacy@chefu.co.za
+                        </a>
+                        .
+                    </p>
+                    <p>
+                        Application records are hosted using Firebase services, and
+                        application confirmation emails may be sent using Resend. These
+                        providers process information to support the application service
+                        and are subject to their own applicable terms and privacy
+                        information.
+                    </p>
+                    <p>
+                        If you submit a general enquiry through the website, we may
+                        process your name, email address, company, project type, budget,
+                        message, and the account identifier and email associated with
+                        your sign-in. We use these details to respond to and manage the
+                        enquiry. Contact requests are stored in our application
+                        database and scheduled for deletion 12 months after submission.
+                        We may retain information longer where needed for a legal
+                        obligation, dispute, or a related business record that must be
+                        kept by law.
+                    </p>
+
                     <h4 className="mt-6 mb-3 font-semibold text-slate-900">
-                        2.2 Account and Authentication Information
+                        2.3 Account and Authentication Information
                     </h4>
 
                     <p>
@@ -141,7 +206,7 @@ export function PrivacyPolicy() {
                     </p>
 
                     <h4 className="mt-6 mb-3 font-semibold text-slate-900">
-                        2.3 Information Collected Automatically
+                        2.4 Information Collected Automatically
                     </h4>
 
                     <p>
@@ -401,9 +466,14 @@ export function PrivacyPolicy() {
 
                     <p>
                         Examples of infrastructure or technology that may be used by
-                        particular CHEFU TECHNOLOGIES services include Firebase and Cloudinary.
-                        The use of a particular provider depends on the application and
-                        functionality involved.
+                        particular CHEFU TECHNOLOGIES services include Firebase for
+                        application data and authentication, Resend for certain
+                        transactional emails, Vercel for website hosting and consented
+                        analytics/performance measurement, Google AdSense for advertising
+                        when marketing consent is enabled, and Cloudinary for file or
+                        image features in services that use it. The provider and data
+                        involved depend on the particular service and feature. These
+                        providers may process information in countries outside your own.
                     </p>
 
                     <p>
@@ -458,11 +528,28 @@ export function PrivacyPolicy() {
                         information, the service involved, the purpose for which the
                         information was collected, and applicable legal requirements.
                     </p>
+                    <p>
+                        Website contact requests are scheduled for deletion 12 months
+                        after submission. A daily process deletes expired requests and
+                        logs failures for investigation and retry. Career applications
+                        and uploaded CVs use the separate 180-day schedule described
+                        above.
+                    </p>
 
                     <p>
                         When information is no longer required, we may delete it,
                         anonymize it, or otherwise securely dispose of it, subject to
                         technical, legal, and operational requirements.
+                    </p>
+                    <p>
+                        For career applications submitted through chefu.co.za, we set a
+                        180-day retention period and run a scheduled purge of the
+                        application record and its uploaded CV. A deletion failure is
+                        logged for retry; exceptional technical or legal holds may delay
+                        deletion. Other categories of information are retained according
+                        to their purpose, applicable legal obligations, and operational
+                        requirements. You may contact us to ask about information
+                        associated with you.
                     </p>
 
                     <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
@@ -517,6 +604,21 @@ export function PrivacyPolicy() {
                         If you wish to exercise a privacy right or raise a concern about
                         our handling of personal information, please contact us using
                         the details provided below.
+                    </p>
+                    <p>
+                        If you are in South Africa and are not satisfied with our
+                        response, you may also contact the Information Regulator of
+                        South Africa through its current official website at{" "}
+                        <a
+                            href="https://inforegulator.org.za/"
+                            className="text-cyan-400 hover:underline"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            inforegulator.org.za
+                        </a>
+                        . If you are in another jurisdiction, you may also have a right
+                        to complain to your local data-protection authority.
                     </p>
 
                     <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
@@ -632,6 +734,13 @@ export function PrivacyPolicy() {
                             privacy@chefu.co.za
                         </a>
                     </p>
+                    <p>
+                        Please describe your request and the service concerned. We may
+                        verify your identity before responding and will handle requests
+                        in accordance with applicable law. This contact address is for
+                        privacy requests; it is not a substitute for any formal
+                        Information Officer details or process required by law.
+                    </p>
 
                     <p>
                         We may need to verify your identity before fulfilling certain
@@ -644,7 +753,7 @@ export function PrivacyPolicy() {
                     </h3>
 
                     <p>
-                        This Privacy Policy is effective from August 22, 2026.
+                        This Privacy Policy is effective from October 10, 2026.
                     </p>
                 </div>
             </div>

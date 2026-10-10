@@ -182,26 +182,70 @@ export const purgeExpiredMembershipApplications = onSchedule(
 
         for (const doc of expiredSnapshot.docs) {
             const applicationId = doc.id;
+            if (doc.get("legalHold") === true) {
+                logger.info("Retained expired membership application under legal hold.", {
+                    applicationId,
+                });
+                continue;
+            }
             try {
                 await getStorage().bucket().deleteFiles({
                     prefix: `membershipApplications/${applicationId}/cv/`,
                     force: true,
                 });
-            } catch (storageError) {
-                logger.warn("Failed deleting CV files during retention purge.", {
+                await doc.ref.delete();
+                logger.info("Purged expired membership application.", {
                     applicationId,
-                    storageError:
+                    purgedAt: new Date().toISOString(),
+                });
+            } catch (storageError) {
+                logger.error("Failed purging expired membership application.", {
+                    applicationId,
+                    error:
                         storageError instanceof Error
                             ? storageError.message
-                            : "Unknown storage deletion failure",
+                            : "Unknown retention purge failure",
                 });
             }
+        }
+    },
+);
 
-            await doc.ref.delete();
-            logger.info("Purged expired membership application.", {
-                applicationId,
-                purgedAt: new Date().toISOString(),
-            });
+export const purgeExpiredContactRequests = onSchedule(
+    {
+        schedule: "every day 04:00",
+        region: "us-central1",
+    },
+    async () => {
+        const cutoff = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000);
+        const expiredSnapshot = await getFirestore()
+            .collection("contactRequests")
+            .where("createdAt", "<=", cutoff)
+            .limit(250)
+            .get();
+
+        for (const doc of expiredSnapshot.docs) {
+            if (doc.get("legalHold") === true) {
+                logger.info("Retained expired contact request under legal hold.", {
+                    requestId: doc.id,
+                });
+                continue;
+            }
+            try {
+                await doc.ref.delete();
+                logger.info("Purged expired contact request.", {
+                    requestId: doc.id,
+                    purgedAt: new Date().toISOString(),
+                });
+            } catch (error) {
+                logger.error("Failed purging expired contact request.", {
+                    requestId: doc.id,
+                    error:
+                        error instanceof Error
+                            ? error.message
+                            : "Unknown contact-request retention failure",
+                });
+            }
         }
     },
 );

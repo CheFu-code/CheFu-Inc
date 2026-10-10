@@ -2,6 +2,7 @@
 
 import { Loader2, Mail, Phone, Send } from "lucide-react";
 import { motion } from "motion/react";
+import Link from "next/link";
 import type {
     FieldErrors,
     UseFormHandleSubmit,
@@ -228,6 +229,15 @@ export const ContactPageUI = ({
                                     </>
                                 )}
                             </button>
+                            <p className="text-xs leading-5 text-slate-500">
+                                We use your details to respond to and manage your enquiry.
+                                Contact requests are scheduled for deletion 12 months after
+                                submission. See our{" "}
+                                <Link href="/privacy" className="font-medium text-cyan-700 underline">
+                                    Privacy Policy
+                                </Link>
+                                .
+                            </p>
                         </form>
                     </motion.div>
                 </div>

@@ -147,13 +147,22 @@ If no `MEMBERSHIP_APPLICATION_TEMPLATE_ID` is configured, the function still sen
 4. Deploy functions:
 
 ```bash
+firebase use --add
 firebase deploy --only functions
 ```
+
+Select the Firebase project that owns the `membershipApplications` and
+`contactRequests` Firestore collections when prompted. The repository config
+deploys the source in `functions/`; do not commit the generated `.firebaserc`
+unless the team has explicitly chosen a shared default project.
 
 ### Behavior
 
 - Trigger: Firestore `onDocumentCreated` for `membershipApplications/{applicationId}`
 - Sends: "We received your CHEFU TECHNOLOGIES application" to the applicant email
+- Scheduled retention jobs:
+  - `purgeExpiredMembershipApplications` runs daily and deletes application records and CVs after their 180-day retention period.
+  - `purgeExpiredContactRequests` runs daily and deletes contact requests older than 12 months.
 - Updates document fields:
   - `confirmationEmailStatus`: `sent` or `failed`
   - `confirmationEmailId`

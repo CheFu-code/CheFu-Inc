@@ -10,6 +10,8 @@ import { CareersBenefitsSection } from "../components/careers/CareersBenefitsSec
 import { CareersHeroSection } from "../components/careers/CareersHeroSection";
 import { CareersRolesSection } from "../components/careers/CareersRolesSection";
 import {
+    CAREERS_PRIVACY_NOTICE_VERSION,
+    CAREERS_TERMS_VERSION,
     fallbackProvinceOptions,
     provinceOptionsByCountry,
     type JoinUsFormData,
@@ -98,7 +100,10 @@ export function CareersPage() {
                 whyJoin: data.whyJoin,
                 whatMakesYouDifferent: data.whatMakesYouDifferent,
                 hoursPerWeek: data.hoursPerWeek,
-                consentGiven: data.acceptTerms,
+                termsAccepted: data.termsAccepted,
+                termsVersion: CAREERS_TERMS_VERSION,
+                privacyNoticeAcknowledged: data.privacyNoticeAcknowledged,
+                privacyNoticeVersion: CAREERS_PRIVACY_NOTICE_VERSION,
                 website: data.website ?? "",
                 }),
             });

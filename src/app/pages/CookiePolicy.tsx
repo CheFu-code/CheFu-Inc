@@ -15,7 +15,7 @@ export function CookiePolicy() {
                     </h1>
 
                     <p className="text-slate-500">
-                        Last updated: August 22, 2026
+                        Last updated: October 10, 2026
                     </p>
                 </div>
 
@@ -58,6 +58,21 @@ export function CookiePolicy() {
                         website or service you access. In general, we may use the following
                         categories of cookies:
                     </p>
+                    <p>
+                        On chefu.co.za, the cookie-preference choice is stored in
+                        first-party browser local storage under
+                        {" "}<code>chefu_cookie_consent</code> until you clear site data.
+                        The shopping cart is stored in first-party browser local
+                        storage under <code>chefu-cart</code> until you clear it or
+                        clear site data; it contains the selected products, variants,
+                        and quantities.
+                        The site does not intentionally load its Vercel Analytics or
+                        Speed Insights components unless you enable Analytics, or its
+                        Google AdSense script unless you enable Marketing. Browser
+                        extensions, providers, and later product changes may affect what
+                        is stored; we review the live configuration separately from this
+                        high-level description.
+                    </p>
 
                     <ul className="mb-6 list-disc space-y-2 pl-6">
                         <li>
@@ -73,12 +88,13 @@ export function CookiePolicy() {
                             account protection.
                         </li>
                         <li>
-                            Performance and diagnostics cookies: help us understand whether a
-                            feature is functioning correctly and identify technical issues.
+                            Analytics: Vercel Analytics and Speed Insights are loaded only
+                            after you enable Analytics in the consent controls.
                         </li>
                         <li>
-                            Third-party cookies: used where a service relies on an external
-                            provider such as an authentication or cloud platform.
+                            Marketing and advertising: Google AdSense is loaded only after
+                            you enable Marketing. Google and its advertising partners may
+                            use cookies or similar technologies under their own policies.
                         </li>
                     </ul>
 
@@ -104,10 +120,13 @@ export function CookiePolicy() {
                     </h3>
 
                     <p>
-                        Some CHEFU TECHNOLOGIES services may rely on third-party infrastructure
-                        and tools, including authentication, hosting, analytics, or cloud
-                        providers. Those third parties may place cookies on your device as part
-                        of the services they provide to us or to you directly.
+                        The providers currently enabled on this website include Vercel
+                        Analytics and Speed Insights when Analytics consent is enabled,
+                        and Google AdSense when Marketing consent is enabled. Each
+                        provider may change its storage technologies and retention. See
+                        the provider's current privacy and cookie disclosures for
+                        additional details. Other CHEFU TECHNOLOGIES services may use
+                        different providers and have service-specific notices.
                     </p>
 
                     <p>
@@ -143,9 +162,13 @@ export function CookiePolicy() {
                     </p>
 
                     <p>
-                        If you decide to withdraw consent or change your preferences, you may
-                        need to update your browser settings or revisit the relevant service
-                        experience to reapply or remove cookie preferences as available.
+                        You can change or withdraw optional choices at any time using
+                        the persistent Cookie settings control at the bottom of this
+                        website or by clearing this site's browser storage. When you
+                        withdraw a choice, the page reloads so optional scripts are not
+                        loaded on the next page view. This does not automatically delete
+                        cookies already set by third parties; manage or delete those
+                        through your browser and the relevant provider's controls.
                     </p>
 
                     <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">

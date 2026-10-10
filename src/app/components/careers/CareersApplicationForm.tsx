@@ -7,6 +7,8 @@ import type {
 } from "react-hook-form";
 import Link from 'next/link';
 import {
+    CAREERS_PRIVACY_NOTICE_VERSION,
+    CAREERS_TERMS_VERSION,
     countries,
     departments,
     fieldClassName,
@@ -398,32 +400,48 @@ export function CareersApplicationForm({
                     </div>
                 </div>
 
-                <div className="rounded-xl border border-[#e5e1dc] bg-white p-4">
+                <div className="space-y-4 rounded-xl border border-[#e5e1dc] bg-white p-4">
                     <label className="flex items-start gap-3 text-sm text-[#374151]">
                         <input
                             type="checkbox"
-                            {...register("acceptTerms", {
-                                required: "You must agree before submitting",
+                            {...register("termsAccepted", {
+                                required: "You must agree to the Terms before submitting",
                             })}
                             className="mt-1 h-4 w-4 accent-cyan-400"
                         />
                         <span>
                             I agree to the{" "}
-                            <Link href="/terms" className="text-cyan-300 hover:text-cyan-200">
-                                Terms
-                            </Link>{" "}
-                            and{" "}
-                            <Link
-                                href="/privacy"
-                                className="text-cyan-300 hover:text-cyan-200"
-                            >
-                                Privacy Policy
+                            <Link href="/terms" className="text-cyan-700 underline">
+                                Terms of Service
                             </Link>
-                            .
+                            {" "}({CAREERS_TERMS_VERSION}).
                         </span>
                     </label>
-                    {errors.acceptTerms && (
-                        <p className="mt-2 text-sm text-red-400">{errors.acceptTerms.message}</p>
+                    {errors.termsAccepted && (
+                        <p className="text-sm text-red-600">{errors.termsAccepted.message}</p>
+                    )}
+                    <label className="flex items-start gap-3 text-sm text-[#374151]">
+                        <input
+                            type="checkbox"
+                            {...register("privacyNoticeAcknowledged", {
+                                required: "Please acknowledge the applicant privacy notice",
+                            })}
+                            className="mt-1 h-4 w-4 accent-cyan-400"
+                        />
+                        <span>
+                            I have read the{" "}
+                            <Link href="/privacy#career-applicants" className="text-cyan-700 underline">
+                                applicant privacy notice
+                            </Link>
+                            {" "}({CAREERS_PRIVACY_NOTICE_VERSION}). I understand my application
+                            information will be used to assess my application and handled as
+                            described there.
+                        </span>
+                    </label>
+                    {errors.privacyNoticeAcknowledged && (
+                        <p className="text-sm text-red-600">
+                            {errors.privacyNoticeAcknowledged.message}
+                        </p>
                     )}
                 </div>
 

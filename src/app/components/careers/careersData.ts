@@ -191,9 +191,13 @@ export type JoinUsFormData = {
     whyJoin: string;
     whatMakesYouDifferent: string;
     hoursPerWeek: string;
-    acceptTerms: boolean;
+    termsAccepted: boolean;
+    privacyNoticeAcknowledged: boolean;
     website?: string;
 };
+
+export const CAREERS_PRIVACY_NOTICE_VERSION = "2026-10-10";
+export const CAREERS_TERMS_VERSION = "2026-10-10";
 
 export const benefits = [
     {

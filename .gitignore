@@ -12,6 +12,7 @@ dist
 .next
 out
 .vercel
+.firebaserc
 functions/lib
 dist-ssr
 *.local
