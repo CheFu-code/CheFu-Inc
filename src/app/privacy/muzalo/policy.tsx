@@ -3,6 +3,27 @@ import { privacyContactSections } from "../shared-sections";
 
 export const muzaloSections: PrivacySection[] = [
     {
+        id: "privacy-at-a-glance",
+        title: "Where your information goes",
+        content: <>
+            <p>You choose the music folder Muzalo can read. Most player information stays on your device. This summary distinguishes local processing from an online request.</p>
+            <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
+                <table className="w-full text-sm">
+                    <caption className="sr-only">Muzalo information, storage and recipients</caption>
+                    <thead><tr><th scope="col">Information or action</th><th scope="col">Where it is handled</th><th scope="col">Purpose</th></tr></thead>
+                    <tbody>
+                        <tr><th scope="row">Audio, metadata and artwork</th><td>Your chosen folder and local app storage</td><td>Index and play music; show song details</td></tr>
+                        <tr><th scope="row">Playlists, favourites and history</th><td>The app&apos;s local database</td><td>Organise music and remember playback</td></tr>
+                        <tr><th scope="row">Lyrics lookup</th><td>Artist and title sent to LRCLIB; lyrics saved locally</td><td>Find lyrics for the selected track</td></tr>
+                        <tr><th scope="row">Download</th><td>Request sent to the file host; file saved to your folder</td><td>Save the audio you request</td></tr>
+                        <tr><th scope="row">Email to us</th><td>Our support or privacy correspondence</td><td>Respond to your request</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>A song title or artist can reveal an interest or listening preference even without your name. Online services also see the network information needed to answer. You can choose local playback without requesting online lyrics or downloads.</p>
+        </>,
+    },
+    {
         id: "music-on-your-device",
         title: "Music and information on your device",
         content: <>
@@ -58,11 +79,22 @@ export const muzaloSections: PrivacySection[] = [
         </>,
     },
     {
+        id: "purposes-and-choices",
+        title: "Purposes, lawful grounds and optional features",
+        content: <>
+            <p>Muzalo processes local files and settings to deliver the player features you request. This does not give us possession of your library. When you contact us, we process your address and message to answer the enquiry, provide support or handle privacy rights. Relevant grounds can include providing the requested service, our legitimate interest in resolving a genuine enquiry, and compliance with a legal duty.</p>
+            <p>Folder access is needed for music stored in that folder. Lyrics lookup, downloads and sending a message are separate choices, not requirements for playing an accessible local file. You can edit lyrics without an online lookup. Declining folder access prevents the app from indexing files that require it.</p>
+            <p>Where consent or parental authorisation is required, it must be obtained for the specific processing before it occurs. Granting folder access is not consent for unrelated analytics or advertising. Muzalo does not add those activities as a condition of local playback.</p>
+        </>,
+    },
+    {
         id: "children",
         title: "Children and parental permission",
         content: <>
             <p>Children may use Muzalo. A parent or legal guardian must authorise a child&apos;s use of online features, including lyrics lookups and downloads, or the submission of personal information to us. Local music playback does not require an account with us.</p>
             <p>A parent or guardian can contact <a href="mailto:privacy@chefu.co.za">privacy@chefu.co.za</a> about information a child has sent to us or to request its deletion. The music library stored only on the child&apos;s device must be managed on that device.</p>
+            <p>For children: your music stays on your device, but pressing the lyrics button sends the song&apos;s name and artist to an online service. Ask a parent or guardian before using online features. Do not put your school, address, passwords or other private information into a message to us.</p>
+            <p>If a law requires verifiable parental consent, a statement in this policy does not replace verification. Muzalo does not currently contain a parental-consent verification flow. An authorised parent can ask to review information we hold about a child, stop consent-based processing or delete it, subject to applicable legal exceptions.</p>
         </>,
     },
     ...privacyContactSections("Muzalo"),

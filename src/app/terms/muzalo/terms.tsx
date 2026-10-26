@@ -16,6 +16,8 @@ export const muzaloTerms: TermsSection[] = [
         content: <>
             <p>You are responsible for having the right to access, play, copy, download or edit the audio, artwork and lyrics you use with Muzalo. The ability to open a file or retrieve lyrics does not grant a copyright licence or permission to redistribute the material.</p>
             <p>We provide a player and library tools, not ownership of or distribution rights to the music on your device. Your files and any original content you create remain yours to the extent that you own the relevant rights. Music, artwork and lyrics belonging to others remain subject to their rights.</p>
+            <p>A file being publicly reachable, a download button being available or a lyric appearing in search results does not establish that copying or redistribution is authorised. Check the source and the rights that apply to the use you intend. Do not use the player to bypass technical access controls or misrepresent another person&apos;s work as your own.</p>
+            <p>Local edits to library descriptions or lyrics do not transfer rights in the underlying song. We do not receive ownership of original material you keep only on your device, and these terms do not require a licence to us for content we never receive.</p>
         </>,
     },
     {
@@ -33,6 +35,8 @@ export const muzaloTerms: TermsSection[] = [
             <p>Folder access is needed to load your local library and save downloads. Background playback, media controls and the Android widget depend on your device and its settings. You can manage permissions in device settings; removing a permission can prevent the related feature from working.</p>
             <p>Library records, playlists, lyrics edits and playback preferences are stored on your device. We do not provide a cloud backup or remote recovery service for that local database. Keep separate copies of music and other material you want to preserve.</p>
             <p>You can stop using Muzalo and uninstall it at any time. Clearing app storage removes its local database and preferences. Files saved in your chosen music folder, including downloads, need to be managed separately with your file manager. Device backup and restore settings may affect which local data is restored.</p>
+            <p>A library listing is an index, not an independent backup of the original audio. Moving, renaming, deleting or revoking access to a file can prevent playback or cause the library to change on a later scan. Preserve copies of original audio before changing folders or clearing storage.</p>
+            <p>Playback details can appear in media notifications, on the lock screen and in the Android widget. If you use a shared device, review those settings and your listening volume before playback. We do not provide private listening merely because the main app screen is closed.</p>
         </>,
     },
     ...commonTermsSections("Muzalo"),

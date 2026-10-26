@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Scale, ShieldCheck } from "lucide-react";
 import type { ReactNode } from "react";
+import { LegalOperatorDetails } from "./LegalOperatorDetails";
 
 export type LegalSection = {
     id: string;
@@ -43,6 +44,7 @@ export function AppLegalDocument({ appName, kind, summary, introduction, section
                 </header>
 
                 <div className="space-y-4 leading-8">{introduction}</div>
+                <LegalOperatorDetails />
 
                 <nav aria-label="Document contents" className="my-10 rounded-2xl border border-slate-200 bg-white p-6">
                     <h2 className="mb-4 font-semibold text-slate-900">On this page</h2>
@@ -55,7 +57,7 @@ export function AppLegalDocument({ appName, kind, summary, introduction, section
                     </ol>
                 </nav>
 
-                <div className="space-y-10 [&_a]:text-cyan-700 [&_a]:underline [&_a]:underline-offset-4 [&_p]:leading-8 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6">
+                <div className="space-y-10 [&_a]:text-cyan-700 [&_a]:underline [&_a]:underline-offset-4 [&_p]:leading-8 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6 [&_th]:border-b [&_th]:border-slate-200 [&_th]:p-3 [&_th]:text-left [&_th]:font-semibold [&_th]:text-slate-900 [&_td]:border-b [&_td]:border-slate-200 [&_td]:p-3 [&_td]:align-top [&_td]:leading-7">
                     {sections.map((section, index) => (
                         <section key={section.id} id={section.id} className="scroll-mt-28">
                             <h2 className="mb-4 text-2xl font-bold text-slate-900">{index + 1}. {section.title}</h2>

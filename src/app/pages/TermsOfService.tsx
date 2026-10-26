@@ -20,20 +20,17 @@ export function TermsOfService() {
                     </p>
                 </div>
 
-                <nav aria-label="App terms of service" className="mb-10 rounded-2xl border border-slate-200 bg-white p-6">
-                    <h2 className="mb-2 text-xl font-bold text-slate-900">Terms of service for our apps</h2>
-                    <p className="mb-5">Choose an app for its terms of use and your responsibilities.</p>
-                    <ul className="grid gap-4 sm:grid-cols-2">
+                <nav aria-label="App terms of service" className="mb-8 rounded-xl border border-slate-200 bg-white p-4">
+                    <h2 className="mb-3 text-base font-semibold text-slate-900">App terms of service</h2>
+                    <ul className="flex flex-wrap gap-2">
                         <li>
-                            <Link href="/terms/muzalo" className="block h-full rounded-xl border border-slate-200 p-5 transition-colors hover:border-cyan-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700">
-                                <span className="font-semibold text-cyan-700">Muzalo Terms of Service</span>
-                                <span className="mt-2 block text-sm text-slate-600">Music files, lyrics, downloads and local storage.</span>
+                            <Link href="/terms/muzalo" className="inline-flex rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium text-cyan-700 transition-colors hover:border-cyan-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700">
+                                Muzalo
                             </Link>
                         </li>
                         <li>
-                            <Link href="/terms/liftwise" className="block h-full rounded-xl border border-slate-200 p-5 transition-colors hover:border-cyan-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700">
-                                <span className="font-semibold text-cyan-700">LiftWise Terms of Service</span>
-                                <span className="mt-2 block text-sm text-slate-600">Our SSO, workouts, exercise guidance and your content.</span>
+                            <Link href="/terms/liftwise" className="inline-flex rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium text-cyan-700 transition-colors hover:border-cyan-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700">
+                                LiftWise
                             </Link>
                         </li>
                     </ul>
@@ -71,7 +68,7 @@ export function TermsOfService() {
                     </p>
                     <p>
                         Company registration number: 2026/139936/07. Postal address:
-                        145 Dinga, Malamulele, Limpopo, 0982, South Africa.
+                        145 Ka-Dinga, Malamulele, Limpopo, 0982, South Africa.
                     </p>
 
                     <p>

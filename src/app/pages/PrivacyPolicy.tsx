@@ -20,20 +20,17 @@ export function PrivacyPolicy() {
                     </p>
                 </div>
 
-                <nav aria-label="App privacy policies" className="mb-10 rounded-2xl border border-slate-200 bg-white p-6">
-                    <h2 className="mb-2 text-xl font-bold text-slate-900">Privacy policies for our apps</h2>
-                    <p className="mb-5">Choose an app for details about its data, permissions and privacy controls.</p>
-                    <ul className="grid gap-4 sm:grid-cols-2">
+                <nav aria-label="App privacy policies" className="mb-8 rounded-xl border border-slate-200 bg-white p-4">
+                    <h2 className="mb-3 text-base font-semibold text-slate-900">App privacy policies</h2>
+                    <ul className="flex flex-wrap gap-2">
                         <li>
-                            <Link href="/privacy/muzalo" className="block h-full rounded-xl border border-slate-200 p-5 transition-colors hover:border-cyan-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700">
-                                <span className="font-semibold text-cyan-700">Muzalo Privacy Policy</span>
-                                <span className="mt-2 block text-sm text-slate-600">Local music, lyrics lookups and playback preferences.</span>
+                            <Link href="/privacy/muzalo" className="inline-flex rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium text-cyan-700 transition-colors hover:border-cyan-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700">
+                                Muzalo
                             </Link>
                         </li>
                         <li>
-                            <Link href="/privacy/liftwise" className="block h-full rounded-xl border border-slate-200 p-5 transition-colors hover:border-cyan-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700">
-                                <span className="font-semibold text-cyan-700">LiftWise Privacy Policy</span>
-                                <span className="mt-2 block text-sm text-slate-600">Accounts, workouts, reminders and diagnostics.</span>
+                            <Link href="/privacy/liftwise" className="inline-flex rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium text-cyan-700 transition-colors hover:border-cyan-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700">
+                                LiftWise
                             </Link>
                         </li>
                     </ul>
@@ -94,7 +91,7 @@ export function PrivacyPolicy() {
                             Company registration number: 2026/139936/07
                         </p>
                         <p className="mb-0">
-                            Postal address: 145 Dinga, Malamulele, Limpopo, 0982, South Africa
+                            Postal address: 145 Ka-Dinga, Malamulele, Limpopo, 0982, South Africa
                         </p>
                         <p className="mb-0">
                             Website:{' '}

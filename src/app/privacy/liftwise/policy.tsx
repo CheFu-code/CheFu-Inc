@@ -3,6 +3,28 @@ import { privacyContactSections } from "../shared-sections";
 
 export const liftwiseSections: PrivacySection[] = [
     {
+        id: "sources-and-purposes",
+        title: "Sources of information and purposes at a glance",
+        content: <>
+            <p>We receive information from you, our SSO and the app&apos;s operation. Your account identifier links saved records to you; it is not anonymous merely because it is not your name.</p>
+            <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
+                <table className="w-full text-sm">
+                    <caption className="sr-only">LiftWise information sources and uses</caption>
+                    <thead><tr><th scope="col">Source</th><th scope="col">Information</th><th scope="col">Purpose</th></tr></thead>
+                    <tbody>
+                        <tr><th scope="row">Our SSO</th><td>Account ID, contact and profile information, tokens</td><td>Authenticate you and identify your records</td></tr>
+                        <tr><th scope="row">Onboarding answers</th><td>Goal, experience, gender, units and reminders</td><td>Set up your profile and preferences</td></tr>
+                        <tr><th scope="row">Workout entries</th><td>Exercises, sets, repetitions, loads and times</td><td>Save training and calculate history and statistics</td></tr>
+                        <tr><th scope="row">Selected photo</th><td>The cover image you choose</td><td>Store and display a workout cover through Cloudinary</td></tr>
+                        <tr><th scope="row">App operation</th><td>Errors, logs, technical context and sampled replays</td><td>Investigate failures through Sentry</td></tr>
+                        <tr><th scope="row">Support report</th><td>Description, account contact, version and platform</td><td>Investigate and handle your report</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Workout details and free-text entries can reveal fitness or health information. Avoid adding diagnoses, medical documents, identity numbers or private information about someone else unless necessary for a request you deliberately make. Such information can have additional legal protections.</p>
+        </>,
+    },
+    {
         id: "account-and-profile",
         title: "Your account and fitness profile",
         content: <>
@@ -68,12 +90,24 @@ export const liftwiseSections: PrivacySection[] = [
         </>,
     },
     {
+        id: "lawful-grounds-and-required-information",
+        title: "Lawful grounds and required versus optional information",
+        content: <>
+            <p>We process account and workout information to provide the tracking service you request, and support communications to resolve your enquiry. For ordinary personal information, relevant grounds can include performance of our agreement, legitimate interests in maintaining a secure and functioning service and resolving faults, compliance with a specific legal duty, or consent where required.</p>
+            <p>Legitimate interests must be balanced against your rights and reasonable expectations. They are not permission to use information for any purpose. Additional legal conditions can apply to children&apos;s or health-related information. Agreeing to our terms does not itself satisfy those conditions or consent to optional session replay.</p>
+            <p>Sign-in and information identifying your account are necessary for account-linked features. The current app requires onboarding answers before entry to its main experience. Workout entries are needed for the corresponding records. A cover photo, support report and notification permission are optional. Declining photo access prevents choosing a cover; declining notifications prevents reminders but does not itself prevent workout tracking.</p>
+            <p>The current app starts production diagnostics and replay without a separate in-app opt-out. That absence does not remove any right to object or any requirement for consent. Contact our Information Officer to ask about a particular processing activity or exercise an applicable right.</p>
+        </>,
+    },
+    {
         id: "retention",
         title: "How long we keep information",
         content: <>
             <p>We keep account-linked workout records, history, preferences and cover images as needed to provide the service. Support reports are kept as needed to investigate the issue and handle related support. Diagnostics and replay information are kept as needed to investigate errors and maintain the app.</p>
             <p>We delete or de-identify personal information when it is no longer needed for these purposes or when a verified deletion request is handled, except for records that must be kept for a specific legal obligation or legal claim. Any such retention is limited to the relevant records and the period needed for that obligation or claim.</p>
             <p>Deleting app data is a separate request from deleting a workout template or removing your shared sign-in. Send app-data deletion requests to <a href="mailto:privacy@chefu.co.za">privacy@chefu.co.za</a>. We do not promise that signing out, uninstalling the app or deleting your sign-in automatically removes copies held by our service providers.</p>
+            <p>Retention is assessed by record type and purpose: workout history supports tracking, support records support the issue being handled, and diagnostics support fault investigation. A possible future legal need does not automatically justify keeping everything indefinitely. A legal hold concerns the relevant records and is reassessed when its reason ends.</p>
+            <p>Local caches, drafts and queued completions have different lifecycles from server records. Cache expiry does not mean account history has been deleted. Specify server records, uploaded covers or local-device guidance when making a request so that we can explain what each action affects.</p>
         </>,
     },
     {
@@ -82,6 +116,17 @@ export const liftwiseSections: PrivacySection[] = [
         content: <>
             <p>Children may use LiftWise with a parent or legal guardian&apos;s permission. A parent or guardian must authorise a child&apos;s use of the account and online features and the associated processing of personal information before the child uses them.</p>
             <p>This includes the shared account profile, fitness preferences, workout records, uploaded images and diagnostics described in this policy. A parent or guardian may contact <a href="mailto:privacy@chefu.co.za">privacy@chefu.co.za</a> to ask about that information, withdraw permission or request deletion. LiftWise does not currently include an in-app process for verifying parental permission.</p>
+            <p>For children: your workouts are connected to your account and saved online. A cover picture can be opened by anyone who has its link. Ask a parent or guardian before signing up or uploading a picture. Do not include your school, address or private medical details in workout names or support messages.</p>
+            <p>For parents: where law requires verified authorisation, that must happen before the relevant collection or disclosure. You can ask to review information we hold about your child, correct or delete it, or refuse further consent-based collection or sharing. A permission statement on this page does not replace verification.</p>
+            <p>Age thresholds vary internationally. US rules can require verifiable parental consent for covered online collection from children under 13; EU rules on a child&apos;s own consent to online services depend on the country. Downloading the app does not itself satisfy those rules.</p>
+        </>,
+    },
+    {
+        id: "automated-features",
+        title: "Calculated statistics and AI guidance",
+        content: <>
+            <p>Totals, workout volume, activity dates and streaks are calculated from saved records. They are app features, not a clinical evaluation. The AI Coach requests instructions using exercise catalogue information; it does not send your personal workout history or account profile as a prompt to Gemini.</p>
+            <p>We do not use these calculations or the AI Coach to make decisions about credit, insurance, employment, access to healthcare or another similarly significant matter. If a calculated feature appears inaccurate, identify the affected entry or calculation so that we can investigate.</p>
         </>,
     },
     {
