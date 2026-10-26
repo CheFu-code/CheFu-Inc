@@ -1,4 +1,5 @@
 import { ShieldCheck } from 'lucide-react';
+import Link from 'next/link';
 
 export function PrivacyPolicy() {
     return (
@@ -15,9 +16,28 @@ export function PrivacyPolicy() {
                     </h1>
 
                     <p className="text-slate-500">
-                        Last updated: October 10, 2026
+                        Last updated: October 27, 2026
                     </p>
                 </div>
+
+                <nav aria-label="App privacy policies" className="mb-10 rounded-2xl border border-slate-200 bg-white p-6">
+                    <h2 className="mb-2 text-xl font-bold text-slate-900">Privacy policies for our apps</h2>
+                    <p className="mb-5">Choose an app for details about its data, permissions and privacy controls.</p>
+                    <ul className="grid gap-4 sm:grid-cols-2">
+                        <li>
+                            <Link href="/privacy/muzalo" className="block h-full rounded-xl border border-slate-200 p-5 transition-colors hover:border-cyan-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700">
+                                <span className="font-semibold text-cyan-700">Muzalo Privacy Policy</span>
+                                <span className="mt-2 block text-sm text-slate-600">Local music, lyrics lookups and playback preferences.</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/privacy/liftwise" className="block h-full rounded-xl border border-slate-200 p-5 transition-colors hover:border-cyan-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700">
+                                <span className="font-semibold text-cyan-700">LiftWise Privacy Policy</span>
+                                <span className="mt-2 block text-sm text-slate-600">Accounts, workouts, reminders and diagnostics.</span>
+                            </Link>
+                        </li>
+                    </ul>
+                </nav>
 
                 <div className="prose prose-slate prose-lg max-w-none">
                     <p>

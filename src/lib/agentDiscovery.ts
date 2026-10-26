@@ -165,10 +165,38 @@ Common topics include project timelines, independent artist collaboration, softw
     "/privacy": `# Privacy Policy
 
 CHEFU TECHNOLOGIES publishes privacy information at /privacy.
+
+App-specific policies are available at /privacy/muzalo and /privacy/liftwise.
+`,
+    "/privacy/muzalo": `# Muzalo Privacy Policy
+
+Muzalo stores music-library and playback information locally. Lyrics lookups send the selected song title and artist to LRCLIB.
+
+Read the full policy at /privacy/muzalo.
+`,
+    "/privacy/liftwise": `# LiftWise Privacy Policy
+
+We use our SSO and cloud storage for LiftWise workouts, history and preferences. Our policy covers images, reminders, diagnostics, session replay and privacy requests.
+
+Read the full policy at /privacy/liftwise.
 `,
     "/terms": `# Terms Of Service
 
 CHEFU TECHNOLOGIES publishes service terms at /terms.
+
+App-specific terms are available at /terms/muzalo and /terms/liftwise.
+`,
+    "/terms/muzalo": `# Muzalo Terms of Service
+
+Our terms cover local music files, music and lyrics rights, online lookups, downloads, device storage and parental permission.
+
+Read the full terms at /terms/muzalo and the privacy policy at /privacy/muzalo.
+`,
+    "/terms/liftwise": `# LiftWise Terms of Service
+
+Our terms cover our SSO, workout tracking, exercise guidance, uploaded content, synchronisation, parental permission and account deletion.
+
+Read the full terms at /terms/liftwise and the privacy policy at /privacy/liftwise.
 `,
     [apiDocsPath]: `# ${siteName} API Documentation
 
