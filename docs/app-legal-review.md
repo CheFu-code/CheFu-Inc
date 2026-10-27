@@ -57,4 +57,6 @@ This accompanies `/privacy/muzalo`, `/privacy/liftwise`, `/terms/muzalo` and `/t
 
 ## Scope of this change
 
+Sudoku's additional pages and implementation review are recorded in [sudoku-legal-review.md](./sudoku-legal-review.md).
+
 The work expands public notices and terms, adds formal operator/contact details, readable data-flow tables and prominent pre-use information, and preserves the distinction between actual features and legal requirements. It does not register an officer, sign provider contracts, appoint regional representatives, implement age assurance, change diagnostics collection or add a cross-service deletion workflow.

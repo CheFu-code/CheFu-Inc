@@ -166,7 +166,7 @@ Common topics include project timelines, independent artist collaboration, softw
 
 CHEFU TECHNOLOGIES publishes privacy information at /privacy.
 
-App-specific policies are available at /privacy/muzalo and /privacy/liftwise.
+App-specific policies are available at /privacy/muzalo, /privacy/liftwise and /privacy/sudoku.
 `,
     "/privacy/muzalo": `# Muzalo Privacy Policy
 
@@ -180,11 +180,17 @@ We use our SSO and cloud storage for LiftWise workouts, history and preferences.
 
 Read the full policy at /privacy/liftwise.
 `,
+    "/privacy/sudoku": `# Sudoku Privacy Policy
+
+Sudoku keeps games and progress locally. Sentry receives diagnostics and sampled session replay, and Expo receives update requests. There is no Sudoku account or in-app diagnostics opt-out.
+
+Read the full policy at /privacy/sudoku.
+`,
     "/terms": `# Terms Of Service
 
 CHEFU TECHNOLOGIES publishes service terms at /terms.
 
-App-specific terms are available at /terms/muzalo and /terms/liftwise.
+App-specific terms are available at /terms/muzalo, /terms/liftwise and /terms/sudoku.
 `,
     "/terms/muzalo": `# Muzalo Terms of Service
 
@@ -197,6 +203,12 @@ Read the full terms at /terms/muzalo and the privacy policy at /privacy/muzalo.
 Our terms cover our SSO, workout tracking, exercise guidance, uploaded content, synchronisation, parental permission and account deletion.
 
 Read the full terms at /terms/liftwise and the privacy policy at /privacy/liftwise.
+`,
+    "/terms/sudoku": `# Sudoku Terms of Service
+
+Our terms cover local puzzle play, hints, progression, device storage, automatic updates, diagnostics, parental permission and consumer rights.
+
+Read the full terms at /terms/sudoku and the privacy policy at /privacy/sudoku.
 `,
     [apiDocsPath]: `# ${siteName} API Documentation
 

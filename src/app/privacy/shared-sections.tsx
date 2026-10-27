@@ -68,7 +68,7 @@ export function privacyContactSections(appName: string): PrivacySection[] {
             id: "complaints",
             title: "Questions and privacy complaints",
             content: <>
-                <p>Contact <a href="mailto:privacy@chefu.co.za">privacy@chefu.co.za</a> with the app name, what happened and the outcome you seek. You do not need to send private workout details or audio files merely to raise a concern.</p>
+                <p>Contact <a href="mailto:privacy@chefu.co.za">privacy@chefu.co.za</a> with the app name, what happened and the outcome you seek. Do not send passwords or unrelated personal information merely to raise a concern.</p>
                 <p>You can complain to South Africa&apos;s Information Regulator through its <a href="https://inforegulator.org.za/contact-us/">official contact and complaints page</a> or <a href="mailto:POPIAComplaints@inforegulator.org.za">POPIAComplaints@inforegulator.org.za</a>. Its published office address is Woodmead North Office Park, 54 Maxwell Drive, Woodmead, Johannesburg, 2191.</p>
                 <p>Where another authority has jurisdiction, you can use its complaint process, including the competent authority in your EU/EEA country or the UK Information Commissioner where applicable. Contacting us does not waive your right to complain or seek a legal remedy.</p>
             </>,

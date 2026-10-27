@@ -18,7 +18,7 @@ export function commonTermsSections(appName: string): TermsSection[] {
             title: "Third-party services and device requirements",
             content: <>
                 <p>Features can depend on compatible devices, operating-system versions, permissions, internet access and third-party services. Installing an update or changing device settings can affect how a feature works. Your device or network provider may charge for data, storage or connectivity independently of us.</p>
-                <p>The app-specific sections identify external services used for lyrics, images, authentication, updates or guidance. A third party can change its API, content, availability or terms. We do not grant rights to third-party material that its owner has not granted, and a link does not imply endorsement.</p>
+                <p>The app-specific sections identify the external services it uses and what those services do. A third party can change its API, content, availability or terms. We do not grant rights to third-party material that its owner has not granted, and a link does not imply endorsement.</p>
                 <p>External providers&apos; terms can apply to your direct dealings with them. This does not remove our responsibility for our own service, the promises we make, or rights and duties that applicable law places on us. A provider&apos;s outage or error is not an automatic exemption from every legal obligation.</p>
             </>,
         },
@@ -45,7 +45,7 @@ export function commonTermsSections(appName: string): TermsSection[] {
             title: "Restricting online access and ending use",
             content: <>
                 <p>We may restrict online access where reasonably necessary to address a material breach, unauthorised activity, a security risk or a legal requirement. Any action should be proportionate to the issue. Where reasonably practicable and appropriate, we will give notice and an opportunity to address the problem; urgent security or legal circumstances may require earlier action.</p>
-                <p>You can stop using the app at any time. Uninstalling, signing out, deleting a workout and deleting an account are different actions. Follow the app-specific instructions and Privacy Policy to understand whether server records, local files, completed history or correspondence remain.</p>
+                <p>You can stop using the app at any time. Uninstalling the app, removing device data and requesting deletion of information held by us are different actions. Follow the app-specific instructions and Privacy Policy to understand whether server records, local files, completed history or correspondence remain.</p>
                 <p>Ending use does not give us new rights to your content or remove an existing privacy duty. Terms concerning rights in software and content, outstanding lawful obligations and resolving an existing dispute continue to apply where their nature requires it.</p>
             </>,
         },
@@ -53,7 +53,7 @@ export function commonTermsSections(appName: string): TermsSection[] {
             id: "consumer-rights-and-responsibility",
             title: "Disclaimers, responsibility and consumer rights",
             content: <>
-                <p>Features are provided subject to the practical limitations explained on this page. We do not promise a particular fitness result, an accurate third-party lyric, recovery of a device-only file or delivery of every scheduled alert. Those statements describe the service; they are not a blanket waiver of your rights.</p>
+                <p>Features are provided subject to the practical limitations explained on this page. {appName === "Sudoku" ? "We do not promise error-free puzzles or hints, a particular solve time or progression outcome, or recovery of device-only progress." : "We do not promise a particular fitness result, an accurate third-party lyric, recovery of a device-only file or delivery of every scheduled alert."} Those statements describe the service; they are not a blanket waiver of your rights.</p>
                 <p>The disclaimers and liability provisions in our general Terms of Service apply only to the extent permitted by law. We do not exclude a statutory warranty, remedy or consumer right that cannot lawfully be excluded. No term requires you to waive a claim for our fraud, deliberate misconduct, gross negligence or another matter where the law prohibits that waiver.</p>
                 <p>You are responsible for unlawful activity and content you submit to the extent applicable law makes you responsible. You are not required to indemnify us for our own unlawful conduct. Responsibility for a loss must be assessed on the facts and applicable law, not merely because you downloaded the app or accepted these terms.</p>
             </>,

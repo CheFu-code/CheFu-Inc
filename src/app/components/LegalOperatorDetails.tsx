@@ -27,7 +27,7 @@ export function LegalOperatorDetails() {
                 </dt>
                 <dd>145 Ka-Dinga, Malamulele, Limpopo, 0982, South Africa</dd>
                 <dt className="font-semibold text-slate-900">
-                    Information Officer / privacy requests
+                    Information Officer
                 </dt>
                 <dd>
                     <a
@@ -54,7 +54,7 @@ export function LegalOperatorDetails() {
                         href="mailto:hello@chefu.co.za"
                         className="text-cyan-700 underline"
                     >
-                        hello@chefu.co.za
+                        support@chefu.co.za
                     </a>{" "}
                     ·{" "}
                     <a
@@ -70,7 +70,7 @@ export function LegalOperatorDetails() {
                         href="https://chefu.co.za"
                         className="text-cyan-700 underline"
                     >
-                        chefu.co.za
+                        www.chefu.co.za
                     </a>
                 </dd>
             </dl>
