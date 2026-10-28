@@ -6,13 +6,13 @@ export const muzaloSections: PrivacySection[] = [
         id: "privacy-at-a-glance",
         title: "Where your information goes",
         content: <>
-            <p>You choose the music folder Muzalo can read. Most player information stays on your device. This summary distinguishes local processing from an online request.</p>
+            <p>On Android, you can allow Muzalo to read the device&apos;s audio library so it can find songs across folders. Most player information stays on your device. This summary distinguishes local processing from an online request.</p>
             <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
                 <table className="w-full text-sm">
                     <caption className="sr-only">Muzalo information, storage and recipients</caption>
                     <thead><tr><th scope="col">Information or action</th><th scope="col">Where it is handled</th><th scope="col">Purpose</th></tr></thead>
                     <tbody>
-                        <tr><th scope="row">Audio, metadata and artwork</th><td>Your chosen folder and local app storage</td><td>Index and play music; show song details</td></tr>
+                        <tr><th scope="row">Audio, metadata and artwork</th><td>Your device&apos;s accessible audio library and local app storage</td><td>Index and play music; show song details</td></tr>
                         <tr><th scope="row">Playlists, favourites and history</th><td>The app&apos;s local database</td><td>Organise music and remember playback</td></tr>
                         <tr><th scope="row">Lyrics lookup</th><td>Artist and title sent to LRCLIB; lyrics saved locally</td><td>Find lyrics for the selected track</td></tr>
                         <tr><th scope="row">Download</th><td>Request sent to the file host; file saved to your folder</td><td>Save the audio you request</td></tr>
@@ -27,7 +27,7 @@ export const muzaloSections: PrivacySection[] = [
         id: "music-on-your-device",
         title: "Music and information on your device",
         content: <>
-            <p>Muzalo is a music player for your local audio library. You do not need an account with us to use it. When you choose a music folder, Muzalo reads audio files and their metadata to build your library and play your music.</p>
+            <p>Muzalo is a music player for your local audio library. You do not need an account with us to use it. On Android, granting music and audio access lets Muzalo discover supported songs across folders through the system&apos;s media index. Muzalo reads audio files and their metadata locally to build your library and play your music. Files excluded from that index, including some private app folders, may not appear.</p>
             <p>The app stores the following information on your device:</p>
             <ul>
                 <li>Song file locations, filenames, titles, artists, albums, duration, file size, year and artwork.</li>
@@ -52,7 +52,8 @@ export const muzaloSections: PrivacySection[] = [
         title: "Permissions and device features",
         content: <>
             <ul>
-                <li><strong>Files and folders:</strong> Muzalo asks you to select and authorise a music folder on Android. It uses access to read and index songs, cache audio or artwork, and save downloads. Denying access prevents it from loading music from that folder.</li>
+                <li><strong>Music and audio:</strong> Muzalo asks for Android audio-library access to discover songs across folders. On older Android versions this uses the system&apos;s storage permission. Scanning does not request photo or video access. Denying or revoking audio access prevents discovery and may prevent playback of protected files. Existing local library records are not automatically erased when access is denied.</li>
+                <li><strong>Download folders:</strong> A download action separately asks you to authorise a destination folder if one has not been selected. That permission lets Muzalo save the requested file; it is separate from permission to discover device audio.</li>
                 <li><strong>Clipboard:</strong> the lyrics editor reads clipboard text when you press &quot;Paste from Clipboard&quot; so you can insert lyrics.</li>
                 <li><strong>Background playback:</strong> the app uses background audio and Android playback services to keep music playing and provide media controls.</li>
                 <li><strong>Lock screen, notifications and widget:</strong> playback controls can display the current song title, artist and artwork outside the app. Other people who can see your device may see those details.</li>
@@ -83,8 +84,8 @@ export const muzaloSections: PrivacySection[] = [
         title: "Purposes, lawful grounds and optional features",
         content: <>
             <p>Muzalo processes local files and settings to deliver the player features you request. This does not give us possession of your library. When you contact us, we process your address and message to answer the enquiry, provide support or handle privacy rights. Relevant grounds can include providing the requested service, our legitimate interest in resolving a genuine enquiry, and compliance with a legal duty.</p>
-            <p>Folder access is needed for music stored in that folder. Lyrics lookup, downloads and sending a message are separate choices, not requirements for playing an accessible local file. You can edit lyrics without an online lookup. Declining folder access prevents the app from indexing files that require it.</p>
-            <p>Where consent or parental authorisation is required, it must be obtained for the specific processing before it occurs. Granting folder access is not consent for unrelated analytics or advertising. Muzalo does not add those activities as a condition of local playback.</p>
+            <p>Audio-library access is needed for Android device-wide discovery. Lyrics lookup, downloads and sending a message are separate choices, not requirements for playing an accessible local file. You can edit lyrics without an online lookup. You can retry audio access from the music screen or manage it in device settings. Scanning and indexing stay on your device.</p>
+            <p>Where consent or parental authorisation is required, it must be obtained for the specific processing before it occurs. Granting audio-library or folder access is not consent for unrelated analytics or advertising. Muzalo does not add those activities as a condition of local playback.</p>
         </>,
     },
     {

@@ -6,7 +6,7 @@ export const muzaloTerms: TermsSection[] = [
         id: "using-muzalo",
         title: "Using Muzalo and parental permission",
         content: <>
-            <p>Muzalo plays audio files from the music folder you authorise on your device. It lets you organise a library, create playlists, save favourites, edit library information and lyrics, and control playback. Local playback does not require an account with us.</p>
+            <p>Muzalo plays accessible local audio files on your device. On Android, audio-library permission lets it discover supported songs across folders through the system&apos;s media index. Files in private locations or excluded from that index may not appear. It lets you organise a library, create playlists, save favourites, edit library information and lyrics, and control playback. Local playback does not require an account with us.</p>
             <p>Children may use Muzalo. A parent or legal guardian must authorise a child&apos;s use of online lyrics lookups and downloads, or the submission of personal information to us. A parent or guardian must also authorise use where the child cannot legally agree to these terms alone.</p>
         </>,
     },
@@ -32,7 +32,7 @@ export const muzaloTerms: TermsSection[] = [
         id: "device-permissions-and-local-data",
         title: "Device permissions and local data",
         content: <>
-            <p>Folder access is needed to load your local library and save downloads. Background playback, media controls and the Android widget depend on your device and its settings. You can manage permissions in device settings; removing a permission can prevent the related feature from working.</p>
+            <p>Android audio-library access is needed to discover device music; saving a download separately requires access to its destination folder. Background playback, media controls and the Android widget depend on your device and its settings. You can manage permissions in device settings; removing a permission can prevent the related feature from working. Denying access or an incomplete scan does not automatically erase existing library records.</p>
             <p>Library records, playlists, lyrics edits and playback preferences are stored on your device. We do not provide a cloud backup or remote recovery service for that local database. Keep separate copies of music and other material you want to preserve.</p>
             <p>You can stop using Muzalo and uninstall it at any time. Clearing app storage removes its local database and preferences. Files saved in your chosen music folder, including downloads, need to be managed separately with your file manager. Device backup and restore settings may affect which local data is restored.</p>
             <p>A library listing is an index, not an independent backup of the original audio. Moving, renaming, deleting or revoking access to a file can prevent playback or cause the library to change on a later scan. Preserve copies of original audio before changing folders or clearing storage.</p>
