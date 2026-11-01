@@ -15,7 +15,7 @@ export function CareersApplicationSuccess({
                 <span className="font-medium">{submittedEmail || "your inbox"}</span>{" "}
                 once your application is queued by our team.
             </p>
-            <p className="mt-1 text-sm text-emerald-200/90">
+            <p className="mt-1 text-sm text-emerald-700/90">
                 Tracking reference: <span className="font-semibold">{applicationId}</span>
             </p>
         </section>

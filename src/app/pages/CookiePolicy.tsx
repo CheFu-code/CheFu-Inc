@@ -21,7 +21,7 @@ export function CookiePolicy() {
 
                 <div className="prose prose-slate prose-lg max-w-none">
                     <p>
-                        CHEFU TECHNOLOGIES (Pty) Ltd. ("CHEFU TECHNOLOGIES", "we", "us",
+                        CHEFU TECHNOLOGIES (Pty) Ltd. ("Chefu Technologies", "we", "us",
                         or "our") uses cookies and similar technologies to operate and
                         improve our websites, applications, and related digital services.
                     </p>

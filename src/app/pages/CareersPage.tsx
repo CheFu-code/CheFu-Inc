@@ -12,8 +12,8 @@ import { CareersRolesSection } from "../components/careers/CareersRolesSection";
 import {
     CAREERS_PRIVACY_NOTICE_VERSION,
     CAREERS_TERMS_VERSION,
-    fallbackProvinceOptions,
-    provinceOptionsByCountry,
+    getProvinceOptions,
+    rolesByDepartment,
     type JoinUsFormData,
 } from "../components/careers/careersData";
 
@@ -23,6 +23,7 @@ export function CareersPage() {
         handleSubmit,
         control,
         reset,
+        resetField,
         setValue,
         formState: { errors, isSubmitting },
     } = useForm<JoinUsFormData>({
@@ -36,10 +37,21 @@ export function CareersPage() {
     const [submittedEmail, setSubmittedEmail] = useState<string>("");
     const [lastSubmissionAt, setLastSubmissionAt] = useState<number>(0);
     const selectedCountry = useWatch({ control, name: "country" }) ?? "";
+    const selectedDepartment = useWatch({ control, name: "department" }) ?? "";
+    const selectedRole = useWatch({ control, name: "roleApplyingFor" }) ?? "";
     const isSouthAfrica = selectedCountry === "South Africa";
-    const provinceOptions = selectedCountry
-        ? provinceOptionsByCountry[selectedCountry] ?? fallbackProvinceOptions
-        : fallbackProvinceOptions;
+    const isMusicRelated =
+        selectedDepartment === "Music Production" ||
+        [
+            "Music Producer",
+            "Mixing & Mastering Engineer",
+            "Songwriter / Composer",
+            "Sound Designer",
+        ].includes(selectedRole);
+    const provinceOptions = getProvinceOptions(selectedCountry);
+    const availableRoles = selectedDepartment
+        ? rolesByDepartment[selectedDepartment as keyof typeof rolesByDepartment]
+        : [];
 
     useEffect(() => {
         if (selectedCountry) {
@@ -49,6 +61,16 @@ export function CareersPage() {
             setValue("province", "", { shouldValidate: true });
         }
     }, [selectedCountry, isSouthAfrica, setValue]);
+
+    useEffect(() => {
+        if (!isMusicRelated) {
+            setValue("musicPortfolioLink", "");
+        }
+    }, [isMusicRelated, setValue]);
+
+    useEffect(() => {
+        resetField("roleApplyingFor");
+    }, [resetField, selectedDepartment]);
 
     const onSubmit = async (data: JoinUsFormData) => {
         if (data.website?.trim()) {
@@ -143,6 +165,8 @@ export function CareersPage() {
                     errors={errors}
                     isSubmitting={isSubmitting}
                     selectedCountry={selectedCountry}
+                    availableRoles={availableRoles}
+                    showMusicPortfolio={isMusicRelated}
                     provinceOptions={provinceOptions}
                     isSouthAfrica={isSouthAfrica}
                 />

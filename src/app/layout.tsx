@@ -26,8 +26,8 @@ export const metadata: Metadata = {
     }),
     applicationName: siteName,
     icons: {
-        icon: [{ url: "/chefu-technologies-logo.png", type: "image/png" }],
-        apple: "/chefu-technologies-logo.png",
+        icon: [{ url: "/favicon.ico", type: "image/x-icon" }],
+        apple: "/apple-touch-icon.png",
     },
 };
 

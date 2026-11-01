@@ -1,4 +1,5 @@
 import { Clock3, HeartHandshake, Sparkles } from "lucide-react";
+import { Country, State } from "country-state-city";
 
 export const roles = [
     "Frontend Developer",
@@ -26,139 +27,36 @@ export const departments = [
     "Security",
 ] as const;
 
-export const countries = [
-    "South Africa",
-    "United States",
-    "United Kingdom",
-    "Canada",
-    "Australia",
-    "New Zealand",
-    "Germany",
-    "France",
-    "Netherlands",
-    "Spain",
-    "Italy",
-    "Portugal",
-    "Sweden",
-    "Norway",
-    "Denmark",
-    "Switzerland",
-    "Austria",
-    "Belgium",
-    "Ireland",
-    "Poland",
-    "Czech Republic",
-    "Romania",
-    "Greece",
-    "Turkey",
-    "United Arab Emirates",
-    "Saudi Arabia",
-    "Qatar",
-    "Egypt",
-    "Kenya",
-    "Nigeria",
-    "Ghana",
-    "India",
-    "Pakistan",
-    "Bangladesh",
-    "Singapore",
-    "Malaysia",
-    "Philippines",
-    "Indonesia",
-    "Thailand",
-    "Vietnam",
-    "China",
-    "Japan",
-    "South Korea",
-    "Brazil",
-    "Mexico",
-    "Argentina",
-    "Chile",
-    "Colombia",
-    "Peru",
-] as const;
-
-export const southAfricanProvinces = [
-    "Eastern Cape",
-    "Free State",
-    "Gauteng",
-    "KwaZulu-Natal",
-    "Limpopo",
-    "Mpumalanga",
-    "North West",
-    "Northern Cape",
-    "Western Cape",
-] as const;
-
-export const provinceOptionsByCountry: Record<string, readonly string[]> = {
-    "South Africa": southAfricanProvinces,
-    "United States": [
-        "California",
-        "Texas",
-        "Florida",
-        "New York",
-        "Illinois",
-        "Washington",
-        "Georgia",
-        "Other / Not Listed",
+export const rolesByDepartment: Record<
+    (typeof departments)[number],
+    readonly (typeof roles)[number][]
+> = {
+    "Software Engineering": ["Frontend Developer", "Backend Developer", "Intern (Open Application)", "Other"],
+    "Artificial Intelligence": ["Backend Developer", "Intern (Open Application)", "Other"],
+    "Music Production": [
+        "Music Producer",
+        "Mixing & Mastering Engineer",
+        "Songwriter / Composer",
+        "Sound Designer",
+        "Intern (Open Application)",
+        "Other",
     ],
-    "United Kingdom": [
-        "England",
-        "Scotland",
-        "Wales",
-        "Northern Ireland",
-        "Other / Not Listed",
-    ],
-    "Canada": [
-        "Ontario",
-        "Quebec",
-        "British Columbia",
-        "Alberta",
-        "Manitoba",
-        "Other / Not Listed",
-    ],
-    "Australia": [
-        "New South Wales",
-        "Victoria",
-        "Queensland",
-        "Western Australia",
-        "South Australia",
-        "Other / Not Listed",
-    ],
-    "India": [
-        "Maharashtra",
-        "Delhi",
-        "Karnataka",
-        "Tamil Nadu",
-        "Telangana",
-        "Gujarat",
-        "Other / Not Listed",
-    ],
-    "Nigeria": [
-        "Lagos",
-        "Abuja (FCT)",
-        "Rivers",
-        "Kano",
-        "Oyo",
-        "Other / Not Listed",
-    ],
-    "Kenya": ["Nairobi", "Mombasa", "Kiambu", "Nakuru", "Other / Not Listed"],
-    "Germany": ["Bavaria", "Berlin", "Hesse", "Hamburg", "Other / Not Listed"],
-    "France": [
-        "Ile-de-France",
-        "Provence-Alpes-Cote d'Azur",
-        "Occitanie",
-        "Nouvelle-Aquitaine",
-        "Other / Not Listed",
-    ],
-    "Brazil": [
-        "Sao Paulo",
-        "Rio de Janeiro",
-        "Minas Gerais",
-        "Bahia",
-        "Other / Not Listed",
-    ],
+    "Creative Direction": ["Content Creator", "UI/UX Designer", "Intern (Open Application)", "Other"],
+    "Content & Media": ["Content Creator", "Sound Designer", "Intern (Open Application)", "Other"],
+    "Marketing & Growth": ["Marketing Specialist", "Content Creator", "Intern (Open Application)", "Other"],
+    "Product & Design": ["UI/UX Designer", "Frontend Developer", "Intern (Open Application)", "Other"],
+    Security: ["Security Researcher", "Intern (Open Application)", "Other"],
 };
+
+export const countries = Country.getAllCountries().map((country) => country.name);
+
+export function getProvinceOptions(countryName: string): readonly string[] {
+    const country = Country.getAllCountries().find((item) => item.name === countryName);
+    if (!country) return fallbackProvinceOptions;
+
+    const states = State.getStatesOfCountry(country.isoCode).map((state) => state.name);
+    return states.length ? states : fallbackProvinceOptions;
+}
 
 export const fallbackProvinceOptions = ["Other / Not Listed"] as const;
 

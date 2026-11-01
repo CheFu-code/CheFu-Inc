@@ -12,7 +12,6 @@ import {
     countries,
     departments,
     fieldClassName,
-    roles,
     type JoinUsFormData,
 } from "./careersData";
 import { FieldLabel } from "./FieldLabel";
@@ -24,6 +23,8 @@ export function CareersApplicationForm({
     errors,
     isSubmitting,
     selectedCountry,
+    availableRoles,
+    showMusicPortfolio,
     provinceOptions,
     isSouthAfrica,
 }: {
@@ -33,6 +34,8 @@ export function CareersApplicationForm({
     errors: FieldErrors<JoinUsFormData>;
     isSubmitting: boolean;
     selectedCountry: string;
+    availableRoles: readonly string[];
+    showMusicPortfolio: boolean;
     provinceOptions: readonly string[];
     isSouthAfrica: boolean;
 }) {
@@ -43,7 +46,7 @@ export function CareersApplicationForm({
                 <div>
                     <h3 className="mb-4 text-base font-medium text-[#111827]">Basic Info</h3>
                     <div className="grid md:grid-cols-2 gap-4">
-                        <FieldLabel label="Full Name">
+                        <FieldLabel label="Full Name" required>
                             <input
                                 {...register("fullName", {
                                     required: "Full name is required",
@@ -55,7 +58,7 @@ export function CareersApplicationForm({
                                 <p className="text-sm text-red-400">{errors.fullName.message}</p>
                             )}
                         </FieldLabel>
-                        <FieldLabel label="Email">
+                        <FieldLabel label="Email" required>
                             <input
                                 type="email"
                                 {...register("email", { required: "Email is required" })}
@@ -73,7 +76,7 @@ export function CareersApplicationForm({
                                 placeholder="+1 000 000 0000"
                             />
                         </FieldLabel>
-                        <FieldLabel label="Country">
+                        <FieldLabel label="Country" required>
                             <select
                                 {...register("country", {
                                     required: "Country is required",
@@ -94,7 +97,7 @@ export function CareersApplicationForm({
                                 <p className="text-sm text-red-400">{errors.country.message}</p>
                             )}
                         </FieldLabel>
-                        <FieldLabel label="Province / State">
+                        <FieldLabel label="Province / State" required>
                             <select
                                 {...register("province", {
                                     required: "Province/State is required",
@@ -118,7 +121,7 @@ export function CareersApplicationForm({
                                 <p className="text-sm text-red-400">{errors.province.message}</p>
                             )}
                         </FieldLabel>
-                        <FieldLabel label="City">
+                        <FieldLabel label="City" required>
                             <input
                                 {...register("city", {
                                     required: "City is required",
@@ -136,7 +139,7 @@ export function CareersApplicationForm({
                 <div>
                     <h3 className="mb-4 text-base font-medium text-[#111827]">Professional Info</h3>
                     <div className="grid md:grid-cols-2 gap-4">
-                        <FieldLabel label="Department">
+                        <FieldLabel label="Department" required>
                             <select
                                 {...register("department", {
                                     required: "Please choose a department",
@@ -157,7 +160,7 @@ export function CareersApplicationForm({
                                 <p className="text-sm text-red-400">{errors.department.message}</p>
                             )}
                         </FieldLabel>
-                        <FieldLabel label="Role Applying For">
+                        <FieldLabel label="Role Applying For" required>
                             <select
                                 {...register("roleApplyingFor", {
                                     required: "Please choose a role",
@@ -166,9 +169,11 @@ export function CareersApplicationForm({
                                 defaultValue=""
                             >
                                 <option value="" disabled>
-                                    Select a role
+                                    {availableRoles.length
+                                        ? "Select a role"
+                                        : "Select department first"}
                                 </option>
-                                {roles.map((role) => (
+                                {availableRoles.map((role) => (
                                     <option key={role} value={role}>
                                         {role}
                                     </option>
@@ -180,7 +185,7 @@ export function CareersApplicationForm({
                                 </p>
                             )}
                         </FieldLabel>
-                        <FieldLabel label="Experience Level">
+                        <FieldLabel label="Experience Level" required>
                             <select
                                 {...register("experienceLevel", {
                                     required: "Please select your experience level",
@@ -201,7 +206,7 @@ export function CareersApplicationForm({
                                 </p>
                             )}
                         </FieldLabel>
-                        <FieldLabel label="Years of Experience">
+                        <FieldLabel label="Years of Experience" required>
                             <input
                                 {...register("yearsOfExperience", {
                                     required: "Years of experience is required",
@@ -215,7 +220,7 @@ export function CareersApplicationForm({
                                 </p>
                             )}
                         </FieldLabel>
-                        <FieldLabel label="Preferred Work Mode">
+                        <FieldLabel label="Preferred Work Mode" required>
                             <select
                                 {...register("preferredWorkMode", {
                                     required: "Please choose a work mode",
@@ -245,7 +250,7 @@ export function CareersApplicationForm({
                                 </p>
                             )}
                         </FieldLabel>
-                        <FieldLabel label="Earliest Start Date">
+                        <FieldLabel label="Earliest Start Date" required>
                             <input
                                 type="date"
                                 {...register("earliestStartDate", {
@@ -259,7 +264,7 @@ export function CareersApplicationForm({
                                 </p>
                             )}
                         </FieldLabel>
-                        <FieldLabel label="Highest Education">
+                        <FieldLabel label="Highest Education" required>
                             <select
                                 {...register("highestEducation", {
                                     required: "Please choose education level",
@@ -285,7 +290,7 @@ export function CareersApplicationForm({
                                 </p>
                             )}
                         </FieldLabel>
-                        <FieldLabel label="Work Authorization">
+                        <FieldLabel label="Work Authorization" required>
                             <select
                                 {...register("workAuthorization", {
                                     required: "Please choose work authorization status",
@@ -310,7 +315,7 @@ export function CareersApplicationForm({
                         </FieldLabel>
                     </div>
                     <div className="grid gap-4 mt-4">
-                        <FieldLabel label="Skills">
+                        <FieldLabel label="Skills" required>
                             <textarea
                                 {...register("skills", {
                                     required: "Please share your skills",
@@ -329,13 +334,15 @@ export function CareersApplicationForm({
                                 placeholder="https://github.com/yourname"
                             />
                         </FieldLabel>
-                        <FieldLabel label="Music Portfolio link (optional)">
-                            <input
-                                {...register("musicPortfolioLink")}
-                                className={fieldClassName}
-                                placeholder="https://soundcloud.com/yourname"
-                            />
-                        </FieldLabel>
+                        {showMusicPortfolio && (
+                            <FieldLabel label="Music Portfolio link (optional)">
+                                <input
+                                    {...register("musicPortfolioLink")}
+                                    className={fieldClassName}
+                                    placeholder="https://soundcloud.com/yourname"
+                                />
+                            </FieldLabel>
+                        )}
                         <FieldLabel label="LinkedIn Profile (optional)">
                             <input
                                 {...register("linkedInLink")}
@@ -361,7 +368,7 @@ export function CareersApplicationForm({
                 <div>
                     <h3 className="mb-4 text-base font-medium text-[#111827]">Short Questions</h3>
                     <div className="space-y-4">
-                        <FieldLabel label="Why do you want to join Chefu Technologies?">
+                        <FieldLabel label="Why do you want to join Chefu Technologies?" required>
                             <textarea
                                 {...register("whyJoin", {
                                     required: "This field is required",
@@ -372,7 +379,7 @@ export function CareersApplicationForm({
                                 <p className="text-sm text-red-400">{errors.whyJoin.message}</p>
                             )}
                         </FieldLabel>
-                        <FieldLabel label="What makes you different?">
+                        <FieldLabel label="What makes you different?" required>
                             <textarea
                                 {...register("whatMakesYouDifferent", {
                                     required: "This field is required",
@@ -385,7 +392,7 @@ export function CareersApplicationForm({
                                 </p>
                             )}
                         </FieldLabel>
-                        <FieldLabel label="How many hours per week can you commit?">
+                        <FieldLabel label="How many hours per week can you commit?" required>
                             <input
                                 {...register("hoursPerWeek", {
                                     required: "This field is required",
@@ -410,6 +417,9 @@ export function CareersApplicationForm({
                             className="mt-1 h-4 w-4 accent-cyan-400"
                         />
                         <span>
+                            <span className="mr-1 text-red-600" aria-hidden="true">
+                                *
+                            </span>
                             I agree to the{" "}
                             <Link href="/terms" className="text-cyan-700 underline">
                                 Terms of Service
@@ -429,6 +439,9 @@ export function CareersApplicationForm({
                             className="mt-1 h-4 w-4 accent-cyan-400"
                         />
                         <span>
+                            <span className="mr-1 text-red-600" aria-hidden="true">
+                                *
+                            </span>
                             I have read the{" "}
                             <Link href="/privacy#career-applicants" className="text-cyan-700 underline">
                                 applicant privacy notice
@@ -448,7 +461,7 @@ export function CareersApplicationForm({
                 <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full md:w-auto rounded-full bg-cyan-400 px-7 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full md:w-auto cursor-pointer rounded-full bg-cyan-400 px-7 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                     {isSubmitting ? "Submitting..." : "Submit Application"}
                 </button>
