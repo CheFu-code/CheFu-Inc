@@ -363,7 +363,7 @@ export function CareersApplicationForm({
                         <FieldLabel label="CV Upload (optional)">
                             <input
                                 type="file"
-                                accept=".pdf,.doc,.docx"
+                                accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                                 {...register("cvFile")}
                                 className="block w-full rounded-xl border border-[#e5e1dc] bg-white px-3 py-2 text-sm text-[#111827] file:mr-4 file:rounded-lg file:border-0 file:bg-cyan-500/15 file:px-3 file:py-2 file:text-cyan-700 hover:file:bg-cyan-500/25"
                             />
