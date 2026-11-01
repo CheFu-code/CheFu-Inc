@@ -1,11 +1,10 @@
 import {
-    Github,
     Instagram,
     Linkedin,
     Mail,
     MapPin,
     Phone,
-    Twitter,
+    Twitter
 } from "lucide-react";
 import Link from 'next/link';
 import { FaFacebook, FaWhatsapp } from 'react-icons/fa';

@@ -49,6 +49,7 @@ export function CareersPage() {
             "Sound Designer",
         ].includes(selectedRole);
     const provinceOptions = getProvinceOptions(selectedCountry);
+    const provinceRequired = provinceOptions.length > 0;
     const availableRoles = selectedDepartment
         ? rolesByDepartment[selectedDepartment as keyof typeof rolesByDepartment]
         : [];
@@ -90,6 +91,19 @@ export function CareersPage() {
 
         try {
             const cvFile = data.cvFile?.[0];
+            if (cvFile) {
+                const allowedCvTypes = new Set([
+                    "application/pdf",
+                    "application/msword",
+                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                ]);
+                if (!allowedCvTypes.has(cvFile.type) || cvFile.size > 8 * 1024 * 1024) {
+                    toast.error("Invalid CV", {
+                        description: "Please upload a PDF or Word document smaller than 8 MB.",
+                    });
+                    return;
+                }
+            }
             const preferredWorkMode =
                 data.country === "South Africa" ? data.preferredWorkMode : "Remote";
             const cvBase64 = cvFile ? await fileToBase64(cvFile) : undefined;
@@ -166,6 +180,7 @@ export function CareersPage() {
                     isSubmitting={isSubmitting}
                     selectedCountry={selectedCountry}
                     availableRoles={availableRoles}
+                    provinceRequired={provinceRequired}
                     showMusicPortfolio={isMusicRelated}
                     provinceOptions={provinceOptions}
                     isSouthAfrica={isSouthAfrica}

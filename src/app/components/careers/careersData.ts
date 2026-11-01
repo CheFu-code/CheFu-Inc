@@ -48,17 +48,17 @@ export const rolesByDepartment: Record<
     Security: ["Security Researcher", "Intern (Open Application)", "Other"],
 };
 
-export const countries = Country.getAllCountries().map((country) => country.name);
+const allCountries = Country.getAllCountries();
+const countriesByName = new Map(allCountries.map((country) => [country.name, country]));
+
+export const countries = allCountries.map((country) => country.name);
 
 export function getProvinceOptions(countryName: string): readonly string[] {
-    const country = Country.getAllCountries().find((item) => item.name === countryName);
-    if (!country) return fallbackProvinceOptions;
+    const country = countriesByName.get(countryName);
+    if (!country) return [];
 
-    const states = State.getStatesOfCountry(country.isoCode).map((state) => state.name);
-    return states.length ? states : fallbackProvinceOptions;
+    return State.getStatesOfCountry(country.isoCode).map((state) => state.name);
 }
-
-export const fallbackProvinceOptions = ["Other / Not Listed"] as const;
 
 export type JoinUsFormData = {
     fullName: string;

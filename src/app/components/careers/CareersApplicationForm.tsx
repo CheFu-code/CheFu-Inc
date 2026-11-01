@@ -24,6 +24,7 @@ export function CareersApplicationForm({
     isSubmitting,
     selectedCountry,
     availableRoles,
+    provinceRequired,
     showMusicPortfolio,
     provinceOptions,
     isSouthAfrica,
@@ -35,6 +36,7 @@ export function CareersApplicationForm({
     isSubmitting: boolean;
     selectedCountry: string;
     availableRoles: readonly string[];
+    provinceRequired: boolean;
     showMusicPortfolio: boolean;
     provinceOptions: readonly string[];
     isSouthAfrica: boolean;
@@ -97,10 +99,12 @@ export function CareersApplicationForm({
                                 <p className="text-sm text-red-400">{errors.country.message}</p>
                             )}
                         </FieldLabel>
-                        <FieldLabel label="Province / State" required>
+                        <FieldLabel label="Province / State" required={provinceRequired}>
                             <select
                                 {...register("province", {
-                                    required: "Province/State is required",
+                                    required: provinceRequired
+                                        ? "Province/State is required"
+                                        : false,
                                 })}
                                 className={fieldClassName}
                                 defaultValue=""
@@ -108,7 +112,9 @@ export function CareersApplicationForm({
                             >
                                 <option value="" disabled>
                                     {selectedCountry
-                                        ? "Select province/state"
+                                        ? provinceRequired
+                                            ? "Select province/state"
+                                            : "Not applicable"
                                         : "Select country first"}
                                 </option>
                                 {provinceOptions.map((province) => (
