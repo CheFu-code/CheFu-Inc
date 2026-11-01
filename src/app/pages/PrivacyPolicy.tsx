@@ -38,6 +38,11 @@ export function PrivacyPolicy() {
                                 Sudoku
                             </Link>
                         </li>
+                        <li>
+                            <Link href="/privacy/infinity" className="inline-flex rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium text-cyan-700 transition-colors hover:border-cyan-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700">
+                                Infinity
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
 
