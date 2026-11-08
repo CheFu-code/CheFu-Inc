@@ -128,6 +128,14 @@
         @apply bg-background text-foreground;
     }
 
+    :where(button, [role="button"], input[type="button"], input[type="submit"], input[type="reset"]):not(:disabled):not([aria-disabled="true"]):not([data-disabled]) {
+        @apply cursor-pointer;
+    }
+
+    :where(button, [role="button"], input[type="button"], input[type="submit"], input[type="reset"]):is(:disabled, [aria-disabled="true"], [data-disabled]) {
+        @apply cursor-not-allowed;
+    }
+
     /**
   * Default typography styles for HTML elements (h1-h4, p, label, button, input).
   * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.

@@ -108,7 +108,7 @@ export function Footer() {
                             <li className="flex items-start gap-3">
                                 <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-[#1f3c5b]" />
                                 <span>
-                                    Johannesburg, South Africa
+                                    Malamulele, South Africa
                                     <br />
                                     Remote-first collaboration
                                 </span>

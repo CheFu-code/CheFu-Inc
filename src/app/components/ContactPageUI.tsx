@@ -65,7 +65,7 @@ export const ContactPageUI = ({
                                         <h3 className="font-semibold text-slate-900">Call Us</h3>
                                         <p className="text-slate-600">+27 60 603 1205</p>
                                         <p className="text-sm text-slate-500">
-                                                    Johannesburg, South Africa · Remote-first
+                                                    Malamulele, South Africa · Remote-first
                                                 </p>
                                     </div>
                                 </div>

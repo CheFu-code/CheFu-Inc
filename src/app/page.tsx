@@ -7,7 +7,7 @@ export const metadata = pageMetadata({
         "Chefu Technologies builds fast software platforms, practical AI systems, and high-fidelity audio production for ambitious teams.",
 });
 
-export const dynamic = "force-dynamic";
+export const revalidate = 10;
 
 export default function Page() {
     return <Home />;

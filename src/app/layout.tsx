@@ -41,7 +41,7 @@ const organizationJsonLd = {
     email: "hello@chefu.co.za",
     address: {
         "@type": "PostalAddress",
-        addressLocality: "Johannesburg",
+        addressLocality: "Malamulele",
         addressCountry: "ZA",
     },
     sameAs: [

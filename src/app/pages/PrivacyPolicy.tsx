@@ -113,7 +113,7 @@ export function PrivacyPolicy() {
                             </a>
                         </p>
                         <p className="mb-0">
-                            Location: Johannesburg, South Africa
+                            Location: Malamulele, South Africa
                         </p>
                         <p className="mb-0">
                             Privacy enquiries:{" "}
