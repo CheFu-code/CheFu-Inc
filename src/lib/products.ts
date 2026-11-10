@@ -41,11 +41,18 @@ export async function getProducts() {
 }
 
 export async function getProduct(slug: string) {
-  try {
-    const response = await fetch(apiUrl(`/products/slug/${encodeURIComponent(slug)}`), { next: { revalidate: 60, tags: [`product:${slug}`] } });
-    if (!response.ok) return null;
-    return await response.json() as Product;
-  } catch {
-    return null;
+  const response = await fetch(apiUrl(`/products/slug/${encodeURIComponent(slug)}`), {
+    next: { revalidate: 60, tags: [`product:${slug}`] },
+    signal: AbortSignal.timeout(10_000),
+  });
+
+  // Only a confirmed missing product should become a page-level 404.
+  // Let Next.js handle temporary failures as server errors instead of telling
+  // crawlers that an existing product has been removed.
+  if (response.status === 404) return null;
+  if (!response.ok) {
+    throw new Error(`Product API request failed with status ${response.status}`);
   }
+
+  return await response.json() as Product;
 }
