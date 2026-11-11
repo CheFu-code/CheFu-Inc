@@ -53,7 +53,7 @@ export function Navbar() {
             <div className="container mx-auto flex items-center justify-between px-6">
                 <Link
                     href="/"
-                    aria-label="CHEFU TECHNOLOGIES home"
+                    aria-label="Chefu Technologies home"
                     className="group flex items-center gap-2 text-lg font-semibold tracking-[-0.04em] text-[#111827] transition-opacity duration-200 hover:opacity-90 sm:gap-2.5 sm:text-2xl"
                 >
                     

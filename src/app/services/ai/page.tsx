@@ -2,9 +2,9 @@ import { AIServicePage } from "../../pages/services/AIServicePage";
 import { pageMetadata } from "../../site-metadata";
 
 export const metadata = pageMetadata({
-    title: "AI Solutions | CHEFU TECHNOLOGIES",
+    title: "AI Solutions | Chefu Technologies",
     description:
-        "AI-first automation, machine learning, NLP, and intelligent workflow systems from CHEFU TECHNOLOGIES",
+        "AI-first automation, machine learning, NLP, and intelligent workflow systems from Chefu Technologies",
     path: "/services/ai",
 });
 

@@ -49,7 +49,7 @@ export const agentLinkHeader = [
 export const agentMarkdownByPath: Record<string, string> = {
     "/": `# ${siteName}
 
-CHEFU TECHNOLOGIES builds software platforms, practical AI systems, and high-fidelity audio and media production for ambitious teams.
+Chefu Technologies builds software platforms, practical AI systems, and high-fidelity audio and media production for ambitious teams.
 
 ## Core Services
 
@@ -106,7 +106,7 @@ Beat production, recording support, mixing, mastering, sound design, and sonic b
 `,
     "/services/software": `# Software Development
 
-CHEFU TECHNOLOGIES builds scalable digital products from MVPs to production systems.
+Chefu Technologies builds scalable digital products from MVPs to production systems.
 
 ## Capabilities
 
@@ -116,7 +116,7 @@ CHEFU TECHNOLOGIES builds scalable digital products from MVPs to production syst
 `,
     "/services/ai": `# AI Solutions
 
-CHEFU TECHNOLOGIES designs and builds intelligent systems for automation and product innovation.
+Chefu Technologies designs and builds intelligent systems for automation and product innovation.
 
 ## Capabilities
 
@@ -127,7 +127,7 @@ CHEFU TECHNOLOGIES designs and builds intelligent systems for automation and pro
 `,
     "/services/music": `# Music And Audio Production
 
-CHEFU TECHNOLOGIES provides audio production services for artists, brands, games, apps, and digital media.
+Chefu Technologies provides audio production services for artists, brands, games, apps, and digital media.
 
 ## Capabilities
 
@@ -138,7 +138,7 @@ CHEFU TECHNOLOGIES provides audio production services for artists, brands, games
 `,
     "/portfolio": `# Portfolio
 
-CHEFU TECHNOLOGIES showcases work across audio software, music production, educational platforms, ecommerce, mobile products, and AI-enabled systems.
+Chefu Technologies showcases work across audio software, music production, educational platforms, ecommerce, mobile products, and AI-enabled systems.
 
 Visit /portfolio in a browser for visual project cards and outbound project links.
 `,
@@ -150,13 +150,13 @@ Typical project details include service type, goals, budget, timeline, and conta
 `,
     "/careers": `# Careers At ${siteName}
 
-CHEFU TECHNOLOGIES accepts membership and career applications through the careers page.
+Chefu Technologies accepts membership and career applications through the careers page.
 
 Applicants can submit profile details and supporting documents. Confirmation email delivery is handled by Firebase Functions and the Resend HTTP API.
 `,
     "/blog": `# ${siteName} Insights
 
-CHEFU TECHNOLOGIES publishes ideas and articles about AI, software development, audio engineering, design, and creative technology.
+Chefu Technologies publishes ideas and articles about AI, software development, audio engineering, design, and creative technology.
 `,
     "/faq": `# ${siteName} FAQ
 
@@ -164,7 +164,7 @@ Common topics include project timelines, independent artist collaboration, softw
 `,
     "/privacy": `# Privacy Policy
 
-CHEFU TECHNOLOGIES publishes privacy information at /privacy.
+Chefu Technologies publishes privacy information at /privacy.
 
 App-specific policies are available at /privacy/muzalo, /privacy/liftwise and /privacy/sudoku.
 `,
@@ -188,7 +188,7 @@ Read the full policy at /privacy/sudoku.
 `,
     "/terms": `# Terms Of Service
 
-CHEFU TECHNOLOGIES publishes service terms at /terms.
+Chefu Technologies publishes service terms at /terms.
 
 App-specific terms are available at /terms/muzalo, /terms/liftwise and /terms/sudoku.
 `,

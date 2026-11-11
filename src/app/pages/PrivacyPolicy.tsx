@@ -48,7 +48,7 @@ export function PrivacyPolicy() {
 
                 <div className="prose prose-slate prose-lg max-w-none">
                     <p>
-                        CHEFU TECHNOLOGIES (Pty) Ltd. ("CHEFU TECHNOLOGIES",
+                        CHEFU TECHNOLOGIES (Pty) Ltd. ("Chefu Technologies",
                         "we", "us", or "our") respects your privacy and is committed to
                         protecting personal information that we process in connection
                         with our websites, applications, products, services, and other
@@ -72,11 +72,11 @@ export function PrivacyPolicy() {
                             chefu.co.za
                         </a>{' '}
                         and, where applicable, our applications, platforms, account
-                        systems, forms, and other services operated by CHEFU TECHNOLOGIES.
+                        systems, forms, and other services operated by Chefu Technologies.
                     </p>
 
                     <p>
-                        Some CHEFU TECHNOLOGIES services may have their own additional privacy
+                        Some Chefu Technologies services may have their own additional privacy
                         notices or terms that explain information practices specific to
                         those services. Where such a notice applies, it should be read
                         together with this Privacy Policy.
@@ -132,7 +132,7 @@ export function PrivacyPolicy() {
 
                     <p>
                         The information we collect depends on how you interact with
-                        CHEFU TECHNOLOGIES and which services you use. We do not necessarily collect
+                        Chefu Technologies and which services you use. We do not necessarily collect
                         every category of information described below from every user.
                     </p>
 
@@ -156,7 +156,7 @@ export function PrivacyPolicy() {
                         <li>Information contained in messages or enquiries you send us.</li>
                         <li>Information you voluntarily provide when requesting a product or service.</li>
                         <li>Information contained in files, images, or other content you choose to upload to a service that supports uploads.</li>
-                        <li>Other information you voluntarily provide in connection with a CHEFU TECHNOLOGIES service.</li>
+                        <li>Other information you voluntarily provide in connection with a Chefu Technologies service.</li>
                     </ul>
 
                     <h4 id="career-applicants" className="mt-6 mb-3 font-semibold text-slate-900">
@@ -211,7 +211,7 @@ export function PrivacyPolicy() {
                     </h4>
 
                     <p>
-                        Where a CHEFU TECHNOLOGIES service provides user accounts, we process
+                        Where a Chefu Technologies service provides user accounts, we process
                         information necessary to create, authenticate, secure, and
                         maintain those accounts.
                     </p>
@@ -224,7 +224,7 @@ export function PrivacyPolicy() {
                     </p>
 
                     <p>
-                        Passkeys are based on public-key cryptography. CHEFU TECHNOLOGIES does not
+                        Passkeys are based on public-key cryptography. Chefu Technologies does not
                         receive or store the private cryptographic key material that
                         remains protected by the user's device or credential manager.
                         Authentication systems may nevertheless process information
@@ -266,7 +266,7 @@ export function PrivacyPolicy() {
                     </h3>
 
                     <p>
-                        Some CHEFU TECHNOLOGIES services may allow you to authenticate or interact
+                        Some Chefu Technologies services may allow you to authenticate or interact
                         through third-party services. When you use such a service, we
                         may receive information that the third party makes available to
                         us in accordance with your choices and that provider's privacy
@@ -281,7 +281,7 @@ export function PrivacyPolicy() {
 
                     <p>
                         We do not receive a third party's private credentials merely
-                        because you use that provider to authenticate with CHEFU TECHNOLOGIES.
+                        because you use that provider to authenticate with Chefu Technologies.
                     </p>
 
                     <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
@@ -290,7 +290,7 @@ export function PrivacyPolicy() {
 
                     <p>
                         We process personal information for legitimate and appropriate
-                        purposes connected with operating CHEFU TECHNOLOGIES and providing requested
+                        purposes connected with operating Chefu Technologies and providing requested
                         services.
                     </p>
 
@@ -336,14 +336,14 @@ export function PrivacyPolicy() {
                     </h3>
 
                     <p>
-                        Some CHEFU TECHNOLOGIES applications use services provided by Google
+                        Some Chefu Technologies applications use services provided by Google
                         Firebase for functionality such as authentication, account
                         management, database services, application infrastructure, or
                         related features.
                     </p>
 
                     <p>
-                        Depending on the specific CHEFU TECHNOLOGIES application, Firebase may
+                        Depending on the specific Chefu Technologies application, Firebase may
                         process information required to provide these functions,
                         including account identifiers, authentication information,
                         application data, and technical information.
@@ -351,7 +351,7 @@ export function PrivacyPolicy() {
 
                     <p>
                         We configure third-party services according to the requirements
-                        of the relevant CHEFU TECHNOLOGIES service and only use the information
+                        of the relevant Chefu Technologies service and only use the information
                         necessary for the functionality being provided.
                     </p>
 
@@ -360,7 +360,7 @@ export function PrivacyPolicy() {
                     </h3>
 
                     <p>
-                        CHEFU TECHNOLOGIES may use third-party cloud infrastructure and storage
+                        Chefu Technologies may use third-party cloud infrastructure and storage
                         providers to operate its applications and services. Depending
                         on the service, information may be stored in databases,
                         application storage, or other hosted infrastructure.
@@ -369,7 +369,7 @@ export function PrivacyPolicy() {
                     <p>
                         The specific information stored depends on the application and
                         the information you choose to submit. We do not claim that every
-                        CHEFU TECHNOLOGIES service uses every storage provider or stores every
+                        Chefu Technologies service uses every storage provider or stores every
                         category of information described in this policy.
                     </p>
 
@@ -378,7 +378,7 @@ export function PrivacyPolicy() {
                     </h3>
 
                     <p>
-                        Certain CHEFU TECHNOLOGIES services may allow users or customers to upload
+                        Certain Chefu Technologies services may allow users or customers to upload
                         images or other files. Where such functionality is provided,
                         uploaded content may be processed and stored through third-party
                         infrastructure used by the relevant service.
@@ -432,7 +432,7 @@ export function PrivacyPolicy() {
 
                     <p>
                         If you contact us, submit an enquiry, create an account, request
-                        support, or otherwise communicate with CHEFU TECHNOLOGIES, we may retain the
+                        support, or otherwise communicate with Chefu Technologies, we may retain the
                         information contained in that communication and use it to
                         respond to you and maintain an appropriate record of the
                         interaction.
@@ -475,7 +475,7 @@ export function PrivacyPolicy() {
 
                     <p>
                         Third-party service providers are not permitted to use personal
-                        information provided to them by or on behalf of CHEFU TECHNOLOGIES for
+                        information provided to them by or on behalf of Chefu Technologies for
                         purposes inconsistent with the services they provide to us,
                         subject to their contractual and legal obligations.
                     </p>
@@ -493,7 +493,7 @@ export function PrivacyPolicy() {
 
                     <p>
                         Examples of infrastructure or technology that may be used by
-                        particular CHEFU TECHNOLOGIES services include Firebase for
+                        particular Chefu Technologies services include Firebase for
                         application data and authentication, Resend for certain
                         transactional emails, Vercel for website hosting and consented
                         analytics/performance measurement, Google AdSense for advertising
@@ -612,7 +612,7 @@ export function PrivacyPolicy() {
                     </h3>
 
                     <p>
-                        CHEFU TECHNOLOGIES operates in South Africa and aims to process
+                        Chefu Technologies operates in South Africa and aims to process
                         personal information in accordance with applicable South African
                         privacy and data-protection requirements, including the
                         Protection of Personal Information Act 4 of 2013 ("POPIA"),
@@ -692,7 +692,7 @@ export function PrivacyPolicy() {
 
                     <p>
                         We are not responsible for the privacy practices, content, or
-                        security of third-party websites. Once you leave a CHEFU TECHNOLOGIES
+                        security of third-party websites. Once you leave a Chefu Technologies
                         service, the privacy policy of the destination service may
                         apply.
                     </p>
@@ -702,7 +702,7 @@ export function PrivacyPolicy() {
                     </h3>
 
                     <p>
-                        Where you request a product or service from CHEFU TECHNOLOGIES, we may process
+                        Where you request a product or service from Chefu Technologies, we may process
                         information necessary to administer the relationship, provide
                         the requested service, communicate with you, maintain relevant
                         records, and meet applicable legal or contractual obligations.
@@ -712,7 +712,7 @@ export function PrivacyPolicy() {
                         Where a particular service involves payment processing, the
                         payment provider may independently process payment and
                         transaction information under its own terms and privacy policy.
-                        CHEFU TECHNOLOGIES does not need to receive or store payment-card credentials
+                        Chefu Technologies does not need to receive or store payment-card credentials
                         merely to facilitate a transaction through an external payment
                         provider.
                     </p>
@@ -735,7 +735,7 @@ export function PrivacyPolicy() {
                     </p>
 
                     <p>
-                        Your continued use of a CHEFU TECHNOLOGIES service after an updated policy
+                        Your continued use of a Chefu Technologies service after an updated policy
                         becomes effective may be subject to the updated policy to the
                         extent permitted by applicable law.
                     </p>
@@ -748,8 +748,8 @@ export function PrivacyPolicy() {
                         If you have questions about this Privacy Policy, want to request
                         access to or correction of your personal information, wish to
                         exercise an applicable privacy right, or have a concern about
-                        how your information is handled, please contact CHEFU
-                        TECHNOLOGIES.
+                        how your information is handled, please contact Chefu
+                        Technologies.
                     </p>
 
                     <p>

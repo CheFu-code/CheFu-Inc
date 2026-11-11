@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import Link from 'next/link';
 import { FaFacebook, FaWhatsapp } from 'react-icons/fa';
+import { HPPartnerBadge } from './HPPartnerBadge';
 
 export function Footer() {
     const companyLinks = [
@@ -41,7 +42,7 @@ export function Footer() {
                     <div>
                         <Link
                             href="/"
-                            aria-label="CHEFU TECHNOLOGIES home"
+                            aria-label="Chefu Technologies home"
                             className="mb-5 inline-flex items-center gap-2 text-2xl font-semibold tracking-[-0.05em] text-[#111827]"
                         >
                             
@@ -50,6 +51,10 @@ export function Footer() {
                         <p className="mb-6 max-w-xs text-base leading-7 text-[#5f5b56]">
                             Chefu Technologies builds digital products and creative technology experiences for ambitious teams.
                         </p>
+                        <div className="mb-6">
+                            <HPPartnerBadge compact />
+                            <p className="mt-3 text-sm text-[#5f5b56]">Official HP Business Partner</p>
+                        </div>
                         <div className="flex gap-3">
                             {socialLinks.map((item) => {
                                 const Icon = item.icon;

@@ -50,25 +50,25 @@ export function TermsOfService() {
                     <p>
                         These Terms of Service ("Terms") govern your access to and use of
                         the websites, applications, platforms, products, and services
-                        provided or operated by CHEFU TECHNOLOGIES (Pty) Ltd. ("CHEFU
-                        TECHNOLOGIES", "we", "us", or "our").
+                        provided or operated by CHEFU TECHNOLOGIES (Pty) Ltd. ("Chefu
+                        Technologies", "we", "us", or "our").
                     </p>
 
                     <p>
-                        By accessing or using a CHEFU TECHNOLOGIES service, you agree to be bound by
+                        By accessing or using a Chefu Technologies service, you agree to be bound by
                         these Terms. If you do not agree with these Terms, you should not
                         access or use the relevant service.
                     </p>
 
                     <p>
                         These Terms apply to visitors, customers, registered users, and
-                        other persons who access or use a CHEFU TECHNOLOGIES service, except where a
+                        other persons who access or use a Chefu Technologies service, except where a
                         separate written agreement expressly governs a particular service
                         or transaction.
                     </p>
 
                     <h3 className="mt-10 mb-4 text-xl font-bold text-slate-900">
-                        1. About CHEFU TECHNOLOGIES
+                        1. About Chefu Technologies
                     </h3>
 
                     <p>
@@ -94,7 +94,7 @@ export function TermsOfService() {
 
                     <p>
                         The particular products, features, functionality, and services
-                        available through CHEFU TECHNOLOGIES may change over time. Certain services may
+                        available through Chefu Technologies may change over time. Certain services may
                         also have additional terms that apply specifically to those
                         services.
                     </p>
@@ -104,13 +104,13 @@ export function TermsOfService() {
                     </h3>
 
                     <p>
-                        By accessing or using a CHEFU TECHNOLOGIES service, you confirm that you have
+                        By accessing or using a Chefu Technologies service, you confirm that you have
                         read, understood, and agree to these Terms and any additional terms
                         that are expressly incorporated into them.
                     </p>
 
                     <p>
-                        If you are using a CHEFU TECHNOLOGIES service on behalf of a company,
+                        If you are using a Chefu Technologies service on behalf of a company,
                         organization, or other legal entity, you represent that you have
                         the authority to bind that entity to these Terms.
                     </p>
@@ -128,7 +128,7 @@ export function TermsOfService() {
 
                     <p>
                         We may add, modify, suspend, or discontinue features or portions of
-                        a CHEFU TECHNOLOGIES service from time to time.
+                        a Chefu Technologies service from time to time.
                     </p>
 
                     <p>
@@ -147,7 +147,7 @@ export function TermsOfService() {
                     </h3>
 
                     <p>
-                        Certain CHEFU TECHNOLOGIES services may require you to create an account or
+                        Certain Chefu Technologies services may require you to create an account or
                         authenticate before accessing particular features.
                     </p>
 
@@ -173,7 +173,7 @@ export function TermsOfService() {
                     </h3>
 
                     <p>
-                        Some CHEFU TECHNOLOGIES services may support authentication methods including
+                        Some Chefu Technologies services may support authentication methods including
                         email authentication, supported identity providers, single
                         sign-on, and passkey-based authentication.
                     </p>
@@ -197,7 +197,7 @@ export function TermsOfService() {
                     </h3>
 
                     <p>
-                        You agree to use CHEFU TECHNOLOGIES services only for lawful purposes and in a
+                        You agree to use Chefu Technologies services only for lawful purposes and in a
                         manner that does not interfere with the operation, security, or
                         availability of the services.
                     </p>
@@ -224,7 +224,7 @@ export function TermsOfService() {
                     </h3>
 
                     <p>
-                        Certain CHEFU TECHNOLOGIES services may allow you to submit, upload, store, or
+                        Certain Chefu Technologies services may allow you to submit, upload, store, or
                         otherwise provide content such as text, images, files, documents,
                         or other information ("User Content").
                     </p>
@@ -235,8 +235,8 @@ export function TermsOfService() {
                     </p>
 
                     <p>
-                        By submitting User Content to a service, you grant CHEFU
-                        TECHNOLOGIES the limited rights reasonably necessary to host,
+                        By submitting User Content to a service, you grant Chefu
+                        Technologies the limited rights reasonably necessary to host,
                         process, transmit, display, store, or otherwise use that content to
                         provide the service you requested.
                     </p>
@@ -258,15 +258,15 @@ export function TermsOfService() {
                     </h3>
 
                     <p>
-                        Unless expressly stated otherwise, the CHEFU TECHNOLOGIES services and their
+                        Unless expressly stated otherwise, the Chefu Technologies services and their
                         software, source code, design, interfaces, visual elements, text,
                         graphics, logos, trademarks, service marks, documentation, and
-                        other original materials are owned by or licensed to CHEFU
-                        TECHNOLOGIES.
+                        other original materials are owned by or licensed to Chefu
+                        Technologies.
                     </p>
 
                     <p>
-                        Nothing in these Terms transfers ownership of CHEFU TECHNOLOGIES'
+                        Nothing in these Terms transfers ownership of Chefu Technologies'
                         intellectual property to you.
                     </p>
 
@@ -278,7 +278,7 @@ export function TermsOfService() {
 
                     <p>
                         You may not reproduce, distribute, modify, sell, license, publicly
-                        display, or create derivative works from CHEFU TECHNOLOGIES intellectual
+                        display, or create derivative works from Chefu Technologies intellectual
                         property except where expressly permitted by us or applicable law.
                     </p>
 
@@ -287,7 +287,7 @@ export function TermsOfService() {
                     </h3>
 
                     <p>
-                        CHEFU TECHNOLOGIES, associated logos, names, branding, and
+                        Chefu Technologies, associated logos, names, branding, and
                         other marks may constitute trademarks or other protected
                         intellectual property.
                     </p>
@@ -303,7 +303,7 @@ export function TermsOfService() {
                     </h3>
 
                     <p>
-                        CHEFU TECHNOLOGIES services may integrate with or depend on third-party
+                        Chefu Technologies services may integrate with or depend on third-party
                         platforms, infrastructure, authentication providers, payment
                         providers, hosting providers, storage services, APIs, or other
                         external services.
@@ -331,7 +331,7 @@ export function TermsOfService() {
                     </p>
 
                     <p>
-                        A link does not necessarily mean that CHEFU TECHNOLOGIES endorses
+                        A link does not necessarily mean that Chefu Technologies endorses
                         or is affiliated with the linked service.
                     </p>
 
@@ -355,7 +355,7 @@ export function TermsOfService() {
                     </p>
 
                     <p>
-                        Where a CHEFU TECHNOLOGIES service allows you to purchase products or services,
+                        Where a Chefu Technologies service allows you to purchase products or services,
                         additional pricing, payment, delivery, refund, cancellation, or
                         transaction terms may apply.
                     </p>
@@ -406,7 +406,7 @@ export function TermsOfService() {
 
                     <p>
                         Unless expressly stated otherwise, information made available
-                        through CHEFU TECHNOLOGIES services is provided for general informational or
+                        through Chefu Technologies services is provided for general informational or
                         functional purposes and should not automatically be treated as
                         professional, legal, financial, medical, or other regulated advice.
                     </p>
@@ -421,7 +421,7 @@ export function TermsOfService() {
                     </h3>
 
                     <p>
-                        To the maximum extent permitted by applicable law, CHEFU TECHNOLOGIES services
+                        To the maximum extent permitted by applicable law, Chefu Technologies services
                         are provided on an "as is" and "as available" basis.
                     </p>
 
@@ -442,10 +442,10 @@ export function TermsOfService() {
                     </h3>
 
                     <p>
-                        To the maximum extent permitted by applicable law, CHEFU
-                        TECHNOLOGIES will not be liable for indirect, incidental, special,
+                        To the maximum extent permitted by applicable law, Chefu
+                        Technologies will not be liable for indirect, incidental, special,
                         consequential, or punitive losses arising from or relating to the
-                        use of, or inability to use, a CHEFU TECHNOLOGIES service.
+                        use of, or inability to use, a Chefu Technologies service.
                     </p>
 
                     <p>
@@ -462,7 +462,7 @@ export function TermsOfService() {
                     <p>
                         To the extent permitted by applicable law, you agree to be
                         responsible for losses or claims arising from your unlawful use of
-                        a CHEFU TECHNOLOGIES service, your violation of these Terms, or your infringement
+                        a Chefu Technologies service, your violation of these Terms, or your infringement
                         of another person's rights through content or activity you submit
                         or undertake through the service.
                     </p>
@@ -478,7 +478,7 @@ export function TermsOfService() {
                     </h3>
 
                     <p>
-                        We may suspend, restrict, or terminate access to a CHEFU TECHNOLOGIES service
+                        We may suspend, restrict, or terminate access to a Chefu Technologies service
                         where reasonably necessary, including where we believe that:
                     </p>
 
@@ -525,7 +525,7 @@ export function TermsOfService() {
                     </h3>
 
                     <p>
-                        CHEFU TECHNOLOGIES operates in South Africa. These Terms are
+                        Chefu Technologies operates in South Africa. These Terms are
                         intended to operate consistently with applicable South African law,
                         including applicable consumer-protection and electronic
                         communications legislation.
@@ -613,8 +613,8 @@ export function TermsOfService() {
                     <p>
                         These Terms, together with any additional terms expressly
                         incorporated into them and any applicable service-specific
-                        agreements, constitute the agreement between you and CHEFU
-                        TECHNOLOGIES concerning your use of the relevant service, except
+                        agreements, constitute the agreement between you and Chefu
+                        Technologies concerning your use of the relevant service, except
                         where a separate written agreement expressly governs.
                     </p>
 
@@ -624,7 +624,7 @@ export function TermsOfService() {
 
                     <p>
                         If you have questions regarding these Terms, our services, or a
-                        legal or contractual matter, you may contact CHEFU TECHNOLOGIES at:
+                        legal or contractual matter, you may contact Chefu Technologies at:
                     </p>
 
                     <p>

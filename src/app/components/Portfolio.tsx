@@ -20,7 +20,7 @@ export function Portfolio() {
                     </Link>
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-3">
                     {companyProducts.map((project) => (
                         <a
                             key={project.name}
@@ -34,19 +34,19 @@ export function Portfolio() {
                                     src={project.image}
                                     alt={`${project.name} product interface`}
                                     fill
-                                    sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
-                                    className={`transition-transform duration-500 group-hover:scale-[1.02] ${project.imageFit === "contain" ? "object-contain p-8" : "object-cover"}`}
+                                    sizes="(min-width: 1280px) 33vw, 50vw"
+                                    className={`transition-transform duration-500 group-hover:scale-[1.02] ${project.imageFit === "contain" ? "object-contain p-4 sm:p-8" : "object-cover"}`}
                                 />
                             </div>
 
-                            <div className="p-4 md:p-5">
+                            <div className="p-3 sm:p-4 md:p-5">
                                 <div className="mb-2 text-[9px] font-medium uppercase tracking-[0.16em] text-[#6b7280]">
                                     {project.category}
                                 </div>
-                                <h3 className="mb-2 text-lg font-semibold tracking-[-0.04em] text-[#111827]">
+                                <h3 className="mb-2 break-words text-base font-semibold tracking-[-0.04em] text-[#111827] sm:text-lg">
                                     {project.name}
                                 </h3>
-                                <p className="text-sm leading-5 text-[#5f5b56]">
+                                <p className="line-clamp-3 text-sm leading-5 text-[#5f5b56] md:line-clamp-none">
                                     {project.description}
                                 </p>
                             </div>

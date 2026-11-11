@@ -21,7 +21,7 @@ export function ShippingPolicy() {
 
                 <div className="prose prose-slate prose-lg max-w-none">
                     <p>
-                        CHEFU TECHNOLOGIES (Pty) Ltd. (“CHEFU TECHNOLOGIES”, “we”, “us”, or “our”)
+                        CHEFU TECHNOLOGIES (Pty) Ltd. (“Chefu Technologies”, “we”, “us”, or “our”)
                         provides digital products and related services through our website and associated
                         channels. This policy sets out our approach to refunds, returns, shipping, order
                         fulfilment, customer support, and the limited circumstances in which we may review
@@ -68,7 +68,7 @@ export function ShippingPolicy() {
                         develops alternative internal requirements after placing the order, or where the
                         customer decides not to continue with a subscription or project after work has
                         started. In those cases, no refund will be due unless expressly agreed in writing
-                        by CHEFU TECHNOLOGIES.
+                        by Chefu Technologies.
                     </p>
 
                     <p>
@@ -103,7 +103,7 @@ export function ShippingPolicy() {
 
                     <p>
                         For physical goods, returns are only accepted if a written exception is agreed by
-                        CHEFU TECHNOLOGIES in advance and only in the limited circumstances expressly
+                        Chefu Technologies in advance and only in the limited circumstances expressly
                         identified by us in writing. We do not offer a general right to return physical
                         items simply because the customer changed their mind or because they were expected
                         to arrive sooner than they did.
@@ -239,7 +239,7 @@ export function ShippingPolicy() {
                     </h3>
 
                     <p>
-                        CHEFU TECHNOLOGIES may update this policy from time to time to reflect changes in
+                        Chefu Technologies may update this policy from time to time to reflect changes in
                         our products, services, operational requirements, legal obligations, or business
                         practices. When changes are made, the updated policy will be posted on our website
                         and the “Last updated” date will be revised accordingly.

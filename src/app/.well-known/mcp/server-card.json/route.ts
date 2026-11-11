@@ -13,7 +13,7 @@ export function GET() {
                 name: `${siteName} Agent Tools`,
                 version: "1.0.0",
                 description:
-                    "Discovery card for CHEFU TECHNOLOGIES browser and HTTP-accessible agent tools.",
+                    "Discovery card for Chefu Technologies browser and HTTP-accessible agent tools.",
             },
             transport: {
                 type: "streamable-http",

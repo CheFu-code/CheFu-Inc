@@ -6,7 +6,7 @@ export const infinityTerms: TermsSection[] = [
         id: "using-infinity",
         title: "Using Infinity and agreeing to these terms",
         content: <>
-            <p>Infinity is a number-merging game operated by CHEFU TECHNOLOGIES. It provides a local game board, score tracking, levels, achievements, undo features, sound, vibration and appearance settings. You do not need an account or sign-in to use the core game.</p>
+            <p>Infinity is a number-merging game operated by Chefu Technologies. It provides a local game board, score tracking, levels, achievements, undo features, sound, vibration and appearance settings. You do not need an account or sign-in to use the core game.</p>
             <p>By downloading, opening or using Infinity, you agree to these app-specific terms and our general Terms of Service. If you do not agree, do not use the app. Where you cannot enter into a binding agreement yourself, a parent or legal guardian must authorise your use and agree on your behalf where required by law.</p>
             <p>You may use Infinity only for lawful personal entertainment. You must not interfere with the app, bypass technical protections, reverse engineer it except where applicable law permits, misuse advertisements or updates, or use the app to violate another person&apos;s rights or applicable law.</p>
         </>,

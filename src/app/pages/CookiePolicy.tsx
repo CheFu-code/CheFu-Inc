@@ -54,7 +54,7 @@ export function CookiePolicy() {
                     </h3>
 
                     <p>
-                        The cookies used by CHEFU TECHNOLOGIES may depend on the specific
+                        The cookies used by Chefu Technologies may depend on the specific
                         website or service you access. In general, we may use the following
                         categories of cookies:
                     </p>
@@ -125,7 +125,7 @@ export function CookiePolicy() {
                         and Google AdSense when Marketing consent is enabled. Each
                         provider may change its storage technologies and retention. See
                         the provider's current privacy and cookie disclosures for
-                        additional details. Other CHEFU TECHNOLOGIES services may use
+                        additional details. Other Chefu Technologies services may use
                         different providers and have service-specific notices.
                     </p>
 

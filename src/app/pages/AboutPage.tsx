@@ -33,7 +33,7 @@ export function AboutPage() {
                     >
                         <h2 className="text-3xl font-bold text-slate-900">Our Story</h2>
                         <p className="leading-relaxed text-slate-600">
-                            Founded by a collective of audio engineers and software developers, CHEFU TECHNOLOGIES emerged from the idea that the precision of code and the fluidity of music share a common language.
+                            Founded by a collective of audio engineers and software developers, Chefu Technologies emerged from the idea that the precision of code and the fluidity of music share a common language.
                         </p>
                         <p className="leading-relaxed text-slate-600">
                             We started in a small basement studio, building custom VST plugins for producers. Today, we are a full-scale agency delivering enterprise-level software and billboard-charting audio production services to clients worldwide.

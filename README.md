@@ -1,6 +1,6 @@
-# CHEFU TECHNOLOGIES Website
+# Chefu Technologies Website
 
-CHEFU TECHNOLOGIES is a modern marketing website built with Next.js App Router, React, TypeScript, and Tailwind CSS v4.
+Chefu Technologies is a modern marketing website built with Next.js App Router, React, TypeScript, and Tailwind CSS v4.
 It showcases company services across software development, AI solutions, and music production.
 
 ## Tech Stack
@@ -137,7 +137,7 @@ Use a verified Resend sender for `RESEND_FROM_EMAIL` (for example: `Careers care
 ```bash
 MEMBERSHIP_APPLICATION_TEMPLATE_ID=re_...
 MEMBERSHIP_APPLICATION_FROM=Careers <careers@yourdomain.com>
-MEMBERSHIP_APPLICATION_APP_NAME=CHEFU TECHNOLOGIES
+MEMBERSHIP_APPLICATION_APP_NAME=Chefu Technologies
 MEMBERSHIP_APPLICATION_APP_URL=https://chefu.co.za
 MEMBERSHIP_APPLICATION_SUPPORT_EMAIL=hello@chefu.co.za
 ```
@@ -159,7 +159,7 @@ unless the team has explicitly chosen a shared default project.
 ### Behavior
 
 - Trigger: Firestore `onDocumentCreated` for `membershipApplications/{applicationId}`
-- Sends: "We received your CHEFU TECHNOLOGIES application" to the applicant email
+- Sends: "We received your Chefu Technologies application" to the applicant email
 - Scheduled retention jobs:
   - `purgeExpiredMembershipApplications` runs daily and deletes application records and CVs after their 180-day retention period.
   - `purgeExpiredContactRequests` runs daily and deletes contact requests older than 12 months.

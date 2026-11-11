@@ -6,7 +6,7 @@ export const infinitySections: PrivacySection[] = [
         id: "information-at-a-glance",
         title: "Information at a glance",
         content: <>
-            <p>Infinity is a number-merging game operated by CHEFU TECHNOLOGIES. The game is designed to work without an account, registration or cloud profile. You can play the core game without signing in and without providing your name, email address or phone number.</p>
+            <p>Infinity is a number-merging game operated by Chefu Technologies. The game is designed to work without an account, registration or cloud profile. You can play the core game without signing in and without providing your name, email address or phone number.</p>
             <p>Most gameplay information stays on the device where you play. Some information may be processed by online service providers when the app displays advertisements, reports technical problems, checks for compatible updates, or sends a local reminder after you grant notification permission.</p>
             <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
                 <table className="w-full text-sm">

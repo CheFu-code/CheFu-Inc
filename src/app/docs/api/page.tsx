@@ -13,7 +13,7 @@ import {
 export const metadata = pageMetadata({
     title: `API Documentation | ${siteName}`,
     description:
-        "Machine-readable discovery resources for CHEFU TECHNOLOGIES agents and automated clients.",
+        "Machine-readable discovery resources for Chefu Technologies agents and automated clients.",
     path: "/docs/api",
 });
 
@@ -64,11 +64,11 @@ export default function Page() {
                     Agent Discovery
                 </p>
                 <h1 className="mb-6 text-4xl font-bold text-slate-900 md:text-5xl">
-                    CHEFU TECHNOLOGIES API Documentation
+                    Chefu Technologies API Documentation
                 </h1>
                 <p className="mb-10 max-w-2xl text-lg leading-8 text-slate-600">
-                    These endpoints help agents and automated clients discover CHEFU
-                    TECHNOLOGIES metadata, authentication configuration, service descriptions,
+                    These endpoints help agents and automated clients discover Chefu
+                    Technologies metadata, authentication configuration, service descriptions,
                     and browser-exposed tools.
                 </p>
 
