@@ -34,7 +34,6 @@ ${siteName} builds software platforms, AI systems, and audio/media production ex
 
 - ${siteUrl}/
 - ${siteUrl}/services
-- ${siteUrl}/portfolio
 - ${siteUrl}/contact
 - ${siteUrl}/careers
 `,

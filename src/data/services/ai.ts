@@ -1,49 +1,38 @@
 import {
     Brain,
-    Bot,
-    Workflow,
-    MessageSquareText,
-    Database,
-    PlugZap,
     Code2,
     Search,
-    ShieldCheck,
     Settings2,
+    ShieldCheck
 } from 'lucide-react';
 
 export const aiCapabilities = [
     {
-        icon: Bot,
         title: 'AI Agents',
         description:
             'Purpose-built AI agents that can understand context, reason through tasks, use connected tools, and execute multi-step workflows instead of simply generating text.',
     },
     {
-        icon: Workflow,
         title: 'Intelligent Automation',
         description:
             'Automate repetitive business processes by connecting AI with existing systems, APIs, databases, communication platforms, and internal workflows.',
     },
     {
-        icon: MessageSquareText,
         title: 'Conversational AI',
         description:
             'Build intelligent assistants and customer-facing experiences capable of understanding natural language and providing useful, context-aware responses.',
     },
     {
-        icon: PlugZap,
         title: 'AI Integrations',
         description:
             'Connect AI capabilities to the tools your business already uses through APIs, webhooks, databases, authentication systems, and custom integrations.',
     },
     {
-        icon: Database,
         title: 'Knowledge & Data Systems',
         description:
             'Turn structured and unstructured business information into searchable, contextual knowledge that AI systems can use to provide more relevant results.',
     },
     {
-        icon: Code2,
         title: 'Custom AI Applications',
         description:
             'Design and develop complete AI-powered applications around a specific business problem, from the interface and backend to the AI layer and deployment.',

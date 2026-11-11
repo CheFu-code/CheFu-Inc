@@ -60,7 +60,6 @@ export const routes = [
     "/services/music",
     "/services/software",
     "/services/ai",
-    "/portfolio",
     "/contact",
     "/docs/api",
     "/careers",

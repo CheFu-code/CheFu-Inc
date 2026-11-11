@@ -20,7 +20,7 @@ const tools = [
             properties: {
                 service: {
                     type: "string",
-                    enum: ["software", "ai", "music", "portfolio", "contact", "careers"],
+                    enum: ["software", "ai", "music", "contact", "careers"],
                 },
             },
             required: ["service"],
@@ -107,7 +107,6 @@ export async function POST(request: Request) {
                 software: "/services/software",
                 ai: "/services/ai",
                 music: "/services/music",
-                portfolio: "/portfolio",
                 contact: "/contact",
                 careers: "/careers",
             };

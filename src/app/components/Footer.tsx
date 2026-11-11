@@ -6,9 +6,9 @@ import {
     Phone,
     Twitter
 } from "lucide-react";
+import Image from 'next/image';
 import Link from 'next/link';
 import { FaFacebook, FaWhatsapp } from 'react-icons/fa';
-import { HPPartnerBadge } from './HPPartnerBadge';
 
 export function Footer() {
     const companyLinks = [
@@ -27,6 +27,13 @@ export function Footer() {
         { label: "All Services", to: "/services" },
     ];
 
+    const policyLinks = [
+        { label: "Privacy Policy", to: "/privacy" },
+        { label: "Cookie Policy", to: "/cookies" },
+        { label: "Shipping Policy", to: "/shipping" },
+        { label: "Terms of Service", to: "/terms" },
+    ];
+
     const socialLinks = [
         { label: "Twitter", href: "https://x.com/CHEFU_TECH", icon: Twitter },
         { label: "LinkedIn", href: "https://www.linkedin.com/in/chefu-technologies-90b1663b1", icon: Linkedin },
@@ -38,8 +45,8 @@ export function Footer() {
     return (
         <footer className="relative z-10 border-t border-[#e5e1dc] bg-[#f7f5f3] pb-8 pt-16">
             <div className="container mx-auto px-6">
-                <div className="mb-12 grid grid-cols-1 gap-10 border-b border-[#e5e1dc] pb-12 md:grid-cols-2 lg:grid-cols-4">
-                    <div>
+                <div className="mb-12 grid grid-cols-2 gap-x-6 gap-y-10 border-b border-[#e5e1dc] pb-12 md:gap-10 lg:grid-cols-4">
+                    <div className="col-span-2 md:col-span-1">
                         <Link
                             href="/"
                             aria-label="Chefu Technologies home"
@@ -51,10 +58,6 @@ export function Footer() {
                         <p className="mb-6 max-w-xs text-base leading-7 text-[#5f5b56]">
                             Chefu Technologies builds digital products and creative technology experiences for ambitious teams.
                         </p>
-                        <div className="mb-6">
-                            <HPPartnerBadge compact />
-                            <p className="mt-3 text-sm text-[#5f5b56]">Official HP Business Partner</p>
-                        </div>
                         <div className="flex gap-3">
                             {socialLinks.map((item) => {
                                 const Icon = item.icon;
@@ -73,10 +76,21 @@ export function Footer() {
                                 );
                             })}
                         </div>
+                        <div className="mt-6 flex items-center gap-3">
+                            <Image
+                                src="/hp_logo_small.png"
+                                alt="HP"
+                                width={130}
+                                height={130}
+                                sizes="32px"
+                                className="h-8 w-8 shrink-0 object-contain"
+                            />
+                            <p className="text-xs leading-5 text-[#5f5b56]">Official HP Business Partner</p>
+                        </div>
                     </div>
 
-                    <div>
-                        <h4 className="mb-4 text-[11px] font-medium uppercase tracking-[0.2em] text-[#6b7280]">
+                    <div className="min-w-0">
+                        <h4 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1f3c5b]">
                             Company
                         </h4>
                         <ul className="space-y-4">
@@ -90,8 +104,8 @@ export function Footer() {
                         </ul>
                     </div>
 
-                    <div>
-                        <h4 className="mb-4 text-[11px] font-medium uppercase tracking-[0.2em] text-[#6b7280]">
+                    <div className="min-w-0">
+                        <h4 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1f3c5b]">
                             Services
                         </h4>
                         <ul className="space-y-4">
@@ -105,22 +119,21 @@ export function Footer() {
                         </ul>
                     </div>
 
-                    <div>
-                        <h4 className="mb-4 text-[11px] font-medium uppercase tracking-[0.2em] text-[#6b7280]">
+                    <div className="min-w-0">
+                        <h4 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1f3c5b]">
                             Contact
                         </h4>
-                        <ul className="space-y-4 text-[#5f5b56]">
+                        <ul className="space-y-4 text-sm text-[#5f5b56] md:text-base">
                             <li className="flex items-start gap-3">
                                 <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-[#1f3c5b]" />
                                 <span>
                                     Malamulele, South Africa
-                                    <br />
-                                    Remote-first collaboration
+                                    
                                 </span>
                             </li>
                             <li className="flex items-center gap-3">
                                 <Mail className="h-5 w-5 shrink-0 text-[#1f3c5b]" />
-                                <a href="mailto:hello@chefu.co.za" className="transition-colors hover:text-[#111827]">
+                                <a href="mailto:hello@chefu.co.za" className="min-w-0 break-words transition-colors hover:text-[#111827]">
                                     hello@chefu.co.za
                                 </a>
                             </li>
@@ -132,26 +145,33 @@ export function Footer() {
                             </li>
                         </ul>
                     </div>
+                    <nav aria-label="Policies" className="min-w-0 md:hidden">
+                        <h4 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1f3c5b]">
+                            Policies
+                        </h4>
+                        <ul className="space-y-4 text-sm">
+                            {policyLinks.map((item) => (
+                                <li key={item.to}>
+                                    <Link href={item.to} className="text-[#5f5b56] transition-colors hover:text-[#111827]">
+                                        {item.label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
                 </div>
 
                 <div className="flex flex-col items-center justify-between gap-4 text-sm text-[#5f5b56] md:flex-row">
                     <p>
                         &copy; {new Date().getFullYear()} CHEFU TECHNOLOGIES (Pty) Ltd. All rights reserved.
                     </p>
-                    <div className="mt-4 flex flex-wrap gap-4 md:mt-0 md:gap-6">
-                        <Link href="/privacy" className="transition-colors hover:text-[#111827]">
-                            Privacy Policy
-                        </Link>
-                        <Link href="/cookies" className="transition-colors hover:text-[#111827]">
-                            Cookie Policy
-                        </Link>
-                        <Link href="/shipping" className="transition-colors hover:text-[#111827]">
-                            Shipping Policy
-                        </Link>
-                        <Link href="/terms" className="transition-colors hover:text-[#111827]">
-                            Terms of Service
-                        </Link>
-                    </div>
+                    <nav aria-label="Policies" className="hidden flex-wrap gap-6 md:flex">
+                        {policyLinks.map((item) => (
+                            <Link key={item.to} href={item.to} className="transition-colors hover:text-[#111827]">
+                                {item.label}
+                            </Link>
+                        ))}
+                    </nav>
                 </div>
             </div>
         </footer>

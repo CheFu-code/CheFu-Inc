@@ -1,36 +1,42 @@
 'use client';
 
-import { useState } from "react";
-import { motion } from "motion/react";
+import { useId, useState } from "react";
+import Link from "next/link";
 import { Minus, Plus } from "lucide-react";
 
 type FAQItem = {
     q: string;
     a: string;
+    link?: { href: string; label: string };
 };
 
 export function FAQAccordion({ items }: { items: FAQItem[] }) {
-    const [openIndex, setOpenIndex] = useState<number | null>(0);
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
+    const accordionId = useId();
 
     return (
-        <div className="space-y-4">
+        <div className="space-y-3">
             {items.map((item, index) => {
                 const isOpen = openIndex === index;
 
                 return (
                     <div
                         key={item.q}
-                        className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-colors"
+                        className="overflow-hidden rounded-xl border border-[#e5e1dc] bg-white"
                     >
+                        <h3>
                         <button
+                            id={`${accordionId}-question-${index}`}
                             type="button"
+                            aria-expanded={isOpen}
+                            aria-controls={`${accordionId}-answer-${index}`}
                             onClick={() => setOpenIndex(isOpen ? null : index)}
-                            className="flex w-full items-center justify-between gap-4 p-5 text-left"
+                            className="flex min-h-11 w-full cursor-pointer items-center justify-between gap-3 p-4 text-left transition-colors hover:bg-[#f7f5f3] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#1f3c5b] sm:p-5"
                         >
-                            <span className="text-base font-semibold text-slate-900">
+                            <span className="min-w-0 text-sm font-medium leading-6 text-[#111827] sm:text-base">
                                 {item.q}
                             </span>
-                            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-700">
+                            <span aria-hidden="true" className="flex h-6 w-6 shrink-0 items-center justify-center text-[#1f3c5b]">
                                 {isOpen ? (
                                     <Minus className="h-4 w-4" />
                                 ) : (
@@ -38,17 +44,21 @@ export function FAQAccordion({ items }: { items: FAQItem[] }) {
                                 )}
                             </span>
                         </button>
+                        </h3>
 
-                        <motion.div
-                            initial={false}
-                            animate={{ height: isOpen ? "auto" : 0 }}
-                            transition={{ duration: 0.2, ease: "easeOut" }}
-                            className="overflow-hidden"
+                        <div
+                            id={`${accordionId}-answer-${index}`}
+                            hidden={!isOpen}
                         >
-                            <div className="border-t border-slate-200 px-5 pb-5 pt-4 text-sm leading-7 text-slate-600">
-                                {item.a}
+                            <div className="border-t border-[#e5e1dc] p-4 text-sm leading-6 text-[#5f5b56] sm:p-5 sm:leading-7">
+                                <p>{item.a}</p>
+                                {item.link && (
+                                    <Link href={item.link.href} className="mt-2 inline-flex min-h-11 items-center font-medium text-[#1f3c5b] underline underline-offset-4 hover:text-[#111827]">
+                                        {item.link.label}
+                                    </Link>
+                                )}
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
                 );
             })}

@@ -3,14 +3,16 @@ import type { ReactNode } from "react";
 export function FieldLabel({
     label,
     required = false,
+    className = "",
     children,
 }: {
     label: string;
     required?: boolean;
+    className?: string;
     children: ReactNode;
 }) {
     return (
-        <label className="grid gap-2 text-sm text-[#374151]">
+        <label className={`grid min-w-0 content-start gap-1.5 text-xs leading-5 text-[#374151] sm:text-sm ${className}`}>
             <span>
                 {label}
                 {required && (

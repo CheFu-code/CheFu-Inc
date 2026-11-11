@@ -42,13 +42,13 @@ export function CareersApplicationForm({
     isSouthAfrica: boolean;
 }) {
     return (
-        <section className="mx-auto max-w-5xl rounded-2xl border border-[#e5e1dc] bg-[#f7f5f3] p-6 md:p-8">
-            <h2 className="mb-6 text-xl font-semibold text-[#111827]">Application Form</h2>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+        <section className="mx-auto max-w-5xl rounded-2xl border border-[#e5e1dc] bg-[#f7f5f3] p-4 sm:p-6 md:p-8">
+            <h2 className="mb-4 text-lg font-semibold text-[#111827] sm:mb-6 sm:text-xl">Application Form</h2>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 sm:space-y-8">
                 <div>
-                    <h3 className="mb-4 text-base font-medium text-[#111827]">Basic Info</h3>
-                    <div className="grid md:grid-cols-2 gap-4">
-                        <FieldLabel label="Full Name" required>
+                    <h3 className="mb-3 text-sm font-semibold text-[#111827] sm:mb-4 sm:text-base">Basic Info</h3>
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                        <FieldLabel label="Full Name" required className="col-span-2 md:col-span-1">
                             <input
                                 {...register("fullName", {
                                     required: "Full name is required",
@@ -57,10 +57,10 @@ export function CareersApplicationForm({
                                 placeholder="Enter your full name"
                             />
                             {errors.fullName && (
-                                <p className="text-sm text-red-400">{errors.fullName.message}</p>
+                                <p className="text-xs text-red-600 sm:text-sm">{errors.fullName.message}</p>
                             )}
                         </FieldLabel>
-                        <FieldLabel label="Email" required>
+                        <FieldLabel label="Email" required className="col-span-2 md:col-span-1">
                             <input
                                 type="email"
                                 {...register("email", { required: "Email is required" })}
@@ -68,14 +68,15 @@ export function CareersApplicationForm({
                                 placeholder="you@example.com"
                             />
                             {errors.email && (
-                                <p className="text-sm text-red-400">{errors.email.message}</p>
+                                <p className="text-xs text-red-600 sm:text-sm">{errors.email.message}</p>
                             )}
                         </FieldLabel>
                         <FieldLabel label="Phone (optional)">
                             <input
                                 {...register("phone")}
                                 className={fieldClassName}
-                                placeholder="+1 000 000 0000"
+                                type="tel"
+                                placeholder="+27 60 123 4567"
                             />
                         </FieldLabel>
                         <FieldLabel label="Country" required>
@@ -96,7 +97,7 @@ export function CareersApplicationForm({
                                 ))}
                             </select>
                             {errors.country && (
-                                <p className="text-sm text-red-400">{errors.country.message}</p>
+                                <p className="text-xs text-red-600 sm:text-sm">{errors.country.message}</p>
                             )}
                         </FieldLabel>
                         <FieldLabel label="Province / State" required={provinceRequired}>
@@ -124,7 +125,7 @@ export function CareersApplicationForm({
                                 ))}
                             </select>
                             {errors.province && (
-                                <p className="text-sm text-red-400">{errors.province.message}</p>
+                                <p className="text-xs text-red-600 sm:text-sm">{errors.province.message}</p>
                             )}
                         </FieldLabel>
                         <FieldLabel label="City" required>
@@ -136,16 +137,16 @@ export function CareersApplicationForm({
                                 placeholder="Enter your city"
                             />
                             {errors.city && (
-                                <p className="text-sm text-red-400">{errors.city.message}</p>
+                                <p className="text-xs text-red-600 sm:text-sm">{errors.city.message}</p>
                             )}
                         </FieldLabel>
                     </div>
                 </div>
 
                 <div>
-                    <h3 className="mb-4 text-base font-medium text-[#111827]">Professional Info</h3>
-                    <div className="grid md:grid-cols-2 gap-4">
-                        <FieldLabel label="Department" required>
+                    <h3 className="mb-3 text-sm font-semibold text-[#111827] sm:mb-4 sm:text-base">Professional Info</h3>
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                        <FieldLabel label="Department" required className="col-span-2 md:col-span-1">
                             <select
                                 {...register("department", {
                                     required: "Please choose a department",
@@ -163,10 +164,10 @@ export function CareersApplicationForm({
                                 ))}
                             </select>
                             {errors.department && (
-                                <p className="text-sm text-red-400">{errors.department.message}</p>
+                                <p className="text-xs text-red-600 sm:text-sm">{errors.department.message}</p>
                             )}
                         </FieldLabel>
-                        <FieldLabel label="Role Applying For" required>
+                        <FieldLabel label="Role Applying For" required className="col-span-2 md:col-span-1">
                             <select
                                 {...register("roleApplyingFor", {
                                     required: "Please choose a role",
@@ -186,7 +187,7 @@ export function CareersApplicationForm({
                                 ))}
                             </select>
                             {errors.roleApplyingFor && (
-                                <p className="text-sm text-red-400">
+                                <p className="text-xs text-red-600 sm:text-sm">
                                     {errors.roleApplyingFor.message}
                                 </p>
                             )}
@@ -207,7 +208,7 @@ export function CareersApplicationForm({
                                 <option value="Advanced">Advanced</option>
                             </select>
                             {errors.experienceLevel && (
-                                <p className="text-sm text-red-400">
+                                <p className="text-xs text-red-600 sm:text-sm">
                                     {errors.experienceLevel.message}
                                 </p>
                             )}
@@ -218,15 +219,16 @@ export function CareersApplicationForm({
                                     required: "Years of experience is required",
                                 })}
                                 className={fieldClassName}
+                                inputMode="decimal"
                                 placeholder="e.g. 3"
                             />
                             {errors.yearsOfExperience && (
-                                <p className="text-sm text-red-400">
+                                <p className="text-xs text-red-600 sm:text-sm">
                                     {errors.yearsOfExperience.message}
                                 </p>
                             )}
                         </FieldLabel>
-                        <FieldLabel label="Preferred Work Mode" required>
+                        <FieldLabel label="Work Mode" required>
                             <select
                                 {...register("preferredWorkMode", {
                                     required: "Please choose a work mode",
@@ -245,18 +247,17 @@ export function CareersApplicationForm({
                                 {isSouthAfrica && <option value="On-site">On-site</option>}
                             </select>
                             {errors.preferredWorkMode && (
-                                <p className="text-sm text-red-400">
+                                <p className="text-xs text-red-600 sm:text-sm">
                                     {errors.preferredWorkMode.message}
                                 </p>
                             )}
                             {!isSouthAfrica && (
                                 <p className="text-xs text-[#374151]">
-                                    Work mode is locked to Remote when country is not South
-                                    Africa.
+                                    Remote only outside South Africa.
                                 </p>
                             )}
                         </FieldLabel>
-                        <FieldLabel label="Earliest Start Date" required>
+                        <FieldLabel label="Start Date" required>
                             <input
                                 type="date"
                                 {...register("earliestStartDate", {
@@ -265,7 +266,7 @@ export function CareersApplicationForm({
                                 className={fieldClassName}
                             />
                             {errors.earliestStartDate && (
-                                <p className="text-sm text-red-400">
+                                <p className="text-xs text-red-600 sm:text-sm">
                                     {errors.earliestStartDate.message}
                                 </p>
                             )}
@@ -291,7 +292,7 @@ export function CareersApplicationForm({
                                 <option value="Self-Taught">Self-Taught</option>
                             </select>
                             {errors.highestEducation && (
-                                <p className="text-sm text-red-400">
+                                <p className="text-xs text-red-600 sm:text-sm">
                                     {errors.highestEducation.message}
                                 </p>
                             )}
@@ -314,75 +315,82 @@ export function CareersApplicationForm({
                                 </option>
                             </select>
                             {errors.workAuthorization && (
-                                <p className="text-sm text-red-400">
+                                <p className="text-xs text-red-600 sm:text-sm">
                                     {errors.workAuthorization.message}
                                 </p>
                             )}
                         </FieldLabel>
                     </div>
-                    <div className="grid gap-4 mt-4">
+                    <div className="mt-3 grid gap-3 sm:mt-4 sm:gap-4">
                         <FieldLabel label="Skills" required>
                             <textarea
                                 {...register("skills", {
                                     required: "Please share your skills",
                                 })}
-                                className={`${fieldClassName} min-h-24`}
+                                className={`${fieldClassName} min-h-20 resize-y sm:min-h-24`}
                                 placeholder="Engineering, production, writing, marketing, or creative skills"
                             />
                             {errors.skills && (
-                                <p className="text-sm text-red-400">{errors.skills.message}</p>
+                                <p className="text-xs text-red-600 sm:text-sm">{errors.skills.message}</p>
                             )}
                         </FieldLabel>
-                        <FieldLabel label="Portfolio / GitHub link (optional)">
-                            <input
-                                {...register("portfolioLink")}
-                                className={fieldClassName}
-                                placeholder="https://github.com/yourname"
-                            />
-                        </FieldLabel>
-                        {showMusicPortfolio && (
-                            <FieldLabel label="Music Portfolio link (optional)">
-                                <input
-                                    {...register("musicPortfolioLink")}
-                                    className={fieldClassName}
-                                    placeholder="https://soundcloud.com/yourname"
-                                />
-                            </FieldLabel>
-                        )}
-                        <FieldLabel label="LinkedIn Profile (optional)">
-                            <input
-                                {...register("linkedInLink")}
-                                className={fieldClassName}
-                                placeholder="https://linkedin.com/in/yourname"
-                            />
-                        </FieldLabel>
-                        <p className="text-xs text-[#4b5563]">
-                            Share only what applies to you. Leave optional links blank if
-                            not relevant.
-                        </p>
-                        <FieldLabel label="CV Upload (optional)">
-                            <input
-                                type="file"
-                                accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                                {...register("cvFile")}
-                                className="block w-full rounded-xl border border-[#e5e1dc] bg-white px-3 py-2 text-sm text-[#111827] file:mr-4 file:rounded-lg file:border-0 file:bg-cyan-500/15 file:px-3 file:py-2 file:text-cyan-700 hover:file:bg-cyan-500/25"
-                            />
-                        </FieldLabel>
+                        <details className="rounded-xl border border-[#e5e1dc] bg-white p-3 sm:p-4">
+                            <summary className="cursor-pointer text-sm font-medium text-[#1f3c5b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1f3c5b]">
+                                Links & CV (optional)
+                            </summary>
+                            <div className="mt-4 grid min-w-0 gap-3 sm:gap-4">
+                                <FieldLabel label="Portfolio / GitHub link (optional)">
+                                    <input
+                                        {...register("portfolioLink")}
+                                        className={fieldClassName}
+                                        placeholder="https://github.com/yourname"
+                                    />
+                                </FieldLabel>
+                                {showMusicPortfolio && (
+                                    <FieldLabel label="Music Portfolio link (optional)">
+                                        <input
+                                            {...register("musicPortfolioLink")}
+                                            className={fieldClassName}
+                                            placeholder="https://soundcloud.com/yourname"
+                                        />
+                                    </FieldLabel>
+                                )}
+                                <FieldLabel label="LinkedIn Profile (optional)">
+                                    <input
+                                        {...register("linkedInLink")}
+                                        className={fieldClassName}
+                                        placeholder="https://linkedin.com/in/yourname"
+                                    />
+                                </FieldLabel>
+                                <p className="text-xs text-[#4b5563]">
+                                    Share only what applies to you. Leave optional links blank if
+                                    not relevant.
+                                </p>
+                                <FieldLabel label="CV Upload (optional)">
+                                    <input
+                                        type="file"
+                                        accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                        {...register("cvFile")}
+                                        className="block w-full rounded-xl border border-[#e5e1dc] bg-white px-3 py-2 text-sm text-[#111827] file:mr-4 file:rounded-lg file:border-0 file:bg-[#f3f2ef] file:px-3 file:py-2 file:text-[#1f3c5b] hover:file:bg-[#e5e1dc]"
+                                    />
+                                </FieldLabel>
+                            </div>
+                        </details>
                     </div>
                 </div>
 
                 <div>
-                    <h3 className="mb-4 text-base font-medium text-[#111827]">Short Questions</h3>
-                    <div className="space-y-4">
+                    <h3 className="mb-3 text-sm font-semibold text-[#111827] sm:mb-4 sm:text-base">Short Questions</h3>
+                    <div className="space-y-3 sm:space-y-4">
                         <FieldLabel label="Why do you want to join Chefu Technologies?" required>
                             <textarea
                                 {...register("whyJoin", {
                                     required: "This field is required",
                                 })}
-                                className={`${fieldClassName} min-h-24`}
+                                className={`${fieldClassName} min-h-20 resize-y sm:min-h-24`}
                             />
                             {errors.whyJoin && (
-                                <p className="text-sm text-red-400">{errors.whyJoin.message}</p>
+                                <p className="text-xs text-red-600 sm:text-sm">{errors.whyJoin.message}</p>
                             )}
                         </FieldLabel>
                         <FieldLabel label="What makes you different?" required>
@@ -390,10 +398,10 @@ export function CareersApplicationForm({
                                 {...register("whatMakesYouDifferent", {
                                     required: "This field is required",
                                 })}
-                                className={`${fieldClassName} min-h-24`}
+                                className={`${fieldClassName} min-h-20 resize-y sm:min-h-24`}
                             />
                             {errors.whatMakesYouDifferent && (
-                                <p className="text-sm text-red-400">
+                                <p className="text-xs text-red-600 sm:text-sm">
                                     {errors.whatMakesYouDifferent.message}
                                 </p>
                             )}
@@ -407,27 +415,27 @@ export function CareersApplicationForm({
                                 placeholder="e.g. 10-15 hours"
                             />
                             {errors.hoursPerWeek && (
-                                <p className="text-sm text-red-400">{errors.hoursPerWeek.message}</p>
+                                <p className="text-xs text-red-600 sm:text-sm">{errors.hoursPerWeek.message}</p>
                             )}
                         </FieldLabel>
                     </div>
                 </div>
 
-                <div className="space-y-4 rounded-xl border border-[#e5e1dc] bg-white p-4">
-                    <label className="flex items-start gap-3 text-sm text-[#374151]">
+                <div className="space-y-3 rounded-xl border border-[#e5e1dc] bg-white p-3 sm:space-y-4 sm:p-4">
+                    <label className="flex items-start gap-3 text-xs leading-5 text-[#374151] sm:text-sm">
                         <input
                             type="checkbox"
                             {...register("termsAccepted", {
                                 required: "You must agree to the Terms before submitting",
                             })}
-                            className="mt-1 h-4 w-4 accent-cyan-400"
+                            className="mt-1 h-4 w-4 shrink-0 accent-[#1f3c5b]"
                         />
                         <span>
                             <span className="mr-1 text-red-600" aria-hidden="true">
                                 *
                             </span>
                             I agree to the{" "}
-                            <Link href="/terms" className="text-cyan-700 underline">
+                            <Link href="/terms" className="text-[#1f3c5b] underline">
                                 Terms of Service
                             </Link>
                             {" "}({CAREERS_TERMS_VERSION}).
@@ -436,20 +444,20 @@ export function CareersApplicationForm({
                     {errors.termsAccepted && (
                         <p className="text-sm text-red-600">{errors.termsAccepted.message}</p>
                     )}
-                    <label className="flex items-start gap-3 text-sm text-[#374151]">
+                    <label className="flex items-start gap-3 text-xs leading-5 text-[#374151] sm:text-sm">
                         <input
                             type="checkbox"
                             {...register("privacyNoticeAcknowledged", {
                                 required: "Please acknowledge the applicant privacy notice",
                             })}
-                            className="mt-1 h-4 w-4 accent-cyan-400"
+                            className="mt-1 h-4 w-4 shrink-0 accent-[#1f3c5b]"
                         />
                         <span>
                             <span className="mr-1 text-red-600" aria-hidden="true">
                                 *
                             </span>
                             I have read the{" "}
-                            <Link href="/privacy#career-applicants" className="text-cyan-700 underline">
+                            <Link href="/privacy#career-applicants" className="text-[#1f3c5b] underline">
                                 applicant privacy notice
                             </Link>
                             {" "}({CAREERS_PRIVACY_NOTICE_VERSION}). I understand my application
@@ -467,13 +475,13 @@ export function CareersApplicationForm({
                 <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full md:w-auto cursor-pointer rounded-full bg-cyan-400 px-7 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full cursor-pointer rounded-full bg-[#111827] px-6 py-3 text-sm font-medium text-[#f7f5f3] transition hover:bg-[#1f2937] disabled:cursor-not-allowed disabled:opacity-60 md:w-auto"
                 >
                     {isSubmitting ? "Submitting..." : "Submit Application"}
                 </button>
 
                 {Object.keys(errors).length > 0 && (
-                    <p className="text-sm text-red-400">
+                    <p className="text-xs text-red-600 sm:text-sm">
                         Please complete all required fields before submitting.
                     </p>
                 )}

@@ -1,106 +1,181 @@
-'use client';
+"use client";
 
-import { ArrowRight, Code, Database, GitBranch, Layout, Server, Smartphone } from 'lucide-react';
-import { motion } from 'motion/react';
-import Image from 'next/image';
-import Link from 'next/link';
+import {
+    ArrowRight,
+    Database,
+    GitBranch,
+    Layout,
+    Server,
+    Smartphone
+} from "lucide-react";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 const processSteps = [
-  { step: "01", title: "Discovery", desc: "We sit down to understand your business goals, target audience, and technical requirements." },
-  { step: "02", title: "Architecture", desc: "Designing a scalable system blueprint, choosing the right stack (React, Node, Python, etc.)." },
-  { step: "03", title: "Development", desc: "Agile sprints with regular check-ins. You see the progress as we build." },
-  { step: "04", title: "Testing & QA", desc: "Rigorous automated and manual testing to ensure a bug-free launch." },
-  { step: "05", title: "Deployment", desc: "Setting up CI/CD pipelines and launching to cloud infrastructure (AWS/Vercel)." },
+    {
+        step: "01",
+        title: "Discovery",
+        desc: "We sit down to understand your business goals, target audience, and technical requirements.",
+    },
+    {
+        step: "02",
+        title: "Architecture",
+        desc: "Designing a scalable system blueprint, choosing the right stack (React, Node, Python, etc.).",
+    },
+    {
+        step: "03",
+        title: "Development",
+        desc: "Agile sprints with regular check-ins. You see the progress as we build.",
+    },
+    {
+        step: "04",
+        title: "Testing & QA",
+        desc: "Rigorous automated and manual testing to ensure a bug-free launch.",
+    },
+    {
+        step: "05",
+        title: "Deployment",
+        desc: "Setting up CI/CD pipelines and launching to cloud infrastructure (AWS/Vercel).",
+    },
 ];
 
-export function SoftwareServicePage() {
-  return (
-    <div className="pt-20 bg-slate-950 min-h-screen">
-      {/* Hero */}
-      <div className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-slate-900">
-         <div className="absolute inset-0 opacity-20">
-            {/* Abstract grid pattern or code image */}
-            <Image
-               src="https://images.unsplash.com/photo-1767449441925-737379bc2c4d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBkZXZlbG9wbWVudCUyMHVpJTIwZGVzaWduJTIwc2NyZWVufGVufDF8fHx8MTc3MDk4ODE5OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-               alt="Code Background"
-               fill
-               priority
-               sizes="100vw"
-               className="object-cover"
-            />
-         </div>
-         <div className="relative z-10 container mx-auto px-6 flex flex-col items-center text-center">
-            <motion.div
-               initial={{ opacity: 0, scale: 0.9 }}
-               animate={{ opacity: 1, scale: 1 }}
-               className="mb-6 p-4 rounded-full bg-slate-800/50 backdrop-blur border border-slate-700"
+function ProcessDescription({ step }: { step: (typeof processSteps)[number] }) {
+    const [expanded, setExpanded] = useState(false);
+    const [truncated, setTruncated] = useState(false);
+    const descriptionRef = useRef<HTMLParagraphElement>(null);
+
+    useEffect(() => {
+        const description = descriptionRef.current;
+        if (!description || expanded) return;
+
+        const measure = () => setTruncated(description.scrollHeight > description.clientHeight);
+        measure();
+        const observer = new ResizeObserver(measure);
+        observer.observe(description);
+        return () => observer.disconnect();
+    }, [expanded]);
+
+    return (
+        <>
+            <p
+                ref={descriptionRef}
+                id={`process-description-${step.step}`}
+                className={`text-sm leading-5 text-[#5f5b56] md:line-clamp-none md:leading-6 ${expanded ? "" : "line-clamp-3"}`}
             >
-               <Code className="w-8 h-8 text-cyan-400" />
-            </motion.div>
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-               Build Scalable Digital Products
-            </h1>
-            <p className="text-xl text-slate-400 max-w-2xl mb-8">
-               From MVP to Enterprise. We engineer robust web and mobile applications that drive business growth.
+                {step.desc}
             </p>
-            <Link 
-               href="/contact?service=Software%20Development"
-               className="px-8 py-4 bg-white text-slate-950 font-bold rounded-lg hover:bg-cyan-50 transition-colors flex items-center gap-2"
-            >
-               Start Your Project <ArrowRight className="w-4 h-4" />
-            </Link>
-         </div>
-      </div>
+            {(truncated || expanded) && (
+                <button
+                    type="button"
+                    aria-expanded={expanded}
+                    aria-controls={`process-description-${step.step}`}
+                    aria-label={`${expanded ? "Show less" : "Read more"} about ${step.title}`}
+                    onClick={() => setExpanded((previous) => !previous)}
+                    className="mt-2 inline-flex min-h-11 cursor-pointer items-center rounded-md text-sm font-medium text-[#1f3c5b] underline underline-offset-4 hover:text-[#111827] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1f3c5b] md:hidden"
+                >
+                    {expanded ? "Show less" : "Read more"}
+                </button>
+            )}
+        </>
+    );
+}
 
-      {/* Tech Stack & Capabilities */}
-      <div className="container mx-auto px-6 py-24">
-         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
-            <div>
-               <h2 className="text-3xl font-bold text-white mb-6">Full-Cycle Development</h2>
-               <p className="text-slate-400 mb-6 text-lg">
-                  We don't just write code; we build solutions. Our team handles everything from the initial UI/UX design to the backend infrastructure and database management.
-               </p>
-               <ul className="space-y-4">
-                  {[
-                     { icon: Layout, text: "Frontend: React, Next.js, Tailwind CSS" },
-                     { icon: Server, text: "Backend: Node.js, Python, Go" },
-                     { icon: Database, text: "Database: PostgreSQL, MongoDB, Firestore" },
-                     { icon: Smartphone, text: "Mobile: React Native, iOS, Android" },
-                     { icon: GitBranch, text: "DevOps: Docker, Kubernetes, AWS" },
-                  ].map((item, i) => (
-                     <li key={i} className="flex items-center gap-3 text-slate-300">
-                        <item.icon className="w-5 h-5 text-cyan-500" />
-                        <span className="font-medium">{item.text}</span>
-                     </li>
-                  ))}
-               </ul>
+export function SoftwareServicePage() {
+    return (
+        <div className="min-h-screen bg-[#f7f5f3] pt-20 text-[#111827]">
+            {/* Hero */}
+            <div className="mx-auto max-w-6xl px-5 pb-8 pt-12 md:px-6 md:pb-12 md:pt-20">
+                <div className="flex max-w-3xl flex-col items-start">
+                    
+                    <h1 className="mb-5 text-3xl font-semibold tracking-[-0.05em] sm:text-4xl lg:text-5xl">
+                        Build Scalable Digital Products
+                    </h1>
+                    <p className="mb-8 max-w-2xl text-base leading-7 text-[#5f5b56] md:text-lg md:leading-8">
+                        From MVP to Enterprise. We engineer robust web and
+                        mobile applications that drive business growth.
+                    </p>
+                    <Link
+                        href="/contact?service=Software%20Development"
+                        className="inline-flex items-center gap-2 rounded-full bg-[#111827] px-5 py-3 text-sm font-medium text-[#f7f5f3] transition-colors hover:bg-[#1f2937]"
+                    >
+                        Start Your Project <ArrowRight className="w-4 h-4" />
+                    </Link>
+                </div>
             </div>
-            <div className="relative rounded-2xl overflow-hidden border border-slate-800 shadow-2xl">
-               <Image
-                  src="https://images.unsplash.com/photo-1765438869297-6fa4b627906a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZ2lsZSUyMHNvZnR3YXJlJTIwZGV2ZWxvcG1lbnQlMjB3aGl0ZWJvYXJkJTIwbWVldGluZ3xlbnwxfHx8fDE3NzA5ODgxOTl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" 
-                  alt="Team Whiteboarding" 
-                  width={1080}
-                  height={720}
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="h-auto w-full"
-               />
-            </div>
-         </div>
 
-         {/* Process */}
-         <div>
-            <h2 className="text-3xl font-bold text-white text-center mb-16">Our Development Process</h2>
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-               {processSteps.map((step, i) => (
-                  <div key={i} className="relative p-6 bg-slate-900 rounded-xl border border-slate-800 hover:bg-slate-800 transition-colors">
-                     <div className="text-4xl font-black text-slate-800 mb-4 select-none absolute top-4 right-4 opacity-50">{step.step}</div>
-                     <h3 className="text-lg font-bold text-white mb-2 relative z-10">{step.title}</h3>
-                     <p className="text-sm text-slate-400 relative z-10">{step.desc}</p>
-                  </div>
-               ))}
+            {/* Tech Stack & Capabilities */}
+            <div className="mx-auto max-w-6xl border-t border-[#e5e1dc] px-5 pb-16 pt-6 md:px-6 md:pb-20 md:pt-10">
+                <div className="mb-12 md:mb-20">
+                    <div>
+                        <h2 className="mb-4 text-2xl font-semibold tracking-[-0.05em] md:text-3xl">
+                            Full-Cycle Development
+                        </h2>
+                        <p className="mb-6 max-w-2xl text-sm leading-6 text-[#5f5b56] sm:text-base sm:leading-7">
+                            We don't just write code; we build solutions. Our
+                            team handles everything from the initial UI/UX
+                            design to the backend infrastructure and database
+                            management.
+                        </p>
+                        <ul className="grid gap-3 md:grid-cols-2">
+                            {[
+                                {
+                                    icon: Layout,
+                                    text: "Frontend: React, Next.js, Tailwind CSS",
+                                },
+                                {
+                                    icon: Server,
+                                    text: "Backend: Node.js, Python, Go",
+                                },
+                                {
+                                    icon: Database,
+                                    text: "Database: PostgreSQL, MongoDB, Firestore",
+                                },
+                                {
+                                    icon: Smartphone,
+                                    text: "Mobile: React Native, iOS, Android",
+                                },
+                                {
+                                    icon: GitBranch,
+                                    text: "DevOps: Docker, Kubernetes, AWS",
+                                },
+                            ].map((item, i) => (
+                                <li
+                                    key={i}
+                                    className="flex items-start gap-3 rounded-xl border border-[#e5e1dc] bg-white p-4 text-sm text-[#5f5b56]"
+                                >
+                                    <item.icon className="h-5 w-5 shrink-0 text-[#1f3c5b]" />
+                                    <span className="font-medium">
+                                        {item.text}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+
+                {/* Process */}
+                <div className="border-t border-[#e5e1dc] pt-8 md:pt-12">
+                    <h2 className="mb-6 text-2xl font-semibold tracking-[-0.05em] md:mb-10 md:text-3xl">
+                        Our Development Process
+                    </h2>
+                    <div className="grid grid-cols-2 items-start gap-3 sm:gap-4 xl:grid-cols-5">
+                        {processSteps.map((step, i) => (
+                            <div
+                                key={i}
+                                className="min-w-0 rounded-xl border border-[#e5e1dc] bg-white p-3 transition-colors hover:border-[#d1d5db] sm:p-5"
+                            >
+                                <div className="mb-4 text-xs font-medium tracking-[0.18em] text-[#6b7280]">
+                                    {step.step}
+                                </div>
+                                <h3 className="mb-2 break-words text-base font-semibold tracking-[-0.02em]">
+                                    {step.title}
+                                </h3>
+                                <ProcessDescription step={step} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-    </div>
-  );
+        </div>
+    );
 }

@@ -63,7 +63,6 @@ Chefu Technologies builds software platforms, practical AI systems, and high-fid
 - [Software Development](/services/software)
 - [AI Solutions](/services/ai)
 - [Music Production](/services/music)
-- [Portfolio](/portfolio)
 - [Contact](/contact)
 - [Careers](/careers)
 
@@ -135,12 +134,6 @@ Chefu Technologies provides audio production services for artists, brands, games
 - Mixing and mastering.
 - Sound design and foley.
 - Sonic branding.
-`,
-    "/portfolio": `# Portfolio
-
-Chefu Technologies showcases work across audio software, music production, educational platforms, ecommerce, mobile products, and AI-enabled systems.
-
-Visit /portfolio in a browser for visual project cards and outbound project links.
 `,
     "/contact": `# Contact ${siteName}
 

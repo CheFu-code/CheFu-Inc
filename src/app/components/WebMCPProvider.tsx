@@ -24,7 +24,6 @@ function routeForService(service: unknown) {
         software: "/services/software",
         ai: "/services/ai",
         music: "/services/music",
-        portfolio: "/portfolio",
         contact: "/contact",
         careers: "/careers",
     };
@@ -53,7 +52,6 @@ export function WebMCPProvider() {
                     services: ["software development", "AI solutions", "music production"],
                     routes: {
                         services: "/services",
-                        portfolio: "/portfolio",
                         contact: "/contact",
                         careers: "/careers",
                     },
@@ -72,7 +70,6 @@ export function WebMCPProvider() {
                                 "software",
                                 "ai",
                                 "music",
-                                "portfolio",
                                 "contact",
                                 "careers",
                             ],

@@ -119,4 +119,4 @@ export const benefits = [
 ];
 
 export const fieldClassName =
-    "w-full rounded-xl border border-[#e5e1dc] bg-white px-3 py-2.5 text-sm text-[#111827] placeholder:text-[#6b7280] focus:outline-none focus:ring-2 focus:ring-cyan-400/60";
+    "min-h-11 min-w-0 w-full rounded-lg border border-[#e5e1dc] bg-white px-2.5 py-2 text-base text-[#111827] placeholder:text-[#6b7280] focus:outline-none focus:ring-2 focus:ring-[#1f3c5b]/40 sm:px-3 sm:text-sm";

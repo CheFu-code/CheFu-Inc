@@ -41,7 +41,6 @@ Routes are defined with the Next.js App Router under `src/app`.
 - `/services/music` - Music services
 - `/services/software` - Software services
 - `/services/ai` - AI services
-- `/portfolio` - Portfolio
 - `/contact` - Contact
 - `/careers` - Careers
 - `/blog` - Blog/Insights

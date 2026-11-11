@@ -1,14 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-    BadgeCheck,
-    FileLock2,
-    KeyRound,
-    LockKeyhole,
-    ShieldCheck,
-    ShieldAlert,
-} from "lucide-react";
 import { siteName, siteUrl } from "../site-metadata";
+import { SecurityPracticeCard } from "./SecurityPracticeCard";
 
 export const metadata: Metadata = {
     title: `Security | ${siteName}`,
@@ -25,32 +18,26 @@ export const metadata: Metadata = {
 
 const practices = [
     {
-        icon: KeyRound,
         title: "Identity and access",
         description: "We design authentication flows around least privilege, strong credential handling, and secure session boundaries. Where supported, modern mechanisms such as passkeys and short-lived access patterns are preferred over weak or static credentials.",
     },
     {
-        icon: LockKeyhole,
         title: "Web application controls",
         description: "Our web products use secure transport, defensive HTTP headers, origin validation, and controlled redirect patterns to reduce common attack paths such as abuse, impersonation, and open redirect patterns.",
     },
     {
-        icon: FileLock2,
         title: "Sensitive data handling",
         description: "User, customer, and application information is stored and handled only where needed for the service, with retention limits, minimization, and clear access boundaries applied throughout the platform lifecycle.",
     },
     {
-        icon: ShieldCheck,
         title: "Operational resilience",
         description: "We rely on environment separation, configuration validation, and deployment checks so production systems are not exposed to avoidable misconfiguration or accidental data leakage.",
     },
     {
-        icon: BadgeCheck,
         title: "Responsible product design",
         description: "Security, privacy, and usability are considered together. We prefer transparent product flows, explicit consent points, and clear user-facing controls over hidden or confusing behavior.",
     },
     {
-        icon: ShieldAlert,
         title: "Vulnerability response",
         description: "Security concerns are treated seriously and triaged with urgency. We evaluate reports promptly, assess impact, and take corrective action where the risk is material to the user or platform.",
     },
@@ -66,67 +53,56 @@ const controls = [
 
 export default function SecurityPage() {
     return (
-        <main className="min-h-screen bg-stone-50 px-6 pb-24 pt-32 text-slate-800">
+        <main className="min-h-screen bg-[#f7f5f3] px-5 pb-16 pt-28 text-[#111827] md:px-6 md:pb-20 md:pt-32">
             <div className="mx-auto max-w-5xl">
                 <header className="max-w-3xl">
-                    <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-cyan-700">
-                        Trust and security
-                    </p>
-                    <h1 className="text-3xl font-bold tracking-tight text-slate-900 md:text-5xl">
+                    <h1 className="text-3xl font-semibold tracking-[-0.05em] md:text-5xl">
                         Security is part of the product.
                     </h1>
-                    <p className="mt-5 text-base leading-7 text-slate-600 md:text-lg">
+                    <p className="mt-4 text-sm leading-6 text-[#5f5b56] sm:text-base sm:leading-7 md:text-lg">
                         Chefu Technologies builds and operates software, AI, and digital products with security, privacy, and responsible access in mind. This page describes the public practices we take seriously without exposing sensitive implementation details.
                     </p>
                 </header>
 
-                <section aria-labelledby="security-practices" className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                <section aria-labelledby="security-practices" className="mt-8 grid grid-cols-2 items-start gap-3 sm:gap-4 md:mt-12 xl:grid-cols-3">
                     <h2 id="security-practices" className="sr-only">
                         Security practices
                     </h2>
-                    {practices.map((practice) => {
-                        const Icon = practice.icon;
-                        return (
-                            <article
-                                key={practice.title}
-                                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
-                            >
-                                <Icon className="h-6 w-6 text-cyan-600" />
-                                <h3 className="mt-5 text-lg font-bold text-slate-900">
-                                    {practice.title}
-                                </h3>
-                                <p className="mt-3 text-sm leading-6 text-slate-600">
-                                    {practice.description}
-                                </p>
-                            </article>
-                        );
-                    })}
+                    {practices.map((practice) => (
+                        <SecurityPracticeCard key={practice.title} title={practice.title} description={practice.description} />
+                    ))}
                 </section>
 
-                <section className="mt-16 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                    <h2 className="text-2xl font-bold text-slate-900">
+                <section className="mt-10 rounded-2xl border border-[#e5e1dc] bg-white p-4 sm:p-6 md:mt-16">
+                    <h2 className="text-xl font-semibold tracking-[-0.04em] md:text-2xl">
                         What we emphasize in practice
                     </h2>
-                    <ul className="mt-5 space-y-3 text-sm leading-7 text-slate-600 md:text-base">
+                    <ul className="mt-4 space-y-3 text-sm leading-6 text-[#5f5b56] md:text-base md:leading-7">
                         {controls.map((item) => (
-                            <li key={item} className="flex gap-3">
-                                <span className="mt-1.5 inline-block h-2.5 w-2.5 rounded-full bg-cyan-600" />
+                            <li key={item} className="flex items-start gap-3">
+                                <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#1f3c5b] md:mt-2.5" />
                                 <span>{item}</span>
                             </li>
                         ))}
                     </ul>
                 </section>
 
-                <section className="mt-16 border-t border-slate-200 pt-10">
-                    <h2 className="text-2xl font-bold text-slate-900">Reporting a concern</h2>
-                    <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600 md:text-base">
-                        If you identify a security or privacy issue involving a our product, platform, or service, contact the team at <a className="font-medium text-cyan-700 hover:text-cyan-600" href="mailto:hello@chefu.co.za">hello@chefu.co.za</a>. Please include the relevant URL, the nature of the issue, and any supporting detail you have. Do not share passwords, access tokens, or confidential internal material in the first message.
+                <section className="mt-10 border-t border-[#e5e1dc] pt-6 md:mt-16 md:pt-10">
+                    <h2 className="text-xl font-semibold tracking-[-0.04em] md:text-2xl">Reporting a concern</h2>
+                    <p className="mt-4 max-w-3xl text-sm leading-6 text-[#5f5b56] md:text-base md:leading-7">
+                        If you identify a security or privacy issue involving our product, platform, or service, email our team. Please include the relevant URL, the nature of the issue, and any supporting detail you have. Do not share passwords, access tokens, or confidential internal material in the first message.
                     </p>
-                    <div className="mt-6 flex flex-wrap gap-5 text-sm font-medium">
-                        <Link href="/privacy" className="text-cyan-700 hover:text-cyan-600">
+                    <a
+                        href="mailto:hello@chefu.co.za"
+                        className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full bg-[#111827] px-5 py-3 text-sm font-medium text-[#f7f5f3] transition-colors hover:bg-[#1f2937] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1f3c5b]"
+                    >
+                        Email hello@chefu.co.za
+                    </a>
+                    <div className="mt-4 flex flex-wrap gap-x-5 text-sm font-medium">
+                        <Link href="/privacy" className="inline-flex min-h-11 items-center text-[#1f3c5b] underline underline-offset-4 hover:text-[#111827]">
                             Read the Privacy Policy
                         </Link>
-                        <Link href="/contact" className="text-cyan-700 hover:text-cyan-600">
+                        <Link href="/contact" className="inline-flex min-h-11 items-center text-[#1f3c5b] underline underline-offset-4 hover:text-[#111827]">
                             Contact us
                         </Link>
                     </div>
