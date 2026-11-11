@@ -17,10 +17,10 @@ export function Hero() {
                         Chefu Technologies builds software platforms, practical AI systems, and digital products for ambitious teams. We also design audio experiences where sound is part of the product.
                     </p>
 
-                    <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row">
+                    <div className="mt-10 flex w-full flex-row items-center justify-between gap-2 sm:gap-3">
                         <Link
                             href="/contact"
-                            className="inline-flex items-center gap-2 rounded-full bg-[#111827] px-4 py-2.5 text-sm font-medium text-[#f7f5f3] transition-colors duration-200 hover:bg-[#1f2937] sm:px-5 sm:py-3"
+                            className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full bg-[#111827] px-3 py-2 text-xs font-medium text-[#f7f5f3] transition-colors duration-200 hover:bg-[#1f2937] sm:gap-2 sm:px-5 sm:py-3 sm:text-sm"
                         >
                             Work with us
                             <ArrowRight className="h-4 w-4" />
@@ -28,16 +28,16 @@ export function Hero() {
 
                         <Link
                             href="/products"
-                            className="inline-flex items-center rounded-full border border-[#e5e1dc] bg-white px-4 py-2.5 text-sm font-medium text-[#111827] transition-colors duration-200 hover:border-[#d1d5db] hover:bg-[#f3f2ef] sm:px-5 sm:py-3"
+                            className="inline-flex flex-1 items-center justify-center rounded-full border border-[#e5e1dc] bg-white px-3 py-2 text-xs font-medium text-[#111827] transition-colors duration-200 hover:border-[#d1d5db] hover:bg-[#f3f2ef] sm:px-5 sm:py-3 sm:text-sm"
                         >
                             Explore our products
                         </Link>
                     </div>
 
-                    <div className="mt-16 flex items-center gap-4 text-[11px] uppercase tracking-[0.22em] text-[#7a746d]">
-                        <span className="h-px w-10 bg-[#d9d3cf]" />
+                    <div className="mt-16 flex items-center gap-2 whitespace-nowrap text-[10px] uppercase tracking-[0.12em] text-[#7a746d] sm:gap-4 sm:text-[11px] sm:tracking-[0.22em]">
+                        <span className="h-px w-6 bg-[#d9d3cf] sm:w-10" />
                         Technology • Audio • Intelligence
-                        <span className="h-px w-10 bg-[#d9d3cf]" />
+                        <span className="h-px w-6 bg-[#d9d3cf] sm:w-10" />
                     </div>
                 </div>
             </div>
