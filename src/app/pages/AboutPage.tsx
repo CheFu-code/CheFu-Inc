@@ -1,5 +1,5 @@
 ﻿import Link from "next/link";
-import { HPPartnerBadge } from "../components/HPPartnerBadge";
+import { BusinessPartners } from "../components/BusinessPartners";
 import { companyProducts } from "../products/product-data";
 
 const capabilities = [
@@ -194,17 +194,10 @@ export function AboutPage() {
                     </ol>
                 </section>
 
-                <section aria-labelledby="about-hp" className="mt-10 flex flex-col items-start gap-5 rounded-2xl border border-[#e5e1dc] bg-white p-4 sm:flex-row sm:items-center sm:gap-8 sm:p-6 md:mt-16 md:p-8">
-                    <HPPartnerBadge compact />
-                    <div className="min-w-0 max-w-2xl">
-                        <h2 id="about-hp" className="text-xl font-semibold tracking-[-0.04em] sm:text-2xl">Official HP Business Partner</h2>
-                        <p className="mt-3 text-sm leading-6 text-[#5f5b56] sm:text-base sm:leading-7">
-                            Chefu Technologies is an official HP Business Partner. If you
-                            have an HP-related requirement, get in touch so we can
-                            discuss what you need.
-                        </p>
-                        <Link href="/contact" className="mt-2 inline-flex min-h-11 items-center text-sm font-medium text-[#1f3c5b] underline underline-offset-4 hover:text-[#111827]">Discuss your requirements</Link>
-                    </div>
+                <section aria-labelledby="about-partnerships" className="mt-10 md:mt-16">
+                    <h2 id="about-partnerships" className="mb-5 text-2xl font-semibold tracking-[-0.05em] md:mb-6 md:text-3xl">Our partnerships</h2>
+                    <BusinessPartners />
+                    <Link href="/contact" className="mt-2 inline-flex min-h-11 items-center text-sm font-medium text-[#1f3c5b] underline underline-offset-4 hover:text-[#111827]">Discuss your HP or Lenovo requirements</Link>
                 </section>
 
                 <section aria-labelledby="about-location" className="mt-10 grid gap-6 border-t border-[#e5e1dc] pt-8 md:mt-16 md:pt-12 lg:grid-cols-2 lg:gap-12">

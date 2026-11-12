@@ -9,6 +9,7 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaFacebook, FaWhatsapp } from 'react-icons/fa';
+import lenovoLogo from "../../../public/lenovo-logo-red.png";
 
 export function Footer() {
     const companyLinks = [
@@ -86,6 +87,15 @@ export function Footer() {
                                 className="h-8 w-8 shrink-0 object-contain"
                             />
                             <p className="text-xs leading-5 text-[#5f5b56]">Official HP Business Partner</p>
+                        </div>
+                        <div className="mt-4 flex items-center gap-3">
+                            <Image
+                                src={lenovoLogo}
+                                alt="Lenovo"
+                                sizes="96px"
+                                className="h-auto w-24 shrink-0"
+                            />
+                            <p className="text-xs leading-5 text-[#5f5b56]">Lenovo 360 Authorized Partner</p>
                         </div>
                     </div>
 

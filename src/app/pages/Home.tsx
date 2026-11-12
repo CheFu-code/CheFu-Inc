@@ -4,13 +4,13 @@ import { Portfolio } from "../components/Portfolio";
 import { Services } from "../components/Services";
 import { TechStack } from "../components/TechStack";
 import { HomeExperience } from "../components/homepage/HomeExperience";
-import { HPPartnership } from "../components/homepage/HPPartnership";
+import { Partnerships } from "../components/homepage/Partnerships";
 
 export function Home() {
     return (
         <HomeExperience>
             <Hero />
-            <HPPartnership />
+            <Partnerships />
             <About />
             <Services />
             <TechStack />
