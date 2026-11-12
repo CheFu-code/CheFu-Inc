@@ -129,3 +129,22 @@ export function parseVerification(value: unknown, attempt: PaymentAttempt): Paym
     }
     return value as PaymentVerification;
 }
+
+export type RecoveredCheckout = PaymentVerification & {
+    items: CheckoutItem[];
+    session: CheckoutSession | null;
+    paymentState: string;
+};
+export function parseRecoveredCheckout(value: unknown): RecoveredCheckout | null {
+    if (!record(value)) throw new Error("We could not restore your saved order.");
+    if (value.checkout === null) return null;
+    const checkout = value.checkout;
+    const attempt = parsePaymentAttempt(checkout);
+    if (!record(checkout) || !attempt || !Array.isArray(checkout.items) || !checkout.items.length || checkout.items.length > 50 ||
+        !checkout.items.every((item: unknown) => record(item) && typeof item.productId === "string" &&
+            Number.isSafeInteger(item.quantity) && Number(item.quantity) > 0 &&
+            (item.variantId === undefined || typeof item.variantId === "string"))) throw new Error("We could not restore your saved order.");
+    const verified = parseVerification(checkout, attempt);
+    return { ...verified, items: checkout.items as CheckoutItem[], paymentState: String(checkout.paymentState ?? "PROCESSING"),
+        session: checkout.accessCode ? parseCheckoutSession(checkout) : null };
+}

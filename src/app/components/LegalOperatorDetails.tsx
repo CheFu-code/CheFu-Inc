@@ -67,7 +67,7 @@ export function LegalOperatorDetails() {
                 <dt className="font-semibold text-slate-900">Website</dt>
                 <dd>
                     <a
-                        href="https://chefu.co.za"
+                        href="https://www.chefu.co.za"
                         className="text-cyan-700 underline"
                     >
                         www.chefu.co.za

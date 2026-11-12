@@ -3,9 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Minus, Plus } from "lucide-react";
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useCart } from "../../../lib/cart";
-import { readPendingPayment, type PendingPayment } from "../../../lib/checkout-client";
+import { acknowledgeCheckout, CheckoutError, checkoutEnabled, claimLegacyCheckout, recoverCheckout, rememberPendingPayment, readPendingPayment, type PendingPayment } from "../../../lib/checkout-client";
+import { accountAppUrl } from "../../../lib/account-app";
 import { formatZar } from "../../../lib/products";
 import {
     availableQuantity, cartLineId, checkoutItems, deliveryErrors, emptyDeliveryDetails,
@@ -63,13 +64,58 @@ export default function CartPage() {
     const [session, setSession] = useState<CheckoutSession | null>(null);
     const [receipt, setReceipt] = useState<PaymentVerification | null>(null);
     const [busy, setBusy] = useState(false);
+    const [recovery, setRecovery] = useState<'loading' | 'ready' | 'signin' | 'error'>(checkoutEnabled ? 'loading' : 'ready');
+    const [recoveryMessage, setRecoveryMessage] = useState('');
+    const recoveryInFlight = useRef(false);
+    const restore = useCallback(async () => {
+        if (recoveryInFlight.current) return;
+        recoveryInFlight.current = true;
+        try {
+            let saved = await recoverCheckout();
+            const local = readPendingPayment();
+            if (!saved && local) {
+                // Account linking requires the original HttpOnly guest cookie as proof.
+                try { saved = await claimLegacyCheckout(local.reference); }
+                catch (error) {
+                    if (!(error instanceof CheckoutError) || ![401, 404].includes(error.status)) throw error;
+                    rememberPendingPayment(null);
+                }
+            }
+            if (saved?.status === 'paid') {
+                setReceipt(saved);
+                setPending(null);
+                rememberPendingPayment(null);
+            } else if (saved) {
+                const attempt = { reference: saved.reference, amountMinor: saved.amountMinor, items: saved.items };
+                setPending(attempt);
+                rememberPendingPayment(attempt);
+                setSession(saved.session);
+                setStep('payment');
+            } else {
+                setPending(null);
+                setSession(null);
+            }
+            setRecovery('ready');
+        } catch (error) {
+            setRecovery(error instanceof CheckoutError && error.status === 401 ? 'signin' : 'error');
+            setRecoveryMessage(error instanceof Error ? error.message : 'Your order may be saved. Reconnect to check its status before paying again.');
+        } finally { recoveryInFlight.current = false; }
+    }, []);
+    useEffect(() => {
+        if (!checkoutEnabled) return;
+        void restore();
+        const reconnect = () => { void restore(); };
+        window.addEventListener('online', reconnect);
+        window.addEventListener('pageshow', reconnect);
+        return () => { window.removeEventListener('online', reconnect); window.removeEventListener('pageshow', reconnect); };
+    }, [restore]);
     const checkoutHeading = useRef<HTMLHeadingElement>(null);
     const estimate = estimateOrder(lines);
     const validCart = lines.length > 0 && lines.every(isPurchasable) && Number.isSafeInteger(estimate.totalMinor) && estimate.totalMinor > 0;
     const items = validCart ? checkoutItems(lines) : [];
     const validDelivery = Object.keys(deliveryErrors(delivery)).length === 0;
     const currentStep = steps.findIndex((entry) => entry.id === step);
-    const locked = busy || Boolean(pending);
+    const locked = busy || Boolean(pending) || recovery !== 'ready';
     const totalMinor = session?.amountMinor ?? pending?.amountMinor ?? estimate.totalMinor;
     const summaryItems = pending
         ? pending.items.map((item) => {
@@ -91,6 +137,16 @@ export default function CartPage() {
         completePurchase(purchasedItems);
         setReceipt(result);
     }
+    async function finishOrder() {
+        if (!receipt || busy) return;
+        setBusy(true);
+        try {
+            await acknowledgeCheckout(receipt.reference);
+            rememberPendingPayment(null);
+            window.location.assign('/store');
+        } catch { setRecoveryMessage('Your payment is confirmed. Reconnect before continuing to shop.'); }
+        finally { setBusy(false); }
+    }
 
     return (
         <main className="min-h-screen bg-[#f7f5f3] px-4 pb-16 pt-24 text-[#111827] sm:px-6 sm:pb-20 sm:pt-28">
@@ -100,7 +156,13 @@ export default function CartPage() {
                     <p className="mt-2 text-sm leading-6 text-[#5f5b56]">{receipt ? "Thank you for shopping with Chefu Technologies." : "Review your items and order total. Prices in South African rand (ZAR)."}</p>
                 </header>
 
-                {!isHydrated ? (
+                {recovery !== 'ready' ? (
+                    <section className="rounded-2xl border border-[#e5e1dc] bg-white p-6 text-sm">
+                        <p role="status">{recovery === 'loading' ? 'Restoring your saved checkout…' : recovery === 'signin' ? 'Sign in to check out and recover orders across your devices.' : 'We lost connection while restoring your order. Check its status before paying again.'}</p>
+                        {recovery === 'signin' && <a className="mt-4 inline-flex min-h-11 items-center underline" href={accountAppUrl('/login', { app: 'root', returnTo: typeof window !== 'undefined' ? `${window.location.origin}/store/cart` : '/store/cart' })}>Sign in to continue</a>}
+                        {recovery === 'error' && <button type="button" onClick={() => void restore()} className="mt-4 min-h-11 underline">Restore saved order</button>}
+                    </section>
+                ) : !isHydrated ? (
                     <p role="status" className="rounded-2xl border border-[#e5e1dc] bg-white p-6 text-sm text-[#5f5b56]">Loading your cart…</p>
                 ) : receipt ? (
                     <section className="max-w-2xl rounded-2xl border border-[#e5e1dc] bg-white p-5 sm:p-8">
@@ -111,7 +173,8 @@ export default function CartPage() {
                             <div><dt className="text-[#6b7280]">Payment reference</dt><dd className="mt-1 break-all">{receipt.reference}</dd></div>
                         </dl>
                         <p className="mt-5 text-sm leading-6 text-[#5f5b56]">Keep your order number for any questions about your purchase.</p>
-                        <Link href="/store" className="mt-5 inline-flex min-h-11 items-center rounded-full bg-[#111827] px-5 py-3 text-sm font-medium text-white">Back to the store</Link>
+                        <button type="button" disabled={busy} onClick={() => void finishOrder()} className="mt-5 inline-flex min-h-11 items-center rounded-full bg-[#111827] px-5 py-3 text-sm font-medium text-white">Back to the store</button>
+                        {recoveryMessage && <p role="status" className="mt-3 text-sm">{recoveryMessage}</p>}
                     </section>
                 ) : lines.length === 0 && !pending ? (
                     <section className="rounded-2xl border border-[#e5e1dc] bg-white px-5 py-12 sm:py-16">
@@ -146,7 +209,7 @@ export default function CartPage() {
                                     </section>
                                 )}
                                 {step === "delivery" && <CheckoutDeliveryForm details={delivery} onChange={setDelivery} onBack={() => navigate("cart")} onContinue={() => navigate("payment")} />}
-                                {step === "payment" && <CheckoutPayment items={items} delivery={delivery} estimatedTotal={estimate.totalMinor} pending={pending} canInitialize={validCart && validDelivery} onPending={setPending} onSession={setSession} onConfirmed={confirmed} onEdit={() => navigate("delivery")} onBusy={setBusy} />}
+                                {step === "payment" && <CheckoutPayment items={items} delivery={delivery} estimatedTotal={estimate.totalMinor} pending={pending} recoveredSession={session} onRecover={restore} canInitialize={validCart && validDelivery && recovery === 'ready'} onPending={setPending} onSession={setSession} onConfirmed={confirmed} onEdit={() => navigate("delivery")} onBusy={setBusy} />}
                             </div>
                             <aside aria-labelledby="order-summary-heading" className={`min-w-0 rounded-2xl border border-[#e5e1dc] bg-white p-4 sm:p-6 lg:sticky lg:top-24 ${step === "payment" ? "order-1 lg:order-2" : ""}`}>
                                 <h2 id="order-summary-heading" className="text-lg font-semibold tracking-[-0.03em]">Order summary</h2>

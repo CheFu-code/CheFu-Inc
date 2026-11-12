@@ -93,10 +93,10 @@ export default function SecurityPage() {
                         If you identify a security or privacy issue involving our product, platform, or service, email our team. Please include the relevant URL, the nature of the issue, and any supporting detail you have. Do not share passwords, access tokens, or confidential internal material in the first message.
                     </p>
                     <a
-                        href="mailto:hello@chefu.co.za"
+                        href="mailto:support@chefu.co.za"
                         className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full bg-[#111827] px-5 py-3 text-sm font-medium text-[#f7f5f3] transition-colors hover:bg-[#1f2937] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1f3c5b]"
                     >
-                        Email hello@chefu.co.za
+                        Email support@chefu.co.za
                     </a>
                     <div className="mt-4 flex flex-wrap gap-x-5 text-sm font-medium">
                         <Link href="/privacy" className="inline-flex min-h-11 items-center text-[#1f3c5b] underline underline-offset-4 hover:text-[#111827]">

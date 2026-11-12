@@ -569,7 +569,7 @@ export function PrivacyPolicy() {
                         technical, legal, and operational requirements.
                     </p>
                     <p>
-                        For career applications submitted through chefu.co.za, we set a
+                        For career applications submitted through www.chefu.co.za, we set a
                         180-day retention period and run a scheduled purge of the
                         application record and its uploaded CV. A deletion failure is
                         logged for retry; exceptional technical or legal holds may delay

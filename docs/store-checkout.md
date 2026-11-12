@@ -5,6 +5,13 @@ supports Paystack InlineJS v2. The backend is implemented in the sibling
 `chefu-inc-backend` repository; its `docs/store-checkout.md` covers credentials,
 webhooks, reconciliation, inventory reservations, and the fulfillment queue.
 
+The hardening release now requires CheFu sign-in for new checkout and restores
+the active order from `GET /store/checkout/recover` before another payment can
+start. Account ownership supports recovery after cookie/storage loss and on a
+second device. The backend's `docs/store-checkout-hardening.md` contains the audit,
+state machine, migration and deployment requirements. Deploy both applications
+together; existing guest orders can be linked using the original checkout cookie.
+
 `NEXT_PUBLIC_CHECKOUT_ENABLED=false` is the default. Customers can review the
 checkout form, but cannot start a payment. Set it to `true` and rebuild only once
 the endpoints below are available. Start with Paystack test credentials on the
@@ -105,16 +112,20 @@ the order's customer/session rather than using the reference as a credential.
 - Paystack loads on demand from `https://js.paystack.co/v2/inline.js`.
 - No card information is collected by the store form.
 - Delivery/contact information stays in React state, not browser storage.
-- Before opening Paystack, the tab retains the payment reference, amount, and
+- Immediately after initialization, the tab retains the payment reference, amount, and
   purchased item identifiers/quantities in session storage for recovery.
 - Paystack callbacks trigger backend verification. They do not mark orders paid.
 - Unknown/failed verification preserves the cart and offers a status check.
-- After reload, an outstanding reference returns to status recovery rather than
-  starting another charge. If session storage is blocked, recovery is limited
-  to the current page; backend reconciliation remains essential.
+- After reload, the client restores the active account checkout from the backend.
+  This also works without session storage and on another signed-in device.
+  A failed recovery request blocks new checkout and offers a status retry.
 - Only a verified paid response removes the purchased quantities. Items added
   separately, including in another tab, stay in the cart.
 - Cancellation resumes/verifies the same reference instead of making a new one.
+- A paid/failed order is acknowledged through `POST /store/checkout/acknowledge`
+  before another checkout. Unknown outcomes cannot be acknowledged as complete.
+- Local expiry never implies provider cancellation. A missing access code after
+  an uncertain initialization requires status recovery/support, not a new charge.
 - `404`, `405`, `501`, and `503` produce an unavailable-payment message.
 - The backend reserves stock, uses tax-inclusive catalog prices, reconciles
   payments, and queues verified paid orders for fulfillment. Success emails,

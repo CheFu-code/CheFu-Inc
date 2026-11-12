@@ -82,10 +82,10 @@ export function TermsOfService() {
                     <p>
                         Our primary website is available at{' '}
                         <a
-                            href="https://chefu.co.za"
+                            href="https://www.chefu.co.za"
                             className="text-cyan-400 hover:underline"
                         >
-                            chefu.co.za
+                            www.chefu.co.za
                         </a>
                         .
                     </p>
@@ -371,7 +371,7 @@ export function TermsOfService() {
                         their own terms and privacy policies.
                     </p>
                     <p>
-                        As of the date of these Terms, the online cart on chefu.co.za
+                        As of the date of these Terms, the online cart on www.chefu.co.za
                         does not complete checkout or accept payment. Prices and delivery
                         amounts displayed in the cart are indicative until a working
                         checkout presents and confirms the final order terms.

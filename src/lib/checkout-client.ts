@@ -1,6 +1,6 @@
 import { apiUrl } from "./chefu-account";
 import {
-    parseCheckoutSession, parseVerification,
+    parseCheckoutSession, parseVerification, parseRecoveredCheckout,
     type CheckoutItem, type DeliveryDetails, type PaymentAttempt,
 } from "./store-checkout";
 
@@ -30,9 +30,12 @@ export function rememberPendingPayment(attempt: PendingPayment | null) {
     } catch { /* Checkout still works in memory if session storage is blocked. */ }
 }
 
-async function checkoutRequest(path: string, body: unknown, idempotencyKey?: string): Promise<unknown> {
+export class CheckoutError extends Error {
+    constructor(message: string, readonly status: number) { super(message); }
+}
+async function checkoutRequest(path: string, body?: unknown, idempotencyKey?: string): Promise<unknown> {
     const response = await fetch(apiUrl(path), {
-        method: "POST",
+        method: body === undefined ? "GET" : "POST",
         credentials: "include",
         cache: "no-store",
         headers: {
@@ -42,14 +45,26 @@ async function checkoutRequest(path: string, body: unknown, idempotencyKey?: str
         body: JSON.stringify(body),
         signal: AbortSignal.timeout(20_000),
     });
+    if (response.status === 401) throw new CheckoutError("Sign in again to recover your saved order. You do not need to pay again.", 401);
+    if (response.status === 429) throw new CheckoutError("Please wait before checking your payment again. Your order is saved.", 429);
     if ([404, 405, 501, 503].includes(response.status)) {
-        throw new Error("Online payments are not available right now. Your cart has been kept.");
+        throw new CheckoutError("Payment confirmation is unavailable. Your order may be saved; check its status before paying again.", response.status);
     }
     if (!response.ok) {
-        if (response.status === 409) throw new Error("An item's price or availability has changed. Return to your cart and review your items.");
+        if (response.status === 409) throw new CheckoutError("A saved checkout or changed item needs review. Restore your order before paying again.", 409);
         throw new Error("We could not connect to checkout. Please try again.");
     }
     return response.json();
+}
+
+export async function recoverCheckout() {
+    return parseRecoveredCheckout(await checkoutRequest('/store/checkout/recover'));
+}
+export async function acknowledgeCheckout(reference: string) {
+    return checkoutRequest('/store/checkout/acknowledge', { reference });
+}
+export async function claimLegacyCheckout(reference: string) {
+    return parseRecoveredCheckout(await checkoutRequest('/store/checkout/claim-legacy', { reference }));
 }
 
 export async function initializeCheckout(items: CheckoutItem[], delivery: DeliveryDetails, idempotencyKey: string) {

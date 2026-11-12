@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {
     availableQuantity, checkoutItems, deliveryErrors, emptyDeliveryDetails,
     estimateOrder, isPurchasable, parseCheckoutSession, parsePaymentAttempt,
-    parseVerification, unitPrice,
+    parseVerification, parseRecoveredCheckout, unitPrice,
 } from "../src/lib/store-checkout.ts";
 
 const product = { id: "product-1", status: "ACTIVE", currency: "ZAR", priceMinor: 25_000, inventoryQuantity: 5 };
@@ -87,4 +87,24 @@ test("pending and failed responses are not promoted to confirmed orders", () => 
         assert.equal(result.status, status);
         assert.equal(result.orderId, undefined);
     }
+});
+
+test("backend recovery restores a payable session without local storage", () => {
+    const result = parseRecoveredCheckout({ checkout: { ...session, status: 'pending', paymentState: 'INITIALIZED', items: [{ productId: 'product-1', quantity: 2 }] } });
+    assert.equal(result.status, 'pending');
+    assert.equal(result.session.accessCode, session.accessCode);
+    assert.equal(result.items[0].quantity, 2);
+});
+test("server-confirmed recovery handles paid orders and uncertain initialization without another payment", () => {
+    const base = { reference: session.reference, amountMinor: session.amountMinor, currency: 'ZAR', items: [{ productId: 'product-1', quantity: 2 }] };
+    const paid = parseRecoveredCheckout({ checkout: { ...base, status: 'paid', orderId: 'order-1', paymentState: 'SUCCESS' } });
+    assert.equal(paid.status, 'paid');
+    assert.equal(paid.session, null);
+    const pending = parseRecoveredCheckout({ checkout: { ...base, status: 'pending', paymentState: 'PROCESSING' } });
+    assert.equal(pending.session, null);
+    assert.equal(pending.status, 'pending');
+});
+test("recovery rejects malformed records and false success claims", () => {
+    assert.equal(parseRecoveredCheckout({ checkout: null }), null);
+    for (const checkout of [{ ...session, status: 'paid', items: [] }, { ...session, status: 'success', items: [{ productId: 'x', quantity: 1 }] }, { ...session, status: 'pending', items: [{ productId: 'x', quantity: -1 }] }]) assert.throws(() => parseRecoveredCheckout({ checkout }));
 });

@@ -2,26 +2,30 @@
 
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { checkoutEnabled, initializeCheckout, rememberPendingPayment, verifyCheckout, type PendingPayment } from "../../../lib/checkout-client";
+import { acknowledgeCheckout, checkoutEnabled, initializeCheckout, rememberPendingPayment, verifyCheckout, type PendingPayment } from "../../../lib/checkout-client";
+import { accountAppUrl } from "../../../lib/account-app";
 import { loadPaystack } from "../../../lib/paystack";
 import { formatZar } from "../../../lib/products";
 import { type CheckoutItem, type CheckoutSession, type DeliveryDetails, type PaymentVerification } from "../../../lib/store-checkout";
 
 type Phase = "idle" | "preparing" | "ready" | "opening" | "verifying" | "pending";
 
-export function CheckoutPayment({ items, delivery, estimatedTotal, pending, canInitialize, onPending, onSession, onConfirmed, onEdit, onBusy }: {
+export function CheckoutPayment({ items, delivery, estimatedTotal, pending, canInitialize, recoveredSession, onRecover, onPending, onSession, onConfirmed, onEdit, onBusy }: {
     items: CheckoutItem[];
     delivery: DeliveryDetails;
     estimatedTotal: number;
     pending: PendingPayment | null;
     canInitialize: boolean;
+    recoveredSession?: CheckoutSession | null;
+    onRecover: () => Promise<void>;
     onPending: (attempt: PendingPayment | null) => void;
     onSession: (session: CheckoutSession | null) => void;
     onConfirmed: (result: PaymentVerification, items: CheckoutItem[]) => void;
     onEdit: () => void;
     onBusy: (busy: boolean) => void;
 }) {
-    const [session, setSession] = useState<CheckoutSession | null>(null);
+    const [localSession, setSession] = useState<CheckoutSession | null>(null);
+    const session = localSession ?? recoveredSession ?? null;
     const [phase, setPhase] = useState<Phase>(pending ? "pending" : "idle");
     const [message, setMessage] = useState("");
     const [accepted, setAccepted] = useState(false);
@@ -62,6 +66,7 @@ export function CheckoutPayment({ items, delivery, estimatedTotal, pending, canI
                 }
                 finish("idle");
             } else if (result.status === "failed") {
+                await acknowledgeCheckout(attempt.reference);
                 save(null);
                 setSession(null);
                 onSession(null);
@@ -72,8 +77,8 @@ export function CheckoutPayment({ items, delivery, estimatedTotal, pending, canI
                 setMessage("Your payment has not been confirmed yet. Check its status before making another payment.");
                 finish("pending");
             }
-        } catch {
-            setMessage("We could not confirm your payment yet. Keep your reference and check the payment status again before paying.");
+        } catch (error) {
+            setMessage(error instanceof Error ? error.message : "We lost connection while checking your payment. Your order is saved. Reconnect to check its status.");
             finish("pending");
         }
     }
@@ -85,18 +90,21 @@ export function CheckoutPayment({ items, delivery, estimatedTotal, pending, canI
             await loadPaystack();
             idempotencyKey.current ??= window.crypto.randomUUID();
             const next = await initializeCheckout(items, delivery, idempotencyKey.current);
+            // Save recovery metadata as soon as initialization returns, before opening Paystack.
+            save({ reference: next.reference, amountMinor: next.amountMinor, items: preparedItems.current });
             setSession(next);
             onSession(next);
             if (next.amountMinor !== estimatedTotal) setMessage("Your final total has been updated. Review it below before paying.");
             finish("ready");
         } catch (error) {
             setMessage(error instanceof Error ? error.message : "Checkout could not connect. Your cart has been kept.");
+            await onRecover();
             finish("idle");
         }
     }
 
     async function pay() {
-        if (!session || !accepted || (!pending && cartChanged) || !start("opening")) return;
+        if (!session || (!pending && !accepted) || (!pending && cartChanged) || !start("opening")) return;
         const attempt: PendingPayment = pending ?? { reference: session.reference, amountMinor: session.amountMinor, items: preparedItems.current };
         try {
             const Paystack = await loadPaystack();
@@ -151,8 +159,9 @@ export function CheckoutPayment({ items, delivery, estimatedTotal, pending, canI
             {pending ? (
                 <div className="mt-4 flex flex-wrap gap-3">
                     <button type="button" onClick={() => void verify(pending)} disabled={busy} className="min-h-12 rounded-full bg-[#111827] px-5 py-3 text-sm font-medium text-white disabled:opacity-50">{phase === "verifying" ? "Checking payment…" : "Check payment status"}</button>
-                    {session && <button type="button" onClick={() => void pay()} disabled={busy} className="min-h-12 rounded-full border border-[#e5e1dc] px-5 py-3 text-sm font-medium disabled:opacity-50">Resume Paystack payment</button>}
+                    {session && <button type="button" onClick={() => void pay()} disabled={busy} className="min-h-12 rounded-full border border-[#e5e1dc] px-5 py-3 text-sm font-medium disabled:opacity-50">Pay {formatZar(session.amountMinor)} with Paystack</button>}
                     <Link href="mailto:hello@chefu.co.za" className="inline-flex min-h-11 items-center text-sm text-[#1f3c5b] underline underline-offset-4">Contact support</Link>
+                    <a href={accountAppUrl('/login', { app: 'root', returnTo: typeof window !== 'undefined' ? `${window.location.origin}/store/cart` : '/store/cart' })} className="inline-flex min-h-11 items-center text-sm underline">Sign in to recover your order</a>
                 </div>
             ) : (
                 <button type="button" onClick={() => void (session ? pay() : prepare())} disabled={!checkoutEnabled || !canInitialize || !accepted || busy || cartChanged} className="mt-4 min-h-12 w-full rounded-full bg-[#111827] px-5 py-3 text-sm font-medium text-white hover:bg-[#1f2937] disabled:cursor-not-allowed disabled:opacity-50">

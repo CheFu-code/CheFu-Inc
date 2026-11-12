@@ -59,7 +59,7 @@ export function CookiePolicy() {
                         categories of cookies:
                     </p>
                     <p>
-                        On chefu.co.za, the cookie-preference choice is stored in
+                        On www.chefu.co.za, the cookie-preference choice is stored in
                         first-party browser local storage under
                         {" "}<code>chefu_cookie_consent</code> until you clear site data.
                         The shopping cart is stored in first-party browser local
