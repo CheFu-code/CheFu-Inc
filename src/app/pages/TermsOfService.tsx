@@ -628,10 +628,10 @@ export function TermsOfService() {
                     <p>
                         Website:{' '}
                         <a
-                            href="https://chefu.co.za"
+                            href="https://www.chefu.co.za"
                             className="text-cyan-400 hover:underline"
                         >
-                            chefu.co.za
+                            www.chefu.co.za
                         </a>
                     </p>
 

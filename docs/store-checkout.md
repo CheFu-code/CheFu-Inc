@@ -1,7 +1,9 @@
 # Store checkout: client integration
 
 The cart at `/store/cart` now collects delivery details, reviews the order, and
-supports Paystack InlineJS v2. **The backend is not implemented in this change.**
+supports Paystack InlineJS v2. The backend is implemented in the sibling
+`chefu-inc-backend` repository; its `docs/store-checkout.md` covers credentials,
+webhooks, reconciliation, inventory reservations, and the fulfillment queue.
 
 `NEXT_PUBLIC_CHECKOUT_ENABLED=false` is the default. Customers can review the
 checkout form, but cannot start a payment. Set it to `true` and rebuild only once
@@ -9,7 +11,7 @@ the endpoints below are available. Start with Paystack test credentials on the
 backend. There is no Paystack secret or public key required in this frontend;
 InlineJS resumes a transaction using the backend-issued access code.
 
-## Endpoints to implement next
+## Backend endpoint contract
 
 Both URLs use `NEXT_PUBLIC_API_BASE_URL` through the existing `apiUrl()` helper.
 Requests use credentials, JSON, and a 20-second timeout. Configure the backend's
@@ -114,8 +116,10 @@ the order's customer/session rather than using the reference as a credential.
   separately, including in another tab, stay in the cart.
 - Cancellation resumes/verifies the same reference instead of making a new one.
 - `404`, `405`, `501`, and `503` produce an unavailable-payment message.
-- Payment success emails, receipts, stock reservations, tax calculations, and
-  shipment tracking still need the backend; the UI does not claim they exist.
+- The backend reserves stock, uses tax-inclusive catalog prices, reconciles
+  payments, and queues verified paid orders for fulfillment. Success emails,
+  receipts, carrier dispatch, and shipment tracking require their respective
+  operational integrations; the UI does not claim they exist.
 
 ## Checks
 

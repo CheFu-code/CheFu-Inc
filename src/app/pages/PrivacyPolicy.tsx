@@ -66,10 +66,10 @@ export function PrivacyPolicy() {
                         This policy applies to information processed through our primary
                         website at{' '}
                         <a
-                            href="https://chefu.co.za"
+                            href="https://www.chefu.co.za"
                             className="text-cyan-400 hover:underline"
                         >
-                            chefu.co.za
+                            www.chefu.co.za
                         </a>{' '}
                         and, where applicable, our applications, platforms, account
                         systems, forms, and other services operated by Chefu Technologies.
@@ -106,10 +106,10 @@ export function PrivacyPolicy() {
                         <p className="mb-0">
                             Website:{' '}
                             <a
-                                href="https://chefu.co.za"
+                                href="https://www.chefu.co.za"
                                 className="text-cyan-400 hover:underline"
                             >
-                                chefu.co.za
+                                www.chefu.co.za
                             </a>
                         </p>
                         <p className="mb-0">
