@@ -51,7 +51,7 @@ export function LegalOperatorDetails() {
                 <dt className="font-semibold text-slate-900">Support</dt>
                 <dd>
                     <a
-                        href="mailto:hello@chefu.co.za"
+                        href="mailto:support@chefu.co.za"
                         className="text-cyan-700 underline"
                     >
                         support@chefu.co.za
