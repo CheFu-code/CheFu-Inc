@@ -2,9 +2,9 @@ import { AboutPage } from "../pages/AboutPage";
 import { pageMetadata } from "../site-metadata";
 
 export const metadata = pageMetadata({
-    title: "About Chefu Technologies | Digital Product and Creative Technology Team",
+    title: "About Chefu Technologies | Software, AI & Audio",
     description:
-        "Meet Chefu Technologies, a hybrid software, AI, and audio production team building digital products and creative technology experiences.",
+        "Learn about Chefu Technologies, a South African software, AI, and audio company based in Malamulele. Explore our products, approach, and HP Business Partnership.",
     path: "/about",
 });
 

@@ -7,6 +7,7 @@
         "dev": "next dev",
         "build": "next build",
         "typecheck": "tsc --noEmit",
+        "test:checkout": "node --experimental-strip-types --test tests/store-checkout.test.mjs",
         "start": "next start",
         "lint": "eslint .",
         "preview": "next start",

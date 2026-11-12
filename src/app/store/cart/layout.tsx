@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 import { siteName, siteUrl } from "../../site-metadata";
 
 export const metadata: Metadata = {
-    title: `Shopping cart | ${siteName}`,
-    description: "Review products selected from the our store.",
+    title: `Cart & checkout | Chefu Store`,
+    description: "Review your Chefu Store cart, enter delivery details, and continue to Paystack checkout when available.",
     alternates: {
         canonical: `${siteUrl}/store/cart`,
     },
@@ -17,16 +17,16 @@ export const metadata: Metadata = {
         },
     },
     openGraph: {
-        title: `Shopping cart | ${siteName}`,
-        description: "Review products selected from the our store.",
+        title: `Cart & checkout | Chefu Store`,
+        description: "Review your cart and delivery details at Chefu Store.",
         url: `${siteUrl}/store/cart`,
         siteName,
         type: "website",
     },
     twitter: {
         card: "summary",
-        title: `Shopping cart | ${siteName}`,
-        description: "Review products selected from the our store.",
+        title: `Cart & checkout | Chefu Store`,
+        description: "Review your cart and delivery details at Chefu Store.",
     },
 };
 

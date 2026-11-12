@@ -1,11 +1,18 @@
 import { ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
 
+const appPrivacyPolicies = [
+    { name: "Muzalo", href: "/privacy/muzalo" },
+    { name: "LiftWise", href: "/privacy/liftwise" },
+    { name: "Sudoku", href: "/privacy/sudoku" },
+    { name: "Infinity", href: "/privacy/infinity" },
+];
+
 export function PrivacyPolicy() {
     return (
         <div className="min-h-screen bg-stone-50 pb-20 pt-32 text-slate-700">
             <div className="container mx-auto max-w-4xl px-6">
-                <div className="mb-12 border-b border-slate-200 pb-8">
+                <div className="mb-6 border-b border-slate-200 pb-6 sm:mb-8 sm:pb-8">
                     <div className="mb-4 flex items-center gap-3 text-cyan-700">
                         <ShieldCheck className="h-8 w-8" />
                         <span className="font-bold uppercase tracking-wider">Legal</span>
@@ -20,29 +27,22 @@ export function PrivacyPolicy() {
                     </p>
                 </div>
 
-                <nav aria-label="App privacy policies" className="mb-8 rounded-xl border border-slate-200 bg-white p-4">
-                    <h2 className="mb-3 text-base font-semibold text-slate-900">App privacy policies</h2>
-                    <ul className="flex flex-wrap gap-2">
-                        <li>
-                            <Link href="/privacy/muzalo" className="inline-flex rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium text-cyan-700 transition-colors hover:border-cyan-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700">
-                                Muzalo
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/privacy/liftwise" className="inline-flex rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium text-cyan-700 transition-colors hover:border-cyan-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700">
-                                LiftWise
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/privacy/sudoku" className="inline-flex rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium text-cyan-700 transition-colors hover:border-cyan-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700">
-                                Sudoku
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/privacy/infinity" className="inline-flex rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium text-cyan-700 transition-colors hover:border-cyan-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700">
-                                Infinity
-                            </Link>
-                        </li>
+                <nav aria-labelledby="app-privacy-heading" className="mb-6 flex flex-wrap items-center gap-x-4 text-sm">
+                    <h2 id="app-privacy-heading" className="font-normal text-[#6b7280]">
+                        App policies:
+                    </h2>
+                    <ul className="flex flex-wrap gap-x-4">
+                        {appPrivacyPolicies.map((app) => (
+                            <li key={app.href} className="min-w-0">
+                                <Link
+                                    href={app.href}
+                                    aria-label={`${app.name} privacy policy`}
+                                    className="inline-flex min-h-11 items-center text-[#1f3c5b] underline decoration-[#d1d5db] underline-offset-4 hover:decoration-current focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1f3c5b]"
+                                >
+                                    {app.name}
+                                </Link>
+                            </li>
+                        ))}
                     </ul>
                 </nav>
 

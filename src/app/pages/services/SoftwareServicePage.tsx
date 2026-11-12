@@ -1,14 +1,12 @@
 "use client";
 
 import {
-    ArrowRight,
     Database,
     GitBranch,
     Layout,
     Server,
     Smartphone
 } from "lucide-react";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const processSteps = [
@@ -94,12 +92,6 @@ export function SoftwareServicePage() {
                         From MVP to Enterprise. We engineer robust web and
                         mobile applications that drive business growth.
                     </p>
-                    <Link
-                        href="/contact?service=Software%20Development"
-                        className="inline-flex items-center gap-2 rounded-full bg-[#111827] px-5 py-3 text-sm font-medium text-[#f7f5f3] transition-colors hover:bg-[#1f2937]"
-                    >
-                        Start Your Project <ArrowRight className="w-4 h-4" />
-                    </Link>
                 </div>
             </div>
 
