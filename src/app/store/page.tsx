@@ -1,5 +1,4 @@
 import { getProducts } from "../../lib/products";
-import Link from "next/link";
 import { pageMetadata } from "../site-metadata";
 import { StoreCatalogClient } from "./StoreCatalogClient";
 
