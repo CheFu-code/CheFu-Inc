@@ -6,6 +6,7 @@ const appPrivacyPolicies = [
     { name: "LiftWise", href: "/privacy/liftwise" },
     { name: "Sudoku", href: "/privacy/sudoku" },
     { name: "Infinity", href: "/privacy/infinity" },
+    { name: "ShopYethu", href: "/privacy/shopyethu" },
 ];
 
 export function PrivacyPolicy() {

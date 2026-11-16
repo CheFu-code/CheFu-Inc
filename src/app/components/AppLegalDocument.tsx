@@ -15,9 +15,17 @@ type AppLegalDocumentProps = {
     summary: string;
     introduction: ReactNode;
     sections: LegalSection[];
+    lastUpdated?: { dateTime: string; label: string };
 };
 
-export function AppLegalDocument({ appName, kind, summary, introduction, sections }: AppLegalDocumentProps) {
+export function AppLegalDocument({
+    appName,
+    kind,
+    summary,
+    introduction,
+    sections,
+    lastUpdated = { dateTime: "2026-10-27", label: "October 27, 2026" },
+}: AppLegalDocumentProps) {
     const isPrivacy = kind === "privacy";
     const title = isPrivacy ? "Privacy Policy" : "Terms of Service";
     const Icon = isPrivacy ? ShieldCheck : Scale;
@@ -35,7 +43,7 @@ export function AppLegalDocument({ appName, kind, summary, introduction, section
                         <span className="font-bold uppercase tracking-wider">{isPrivacy ? "App privacy" : "App terms"}</span>
                     </div>
                     <h1 className="mb-4 text-4xl font-bold text-slate-900 md:text-5xl">{appName} {title}</h1>
-                    <p className="mb-4 text-slate-500">Last updated: <time dateTime="2026-10-27">October 27, 2026</time></p>
+                    <p className="mb-4 text-slate-500">Last updated: <time dateTime={lastUpdated.dateTime}>{lastUpdated.label}</time></p>
                     <p className="text-lg leading-8">{summary}</p>
                     <nav aria-label={`${appName} legal documents`} className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium text-cyan-700 underline underline-offset-4">
                         <Link href={`/privacy/${slug}`} aria-current={isPrivacy ? "page" : undefined}>Privacy Policy</Link>

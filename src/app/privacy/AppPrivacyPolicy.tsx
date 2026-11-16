@@ -3,16 +3,18 @@ import { AppLegalDocument, type LegalSection } from "../components/AppLegalDocum
 
 export type PrivacySection = LegalSection;
 
-export function AppPrivacyPolicy({ appName, summary, sections }: {
+export function AppPrivacyPolicy({ appName, summary, sections, lastUpdated }: {
     appName: string;
     summary: string;
     sections: PrivacySection[];
+    lastUpdated?: { dateTime: string; label: string };
 }) {
     return <AppLegalDocument
         appName={appName}
         kind="privacy"
         summary={summary}
         sections={sections}
+        lastUpdated={lastUpdated}
         introduction={
             <p>
                 We operate {appName}. This policy explains the information we handle through the app.

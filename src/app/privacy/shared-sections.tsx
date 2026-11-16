@@ -59,7 +59,7 @@ export function privacyContactSections(appName: string): PrivacySection[] {
             id: "international-users",
             title: "International users and overseas processing",
             content: <>
-                <p>We operate from South Africa and intend the apps for international distribution. Information sent to us can be processed in South Africa and countries where the providers described above operate. A provider&apos;s privacy notice alone does not establish that every transfer meets all legal requirements.</p>
+                <p>We operate from South Africa. Information sent to us can be processed in South Africa and countries where the providers described above operate. A provider&apos;s privacy notice alone does not establish that every transfer meets all legal requirements.</p>
                 <p>Where a transfer requires a safeguard, it must have an applicable lawful basis and safeguard, such as an adequacy decision or appropriate contractual protection. Additional restrictions can apply to children&apos;s and sensitive information. Contact us to ask about the recipients, locations and safeguards relevant to your information.</p>
                 <p>If EU, EEA or UK data-protection law applies, its mandatory protections remain available, including applicable access, correction, erasure, restriction, portability, objection and complaint rights. Regional law can require specific parental authorisation or another condition for children&apos;s or health-related information. This notice does not assert that a regional representative or consent-verification process is already in place.</p>
             </>,

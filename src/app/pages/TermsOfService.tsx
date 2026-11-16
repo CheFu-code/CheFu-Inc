@@ -6,6 +6,7 @@ const appTerms = [
     { name: "LiftWise", href: "/terms/liftwise" },
     { name: "Sudoku", href: "/terms/sudoku" },
     { name: "Infinity", href: "/terms/infinity" },
+    { name: "ShopYethu", href: "/terms/shopyethu" },
 ];
 
 export function TermsOfService() {
