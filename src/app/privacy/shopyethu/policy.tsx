@@ -12,7 +12,7 @@ export const shopYethuSections: PrivacySection[] = [
                     <caption className="sr-only">ShopYethu information sources and uses</caption>
                     <thead><tr><th scope="col">Source</th><th scope="col">Information</th><th scope="col">Purpose</th></tr></thead>
                     <tbody>
-                        <tr><th scope="row">CheFu sign-in</th><td>Account identifier, email, name and profile image where available; authentication tokens</td><td>Sign in, secure requests and associate marketplace records with your account</td></tr>
+                        <tr><th scope="row">Account sign-in</th><td>Account identifier, email, name and profile image where available; authentication tokens</td><td>Sign in, secure requests and associate marketplace records with your account</td></tr>
                         <tr><th scope="row">Seller application</th><td>Business type and trading name, contact name and phone number, account email, operating area, product categories and description, and optional collection area and hours</td><td>Review the application, manage seller access and operate the marketplace</td></tr>
                         <tr><th scope="row">Store and product listings</th><td>Store details, product names and descriptions, category, price, stock, fulfilment options and selected product photos</td><td>Display and manage listings, inventory and seller orders</td></tr>
                         <tr><th scope="row">Basket and orders</th><td>Selected products and quantities, order totals, fulfilment choice, contact details, any address entered, order status and history</td><td>Place, administer and fulfil orders and resolve related issues</td></tr>
@@ -28,7 +28,7 @@ export const shopYethuSections: PrivacySection[] = [
         id: "accounts-and-device-storage",
         title: "Accounts and information stored on your device",
         content: <>
-            <p>ShopYethu uses CheFu sign-in. The app receives the account identifier and available profile information needed to authenticate you, and stores session credentials with Expo SecureStore on your device.</p>
+            <p>ShopYethu uses an account sign-in service. The app receives the account identifier and available profile information needed to authenticate you, and stores session credentials with Expo SecureStore on your device.</p>
             <p>The app also stores an encrypted, account-scoped basket, seller-application drafts, selected marketplace data and unfinished save or order attempts on the device so you can resume some actions. These device copies are not the same as server records. Signing out or changing accounts clears protected account data in the app, but does not delete information already sent to our servers.</p>
             <p>Browsing does not require sign-in. Account-linked actions such as applying to sell, placing orders and submitting reports require sign-in. Seller-application drafts remain on that device and are not submitted to our servers until you submit the application.</p>
         </>,
@@ -64,7 +64,7 @@ export const shopYethuSections: PrivacySection[] = [
         title: "Service providers and external services",
         content: <>
             <ul>
-                <li><strong>CheFu Account and ShopYethu backend:</strong> authenticate users and process account, application, store, listing, order and report records. Marketplace records are stored in backend-managed Firebase Firestore; mobile clients do not write directly to those collections.</li>
+                <li><strong>Account service and ShopYethu backend:</strong> authenticate users and process account, application, store, listing, order and report records. Marketplace records are stored in backend-managed Firebase Firestore; mobile clients do not write directly to those collections.</li>
                 <li><strong>Google Places:</strong> supports South African area suggestions. Google may process the search text sent for suggestions; ShopYethu saves the selected Place ID and resolves its displayed label when needed.</li>
                 <li><strong>Cloudinary:</strong> stores and delivers product photos uploaded by sellers.</li>
                 <li><strong>Expo:</strong> provides app infrastructure and app updates, which can involve technical app and network information needed to check and deliver a compatible update.</li>
@@ -87,8 +87,8 @@ export const shopYethuSections: PrivacySection[] = [
         title: "Retention and deletion",
         content: <>
             <p>Device caches and drafts have technical expiry and storage limits, but those limits do not delete server records. We keep marketplace records for as long as needed to operate the service, administer applications and transactions, investigate reports, meet legal obligations or resolve disputes. The mobile app repository does not establish a fixed retention period for every server-side record.</p>
-            <p>There is no in-app control that deletes your ShopYethu server records or shared CheFu sign-in. To request access to, correction of or deletion of ShopYethu information, email <a href="mailto:privacy@chefu.co.za">privacy@chefu.co.za</a> and identify ShopYethu, your account email and the records concerned. We may need to verify your identity and may retain particular records where the law requires or permits it.</p>
-            <p>Deleting a shared CheFu sign-in is separate from deleting ShopYethu marketplace records and can affect your access to other CheFu services. Contact us before taking that step if you need help understanding the effect. Uninstalling ShopYethu removes the app from your device; it does not itself erase server records.</p>
+            <p>There is no in-app control that deletes your ShopYethu server records or account. To request access to, correction of or deletion of ShopYethu information, email <a href="mailto:privacy@chefu.co.za">privacy@chefu.co.za</a> and identify ShopYethu, your account email and the records concerned. We may need to verify your identity and may retain particular records where the law requires or permits it.</p>
+            <p>Deleting a shared account is separate from deleting ShopYethu marketplace records and may affect your access to other services that use that account. Contact us before taking that step if you need help understanding the effect. Uninstalling ShopYethu removes the app from your device; it does not itself erase server records.</p>
         </>,
     },
     ...privacyContactSections("ShopYethu"),

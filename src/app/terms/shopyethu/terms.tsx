@@ -6,7 +6,7 @@ export const shopYethuTerms: TermsSection[] = [
         id: "marketplace-service",
         title: "ShopYethu marketplace",
         content: <>
-            <p>ShopYethu is a marketplace app operated by CHEFU TECHNOLOGIES (Pty) Ltd. It lets people browse participating stores and products, and lets approved sellers manage stores, listings and orders. Unless a listing clearly says otherwise, the seller—not Chefu Technologies—is responsible for the goods, product information, stock, pricing and fulfilment.</p>
+            <p>ShopYethu is a marketplace app operated by CHEFU TECHNOLOGIES (Pty) Ltd. It lets people browse participating stores and products, and lets approved sellers manage stores, listings and orders. Unless a listing clearly says otherwise, the seller—not the marketplace operator—is responsible for the goods, product information, stock, pricing and fulfilment.</p>
             <p>We provide the marketplace tools and review seller applications. Approval is not a guarantee of a seller's identity, product quality, safety, legality, availability or performance, and does not make us the seller or manufacturer. We may review reports and take proportionate action on listings or seller access, but cannot promise that every issue will be detected before a transaction.</p>
         </>,
     },
@@ -14,7 +14,7 @@ export const shopYethuTerms: TermsSection[] = [
         id: "accounts-and-eligibility",
         title: "Accounts and eligibility",
         content: <>
-            <p>Account features use CheFu sign-in. Provide accurate information, protect your sign-in credentials and tell us promptly if you suspect someone else has used your account. You are responsible for activity carried out through your account, subject to applicable law and any security failure for which we are responsible.</p>
+            <p>Account features require sign-in. Provide accurate information, protect your sign-in credentials and tell us promptly if you suspect someone else has used your account. You are responsible for activity carried out through your account, subject to applicable law and any security failure for which we are responsible.</p>
             <p>Seller applications are intended for applicants operating in South Africa and require the information requested in the app. Submitting an application does not guarantee approval. Staff may approve, request more information, reject or suspend seller access, with the status or reason shown in the app where available.</p>
             <p>If you cannot legally agree to these terms yourself, a parent or legal guardian must authorise your use where required by law. ShopYethu does not currently verify age or parental permission in the app.</p>
         </>,
