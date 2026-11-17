@@ -108,6 +108,11 @@ const faqGroups = [
                 a: "Yes. Chefu Technologies is an official HP Business Partner. Contact us with your HP-related requirements so we can discuss your request.",
                 link: { href: "/contact", label: "Ask about HP" },
             },
+            {
+                q: "Is Chefu Technologies a Dell Technologies partner?",
+                a: "Yes. Chefu Technologies is a Dell Technologies Authorized Partner. Contact us with your Dell-related requirements so we can discuss your request.",
+                link: { href: "/contact", label: "Ask about Dell" },
+            },
         ],
     },
     {
