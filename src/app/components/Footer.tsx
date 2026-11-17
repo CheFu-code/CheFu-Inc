@@ -6,11 +6,8 @@ import {
     Phone,
     Twitter
 } from "lucide-react";
-import Image from 'next/image';
 import Link from 'next/link';
 import { FaFacebook, FaWhatsapp } from 'react-icons/fa';
-import { DellPartnerBadge } from "./DellPartnerBadge";
-import lenovoLogo from "../../../public/lenovo-logo-red.png";
 
 export function Footer() {
     const companyLinks = [
